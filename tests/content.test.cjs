@@ -153,7 +153,7 @@ test("эхограммы: каждый файл существует, не пу�
   for (const f of fs.readdirSync(path.join(__dirname, "..", "img"))) assert.ok(files.has(f), `img/${f} не описан в data/images.js`);
 });
 
-test("эхограммы: у каждого снимка есть автор, источник, ссылка и лицензия; все — черновики", () => {
+test("эхограммы: у каждого снимка есть автор, источник, ссылка и лицензия; статус проверки корректен", () => {
   for (const im of FC.IMAGES) {
     const s = im.source;
     for (const f of ["authors", "title", "url", "license"]) assert.ok(s[f], `${im.id}: нет ${f}`);
@@ -164,7 +164,7 @@ test("эхограммы: у каждого снимка есть автор, и
       assert.match(s.url, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/, im.id);
       assert.ok(["CC BY", "CC BY-SA", "CC0", "Public domain"].some(l => s.license.startsWith(l)), `${im.id}: лицензия ${s.license}`);
     }
-    assert.equal(im.status, "draft", `${im.id}: до экспертной проверки — draft`);
+    assert.ok(im.status === "draft" || (im.status === "approved" && im.reviewedBy && /^\d{4}-\d{2}-\d{2}$/.test(im.reviewedAt)), `${im.id}: approved только с reviewedBy и reviewedAt`);
     assert.ok(im.captionRu && /[а-яё]/i.test(im.captionRu), `${im.id}: нет русского перевода подписи`);
   }
 });

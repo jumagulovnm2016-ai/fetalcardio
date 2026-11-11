@@ -85,7 +85,7 @@
     const list = IMAGES.filter(im => im.cards.includes(card));
     if (!list.length) return "";
     return `<h2 id="s-img">Эхограммы из открытых источников</h2>
-      <p class="small muted">${statusBadge("draft")} Привязка снимков к карточке и перевод подписей авторов не проверены экспертом. Нажмите на снимок — откроется подпись, источник и лицензия.</p>
+      <p class="small muted">${list.every(im => im.status === "approved") ? statusBadge("approved") + " Привязка снимков и перевод подписей проверены автором." : statusBadge("draft") + " Привязка снимков к карточке и перевод подписей авторов не проверены экспертом."} Нажмите на снимок — откроется подпись, источник и лицензия.</p>
       ${thumbs(list)}`;
   };
 
@@ -130,7 +130,7 @@
       ${feat("#/quiz", I.quiz, "red", "Проверка знаний", `${QUIZ.length} вопросов с разбором ответов.`)}
     </div>
     ${IMAGES.length ? `<a class="card feature" href="#/images"><span class="tile red">${I.views}</span>
-      <span><h3>Библиотека эхограмм</h3><span class="small muted">${IMAGES.length} снимков и рисунков из открытых источников с указанием автора и лицензии. Черновик.</span></span></a>` : ""}
+      <span><h3>Библиотека эхограмм</h3><span class="small muted">${IMAGES.length} снимков и рисунков из открытых источников с указанием автора и лицензии.</span></span></a>` : ""}
     ${ATLAS.length ? `<a class="card feature" href="#/atlas"><span class="tile">${I.views}</span>
       <span><h3>Анатомический атлас</h3><span class="small muted">Подробные анатомические схемы срезов с подписями и легендой. Черновики — на экспертной проверке.</span></span></a>` : ""}
     <div class="card">
@@ -176,8 +176,10 @@
   /* ---------- библиотека эхограмм ---------- */
   function imagesList() {
     return `<h1>Библиотека эхограмм</h1>
-      <p class="subtitle">${IMAGES.length} изображений из статей открытого доступа (CC BY) и Wikimedia Commons. Подписи переведены на русский (черновик), оригинал автора — под переводом. У каждого снимка указаны источник и лицензия.</p>
-      <div class="note">${statusBadge("draft")} <b>Черновик.</b> Распределение по разделам и привязка к карточкам не проверены экспертом. Снимки не подтверждают текст карточек: источники утверждений — в разделах «Источники».</div>
+      <p class="subtitle">${IMAGES.length} изображений из статей открытого доступа (CC BY) и Wikimedia Commons. Подписи переведены на русский, оригинал автора — под переводом. У каждого снимка указаны источник и лицензия.</p>
+      ${IMAGES.every(im => im.status === "approved")
+        ? `<div class="note info">${statusBadge("approved")} Привязка снимков к карточкам и переводы подписей проверены автором. Снимки не подтверждают текст карточек: источники утверждений — в разделах «Источники».</div>`
+        : `<div class="note">${statusBadge("draft")} <b>Черновик.</b> Распределение по разделам и привязка к карточкам не проверены экспертом. Снимки не подтверждают текст карточек: источники утверждений — в разделах «Источники».</div>`}
       <nav class="toc">${IMAGE_GROUPS.map((g, i) => IMAGES.some(im => im.group === g) ? `<a href="javascript:void(0)" data-jump="g${i}">${esc(g)}</a>` : "").join("")}</nav>
       ${IMAGE_GROUPS.map((g, i) => { const list = IMAGES.filter(im => im.group === g); return list.length ? `<h2 id="s-g${i}">${esc(g)} <span class="small muted">· ${list.length}</span></h2>${thumbs(list)}` : ""; }).join("")}
       ${foot()}`;
@@ -195,7 +197,7 @@
         <figcaption>${im.captionRu ? `<p class="cap-ru">${esc(im.captionRu)}</p>` : ""}
           ${im.caption ? `<details class="cap-en"${im.captionRu ? "" : " open"}><summary>Оригинальная подпись автора</summary><p lang="${im.source.kind === "commons" && /semanas/.test(im.id) ? "es" : "en"}">${esc(im.caption)}</p></details>` : ""}
           ${im.group === IMAGE_GROUPS[IMAGE_GROUPS.length - 1] ? '<p class="small muted">Автор не указал, какой срез на снимке. Требует экспертной разметки.</p>' : ""}
-          ${im.captionRu ? `<p><span class="badge draft wrap">перевод подписи — черновик, не проверен экспертом</span></p>` : ""}</figcaption></figure>
+          ${im.captionRu ? (im.status === "approved" ? `<p><span class="badge ok wrap">перевод и привязка проверены: ${esc(im.reviewedBy)}, ${esc(im.reviewedAt)}</span></p>` : `<p><span class="badge draft wrap">перевод подписи — черновик, не проверен экспертом</span></p>`) : ""}</figcaption></figure>
       <h2>Источник и лицензия</h2>
       <p class="small">${imgCredit(im.source)} <a href="${esc(im.source.url)}" target="_blank" rel="noopener">Открыть источник ↗</a></p>
       ${im.source.license.startsWith("CC BY-SA") ? '<p class="small muted">CC BY-SA: изменённую версию (стрелки, подписи, кадрирование) распространяйте под той же лицензией.</p>' : ""}

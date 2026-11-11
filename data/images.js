@@ -1,9 +1,10 @@
 /* FetalCardio — библиотека эхограмм и рисунков из открытых источников.
-   caption — оригинальная подпись автора (без изменений); captionRu — перевод на русский (черновик, проверяет эксперт).
+   caption — оригинальная подпись автора (без изменений); captionRu — перевод на русский (проверен автором 12.11.2026).
    source — откуда взято изображение и на каких условиях (лицензия). Это атрибуция картинки,
    а НЕ подтверждение медицинских утверждений карточки: такие источники — в data/references.js.
-   cards — к каким карточкам привязан снимок (chd:<id>, view:<id>). Привязка — черновик до экспертной проверки.
-   status: "draft" до проверки; "approved" требует reviewedBy и reviewedAt. */
+   cards — к каким карточкам привязан снимок (chd:<id>, view:<id>).
+   status: "draft" до проверки; "approved" требует reviewedBy и reviewedAt.
+   12.11.2026 привязка и переводы проверены автором (Жумагулов Н.М.). */
 var FC = globalThis.FC = globalThis.FC || {};
 FC.IMAGE_GROUPS = ["Норма и методика", "Другие ВПС", "Аномалии дуги аорты и вен", "Нарушения ритма", "Опухоли, кардиомиопатии, сужение протока", "Функция сердца", "Схемы и модели", "Ранние сроки и общие снимки", "Срез не определён (Nevit Dilmen)"];
 FC.IMAGES = [
@@ -15,7 +16,7 @@ FC.IMAGES = [
   "captionRu": "Позиционирование и оптимизация перед STIC-сбором. (A) Первичная оценка положения плода и ориентации сердца с пресетом OB General. (B) После переключения на пресет Fetal Heart акустическая тень и несколько неодинаковых дуг рёбер могут указывать на неблагоприятную или косую плоскость инсонации. (C) После перемещения датчика и оптимизации 2D-режима сердце находится в центре четырёхкамерного среза, а ROI охватывает грудную клетку и сердце плода — можно начинать STIC-сбор. Вид дуг рёбер — практический учебный ориентир, а не самостоятельно валидированный диагностический критерий или критерий адекватности. ROI — область интереса; STIC — пространственно-временная корреляция изображения.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Giubilato AF, Bravo-Valenzuela NJ, Albrecht MEM, et al.",
@@ -27,7 +28,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1111/echo.70659",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13723304-f2",
@@ -37,7 +40,7 @@ FC.IMAGES = [
   "captionRu": "Получение: контрольная точка качества STIC-объёма. Полученный объём просматривают в STICLOOP: включены ли необходимые анатомические структуры и ориентиры, нет ли маскирующих артефактов, сохранена ли пространственная непрерывность при просмотре в движении и согласованы ли соседние плоскости. Объём считают адекватным, если выполнены все критерии; пригодным, но неоптимальным — если остаётся локальный дефект, но необходимая анатомия оценима; неадекватным — если необходимая анатомия или ориентиры скрыты, искажены или сомнительны. Адекватные объёмы переходят к этапу «Построение»; для неоптимальных нужно задокументировать ограничение и локально уточнить; при неадекватных — заново оценить позиционирование/оптимизацию и повторить сбор. Эти предложенные учебные категории требуют проспективной валидации. Непрерывность дуг рёбер, если её используют для оценки согласованности, — учебное пособие и не валидирована как критерий адекватности.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Giubilato AF, Bravo-Valenzuela NJ, Albrecht MEM, et al.",
@@ -49,7 +52,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1111/echo.70659",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13723304-f3",
@@ -59,7 +64,7 @@ FC.IMAGES = [
   "captionRu": "Построение: последовательность из семи ориентиров и логика решений. Анатомические схемы показывают последовательность разметки Anatomic Box®: (1) поперечное сечение аорты на уровне желудка; (2) поперечное сечение аорты на уровне четырёхкамерного среза; (3) крест сердца; (4) стенка правого предсердия; (5) клапан лёгочной артерии; (6) поперечное сечение верхней полой вены; (7) поперечная дуга аорты. Зелёные кресты — места разметки. У стенки правого предсердия зелёная направляющая показывает выравнивание по межжелудочковой перегородке и заканчивается на метке стенки. Для каждого ориентира оператор перемещается, узнаёт анатомию, подтверждает плоскость и фазу сердечного цикла и только затем ставит метку. После креста сердца ориентацию и фазу цикла оценивают повторно. При неуверенности — локальная переоценка; при повторных затруднениях — проверка качества исходного объёма и возврат к позиционированию, оптимизации или получению. Схемы не в масштабе. Последовательность разметки специфична для FINE; анатомическое подтверждение и итеративная переоценка — переносимые учебные принципы.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Giubilato AF, Bravo-Valenzuela NJ, Albrecht MEM, et al.",
@@ -71,7 +76,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1111/echo.70659",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13723304-f4",
@@ -81,7 +88,7 @@ FC.IMAGES = [
   "captionRu": "Оценка: критический просмотр реконструированных диагностических плоскостей. Каждый срез проверяют на анатомический охват, ориентацию плоскости, фазу сердечного цикла и значимые артефакты. Для изучения плоскости и окружающей анатомии используют, по ситуации, навигацию VIS-Assistance или Maestro Planar Navigation. После коррекции плоскость оценивают заново и при необходимости обновляют. Технически неадекватная плоскость — повод проверить расстановку ориентиров и качество исходного объёма, при необходимости — повторить сбор. Любая подозрительная находка, сохраняющаяся после изучения плоскости или не объяснимая известным артефактом, требует проверки в реальном 2D-режиме с цветовым допплером и, по показаниям, направления на фетальную эхокардиографию. Протокол PROBE в серой шкале не является полной оценкой сердца плода; интерпретация остаётся ответственностью оператора.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Giubilato AF, Bravo-Valenzuela NJ, Albrecht MEM, et al.",
@@ -93,7 +100,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1111/echo.70659",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc2949622-f1",
@@ -103,7 +112,7 @@ FC.IMAGES = [
   "captionRu": "После стандартизации положения плода в STIC-объёме (плод строго на спине) навигация в объёме похожа на перемещение датчика по грудной клетке плода при 2D-сканировании в реальном времени. Поперечные плоскости показаны в плоскости A, сагиттальные — в плоскости B.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Jantarasaengaram S, Vairojanavong K",
@@ -115,7 +124,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/1476-7120-8-41",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc2949622-f2",
@@ -125,7 +136,7 @@ FC.IMAGES = [
   "captionRu": "Этапы стандартизации виртуального положения плода, чтобы расположить его «строго на спине». a. В плоскости A поверните позвоночник вниз, на 6 часов. b. В плоскости A переместите опорную точку в центр аорты. c. В плоскости B поверните объём вокруг оси y, чтобы вывести длинную ось нисходящей аорты. d. В плоскости B поверните объём вокруг оси z, чтобы нисходящая аорта легла горизонтально. (После этого объём расположен так, будто плод лежит на ровном столе. Однако плод может лежать не строго на спине, а более или менее на боку.) e. Перейдите в плоскость A и прокручивайте объём параллельно вверх и вниз, пока не появится эхо грудины. f. Поверните изображение в плоскости A вокруг оси z, пока грудина и позвоночник не окажутся на одной вертикали. Это последнее движение даёт точное положение плода на спине.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Jantarasaengaram S, Vairojanavong K",
@@ -137,7 +148,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/1476-7120-8-41",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc2949622-f3",
@@ -147,7 +160,7 @@ FC.IMAGES = [
   "captionRu": "После стандартизации положения плода в STIC-объёме (строго на спине) систематическая навигация обычно даёт воспроизводимое изображение при соответствующем движении. Если поместить опорную точку в центр аорты на четырёхкамерном срезе (4 CH) в плоскости A, в плоскости B одновременно выводится длинная ось дуги артериального протока.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Jantarasaengaram S, Vairojanavong K",
@@ -159,7 +172,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/1476-7120-8-41",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc2949622-f4",
@@ -169,7 +184,7 @@ FC.IMAGES = [
   "captionRu": "После стандартизации положения плода в STIC-объёме (строго на спине) систематическая навигация обычно даёт воспроизводимое изображение при соответствующем движении. Если поместить опорную точку на аортальный клапан на пятикамерном срезе в плоскости A и повернуть объём вокруг оси y на 15–30°, в плоскости A выводится LVOT, а в плоскости B одновременно — короткая ось магистральных сосудов.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Jantarasaengaram S, Vairojanavong K",
@@ -181,7 +196,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/1476-7120-8-41",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f1",
@@ -191,7 +208,7 @@ FC.IMAGES = [
   "captionRu": "Мультипланарные срезы у плода 19 недель с нормальным строением сердца. Панели a, b и c — три ортогональные плоскости (A — поперечная, B — сагиттальная, C — корональная). Верхушка сердца на 4CV направлена вверх, опорная точка (зелёная стрелка) установлена на кресте сердца на панели a (A). Переместите опорную точку в левый желудочек на панели a. Подбирая положение опорной точки на панели a у выводного тракта (базальный отдел левого желудочка у креста сердца), на панели b можно вывести магистральную артерию с отчётливым ходом (B). Если переместить опорную точку на эту артерию и пройти по её ходу на панели B, видны круглое (поперечное) сечение одной магистральной артерии и продольное сечение другой (короткий ствол с бифуркацией) (C). Это аорта и лёгочная артерия. Поскольку опорная точка находилась в аорте, подтверждено, что аорта отходит от левого желудочка. Возврат к исходному положению на панели a (A). Переместите опорную точку в правый желудочек на панели a. Подбирая положение опорной точки у выводного тракта (базальный отдел правого желудочка у креста сердца), на панели b отчётливо видна магистральная артерия с клапаном (D). Если переместить опорную точку на клапан на панели b, на панели a видны две магистральные артерии — в поперечном и продольном сечении (E). Поскольку опорная точка находилась в лёгочной артерии, подтверждено, что лёгочная артерия отходит от правого желудочка. AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек.",
   "group": "Норма и методика",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -203,7 +220,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8303209-f1",
@@ -215,7 +234,7 @@ FC.IMAGES = [
   "cards": [
    "view:lvot"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Raucher Sternfeld A, Betzer T, Tamir A, et al.",
@@ -227,7 +246,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics11071185",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8303209-f6",
@@ -239,7 +260,7 @@ FC.IMAGES = [
   "cards": [
    "view:lvot"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Raucher Sternfeld A, Betzer T, Tamir A, et al.",
@@ -251,7 +272,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics11071185",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-aortic-stenosis-1",
@@ -261,7 +284,7 @@ FC.IMAGES = [
   "captionRu": "Аортальный стеноз: четырёхкамерный срез (плод 26 недель).",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Mirmillon",
@@ -269,7 +292,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Aortic_stenosis_1.JPG",
    "license": "Public domain",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-aortic-stenosis-2",
@@ -279,7 +304,7 @@ FC.IMAGES = [
   "captionRu": "Аортальный стеноз: суженная аорта 3 мм (плод 26 недель).",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Mirmillon",
@@ -287,7 +312,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Aortic_stenosis_2.JPG",
    "license": "Public domain",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-aortic-stenosis-3",
@@ -297,7 +324,7 @@ FC.IMAGES = [
   "captionRu": "Аортальный стеноз: лёгочная артерия 7 мм (плод 26 недель).",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Mirmillon",
@@ -305,7 +332,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Aortic_stenosis_3.JPG",
    "license": "Public domain",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-reprodmed-03-00005-g004-550",
@@ -317,7 +346,7 @@ FC.IMAGES = [
   "cards": [
    "chd:hlhs"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Zaghi M, Janssens K, et al.",
@@ -325,7 +354,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Reprodmed-03-00005-g004-550.jpg",
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-tgvecho1",
@@ -337,7 +368,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Pezard",
@@ -345,7 +376,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:TGVecho1.gif",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-tgvecho2",
@@ -357,7 +390,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Pezard",
@@ -365,7 +398,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:TGVecho2.gif",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-tgvecho3",
@@ -377,7 +412,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Pezard",
@@ -385,7 +420,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:TGVecho3.gif",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-tgvecho4",
@@ -397,7 +434,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Pezard",
@@ -405,7 +442,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:TGVecho4.gif",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10282755-f2",
@@ -417,7 +456,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Xue X, Wu Q, Xiong M, et al.",
@@ -429,7 +468,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fped.2023.1206032",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10282755-f3",
@@ -441,7 +482,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Xue X, Wu Q, Xiong M, et al.",
@@ -453,7 +494,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fped.2023.1206032",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10282755-f4",
@@ -465,7 +508,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Xue X, Wu Q, Xiong M, et al.",
@@ -477,7 +520,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fped.2023.1206032",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10282755-f5",
@@ -489,7 +534,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Xue X, Wu Q, Xiong M, et al.",
@@ -501,7 +546,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fped.2023.1206032",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10475158-f1",
@@ -511,7 +558,7 @@ FC.IMAGES = [
   "captionRu": "Первая эхокардиография в 25 недель. Срез выводного тракта левого желудочка (LVOT): расширенная восходящая аорта диаметром 7,99 мм сразу дистальнее выводного тракта.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Weymon A, Huebner KT, Sommerfield J, et al.",
@@ -523,7 +570,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.42931",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10475158-f2",
@@ -533,7 +582,7 @@ FC.IMAGES = [
   "captionRu": "Апикальный четырёхкамерный и поперечный срезы в 25 недель. Апикальный четырёхкамерный (A) и поперечный (B) срезы: нет гипертрофии желудочков, эндокардиального фиброэластоза и перикардиального выпота (первое исследование в 25 недель).",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Weymon A, Huebner KT, Sommerfield J, et al.",
@@ -545,7 +594,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.42931",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10475158-f3",
@@ -555,7 +606,7 @@ FC.IMAGES = [
   "captionRu": "Допплерэхокардиография в 25 недель. Импульсно-волновой допплер: значительно повышенный градиент на аортальном клапане — пиковый 53 мм рт. ст., средний 32 мм рт. ст. (пиковая скорость 3,6 м/с).",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Weymon A, Huebner KT, Sommerfield J, et al.",
@@ -567,7 +618,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.42931",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10475158-f4",
@@ -577,7 +630,7 @@ FC.IMAGES = [
   "captionRu": "Эхокардиография в 32 6/7 недели. (A) Срез LVOT: турбулентный поток через суженный выводной тракт аорты. (B) Апикальный четырёхкамерный срез сердца плода: минимальный перикардиальный выпот 4,2 мм. LVOT — выводной тракт левого желудочка.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Weymon A, Huebner KT, Sommerfield J, et al.",
@@ -589,7 +642,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.42931",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10475158-f5",
@@ -599,7 +654,7 @@ FC.IMAGES = [
   "captionRu": "М-режим в 32 6/7 недели: наджелудочковая тахикардия с атриовентрикулярным проведением 1:1, ЧСС плода 257 уд/мин. SVT — наджелудочковая тахикардия; AV — атриовентрикулярный; HR — ЧСС; bpm — уд/мин.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Weymon A, Huebner KT, Sommerfield J, et al.",
@@ -611,7 +666,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.42931",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10772931-f1",
@@ -621,7 +678,7 @@ FC.IMAGES = [
   "captionRu": "Трансабдоминальная двумерная фетальная эхокардиография, четырёхкамерный срез: резко гипоплазированный, гипертрофированный и аневризматически изменённый ПЖ с атрезией трикуспидального клапана (звёздочка). LA — левое предсердие; RA — правое предсердие.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Sourour W, Powell SK",
@@ -633,7 +690,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2023.09.002",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10772931-f2",
@@ -643,7 +702,7 @@ FC.IMAGES = [
   "captionRu": "Трансабдоминальная двумерная фетальная эхокардиография, срез выводных трактов: ствол лёгочной артерии нормального размера, створки клапана лёгочной артерии не определяются (звёздочка). Ao — аорта; SVC — верхняя полая вена.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Sourour W, Powell SK",
@@ -655,7 +714,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2023.09.002",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10894161-f1",
@@ -667,7 +728,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Gottschalk I, Walter A, Menzel T, et al.",
@@ -679,7 +740,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-023-06997-8",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10894161-f2",
@@ -691,7 +754,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Gottschalk I, Walter A, Menzel T, et al.",
@@ -703,7 +766,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-023-06997-8",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10894161-f3",
@@ -715,7 +780,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Gottschalk I, Walter A, Menzel T, et al.",
@@ -727,7 +792,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-023-06997-8",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10894161-f4",
@@ -739,7 +806,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Gottschalk I, Walter A, Menzel T, et al.",
@@ -751,7 +818,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-023-06997-8",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc11122070-f1",
@@ -763,7 +832,7 @@ FC.IMAGES = [
   "cards": [
    "chd:ebstein"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Kavanaugh-McHugh A, Zuckerwise LC, Killen SAS, et al.",
@@ -775,7 +844,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/jcdd11050147",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc11122070-f3",
@@ -787,7 +858,7 @@ FC.IMAGES = [
   "cards": [
    "chd:ebstein"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Kavanaugh-McHugh A, Zuckerwise LC, Killen SAS, et al.",
@@ -799,7 +870,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/jcdd11050147",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc11122070-f4",
@@ -811,7 +884,7 @@ FC.IMAGES = [
   "cards": [
    "chd:ebstein"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Kavanaugh-McHugh A, Zuckerwise LC, Killen SAS, et al.",
@@ -823,7 +896,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/jcdd11050147",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12338190-f1",
@@ -833,7 +908,7 @@ FC.IMAGES = [
   "captionRu": "Визуализация пентады Кантрелла. (A) Дефект грудной стенки плода с эвентрацией сердца; (B) дефект передней брюшной стенки выше пупка с эвентрацией печени; (C) пупочная грыжа плода; (D) фотография после индуцированных родов.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Peng W, Li L, Yang R, et al.",
@@ -845,7 +920,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1097/md.0000000000043674",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12426840-f1",
@@ -857,7 +934,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Dzhelepova N, Jones CB",
@@ -869,7 +946,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2025.04.005",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12426840-f2",
@@ -881,7 +960,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Dzhelepova N, Jones CB",
@@ -893,7 +972,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2025.04.005",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12426840-f3",
@@ -905,7 +986,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Dzhelepova N, Jones CB",
@@ -917,7 +998,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2025.04.005",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12426840-f4",
@@ -929,7 +1012,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Dzhelepova N, Jones CB",
@@ -941,7 +1024,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2025.04.005",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12426840-f5",
@@ -953,7 +1038,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Dzhelepova N, Jones CB",
@@ -965,7 +1050,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1016/j.case.2025.04.005",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12564150-f1",
@@ -975,7 +1062,7 @@ FC.IMAGES = [
   "captionRu": "Четырёхкамерный срез у случаев 1 и 2 с критическим аортальным стенозом и схематичное представление функциональных параметров левого и правого желудочков у плодов в 35 недель; параметры значительно снижены: GS — глобальная деформация (strain); FAC — фракционное изменение площади; EF — фракция выброса (для акинетичного левого желудочка). В случае 2 — дилатированный левый желудочек с эндокардиальным фиброэластозом. Конец диастолы и конец систолы обозначены разными цветами.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Murlewska J, Witkowski S, Strzelecka I, et al.",
@@ -987,7 +1074,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics15202591",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12771062-f1",
@@ -997,7 +1086,7 @@ FC.IMAGES = [
   "captionRu": "(A–B) Пренатальное УЗИ. Модифицированный длинноосевой вариант среза трёх сосудов: три сосуда (ВПВ, аорта и ствол лёгочной артерии) и крупное единичное кистозное образование у левого края сердца плода; сообщение с ЛП не выявлено. Ao — аортальный клапан; Cyst — врождённая аневризма ушка левого предсердия (CLAAA); MPA — ствол лёгочной артерии; RA — правое предсердие; SVC — верхняя полая вена; LA — левое предсердие.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Algonaid OA, Alaskar RS, Altamimi O, et al.",
@@ -1009,7 +1098,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.98614",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12771062-f2",
@@ -1019,7 +1110,7 @@ FC.IMAGES = [
   "captionRu": "(A–D) Фетальная эхокардиография в длинной оси с краниальным наклоном от четырёхкамерного среза: единичное кистозное образование у левого края сердца — аневризма ушка ЛП. Цветовой допплер: поток из аневризмы в ЛП (жирная белая стрелка, D) в диастолу, когда трикуспидальный клапан открыт, и обратный поток в аневризму (жирная чёрная стрелка, B) в систолу, когда трикуспидальный клапан закрыт; антеградный поток через аорту. Тонкая оранжевая стрелка — уровень аорты. Ao — аортальный клапан; CLAAA — врождённая аневризма ушка левого предсердия; LA — левое предсердие; RA — правое предсердие; TV — трикуспидальный клапан.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Algonaid OA, Alaskar RS, Altamimi O, et al.",
@@ -1031,7 +1122,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.98614",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12880957-f1",
@@ -1043,7 +1136,7 @@ FC.IMAGES = [
   "cards": [
    "chd:hlhs"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Dannesbo S, Ho G, Seed M, et al.",
@@ -1055,7 +1148,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/pd.70000",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12967494-f1",
@@ -1065,7 +1160,7 @@ FC.IMAGES = [
   "captionRu": "Четырёхкамерный срез. A. Инверсия желудочков: морфологически правый желудочек (RV, тонкая стрелка) расположен слева, морфологически левый (LV) — справа (белая стрелка); левое предсердие (звёздочка) соединено с морфологически правым желудочком, правое предсердие (синяя стрелка) — с морфологически левым. B. Лёгочная артерия (синяя стрелка) отходит от морфологически левого желудочка (белая стрелка). C. Аорта (синяя стрелка) отходит от морфологически правого желудочка (белая стрелка). MR — справа у матери, ML — слева у матери, R — справа у плода, L — слева у плода.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Chavhan AR, Sahu J, Mitra K, et al.",
@@ -1077,7 +1172,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.103097",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12967494-f2",
@@ -1087,7 +1184,7 @@ FC.IMAGES = [
   "captionRu": "Цветовое допплеровское картирование. A. Лёгочная артерия отходит от морфологически левого желудочка (LV). B. Аорта (белая стрелка) отходит от морфологически правого желудочка (RV, тонкая стрелка).",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Chavhan AR, Sahu J, Mitra K, et al.",
@@ -1099,7 +1196,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.103097",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc2778174-f1",
@@ -1112,7 +1211,7 @@ FC.IMAGES = [
    "chd:avsd",
    "view:4cv"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Yıldırım G, Gungorduk K, Yazıcıoğlu F, et al.",
@@ -1124,7 +1223,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1155/2009/958496",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4827237-f1",
@@ -1136,7 +1237,7 @@ FC.IMAGES = [
   "cards": [
    "chd:hlhs"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang J, Zhou Q, Zhao Y, et al.",
@@ -1148,7 +1249,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-016-0056-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4827237-f2",
@@ -1160,7 +1263,7 @@ FC.IMAGES = [
   "cards": [
    "chd:hlhs"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang J, Zhou Q, Zhao Y, et al.",
@@ -1172,7 +1275,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-016-0056-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f2",
@@ -1184,7 +1289,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tapvr"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1196,7 +1301,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f4",
@@ -1208,7 +1315,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1220,7 +1327,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f5",
@@ -1230,7 +1339,7 @@ FC.IMAGES = [
   "captionRu": "Эхограммы плода 22 недель с корригированной ТМА. На 4CV (a) — четыре симметричные камеры, которые врачи по протоколу A сочли нормальными. Однако при внимательной оценке мест прикрепления атриовентрикулярных клапанов к перегородке подтверждена атриовентрикулярная дискордантность. Кроме того, на срезах левого (b) и правого (c) выводных трактов видно, что ствол лёгочной артерии соединён с морфологически левым желудочком, а восходящая аорта — с морфологически правым. Последовательный сегментарный анализ позволил врачам по протоколу B выявить порок. 4CV — четырёхкамерный срез; AAO — восходящая аорта; ccTGA — корригированная транспозиция магистральных артерий; DAO — нисходящая аорта; LA — левое предсердие; LPA — левая лёгочная артерия; LV — левый желудочек; MPA — ствол лёгочной артерии; RA — правое предсердие; RPA — правая лёгочная артерия; RV — правый желудочек; S — позвоночник.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1242,7 +1351,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f6",
@@ -1252,7 +1363,7 @@ FC.IMAGES = [
   "captionRu": "Эхограммы плода 24 недель с атрезией клапана лёгочной артерии. На срезе выводного тракта ПЖ в 2D видны утолщённые створки клапана (стрелки) (a). Врачи по протоколу A пропустили порок, так как движение створок было трудно оценить. Цветовой допплер решил проблему: ретроградный поток в стволе лёгочной артерии (b) указывал на атрезию клапана. Кровоток через утолщённый клапан в ствол лёгочной артерии не регистрировался. AAO — восходящая аорта; MPA — ствол лёгочной артерии; PV — клапан лёгочной артерии; RV — правый желудочек; S — позвоночник.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1264,7 +1375,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f7",
@@ -1274,7 +1387,7 @@ FC.IMAGES = [
   "captionRu": "Эхограммы плода 24 недель с дисплазией трикуспидального клапана. Врачи по протоколу A сочли 4CV нормальным, так как не увидели утолщения клапана (a). На самом деле при внимательном осмотре ПП было несколько увеличено, а утолщённые створки обнаруживались при тщательном сканировании (b). Цветовой допплер легко выявлял трикуспидальную регургитацию, которая направляет внимание на структурную патологию клапана (c). DAO — нисходящая аорта; LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек; S — позвоночник; TR — трикуспидальная регургитация; TV — трикуспидальный клапан. Стрелки — утолщённые створки.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1286,7 +1399,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f8",
@@ -1299,7 +1414,7 @@ FC.IMAGES = [
    "chd:vsd",
    "view:4cv"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1311,7 +1426,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f9",
@@ -1324,7 +1441,7 @@ FC.IMAGES = [
    "chd:avsd",
    "view:4cv"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1336,7 +1453,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f2",
@@ -1348,7 +1467,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1360,7 +1479,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f3",
@@ -1372,7 +1493,7 @@ FC.IMAGES = [
   "cards": [
    "chd:dorv"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1384,7 +1505,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f4",
@@ -1396,7 +1519,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tof"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1408,7 +1531,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f5",
@@ -1420,7 +1545,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1432,7 +1557,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f6",
@@ -1444,7 +1571,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tga"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1456,7 +1583,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f7",
@@ -1468,7 +1597,7 @@ FC.IMAGES = [
   "cards": [
    "chd:tof"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1480,7 +1609,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5481875-f8",
@@ -1492,7 +1623,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang Y, Fan M, Siddiqui FA, et al.",
@@ -1504,7 +1635,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-017-0108-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5701355-f1",
@@ -1516,7 +1649,7 @@ FC.IMAGES = [
   "cards": [
    "view:situs"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang X, Shi Y, Zeng S, et al.",
@@ -1528,7 +1661,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-017-1579-y",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5701355-f2",
@@ -1540,7 +1675,7 @@ FC.IMAGES = [
   "cards": [
    "view:situs"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Wang X, Shi Y, Zeng S, et al.",
@@ -1552,7 +1687,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-017-1579-y",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc6824646-f1",
@@ -1562,7 +1699,7 @@ FC.IMAGES = [
   "captionRu": "Диагностическая классификация атрезии лёгочной артерии с интактной межжелудочковой перегородкой. (A) Тип I — атрезия лёгочной артерии (сужение); присутствуют приточный, трабекулярный и инфундибулярный отделы правого желудочка, вентрикулокоронарных сообщений нет. (B) Тип II — атрезия лёгочной артерии (сужение); трабекулярного отдела ПЖ нет, приточный и инфундибулярный отделы есть, но полость мала; вентрикулокоронарных сообщений нет. (C) Тип III — атрезия лёгочной артерии (сужение); нет трабекулярного и инфундибулярного отделов ПЖ, только небольшой приточный отдел; есть вентрикулокоронарные сообщения (кружок в миокарде ПЖ — синусоиды). A — левое предсердие, AO — аорта, LV — левый желудочек, PA — атрезия лёгочной артерии, RA — правое предсердие, RV — правый желудочек.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Liu L, Wang H, Cui C, et al.",
@@ -1574,7 +1711,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1097/md.0000000000017492",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc6824646-f3",
@@ -1584,7 +1723,7 @@ FC.IMAGES = [
   "captionRu": "Пренатальная и постнатальная эхокардиография при атрезии лёгочной артерии с интактной МЖП, тип I. (A) Пренатально в 23 недели, четырёхкамерный срез: правый желудочек хорошо развит, вентрикулокоронарных сообщений нет, МЖП интактна. (B) Срез трёх сосудов и трахеи: атрезия лёгочной артерии (сужение). (C) Постнатальная эхокардиография того же ребёнка, четырёхкамерный срез: ПЖ хорошо развит, выраженная трикуспидальная регургитация, вентрикулокоронарных сообщений нет. (D) Парастернальная короткая ось: атрезия лёгочной артерии (стрелка), открытый артериальный проток. AO — аорта, DAo — нисходящая аорта, LA — левое предсердие, LPA — левая лёгочная артерия, LV — левый желудочек, PA — атрезия лёгочной артерии, PDA — открытый артериальный проток, RA — правое предсердие, RPA — правая лёгочная артерия, RV — правый желудочек, SVC — верхняя полая вена, VCAC — вентрикулокоронарное сообщение.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Liu L, Wang H, Cui C, et al.",
@@ -1596,7 +1735,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1097/md.0000000000017492",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc6824646-f4",
@@ -1606,7 +1747,7 @@ FC.IMAGES = [
   "captionRu": "Пренатальная и постнатальная эхокардиография при атрезии лёгочной артерии с интактной МЖП, тип II. (A) Пренатально в 22 недели, четырёхкамерный срез: трабекулярного отдела ПЖ нет, вентрикулокоронарных сообщений нет, МЖП интактна. (B) Срез трёх сосудов и трахеи: атрезия лёгочной артерии (сужение). (C) Постнатальная эхокардиография того же ребёнка, четырёхкамерный срез: трабекулярного отдела ПЖ нет, вентрикулокоронарных сообщений нет, трикуспидальной регургитации нет. (D) Парастернальная короткая ось: атрезия лёгочной артерии (стрелка), открытый артериальный проток. AO — аорта, DAo — нисходящая аорта, LA — левое предсердие, LPA — левая лёгочная артерия, LV — левый желудочек, PA — атрезия лёгочной артерии, PDA — открытый артериальный проток, RA — правое предсердие, RPA — правая лёгочная артерия, RV — правый желудочек, SVC — верхняя полая вена, VCAC — вентрикулокоронарное сообщение.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Liu L, Wang H, Cui C, et al.",
@@ -1618,7 +1759,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1097/md.0000000000017492",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc6824646-f5",
@@ -1628,7 +1771,7 @@ FC.IMAGES = [
   "captionRu": "Пренатальная и постнатальная эхокардиография при атрезии лёгочной артерии с интактной МЖП, тип III. (A) Пренатально в 25 недель, четырёхкамерный срез: трабекулярного отдела ПЖ нет, МЖП интактна. (B) Цветовой допплер: вентрикулокоронарное сообщение (сужение). (C) Постнатальная эхокардиография того же ребёнка, четырёхкамерный срез: трабекулярного отдела ПЖ нет, вентрикулокоронарное сообщение (сужение). (D) Парастернальная короткая ось: атрезия лёгочной артерии (стрелка), открытый артериальный проток. DAo — нисходящая аорта, LA — левое предсердие, LV — левый желудочек, PA — атрезия лёгочной артерии, PDA — открытый артериальный проток, RA — правое предсердие, RV — правый желудочек, VCAC — вентрикулокоронарное сообщение.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Liu L, Wang H, Cui C, et al.",
@@ -1640,7 +1783,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1097/md.0000000000017492",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8087597-f1",
@@ -1650,7 +1795,7 @@ FC.IMAGES = [
   "captionRu": "a Четырёхкамерный срез у плода с изолированной корригированной ТМА (24+2 недели): леворасположенное сердце, нисходящая аорта (Ao) слева, лёгочные вены впадают в левое предсердие (LA), соединённое с левосторонним анатомически правым желудочком (RV) — в нём есть модераторный пучок (звёздочка), а септальная створка трикуспидального клапана (TV) прикрепляется к межжелудочковой перегородке ниже (ближе к верхушке), чем передняя створка митрального клапана (MV); правое предсердие (RA) соединено с правосторонним анатомически левым желудочком (LV), который формирует верхушку сердца. b Диастолический приток в левый (LV) и правый (RV) желудочки. c От правостороннего левого желудочка (LV) отходит ствол лёгочной артерии (TP); кровоток разделяется на лёгочные артерии (PA) и артериальный проток.",
   "group": "Другие ВПС",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Krummholz A, Gottschalk I, Geipel A, et al.",
@@ -1662,7 +1807,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-020-05886-8",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8303209-f3",
@@ -1675,7 +1822,7 @@ FC.IMAGES = [
    "chd:tga",
    "view:lvot"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Raucher Sternfeld A, Betzer T, Tamir A, et al.",
@@ -1687,7 +1834,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics11071185",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8553718-f2",
@@ -1699,7 +1848,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Abel JS, Berg C, Geipel A, et al.",
@@ -1711,7 +1860,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-021-06067-x",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8553718-f3",
@@ -1723,7 +1874,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Abel JS, Berg C, Geipel A, et al.",
@@ -1735,7 +1886,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-021-06067-x",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8553718-f4",
@@ -1747,7 +1900,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Abel JS, Berg C, Geipel A, et al.",
@@ -1759,7 +1912,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-021-06067-x",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8553718-f5",
@@ -1771,7 +1926,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Abel JS, Berg C, Geipel A, et al.",
@@ -1783,7 +1938,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-021-06067-x",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8553718-f6",
@@ -1795,7 +1952,7 @@ FC.IMAGES = [
   "cards": [
    "chd:cat"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Abel JS, Berg C, Geipel A, et al.",
@@ -1807,7 +1964,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-021-06067-x",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8859889-f1",
@@ -1820,7 +1979,7 @@ FC.IMAGES = [
    "chd:tof",
    "view:rvot"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Park S, Won HS, Kim R, et al.",
@@ -1832,7 +1991,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12947-022-00274-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc9589048-f1",
@@ -1845,7 +2006,7 @@ FC.IMAGES = [
    "chd:coa",
    "view:3vt"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Tuo G, Paladini D, Marasini L, et al.",
@@ -1857,7 +2018,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fped.2022.866994",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-agenesis-of-ductus-venosus-human-1400px",
@@ -1867,7 +2030,7 @@ FC.IMAGES = [
   "captionRu": "Рисунок 3. Агенезия венозного протока (ADV) в первом триместре с дренажем пупочной вены в нижнюю полую вену и увеличенной толщиной воротникового пространства. (A) Поперечная плоскость живота плода в первом триместре, направленный энергетический допплер высокой чёткости: H-образный вариант соединения внутрипечёночных воротных вен. (B) Направленный энергетический допплер высокой чёткости в сагиттальной плоскости живота (тот же случай): агенезия венозного протока с дренажем пупочной вены в нижнюю полую вену. (C) Срединный сагиттальный срез лица плода с измерением увеличенной ТВП. MPV — основной ствол воротной вены, St — желудок, LPV — левая воротная вена, UV — пупочная вена, RPVa — передняя ветвь правой воротной вены, RPVp — задняя ветвь правой воротной вены, Ao — аорта, IVC — нижняя полая вена, ADV — агенезия венозного протока, P — нёбо, NB — носовая кость, NT — толщина воротникового пространства.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nagy RD, Ruican D, Zorilă GL, et al.",
@@ -1875,7 +2038,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Agenesis_of_ductus_venosus_human.jpg",
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f1",
@@ -1885,7 +2050,7 @@ FC.IMAGES = [
   "captionRu": "Эхограммы плода 22 недель с перерывом нижней полой вены и продолжением в непарную вену. На 4CV рядом с нисходящей аортой выявлена структура, похожая на вену (a). При постепенном повороте датчика видно, что она впадает в ПП (b); заподозрена непарная вена. Врач по протоколу A пропустил эти изменения, а врач по протоколу B выявил, так как знал, что этот признак указывает на перерыв НПВ с продолжением в непарную вену. 4CV — четырёхкамерный срез; DAO — нисходящая аорта; LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек; Z — непарная вена.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1897,7 +2062,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4928259-f3",
@@ -1909,7 +2076,7 @@ FC.IMAGES = [
   "cards": [
    "view:3vt"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhang Y, Cai AL, Ren WD, et al.",
@@ -1921,7 +2088,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-016-0933-9",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5809570-f1",
@@ -1933,7 +2102,7 @@ FC.IMAGES = [
   "cards": [
    "view:4cv"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Ma M, Tan Y, Chen R, et al.",
@@ -1945,7 +2114,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s10554-017-1229-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5809570-f2",
@@ -1957,7 +2128,7 @@ FC.IMAGES = [
   "cards": [
    "view:4cv"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Ma M, Tan Y, Chen R, et al.",
@@ -1969,7 +2140,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s10554-017-1229-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc5809570-f3",
@@ -1979,7 +2152,7 @@ FC.IMAGES = [
   "captionRu": "a — М-режим нормального коронарного синуса. b — М-режим расширенного коронарного синуса при ДЛВПВ.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Ma M, Tan Y, Chen R, et al.",
@@ -1991,7 +2164,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s10554-017-1229-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc6435603-f1",
@@ -2003,7 +2178,7 @@ FC.IMAGES = [
   "cards": [
    "view:3vt"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Yerlikaya G, Efetürk T, Springer S, et al.",
@@ -2015,7 +2190,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1007/s00404-019-05056-5",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc7552480-f2",
@@ -2025,7 +2202,7 @@ FC.IMAGES = [
   "captionRu": "Бифуркация восходящей аорты и полное сосудистое кольцо при двойной дуге аорты на фетальной эхокардиографии. a — Срез выводного тракта левого желудочка: дистальная часть восходящей аорты раздваивается на правую и левую дуги. b — Срез трёх сосудов и трахеи: восходящая аорта раздваивается на правую и левую дуги, образуя полное O-образное кольцо вокруг трахеи, вместе с конфигурацией в виде цифры 9 при соединении с левосторонним артериальным протоком. В обеих дугах — антеградный кровоток. AO или AAO — восходящая аорта; R — правая дуга аорты; L — левая дуга аорты; PA — лёгочная артерия; DA — артериальный проток; T — трахея.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Guo Q, Kong Y, Zeng S, et al.",
@@ -2037,7 +2214,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-020-03300-4",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc7552480-f3",
@@ -2049,7 +2228,7 @@ FC.IMAGES = [
   "cards": [
    "view:3vt"
   ],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Guo Q, Kong Y, Zeng S, et al.",
@@ -2061,7 +2240,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-020-03300-4",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc7552480-f4",
@@ -2071,7 +2252,7 @@ FC.IMAGES = [
   "captionRu": "Варианты ветвления при двойной дуге аорты на фетальной эхокардиографии. a — Сагиттальный срез правой дуги: доминирующая правая дуга даёт правую общую сонную (RCCA) и правую подключичную (RSA) артерии. b — Сагиттальный срез левой дуги: небольшая левая дуга даёт левую общую сонную (LCCA) и левую подключичную (LSA) артерии. c — Корональный срез дуги аорты: симметричное отхождение общей сонной и подключичной артерий от дуги своей стороны. R-ARCH — правая дуга аорты; L-ARCH — левая дуга аорты; RCCA — правая общая сонная артерия; RSA — правая подключичная артерия; LCCA — левая общая сонная артерия; LSA — левая подключичная артерия.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Guo Q, Kong Y, Zeng S, et al.",
@@ -2083,7 +2264,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-020-03300-4",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc7552480-f5",
@@ -2093,7 +2276,7 @@ FC.IMAGES = [
   "captionRu": "Вариант ветвления при двойной дуге аорты на фетальной эхокардиографии. a — Сагиттальный срез левой дуги: от неё отходит одна ветвь (H — сердце, 1 — левая общая сонная артерия). Сагиттальный срез правой дуги: от неё отходят три ветви (H — сердце, 1 — правая общая сонная артерия, 2 — правая подключичная артерия, 3 — левая подключичная артерия). L-ARCH — левая дуга аорты; R-ARCH — правая дуга аорты; DAO — нисходящая аорта.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Guo Q, Kong Y, Zeng S, et al.",
@@ -2105,7 +2288,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-020-03300-4",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc7552480-f6",
@@ -2115,7 +2300,7 @@ FC.IMAGES = [
   "captionRu": "Трёхмерная цветовая реконструкция STIC при двойной дуге аорты: левая и доминирующая правая дуги образуют полное сосудистое кольцо, соединяются с левым артериальным протоком и вместе переходят в нисходящую аорту. На каждой дуге, вероятно, видны симметричные начальные отделы двух ветвей. R-ARCH — правая дуга аорты; L-ARCH — левая дуга аорты; RCCA — правая общая сонная артерия; RSA — правая подключичная артерия; LCCA — левая общая сонная артерия; LSA — левая подключичная артерия; DA — артериальный проток; DAO — нисходящая аорта.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Guo Q, Kong Y, Zeng S, et al.",
@@ -2127,7 +2312,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-020-03300-4",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-embryofetal-heart-rates",
@@ -2137,7 +2324,7 @@ FC.IMAGES = [
   "captionRu": "ЧСС на протяжении беременности. В первый месяц сердцебиения ЧСС эмбриона нарастает примерно от частоты сердечных сокращений матери до пика на 9-й неделе от последней менструации — около 175 уд/мин.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Terry J. DuBose",
@@ -2145,7 +2332,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Embryofetal_Heart_Rates.jpg",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-017",
@@ -2155,7 +2344,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без доработки. Сердечная деятельность плода. Автор разрешает классифицировать, описывать, кадрировать и переименовывать.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2163,7 +2352,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_017.jpg",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-062",
@@ -2173,7 +2364,7 @@ FC.IMAGES = [
   "captionRu": "ЧСС плода 200 уд/мин. УЗ-снимок без доработки. Автор разрешает классифицировать, описывать, кадрировать и переименовывать.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2181,7 +2372,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_062.jpg",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-180",
@@ -2191,7 +2384,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок. Сердечная деятельность плода.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2199,7 +2392,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_180.jpg",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc4219454-f1",
@@ -2209,7 +2404,7 @@ FC.IMAGES = [
   "captionRu": "Двумерная фетальная эхокардиография: сокращения предсердий (A) и желудочков (V).",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Di Mauro A, Caroli Casavola V, Favia Guarnieri G, et al.",
@@ -2221,7 +2416,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/1471-2393-13-220",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8934222-f2",
@@ -2231,7 +2428,7 @@ FC.IMAGES = [
   "captionRu": "Трансабдоминальное УЗИ плода до и после внутримышечного введения дигоксина плоду. ЧСС плода 194 уд/мин после 6 дней приёма дигоксина матерью внутрь (a). После процедуры ЧСС плода 152 уд/мин (b).",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Munoz JL, Lewis AL, Song J, et al.",
@@ -2243,7 +2440,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1155/2022/5148250",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc9003959-f2",
@@ -2253,7 +2452,7 @@ FC.IMAGES = [
   "captionRu": "М-режим у плода. Вентрикулоатриальная диссоциация при атипичной узловой эктопической тахикардии; диагноз узловой эктопической тахикардии поставлен после рождения, изменения выявлены ретроспективно. На четырёхкамерном срезе виден левый желудочек и правое предсердие; широкая стрелка — сокращение предсердия, узкая — сокращение желудочка, наконечник стрелки — желудочковая экстрасистола.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Katsura D, Tsuji S, Tokoro S, et al.",
@@ -2265,7 +2464,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1186/s12884-022-04655-6",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc9319402-f1",
@@ -2275,7 +2476,7 @@ FC.IMAGES = [
   "captionRu": "(A) М-режим: частота желудочков (v) 245 уд/мин, частота предсердий (a) 490 уд/мин. (B) Допплеровские кривые почечной вены (частота a — 245 уд/мин) и почечной артерии (частота v — 505 уд/мин). (C) Аневризма межпредсердной перегородки (*): широкая экскурсия клапана овального окна. (D) Цветовое картирование в аневризме: турбулентный обратный поток в правое предсердие. FFo — клапан овального окна; LA — левое предсердие; RA — правое предсердие.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Tongprasert F, Luewan S, Srisupundit K, et al.",
@@ -2287,7 +2488,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics12071722",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc9319402-f2",
@@ -2297,7 +2500,7 @@ FC.IMAGES = [
   "captionRu": "(A) Кривые пупочной артерии: предсердные экстрасистолы по типу бигеминии (a). (B) М-режим: трепетание предсердий; соотношение частоты предсердий (a) и желудочков (v) 2:1.",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Tongprasert F, Luewan S, Srisupundit K, et al.",
@@ -2309,7 +2512,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics12071722",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc9319402-f3",
@@ -2319,7 +2524,7 @@ FC.IMAGES = [
   "captionRu": "(A) М-режим: наджелудочковая тахикардия; соотношение частоты предсердий (a) и желудочков (v); (A) — асцит; LA — левое предсердие; RA — правое предсердие. (B) Допплеровские кривые притока и выброса левых отделов: трепетание предсердий, соотношение частоты предсердий (a) и желудочков (v) 2:1 (440:226).",
   "group": "Нарушения ритма",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Tongprasert F, Luewan S, Srisupundit K, et al.",
@@ -2331,7 +2536,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/diagnostics12071722",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc10059978-f1",
@@ -2341,7 +2548,7 @@ FC.IMAGES = [
   "captionRu": "Эхокардиография, четырёхкамерный срез в 25+1 недели: крупная рабдомиома, занимающая почти всю правую половину сердца. TM — опухоль; IVS — межжелудочковая перегородка; RA — правое предсердие; RV — правый желудочек; LV — левый желудочек (контур опухоли — зелёным).",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Will JC, Siedentopf N, Schmid O, et al.",
@@ -2353,7 +2560,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3390/pediatric15010020",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12010453-f1",
@@ -2363,7 +2572,7 @@ FC.IMAGES = [
   "captionRu": "Данные фетальной эхокардиографии в день обращения, случай 1. (A) Расширение артериального протока и лёгочной артерии со сниженным антеградным кровотоком. (B) Сужение и извитость артериального протока, ускорение кровотока в протоке (белая стрелка). (C) Допплерография протока: систолическая скорость 3,5 м/с, диастолическая 1,87 м/с, пульсационный индекс протока 0,65. PA — лёгочная артерия; Ao — аорта; duct — артериальный проток.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Katsura D, Inatomi A, Tokoro S, et al.",
@@ -2375,7 +2584,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.80983",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12010453-f2",
@@ -2385,7 +2596,7 @@ FC.IMAGES = [
   "captionRu": "Данные фетальной эхокардиографии на второй день, случай 1. (A) Антеградный кровоток в лёгочную артерию. (B) Допплерография протока: систолическая скорость 2,9 м/с, диастолическая 0,88 м/с, пульсационный индекс протока 1,12. PA — лёгочная артерия; Ao — аорта.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Katsura D, Inatomi A, Tokoro S, et al.",
@@ -2397,7 +2608,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.80983",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12010453-f3",
@@ -2407,7 +2620,7 @@ FC.IMAGES = [
   "captionRu": "Фетальная эхокардиография, случай 1: гребень в месте сужения и извитость протока (белая стрелка). PA — лёгочная артерия; aA — восходящая аорта; dA — нисходящая аорта; duct — артериальный проток.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Katsura D, Inatomi A, Tokoro S, et al.",
@@ -2419,7 +2632,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.80983",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc12010453-f5",
@@ -2429,7 +2644,7 @@ FC.IMAGES = [
   "captionRu": "Фетальная эхокардиография, случай 2: расширение артериального протока и лёгочной артерии, закрытие артериального протока (белая стрелка). aA — восходящая аорта; dA — нисходящая аорта; duct — артериальный проток.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Katsura D, Inatomi A, Tokoro S, et al.",
@@ -2441,7 +2656,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.7759/cureus.80983",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8189142-f1",
@@ -2451,7 +2668,7 @@ FC.IMAGES = [
   "captionRu": "(A) Четырёхкамерный срез в 33 недели: гипертрофированный и расширенный правый желудочек, небольшой перикардиальный выпот. (B) Пиковая скорость трикуспидальной регургитации — 130 см/с.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Battistoni G, Montironi R, Di Giuseppe J, et al.",
@@ -2463,7 +2680,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1080/07853890.2021.1921253",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8189142-f2",
@@ -2473,7 +2692,7 @@ FC.IMAGES = [
   "captionRu": "Двумерная эхокардиография: сужение артериального протока (стрелка). (A) Выводной тракт правого желудочка. (B) Срез дуги протока. (C) Срез трёх сосудов.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Battistoni G, Montironi R, Di Giuseppe J, et al.",
@@ -2485,7 +2704,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1080/07853890.2021.1921253",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc8908010-f1",
@@ -2495,7 +2716,7 @@ FC.IMAGES = [
   "captionRu": "Клинический фенотип и молекулярные данные плода. (A–D) Эхокардиография плода в 25 недель. Фенотип: бивентрикулярная некомпактная кардиомиопатия (A), стеноз лёгочной артерии (B), синусовая брадикардия (C) и атриовентрикулярная блокада II степени 2:1 (D). A — между белыми стрелками многочисленные трабекулы желудочков. (C) Синусовая брадикардия: частота желудочков 113 уд/мин по спектру кровотока в пупочной артерии. (D) Спектр митрального притока и выброса из левого желудочка: АВ-блокада II степени 2:1. (E) Патологическая анатомия: некомпактный миокард ниже уровня папиллярных мышц левого желудочка выражен отчётливо (белые стрелки). (F) Секвенирование по Сэнгеру: мутация у плода в гетерозиготном состоянии. LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Sun H, Liu X, Hao X, et al.",
@@ -2507,7 +2728,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fgene.2022.821226",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc9682154-f1",
@@ -2517,7 +2740,7 @@ FC.IMAGES = [
   "captionRu": "Клинические характеристики плода. (A) УЗИ: кардиоторакальное отношение площадей увеличено, около 0,45; левое предсердие и левый желудочек значительно увеличены. (B) УЗИ: гипертрофия миокарда плода и свободная жидкость в полости перикарда (белая стрелка). (C) УЗИ: большое количество свободной жидкости в брюшной полости плода и утолщение кожи живота (белая стрелка). (D) Аутопсия после индуцированных родов: сердце значительно увеличено. (E) Гистология: утолщение и фиброз эндокарда (красные стрелки). (F) Мышечные трабекулы толстые, межтрабекулярные углубления сохранены, глубокие карманы расположены в шахматном порядке, компактный миокард в соответствующей зоне истончён, мышечный слой стенки желудочка остаётся рыхлым (красный круг).",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Zhao X, Li X, Sun W, et al.",
@@ -2529,7 +2752,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.3389/fped.2022.1004485",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f1",
@@ -2539,7 +2764,7 @@ FC.IMAGES = [
   "captionRu": "Оценка фракции укорочения желудочка (SF). (a) Оптимизированный четырёхкамерный срез: глубина и увеличение 2D-изображения подобраны так, чтобы сердце плода занимало более двух третей сектора. Курсор М-режима проходит через свободную стенку правого желудочка, межжелудочковую перегородку и свободную стенку левого желудочка перпендикулярно им, чуть ниже кольца митрального клапана. (b) Полученная запись М-режима на четырёхкамерном срезе показывает несколько сердечных циклов. Конечно-диастолический диаметр (EDD) измеряют как наибольший диаметр желудочка (здесь левого), конечно-систолический (ESD) — как наименьший. SF (%) = ((EDD − ESD)/EDD) × 100. (c) Из четырёхкамерного среза, где перегородка и свободные стенки перпендикулярны лучу, датчик поворачивают на 90°; для оценки SF можно использовать и запись М-режима по короткой оси желудочков на уровне папиллярных мышц. Пунктир — курсор М-режима.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2551,7 +2776,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f2",
@@ -2561,7 +2788,7 @@ FC.IMAGES = [
   "captionRu": "Оценка систолической экскурсии плоскости трикуспидального (TAPSE) и митрального (MAPSE) кольца. (a) TAPSE и MAPSE получают из апикального четырёхкамерного среза с верхушкой, направленной к датчику; курсор М-режима (пунктир) проводят от верхушки желудочка к латеральному краю каждого клапана. (b) Продольное движение кольца отображается в М-режиме; TAPSE и MAPSE рассчитывают как расстояние, на которое смещается кольцо между систолой и диастолой (двунаправленная стрелка). (c) Пример использования STIC (красная стрелка) для оценки TAPSE у плода 26 недель с водянкой. Несмотря на неоптимальное для курсора М-режима положение плода, STIC позволяет повернуть изображение и правильно установить курсор.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2573,7 +2800,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f3",
@@ -2583,7 +2812,7 @@ FC.IMAGES = [
   "captionRu": "Оценка фракции выброса (EF) и фракционного изменения площади (FAC). (a) EF измеряют на апикальном четырёхкамерном срезе с высокой частотой кадров (> 60 кадров/с), избегая укорочения желудочка. Показано измерение полости желудочка в программе Philips IntelliSpace Cardiovascular (Philips Healthcare, Андовер, Массачусетс, США): конечно-диастолический объём (EDV) рассчитывают, обводя эндокардиальный контур в конце диастолы (наибольшая полость, непосредственно перед закрытием атриовентрикулярных клапанов). (b) Для конечно-систолического объёма (ESV) выбирают кадр с наименьшей полостью желудочка, непосредственно перед открытием АВ-клапанов, и обводят эндокардиальный контур от одного края кольца АВ-клапана до другого. EF = (EDV − ESV)/EDV. (c) Измерение конечно-диастолической площади ПЖ (EDA) по кадру с наибольшей полостью ПЖ. (d) Конечно-систолическую площадь ПЖ (ESA) измеряют, когда полость наименьшая. FAC (%) = ((ПЖ-EDA − ПЖ-ESA)/ПЖ-EDA) × 100. Для плода 20 недель на (c, d) FAC = ((0,89 − 0,61)/0,89) × 100 = 31%. L — слева; P — кзади.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2595,7 +2824,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f4",
@@ -2605,7 +2836,7 @@ FC.IMAGES = [
   "captionRu": "Оценка диастолической функции импульсно-волновым допплером. (a) Для записи нормального притока в левый (LV) и правый (RV) желудочки контрольный объём устанавливают параллельно потоку (угол < 20°) на уровне или чуть ниже кольца атриовентрикулярного клапана, как показано для ЛЖ (левая панель). Нормальный спектр через митральный (слева) и трикуспидальный (справа) клапаны — обычный двухфазный: волны E (ранняя диастола) и A (сокращение предсердий), длительность около половины сердечного цикла. (b) Однофазный приток очень короткой длительности (во время систолы предсердий) относительно длительности цикла (CCL) у плода с дилатационной кардиомиопатией. ID — длительность притока. (c) Нормальный допплеровский спектр нижней полой и печёночных вен трёхфазный: антеградный поток в систолу (S), антеградный поток в раннюю диастолу (E) и кратковременная реверсия волны A при сокращении предсердий (A). (d) При повышении давления наполнения желудочков и предсердий исчезает раннедиастолический поток и нарастает реверсия волны A (скорость и длительность). В итоге поток может стать двунаправленным. (e) Нормальный спектр венозного протока имеет те же три фазы, что и системные вены, но в систолу предсердий антеградная скорость лишь снижается, реверсии быть не должно. (f) При нарастании центрального венозного давления из-за сниженной функции в итоге появляется реверсия потока в венозном протоке в систолу предсердий. (g) Допплерография пупочной вены: патологическая пульсация со снижением или прекращением потока в систолу предсердий. В норме поток низкоскоростной, нефазный или волнообразный при дыхательных движениях плода.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2617,7 +2848,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f5",
@@ -2627,7 +2860,7 @@ FC.IMAGES = [
   "captionRu": "Расчёт выброса левого и правого желудочков плода. Стоп-кадры 2D-УЗИ и допплеровские спектры, показывающие допплеровский метод расчёта ударного объёма и выброса желудочков. Кольца аортального (вверху слева) и лёгочного (внизу слева) клапанов измеряют в систолу, по возможности в осевой плоскости. Площадь поперечного сечения (CSA, см²) клапана рассчитывают по формуле π × (диаметр клапана/2)². Импульсно-волновой допплер через аортальный (вверху справа) и лёгочный (внизу справа) клапаны при курсоре, параллельном потоку (без коррекции угла), даёт спектр для каждого клапана; его обводят и получают интеграл скорости по времени (VTI, см). Ударный объём (SV) = CSA × VTI (см³ или мл), выброс желудочка = SV × ЧСС плода. Суммируя выброс обоих желудочков (обычно в мл/мин, с индексацией на предполагаемую массу плода, мл/кг/мин), получают общий сердечный выброс. Ao — аорта; LV — левый желудочек; LVOT — выводной тракт ЛЖ; MV — митральный клапан; PA — лёгочная артерия; RVOT — выводной тракт ПЖ.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2639,7 +2872,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f6",
@@ -2649,7 +2884,7 @@ FC.IMAGES = [
   "captionRu": "Оценка индекса производительности миокарда (MPI). (a) Спектр притока-выброса левого желудочка: контрольный объём в ЛЖ установлен так, чтобы одновременно регистрировались приток (над изолинией) и выброс (под изолинией); измеряют «a» (от окончания одного притока до начала следующего) и «b» (время выброса, ET). Обратите внимание на «щелчки клапанов» — они помогают при измерении. MPI = (a − b)/b. (b, c) Для правого желудочка MPI рассчитывают по раздельным спектрам притока и выброса. (b) По спектру притока измеряют «a» — от окончания одного притока до начала следующего. (c) По спектру выброса измеряют «b» — время выброса. (d) Числитель (a − b) равен сумме времени изоволюмического расслабления (IRT, от окончания выброса до начала притока) и изоволюмического сокращения (ICT, от окончания притока до начала выброса), как показано на спектре притока-выброса ЛЖ. (e) MPI можно оценивать и тканевым допплером для ПЖ и ЛЖ; щелчки клапанов также помогают при измерении. В отличие от импульсно-волнового допплера, для MPI ПЖ можно использовать одновременную запись притока и выброса тканевым допплером. Главный недостаток — программы и возможности тканевой допплерографии есть не на всех аппаратах.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2661,7 +2896,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "pmc13325693-f7",
@@ -2671,7 +2908,7 @@ FC.IMAGES = [
   "captionRu": "Оценка деформации (strain) желудочков. (a) Деформацию левого желудочка (LV) плода на апикальном четырёхкамерном срезе получают методом speckle-tracking в пакете GE EchoPAC/Voluson. Эндокардиальный контур ЛЖ обводят на апикальном четырёхкамерном срезе, затем «спеклы» миокарда отслеживаются в систолу и диастолу; строятся кривые и измеряются деформация и скорость деформации. На графике — кривая деформации: плавная систолическая деформация с нормальным пиковым систолическим значением и последующим диастолическим расслаблением. Важно: для точной оценки деформации нужна высокая частота кадров, а результаты разных программ могут различаться. (b) Аналогично оценивают деформацию и скорость деформации правого желудочка. ED Border — конечно-диастолический эндокардиальный контур; ES Border — конечно-систолический эндокардиальный контур.",
   "group": "Функция сердца",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "article",
    "authors": "Patel SR, Madan N, Eckersley L, et al.",
@@ -2683,7 +2920,9 @@ FC.IMAGES = [
    "url": "https://doi.org/10.1002/uog.70276",
    "license": "CC BY",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-2916-fetal-circulatory-system-02",
@@ -2693,7 +2932,7 @@ FC.IMAGES = [
   "captionRu": "Кровообращение плода включает три шунта, которые направляют кровь в обход недоразвитых и частично функционирующих органов, а также сосуды, несущие кровь к плаценте и от неё.",
   "group": "Схемы и модели",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "OpenStax College",
@@ -2701,7 +2940,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:2916_Fetal_Circulatory_System-02.jpg",
    "license": "CC BY 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ductus-arteriosusl",
@@ -2711,7 +2952,7 @@ FC.IMAGES = [
   "captionRu": "Артериальный проток — сосуд плода, по которому кровь идёт из лёгочной артерии в большой круг кровообращения, в аорту.",
   "group": "Схемы и модели",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Hjaland",
@@ -2719,7 +2960,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ductus_arteriosusl.jpg",
    "license": "CC0",
    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-fig1-hebee",
@@ -2729,7 +2972,7 @@ FC.IMAGES = [
   "captionRu": "Модель сердца плода для пренатальной диагностики и фетальной эхокардиографии.",
   "group": "Схемы и модели",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Bertrand Stos",
@@ -2737,7 +2980,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Fig1_HeBee.jpeg",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-doppler-heartbeat-0218103423-1038270-7w-3d",
@@ -2747,7 +2992,7 @@ FC.IMAGES = [
   "captionRu": "Сердцебиение.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2755,7 +3000,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Doppler_heartbeat_0218103423_1038270_7w_3d.gif",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-fetal-anomaly-ultrasound-scan-in-navi-mumbai",
@@ -2765,7 +3012,7 @@ FC.IMAGES = [
   "captionRu": "Составное изображение из шести УЗ-срезов, полученных при скрининговом исследовании анатомии плода во втором триместре (TIFFA). Видны кисти с пальцами, профиль лица и элементы скелета. Далее в оригинале — перечисление районов Нави-Мумбаи, где проводят такие исследования; к содержанию снимка оно не относится.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Goleisureintl",
@@ -2773,7 +3020,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Fetal_Anomaly_Ultrasound_Scan_in_Navi_Mumbai.jpg",
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-fetus-hartbeat",
@@ -2783,7 +3032,7 @@ FC.IMAGES = [
   "captionRu": "УЗИ с сердцебиением в 14 недель. Ребёнок родился 20.05.2006.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Marcel Berteler",
@@ -2791,7 +3040,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Fetus_hartbeat.jpg",
    "license": "Public domain",
    "licenseUrl": ""
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-pregnancy-ultrasound-110303135229-1358380",
@@ -2801,7 +3052,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-изображения сердца плода.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2809,7 +3060,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Pregnancy_ultrasound_110303135229_1358380.jpg",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-scan13semanas2",
@@ -2819,7 +3072,7 @@ FC.IMAGES = [
   "captionRu": "УЗИ плода 13 недель, трансабдоминально. Слева видны голова и туловище плода, справа — сердцебиение. Длина плода 81 мм, масса 88 г. (Оригинал на испанском.)",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Guimi",
@@ -2827,7 +3080,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Scan13semanas2.png",
    "license": "CC BY-SA 2.5",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0105122250-1227390",
@@ -2837,7 +3092,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2845,7 +3100,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0105122250_1227390.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0105122250-1227570",
@@ -2855,7 +3112,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2863,7 +3120,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0105122250_1227570.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0110114646-1156270",
@@ -2873,7 +3132,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2881,7 +3140,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0110114646_1156270.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0117122151-1228560",
@@ -2891,7 +3152,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2899,7 +3160,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0117122151_1228560.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0121101156-1017510",
@@ -2909,7 +3172,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2917,7 +3180,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0121101156_1017510.gif",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0121101156-1017514",
@@ -2927,7 +3192,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2935,7 +3200,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0121101156_1017514.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0121145201-1456230",
@@ -2945,7 +3212,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2953,7 +3220,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0121145201_1456230.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0125150351-1512250",
@@ -2963,7 +3232,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2971,7 +3240,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0125150351_1512250.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0126102338-1029270",
@@ -2981,7 +3252,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -2989,7 +3260,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0126102338_1029270.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0126102338-1029500",
@@ -2999,7 +3272,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3007,7 +3280,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0126102338_1029500.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0126102338-1030150",
@@ -3017,7 +3292,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3025,7 +3300,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0126102338_1030150.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0128160735-1611300",
@@ -3035,7 +3312,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3043,7 +3320,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0128160735_1611300.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0128160735-1615520",
@@ -3053,7 +3332,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3061,7 +3340,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0128160735_1615520.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-0128160735-1615590",
@@ -3071,7 +3352,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3079,7 +3360,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0128160735_1615590.png",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-093",
@@ -3089,7 +3372,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3097,7 +3380,9 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_093.jpg",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  },
  {
   "id": "commons-ultrasound-scan-nd-253",
@@ -3107,7 +3392,7 @@ FC.IMAGES = [
   "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
-  "status": "draft",
+  "status": "approved",
   "source": {
    "kind": "commons",
    "authors": "Nevit Dilmen",
@@ -3115,6 +3400,8 @@ FC.IMAGES = [
    "url": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_253.jpg",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
-  }
+  },
+  "reviewedBy": "Жумагулов Н.М.",
+  "reviewedAt": "2026-11-12"
  }
 ];
