@@ -1,0 +1,9 @@
+{
+  "name": "fetalcardio",
+  "private": true,
+  "description": "FetalCardio — учебное PWA по фетальной эхокардиографии",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "validate": "node tests/validate-cli.cjs"
+  }
+}
