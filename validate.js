@@ -34,7 +34,7 @@ var FC = globalThis.FC = globalThis.FC || {};
       keys: "strs", views: "obj:str", ddx: "ddx", assoc: "str", pitfalls: "strs",
       prognosis: "str", refer: "str", references: "refs", reviewedBy: "str?", reviewedAt: "date?"
     },
-    QUIZ: { q: "str", opts: "strs", a: "int", exp: "str", link: "ref:CHD|null" },
+    QUIZ: { q: "str", opts: "strs", a: "int", exp: "str", link: "ref:CHD|null", status: "enum:status?", reviewedBy: "str?", reviewedAt: "date?" },
     ATLAS: {
       id: "slug", view: "ref:VIEWS", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
       svg: "svgpath", orientation: "str", structures: "structs", normal: "strs", review: "strs",

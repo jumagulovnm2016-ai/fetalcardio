@@ -179,3 +179,11 @@ test("эхограммы: валидатор ловит несуществующ
   assert.match(errs, /ожидается img\//);
   assert.match(errs, /license: обязательное поле/);
 });
+
+test("банк теста: не меньше 100 вопросов; approved только с рецензентом", () => {
+  assert.ok(FC.QUIZ.length >= 100, `вопросов: ${FC.QUIZ.length}`);
+  for (const [i, q] of FC.QUIZ.entries()) {
+    if (q.status === "approved") assert.ok(q.reviewedBy && /^\d{4}-\d{2}-\d{2}$/.test(q.reviewedAt), `вопрос ${i}: approved без рецензента`);
+    else if (q.status !== undefined) assert.equal(q.status, "draft", `вопрос ${i}`);
+  }
+});
