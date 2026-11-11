@@ -94,9 +94,9 @@ with sync_playwright() as p:
           const pt = (s, end) => { const e = q(s), l = end ? e.getTotalLength() : 0; return e.getPointAtLength(l); };
           const inside = (s, p) => q(s).isPointInFill(new DOMPoint(p.x, p.y));
           const rv = bb('#s-rv'), lv = bb('#s-lv'), ra = bb('#s-ra'), la = bb('#s-la'), ivs = bb('#s-ivs');
-          const tvHinge = pt('#s-tv path.vl'), mvHinge = pt('#s-mv path.vl');
-          const mb = q('#s-mb'), mbA = pt('#s-mb'), mbB = pt('#s-mb', true);
-          const flapEnd = pt('#s-flap', true), ias = bb('#s-ias'), fo = bb('#s-fo');
+          const tvHinge = pt('#s-tv path.lf'), mvHinge = pt('#s-mv path.lf');
+          const mbA = pt('#s-mb path.tj'), mbB = pt('#s-mb path.tj', true);
+          const flapEnd = pt('#s-flap path.flap', true), ias = bb('#s-ias'), fo = bb('#s-fo');
           const lumens = [...svg.querySelectorAll('#layer-veins-lumen path')].map(e => e.getPointAtLength(e.getTotalLength()));
           return {
             over, out, n: boxes.length,
