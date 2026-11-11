@@ -223,8 +223,8 @@
       <div class="row">${statusBadge(t.status)} ${t.status !== "approved" ? '<span class="badge review">DRAFT · REQUIRE EXPERT REVIEW</span>' : ""}</div>
       <div class="note info small">${esc(t.orientation)}</div>
       <figure class="atlas-fig" id="atlasFig" data-atlas="${esc(t.id)}">
-        <div class="atlas-bar"><span class="small">Нажмите на структуру в легенде — она подсветится на схеме.</span>
-          <span class="row"><button class="btn ghost" type="button" data-labels="1" aria-pressed="false">Скрыть подписи</button>
+        <div class="atlas-bar"><span class="small">Номера на схеме — как в легенде. Нажмите на структуру в легенде — она подсветится.</span>
+          <span class="row"><button class="btn ghost" type="button" data-labels="1" aria-pressed="false">Скрыть номера</button>
           <a class="btn ghost" href="${esc(t.svg)}" target="_blank" rel="noopener">SVG ↗</a></span></div>
         <div class="atlas-scroll" id="atlasSvg"><div class="atlas-loading">Загрузка схемы…</div></div>
         <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик.</figcaption>
@@ -415,7 +415,7 @@
     else if (t.dataset.hl) highlight(t.dataset.hl);
     else if (t.dataset.labels) {
       const fig = document.getElementById("atlasFig"), off = fig.classList.toggle("nolabels");
-      t.textContent = off ? "Показать подписи" : "Скрыть подписи"; t.setAttribute("aria-pressed", off);
+      t.textContent = off ? "Показать номера" : "Скрыть номера"; t.setAttribute("aria-pressed", off);
     }
     else if (t.dataset.filter) { chdFilter = t.dataset.filter; render(); }
     else if (t.dataset.jump) {

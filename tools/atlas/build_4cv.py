@@ -1,4 +1,7 @@
-"""Генератор atlas/4cv-normal.svg — версия 3: объёмный стиль + анатомическое окружение.
+"""Генератор atlas/4cv-normal.svg — версия 4: стиль медицинской иллюстрации
+(правые отделы синие, левые красные, светлый миокард с фактурой, тушевой контур),
+без выносок: на схеме только номера структур, расшифровка — в легенде приложения.
+Ранее — версия 3: объёмный стиль + анатомическое окружение.
 Анатомия, слои, ключи data-s и подписи — как в build_svg.py.
 Версия 3: предсердия укорочены (желудочки ≈ 2/3 длины сердца, как на 4CV плода);
 добавлен контекст поперечного среза грудной клетки: лёгкие, передняя грудная стенка с рёбрами,
@@ -123,103 +126,134 @@ def bundle(d, w):
 def leaflet(d):
     return f'<path class="lfe" d="{d}"/><path class="lf" d="{d}"/>'
 
+
+# ---------- версия 4: холст без колонок подписей ----------
+W4, H4, S4 = 820, 900, 1.25
+DX4, DY4 = 410 - 458 * S4, 96 - 86 * S4
+
+# Номера структур на схеме (координаты сердца); выносок нет — номер стоит на структуре или вплотную к ней.
+MARKS = {
+    "rv": (372, 300), "trab": (322, 222), "mb": (384, 262), "tv": (340, 340), "avs": (432, 366),
+    "ra": (336, 470), "fo": (430, 466), "ias": (430, 518), "cfb": (490, 404), "crux": (458, 420),
+    "lv": (572, 240), "ivs": (478, 250), "mv": (566, 344), "offset": (530, 380), "flap": (500, 478),
+    "la": (586, 480), "pv": None, "dao": None,
+}
+
+def markers():
+    out = []
+    for it in B.LABELS:
+        num, key = it[0], it[1]
+        pos = MARKS.get(key)
+        if pos is None:
+            pos = (B.DAO[0] + 34, B.DAO[1] + 4) if key == "dao" else B.LABELS and [a for a in it[5]][0]
+            if key == "pv": pos = (pos[0] - 26, pos[1] + 20)
+        x, y = pos
+        t = num if num else "•"
+        tip = B.esc(f"{t}. {it[2]} {it[3]}")
+        out.append(f'<g id="lbl-{key}" class="lbl" data-s="{key}"><title>{tip}</title><circle class="nb{"" if num else " nb0"}" cx="{x}" cy="{y}" r="11.5"/>'
+                   f'<text class="nt" x="{x}" y="{y + 4.2}" text-anchor="middle">{t}</text></g>')
+    return "\n".join(out)
+
 def build():
     o = []
-    o.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-labelledby="t4cv d4cv" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
+    o.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W4} {H4}" role="img" aria-labelledby="t4cv d4cv" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
 <title id="t4cv">Четырёхкамерный срез сердца плода — анатомическая схема нормы (DRAFT)</title>
-<desc id="d4cv">Оригинальная учебная схема FetalCardio. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди, к передней грудной стенке), предсердия внизу (кзади, к позвоночнику); правые отделы слева, левые справа. Показаны лёгкие, рёбра, позвоночник и нисходящая аорта. Пропорции и толщины условны. Статус: DRAFT / REQUIRES EXPERT REVIEW.</desc>
-<metadata>{{"app":"FetalCardio","id":"4cv-normal","status":"draft","review":"REQUIRES EXPERT REVIEW","author":"Жумагулов Н.М.","created":"2026-11-11","version":3}}</metadata>
+<desc id="d4cv">Оригинальная учебная схема FetalCardio в стиле медицинской иллюстрации: правые отделы — синие, левые — красные. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди), предсердия внизу (кзади); правые отделы слева, левые справа. Номера структур — в легенде. Пропорции и толщины условны. Статус: DRAFT / REQUIRES EXPERT REVIEW.</desc>
+<metadata>{{"app":"FetalCardio","id":"4cv-normal","status":"draft","review":"REQUIRES EXPERT REVIEW","author":"Жумагулов Н.М.","created":"2026-11-11","version":4}}</metadata>
 <defs>
-<radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="420" cy="250" r="420">
-  <stop offset="0" stop-color="#f4c3b1"/><stop offset=".55" stop-color="#e0a08b"/><stop offset="1" stop-color="#c47a66"/>
+<radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="430" cy="300" r="380">
+  <stop offset="0" stop-color="#fdf2ee"/><stop offset=".6" stop-color="#f6dcd4"/><stop offset="1" stop-color="#e9bfb3"/>
 </radialGradient>
-<radialGradient id="g-cav" gradientUnits="userSpaceOnUse" cx="450" cy="330" r="330">
-  <stop offset="0" stop-color="#fcebe4"/><stop offset=".7" stop-color="#f4d5c9"/><stop offset="1" stop-color="#ebc0b1"/>
+<radialGradient id="g-blue" gradientUnits="userSpaceOnUse" cx="350" cy="330" r="260">
+  <stop offset="0" stop-color="#4f7fe0"/><stop offset=".55" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/>
 </radialGradient>
-<radialGradient id="g-ao" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f08a8a"/><stop offset="1" stop-color="#b8394a"/></radialGradient>
-<filter id="f-soft" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#7a3a2c" flood-opacity=".22"/></filter>
-<filter id="f-blur" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="2.2"/></filter>
-<filter id="f-ish" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
-<clipPath id="c-col"><rect x="{(B.LX + 6 - DX) / S:.1f}" y="{(62 - DY) / S:.1f}" width="{(B.RX - B.LX - 12) / S:.1f}" height="{(H - 150 - 62) / S:.1f}" rx="20"/></clipPath>
+<radialGradient id="g-red" gradientUnits="userSpaceOnUse" cx="570" cy="330" r="260">
+  <stop offset="0" stop-color="#ec5a4c"/><stop offset=".55" stop-color="#c41d22"/><stop offset="1" stop-color="#7f0c12"/>
+</radialGradient>
+<linearGradient id="g-fo" x1="0" x2="1"><stop offset="0" stop-color="#2452b8"/><stop offset="1" stop-color="#c41d22"/></linearGradient>
+<linearGradient id="g-vein" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c41d22"/><stop offset="1" stop-color="#e2483f"/></linearGradient>
+<radialGradient id="g-ao" cx=".38" cy=".34" r=".72"><stop offset="0" stop-color="#f28a7e"/><stop offset=".6" stop-color="#c41d22"/><stop offset="1" stop-color="#7f0c12"/></radialGradient>
+<pattern id="p-fib" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
+  <path d="M0,4.5 H9" stroke="#c98e80" stroke-width=".7" opacity=".55"/><path d="M0,1 H4" stroke="#b97a6c" stroke-width=".5" opacity=".35"/>
+</pattern>
+<pattern id="p-sheen" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+  <path d="M0,3.5 H7" stroke="#ffffff" stroke-width=".6" opacity=".12"/>
+</pattern>
+<filter id="f-soft" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#3a1414" flood-opacity=".25"/></filter>
+<filter id="f-ish" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="6"/></filter>
 <clipPath id="c-rv"><path d="{RV_C}"/></clipPath><clipPath id="c-lv"><path d="{LV_C}"/></clipPath><clipPath id="c-ra"><path d="{B.RA}"/></clipPath><clipPath id="c-la"><path d="{B.LA}"/></clipPath>
 </defs>
 <style>
 .bg{{fill:var(--sv-bg,#ffffff)}}
-.myo{{fill:url(#g-myo);stroke:#a65c4a;stroke-width:2.2}}
-.thw{{fill:var(--sv-organ,#f2e3d3);stroke:var(--sv-wall-edge,#a8606d);stroke-width:2;opacity:.75}}
-.lung{{fill:var(--sv-air,#e8eefb)}}
-.rib{{fill:var(--sv-bone,#cdd5e0);stroke:var(--sv-wall-edge,#a8606d);stroke-width:.8;opacity:.9}}
-.vb{{fill:var(--sv-bone,#cdd5e0);stroke:var(--sv-wall-edge,#a8606d);stroke-width:1}}
-.vbc{{fill:var(--sv-bone,#cdd5e0)}}
-.lam{{stroke:var(--sv-bone,#cdd5e0);stroke-width:9;stroke-linecap:round;fill:none}}
-.pcd{{fill:none;stroke:#a65c4a;stroke-width:1.3;stroke-dasharray:5 4;opacity:.7}}
-.cx{{fill:var(--sv-text,#101828);font-size:12.5px;opacity:.6;font-style:italic}}
-.cav{{fill:url(#g-cav);stroke:url(#g-cav);stroke-width:.8}}
-.endo{{fill:none;stroke:#a85a48;stroke-width:3.2;stroke-linejoin:round;opacity:.0}}
-.ish{{fill:none;stroke:#9c4f3e;stroke-width:16;opacity:.33;filter:url(#f-ish)}}
-.endo2{{fill:none;stroke:#b4644f;stroke-width:1.1;stroke-linejoin:round;opacity:.75}}
-.sep{{fill:url(#g-myo)}}
-.tje{{stroke:#a65c4a;fill:none;stroke-linecap:round}}
-.tj{{stroke:#dc977f;fill:none;stroke-linecap:round}}
-.tjh{{stroke:#f6cbbb;fill:none;stroke-linecap:round;opacity:.8}}
-.pm{{fill:url(#g-myo);stroke:#a65c4a;stroke-width:1.6}}
-.lfe{{stroke:#b48a73;fill:none;stroke-width:7;stroke-linecap:round}}
-.lf{{stroke:#fff8f1;fill:none;stroke-width:4.4;stroke-linecap:round}}
-.ch{{stroke:#c99a85;stroke-width:1.15}}
-.che{{stroke:#fff6ee;stroke-width:2.4;opacity:.7}}
-.flap{{stroke:#fff3ea;fill:none;stroke-width:3.2;stroke-linecap:round}}
-.flape{{stroke:#a65c4a;fill:none;stroke-width:5.4;stroke-linecap:round}}
-.fib{{fill:#fbf6ee;stroke:#a88468;stroke-width:1.2}}
-.avs{{fill:var(--sv-accent-soft,rgba(224,138,0,.28));stroke:var(--sv-accent,#c26a00);stroke-width:1.2;stroke-dasharray:3 2}}
-.vo{{stroke:#a98fbd;fill:none;stroke-width:18;stroke-linecap:round}}
-.vm{{stroke:#d8c8e4;fill:none;stroke-width:14;stroke-linecap:round}}
-.vi{{stroke:#f4d5c9;fill:none;stroke-width:8;stroke-linecap:round}}
-.ao{{fill:url(#g-ao);stroke:#9c2c3c;stroke-width:1.4}}
-.an{{stroke:var(--sv-accent,#c26a00);stroke-width:1.6;fill:none}}
-.and{{stroke:var(--sv-accent,#c26a00);stroke-width:1.4;fill:none;stroke-dasharray:4 3}}
-.anf{{fill:var(--sv-accent,#c26a00)}}
-.ld{{stroke:var(--sv-text,#101828);stroke-width:1;fill:none;opacity:.55}}
-.ad{{fill:var(--sv-text,#101828);stroke:var(--sv-halo,#ffffff);stroke-width:1.5}}
-.nb{{fill:var(--sv-text,#101828)}}
-.nb0{{opacity:.45}}
-.nt{{fill:var(--sv-halo,#ffffff);font-size:13px;font-weight:700}}
-.l1{{fill:var(--sv-text,#101828);font-size:18px;font-weight:600}}
-.l2{{fill:var(--sv-text,#101828);font-size:14.5px;opacity:.8}}
-.l3{{fill:var(--sv-text,#101828);font-size:14px;opacity:.62;font-style:italic}}
-.hd{{fill:var(--sv-text,#101828);font-size:24px;font-weight:700}}
-.sh{{fill:var(--sv-text,#101828);font-size:15px;font-weight:700;letter-spacing:.06em;opacity:.55}}
-.om{{fill:var(--sv-text,#101828);font-size:15px;opacity:.7}}
+.myo{{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:2.6;stroke-linejoin:round}}
+.fibr{{fill:url(#p-fib);stroke:none}}
+.cavr{{fill:url(#g-blue);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}}
+.cavl{{fill:url(#g-red);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}}
+.sheen{{fill:url(#p-sheen);stroke:none}}
+.ish{{fill:none;stroke:#05102e;stroke-width:18;opacity:.35;filter:url(#f-ish)}}
+.ishl{{fill:none;stroke:#3a0306;stroke-width:18;opacity:.35;filter:url(#f-ish)}}
+.endo2{{fill:none;stroke:#ffffff;stroke-width:1;stroke-linejoin:round;opacity:.45}}
+.sep{{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:1.2}}
+.tje{{stroke:#2b1a1a;fill:none;stroke-linecap:round}}
+.tj{{stroke:#f3d2c9;fill:none;stroke-linecap:round}}
+.tjh{{stroke:#ffffff;fill:none;stroke-linecap:round;opacity:.75}}
+.pm{{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:1.6}}
+.lfe{{stroke:#2b1a1a;fill:none;stroke-width:7.2;stroke-linecap:round}}
+.lf{{stroke:#fbfbff;fill:none;stroke-width:4.4;stroke-linecap:round}}
+.ch{{stroke:#ffffff;stroke-width:1.1;opacity:.85}}
+.che{{stroke:#2b1a1a;stroke-width:2.2;opacity:.35}}
+.flap{{stroke:#fbfbff;fill:none;stroke-width:3.4;stroke-linecap:round}}
+.flape{{stroke:#2b1a1a;fill:none;stroke-width:6;stroke-linecap:round}}
+.fo{{fill:url(#g-fo);stroke:none}}
+.fib{{fill:#fffaf2;stroke:#2b1a1a;stroke-width:1.2}}
+.avs{{fill:rgba(255,190,60,.35);stroke:#8a5a00;stroke-width:1.2;stroke-dasharray:3 2}}
+.vo{{stroke:#2b1a1a;fill:none;stroke-width:21;stroke-linecap:round}}
+.vm{{stroke:url(#g-vein);fill:none;stroke-width:17;stroke-linecap:round}}
+.vh{{stroke:#ffffff;fill:none;stroke-width:3;stroke-linecap:round;opacity:.35}}
+.vi{{stroke:#e2483f;fill:none;stroke-width:9;stroke-linecap:round}}
+.ao{{fill:url(#g-ao);stroke:#2b1a1a;stroke-width:2}}
+.an{{stroke:#2b1a1a;stroke-width:1.8;fill:none}}
+.and{{stroke:#2b1a1a;stroke-width:1.5;fill:none;stroke-dasharray:5 3}}
+.anf{{fill:#2b1a1a}}
+.ant{{fill:#2b1a1a;font-size:11px;font-weight:700}}
+.nb{{fill:#101828;stroke:#ffffff;stroke-width:1.6}}
+.nb0{{fill:#5b6578}}
+.nt{{fill:#ffffff;font-size:12.5px;font-weight:700}}
+.hd{{fill:var(--sv-text,#101828);font-size:22px;font-weight:700}}
+.om{{fill:var(--sv-text,#101828);font-size:13px;opacity:.7}}
 .dr{{fill:none;stroke:var(--sv-draft,#c0392b);stroke-width:1.5}}
-.drt{{fill:var(--sv-draft,#c0392b);font-size:15px;font-weight:700;letter-spacing:.04em}}
+.drt{{fill:var(--sv-draft,#c0392b);font-size:13px;font-weight:700;letter-spacing:.04em}}
+.cs{{fill:var(--sv-text,#101828);font-size:12px;font-weight:700;letter-spacing:.08em;opacity:.5}}
 </style>
-<rect class="bg" x="0" y="0" width="{W}" height="{H}"/>
+<rect class="bg" x="0" y="0" width="{W4}" height="{H4}"/>
 <g id="layer-header">
-<text class="hd" x="24" y="38">Четырёхкамерный срез (4CV): анатомическая схема нормы</text>
-<rect class="dr" x="{W-360}" y="16" width="336" height="34" rx="7"/>
-<text class="drt" x="{W-192}" y="38.5" text-anchor="middle">DRAFT · REQUIRES EXPERT REVIEW</text>
-<text class="sh" x="{B.LX-30}" y="96" text-anchor="end">ПРАВЫЕ ОТДЕЛЫ</text>
-<text class="sh" x="{B.RX+30}" y="96">ЛЕВЫЕ ОТДЕЛЫ</text>
+<text class="hd" x="24" y="34">Четырёхкамерный срез (4CV): анатомическая схема нормы</text>
+<rect class="dr" x="24" y="48" width="290" height="28" rx="6"/>
+<text class="drt" x="169" y="67" text-anchor="middle">DRAFT · REQUIRES EXPERT REVIEW</text>
+<text class="cs" x="40" y="128">ПРАВЫЕ ОТДЕЛЫ</text>
+<text class="cs" x="{W4 - 40}" y="128" text-anchor="end">ЛЕВЫЕ ОТДЕЛЫ</text>
 </g>
-<g id="heart" transform="translate({DX},{DY}) scale({S})">''')
-    o.append(thorax())
-    # сосуды позади сердца
+<g id="heart" transform="translate({DX4},{DY4}) scale({S4})">''')
+    # сосуды позади сердца: лёгочные вены (оксигенированная кровь — красные) и нисходящая аорта
     o.append(f'''<g id="layer-veins">
-<g id="s-dao" data-s="dao"><circle class="ao" cx="{B.DAO[0]}" cy="{B.DAO[1]}" r="{B.DAO[2]}"/><ellipse cx="{B.DAO[0]-6}" cy="{B.DAO[1]-8}" rx="7" ry="4" fill="#fff" opacity=".35"/></g>
-<g id="s-pv" data-s="pv"><path class="vo" d="{B.RPV}"/><path class="vo" d="{B.LPV}"/><path class="vm" d="{B.RPV}"/><path class="vm" d="{B.LPV}"/><path class="vi" d="{B.RPV}"/><path class="vi" d="{B.LPV}"/></g>
+<g id="s-dao" data-s="dao"><circle class="ao" cx="{B.DAO[0]}" cy="{B.DAO[1]}" r="{B.DAO[2]}"/><ellipse cx="{B.DAO[0]-7}" cy="{B.DAO[1]-8}" rx="7" ry="4" fill="#fff" opacity=".4"/></g>
+<g id="s-pv" data-s="pv"><path class="vo" d="{B.RPV}"/><path class="vo" d="{B.LPV}"/><path class="vm" d="{B.RPV}"/><path class="vm" d="{B.LPV}"/><path class="vh" d="{B.RPV}" transform="translate(-3 -2)"/><path class="vh" d="{B.LPV}" transform="translate(-3 -2)"/></g>
 </g>''')
     o.append(f'''<g id="layer-myocardium" filter="url(#f-soft)"><path id="s-myo" class="myo" d="{B.OUTLINE}"/></g>
+<g id="layer-myo-texture"><path class="fibr" d="{B.OUTLINE}"/></g>
 <g id="layer-cavities">
-<path id="s-rv" data-s="rv" class="cav" d="{RV_C}"/>
-<path id="s-lv" data-s="lv" class="cav" d="{LV_C}"/>
-<path id="s-ra" data-s="ra" class="cav" d="{B.RA}"/>
-<path id="s-la" data-s="la" class="cav" d="{B.LA}"/>
+<path id="s-rv" data-s="rv" class="cav cavr" d="{RV_C}"/>
+<path id="s-lv" data-s="lv" class="cav cavl" d="{LV_C}"/>
+<path id="s-ra" data-s="ra" class="cav cavr" d="{B.RA}"/>
+<path id="s-la" data-s="la" class="cav cavl" d="{B.LA}"/>
 </g>
-<g id="layer-cavity-shading"><path class="ish" clip-path="url(#c-rv)" d="{RV_C}"/><path class="ish" clip-path="url(#c-lv)" d="{LV_C}"/><path class="ish" clip-path="url(#c-ra)" d="{B.RA}"/><path class="ish" clip-path="url(#c-la)" d="{B.LA}"/></g>
-<g id="layer-endocardium"><path class="endo" d="{RV_E} {LV_E} {RA_E} {LA_E}"/><path class="endo2" d="{RV_E} {LV_E}"/></g>
+<g id="layer-cavity-shading"><path class="ish" clip-path="url(#c-rv)" d="{RV_C}"/><path class="ishl" clip-path="url(#c-lv)" d="{LV_C}"/><path class="ish" clip-path="url(#c-ra)" d="{B.RA}"/><path class="ishl" clip-path="url(#c-la)" d="{B.LA}"/>
+<path class="sheen" d="{RV_C} {LV_C} {B.RA} {B.LA}"/></g>
+<g id="layer-endocardium"><path class="endo2" d="{RV_E} {LV_E}"/></g>
 <g id="layer-ra-morphology"><g id="s-pect">{"".join(bundle(d, w) for d, w in RA_PECT)}</g></g>
 <g id="layer-veins-lumen"><path class="vi" d="{B.RPV_L}"/><path class="vi" d="{B.LPV_L}"/></g>''')
     o.append(f'''<g id="layer-ventricular-septum">
-<path id="s-ivs" data-s="ivs" class="sep" d="{B.IVS}"/>
+<path id="s-ivs" data-s="ivs" class="sep" d="{B.IVS}"/><path class="fibr" d="{B.IVS}"/>
 </g>''')
     trab = "".join(bundle(d, w) for d, w in [("M 284,262 Q 300,262 318,272", 5), ("M 306,232 Q 322,236 336,250", 5.5),
         ("M 338,202 Q 350,210 360,226", 5), ("M 374,178 Q 382,190 388,204", 4.5), ("M 410,160 Q 414,174 420,186", 4.5),
@@ -234,7 +268,7 @@ def build():
 </g>''')
     o.append(f'''<g id="layer-atrial-septum">
 <g id="s-ias" data-s="ias"><path class="sep" d="{B.IAS_PRIMUM}"/><path class="sep" d="{B.IAS_SECUNDUM}"/></g>
-<path id="s-fo" data-s="fo" class="cav" d="{B.FO_GAP}"/>
+<path id="s-fo" data-s="fo" class="cav fo" d="{B.FO_GAP}"/>
 <g id="s-flap" data-s="flap"><path class="flape" d="{B.FO_FLAP}"/><path class="flap" d="{B.FO_FLAP}"/></g>
 </g>''')
     tvch = "".join(tline(a, b, "che") + tline(a, b, "ch") for a, b in B.TV_CH)
@@ -242,32 +276,29 @@ def build():
     o.append(f'''<g id="layer-crux">
 <path id="s-avs" data-s="avs" class="avs" d="{B.AVS}"/>
 <path id="s-cfb" data-s="cfb" class="fib" d="{B.CFB}"/>
-<g id="s-crux" data-s="crux"><circle cx="460" cy="392" r="15" fill="none" stroke="var(--sv-accent,#c26a00)" stroke-width="1.4" stroke-dasharray="2 2"/></g>
+<g id="s-crux" data-s="crux"><circle cx="460" cy="392" r="15" fill="none" stroke="#2b1a1a" stroke-width="1.4" stroke-dasharray="2 2"/></g>
 </g>
 <g id="layer-av-valves">
 <g id="s-tv" data-s="tv">{tvch}{leaflet(B.TV_SEPT)}{leaflet(B.TV_ANT)}</g>
 <g id="s-mv" data-s="mv">{mvch}{leaflet(B.MV_ANT)}{leaflet(B.MV_POST)}</g>
-</g>''')
-    o.append(f'''<g id="layer-annotations">
-<g id="s-context"><text class="cx" x="{TH[0] - 236}" y="{TH[1] - 150}">лёгкое</text><text class="cx" x="{TH[0] + 200}" y="{TH[1] - 150}">лёгкое</text>
-<text class="cx" x="{SPINE[0] + 48}" y="{SPINE[1] + 8}">позвоночник</text><text class="cx" x="{TH[0] - 34}" y="{TH[1] - TH[3] + 40}">грудная стенка</text></g>
+</g>
+<g id="layer-annotations">
 <g id="s-offset" data-s="offset">
-<line class="and" x1="440" y1="360" x2="506" y2="360"/>
-<line class="and" x1="462" y1="386" x2="506" y2="386"/>
-<line class="an" x1="499" y1="364" x2="499" y2="382"/>
-<path class="anf" d="M 499,361 L 495,368 L 503,368 Z"/>
-<path class="anf" d="M 499,385 L 495,378 L 503,378 Z"/>
+<line class="and" x1="432" y1="360" x2="512" y2="360"/>
+<line class="and" x1="456" y1="386" x2="512" y2="386"/>
+<line class="an" x1="505" y1="364" x2="505" y2="382"/>
+<path class="anf" d="M 505,360 L 500.5,368 L 509.5,368 Z"/>
+<path class="anf" d="M 505,386 L 500.5,378 L 509.5,378 Z"/>
 </g>
+</g>
+<g id="layer-labels">
+{markers()}
 </g>
 </g>''')
-    left = [l for l in B.LABELS if l[6] == "L"]; right = [l for l in B.LABELS if l[6] == "R"]
-    o.append('<g id="layer-labels">')
-    for it, y in B.layout(left, 150, H - 112): o.append(B.label_svg(it, round(y), "L"))
-    for it, y in B.layout(right, 150, H - 112): o.append(B.label_svg(it, round(y), "R"))
-    o.append('</g>')
     o.append(f'''<g id="layer-orientation">
-<text class="om" x="24" y="{H - 44}">Ориентация: верхушка — вверху (кпереди), предсердия — внизу (кзади, к позвоночнику); правые отделы — слева, левые — справа.</text>
-<text class="om" x="24" y="{H - 18}">Анатомическая схема, не УЗ-изображение. Клапаны закрыты; пропорции, толщины и величина смещения условны. © FetalCardio, оригинальный рисунок.</text>
+<text class="om" x="24" y="{H4 - 48}">Верхушка — вверху (кпереди), предсердия — внизу (кзади); правые отделы — слева, левые — справа.</text>
+<text class="om" x="24" y="{H4 - 28}">Синий — правые отделы, красный — левые и лёгочные вены. Номера структур — в легенде ниже.</text>
+<text class="om" x="24" y="{H4 - 8}">Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок.</text>
 </g>
 </svg>''')
     return "\n".join(o)
