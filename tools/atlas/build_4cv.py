@@ -1,11 +1,17 @@
-"""Генератор atlas/4cv-normal.svg — версия 2: объёмный «иллюстративный» стиль.
-Анатомия, слои, ключи data-s и подписи — как в build_svg.py; меняется только отрисовка сердца."""
+"""Генератор atlas/4cv-normal.svg — версия 3: объёмный стиль + анатомическое окружение.
+Анатомия, слои, ключи data-s и подписи — как в build_svg.py.
+Версия 3: предсердия укорочены (желудочки ≈ 2/3 длины сердца, как на 4CV плода);
+добавлен контекст поперечного среза грудной клетки: лёгкие, передняя грудная стенка с рёбрами,
+позвоночник с ядрами окостенения кзади от нисходящей аорты, перикард."""
 import sys, math, random
 import numpy as np
 from svgpathtools import parse_path
 from matplotlib.path import Path as MPath
 import build_svg as B
 
+# версия 3: сердце мельче, чтобы вокруг поместилась грудная клетка (сердце ≈ 1/3 площади среза)
+B.S = 1.02
+B.DX, B.DY = 660 - 450 * B.S, 112 - 80 * B.S
 W, H, S, DX, DY = B.W, B.H, B.S, B.DX, B.DY
 
 # ---------- уточнённая анатомия силуэта (перегородки, клапаны, овальное окно — без изменений) ----------
@@ -21,6 +27,40 @@ B.LA = ("M 468,386 L 614,388 C 648,420 658,500 640,550 C 622,598 560,612 500,608
 B.RPV = "M 372,724 C 410,692 470,650 488,614"
 RA_PECT = [("M 266,452 Q 282,456 290,468", 4), ("M 263,478 Q 280,482 290,494", 4.5), ("M 263,506 Q 281,508 292,520", 4.5),
            ("M 267,534 Q 284,534 296,544", 4), ("M 276,560 Q 292,558 304,566", 3.5)]
+
+# ---------- версия 3: укорочение предсердий ----------
+# Всё, что ниже AV-плоскости (y > 394), сжимается по вертикали; функция непрерывна, AV-соединение не смещается.
+import re as _re
+AV_Y, K_ATR = 394.0, 0.78
+def fy(y): return y if y <= AV_Y else AV_Y + (y - AV_Y) * K_ATR
+def squash(d):
+    return _re.sub(r"(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)", lambda m: f"{m.group(1)},{fy(float(m.group(2))):.1f}", d)
+for _n in ["OUTLINE", "RA", "LA", "IAS_PRIMUM", "IAS_SECUNDUM", "FO_GAP", "FO_FLAP", "RPV", "RPV_L", "LPV", "LPV_L"]:
+    setattr(B, _n, squash(getattr(B, _n)))
+B.DAO = (B.DAO[0], round(fy(B.DAO[1]) - 6, 1), B.DAO[2])
+RA_PECT = [(squash(d), w) for d, w in RA_PECT]
+B.LABELS = [tuple(list(l[:5]) + [[(x, fy(y)) for x, y in l[5]]] + list(l[6:7]) + ([fy(l[7])] if len(l) > 7 else [])) for l in B.LABELS]
+
+# ---------- версия 3: окружение — поперечный срез грудной клетки ----------
+TH = (458, 404, 400, 392)   # центр и полуоси грудной клетки (координаты сердца)
+SPINE = (522, 712)          # тело позвонка — кзади от нисходящей аорты, по средней линии
+def thorax():
+    cx, cy, rx, ry = TH
+    ribs = []
+    for a in [196, 214, 232, 250, 290, 308, 326, 344, 130, 148, 166, 14, 32, 50]:
+        t = math.radians(a)
+        x, y = cx + (rx - 14) * math.cos(t), cy + (ry - 14) * math.sin(t)
+        ribs.append(f'<ellipse class="rib" cx="{x:.1f}" cy="{y:.1f}" rx="13" ry="8" transform="rotate({a + 90} {x:.1f} {y:.1f})"/>')
+    sx, sy = SPINE
+    return f'''<g id="layer-thorax" clip-path="url(#c-col)">
+<ellipse class="thw" cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}"/>
+<ellipse class="lung" cx="{cx}" cy="{cy}" rx="{rx - 26}" ry="{ry - 26}"/>
+{"".join(ribs)}
+<g id="s-spine"><circle class="vb" cx="{sx}" cy="{sy}" r="30"/><path class="lam" d="M {sx-20},{sy+24} L {sx-30},{sy+62} M {sx+20},{sy+24} L {sx+30},{sy+62}"/>
+<circle class="vbc" cx="{sx-30}" cy="{sy+64}" r="9"/><circle class="vbc" cx="{sx+30}" cy="{sy+64}" r="9"/></g>
+<path class="pcd" d="{B.OUTLINE}" transform="translate({cx} {cy}) scale(1.05) translate({-cx} {-cy})"/>
+</g>'''
+
 
 # ---------- неровный (трабекулярный) край полости ----------
 def poly_of(d, n=40):
@@ -68,6 +108,7 @@ RV_C, RV_E = wavy(B.RV, [5, 12, 12, 6, 0], seed=7, wl=16)          # ПЖ: гр�
 LV_C, LV_E = wavy(B.LV, [0, 5, 5, 3, 0], seed=11, wl=10)   # ЛЖ: мелкие, септальная поверхность гладкая
 RA_E = "M 284,400 C 264,424 258,456 262,500 C 268,560 310,594 362,602 C 390,606 420,602 446,592"
 LA_E = "M 614,388 C 648,420 658,500 640,550 C 622,598 560,612 500,608 C 478,606 462,598 454,592"
+RA_E, LA_E = squash(RA_E), squash(LA_E)
 
 def tline(a, b, cls, w=None):
     sw = f' stroke-width="{w}"' if w else ""
@@ -86,8 +127,8 @@ def build():
     o = []
     o.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-labelledby="t4cv d4cv" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
 <title id="t4cv">Четырёхкамерный срез сердца плода — анатомическая схема нормы (DRAFT)</title>
-<desc id="d4cv">Оригинальная учебная схема FetalCardio. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди), предсердия внизу (кзади); правые отделы слева, левые справа. Пропорции и толщины условны. Статус: DRAFT / REQUIRES EXPERT REVIEW.</desc>
-<metadata>{{"app":"FetalCardio","id":"4cv-normal","status":"draft","review":"REQUIRES EXPERT REVIEW","author":"Жумагулов Н.М.","created":"2026-11-11","version":2}}</metadata>
+<desc id="d4cv">Оригинальная учебная схема FetalCardio. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди, к передней грудной стенке), предсердия внизу (кзади, к позвоночнику); правые отделы слева, левые справа. Показаны лёгкие, рёбра, позвоночник и нисходящая аорта. Пропорции и толщины условны. Статус: DRAFT / REQUIRES EXPERT REVIEW.</desc>
+<metadata>{{"app":"FetalCardio","id":"4cv-normal","status":"draft","review":"REQUIRES EXPERT REVIEW","author":"Жумагулов Н.М.","created":"2026-11-11","version":3}}</metadata>
 <defs>
 <radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="420" cy="250" r="420">
   <stop offset="0" stop-color="#f4c3b1"/><stop offset=".55" stop-color="#e0a08b"/><stop offset="1" stop-color="#c47a66"/>
@@ -99,11 +140,20 @@ def build():
 <filter id="f-soft" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#7a3a2c" flood-opacity=".22"/></filter>
 <filter id="f-blur" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="2.2"/></filter>
 <filter id="f-ish" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+<clipPath id="c-col"><rect x="{(B.LX + 6 - DX) / S:.1f}" y="{(62 - DY) / S:.1f}" width="{(B.RX - B.LX - 12) / S:.1f}" height="{(H - 150 - 62) / S:.1f}" rx="20"/></clipPath>
 <clipPath id="c-rv"><path d="{RV_C}"/></clipPath><clipPath id="c-lv"><path d="{LV_C}"/></clipPath><clipPath id="c-ra"><path d="{B.RA}"/></clipPath><clipPath id="c-la"><path d="{B.LA}"/></clipPath>
 </defs>
 <style>
 .bg{{fill:var(--sv-bg,#ffffff)}}
 .myo{{fill:url(#g-myo);stroke:#a65c4a;stroke-width:2.2}}
+.thw{{fill:var(--sv-organ,#f2e3d3);stroke:var(--sv-wall-edge,#a8606d);stroke-width:2;opacity:.75}}
+.lung{{fill:var(--sv-air,#e8eefb)}}
+.rib{{fill:var(--sv-bone,#cdd5e0);stroke:var(--sv-wall-edge,#a8606d);stroke-width:.8;opacity:.9}}
+.vb{{fill:var(--sv-bone,#cdd5e0);stroke:var(--sv-wall-edge,#a8606d);stroke-width:1}}
+.vbc{{fill:var(--sv-bone,#cdd5e0)}}
+.lam{{stroke:var(--sv-bone,#cdd5e0);stroke-width:9;stroke-linecap:round;fill:none}}
+.pcd{{fill:none;stroke:#a65c4a;stroke-width:1.3;stroke-dasharray:5 4;opacity:.7}}
+.cx{{fill:var(--sv-text,#101828);font-size:12.5px;opacity:.6;font-style:italic}}
 .cav{{fill:url(#g-cav);stroke:url(#g-cav);stroke-width:.8}}
 .endo{{fill:none;stroke:#a85a48;stroke-width:3.2;stroke-linejoin:round;opacity:.0}}
 .ish{{fill:none;stroke:#9c4f3e;stroke-width:16;opacity:.33;filter:url(#f-ish)}}
@@ -151,6 +201,7 @@ def build():
 <text class="sh" x="{B.RX+30}" y="96">ЛЕВЫЕ ОТДЕЛЫ</text>
 </g>
 <g id="heart" transform="translate({DX},{DY}) scale({S})">''')
+    o.append(thorax())
     # сосуды позади сердца
     o.append(f'''<g id="layer-veins">
 <g id="s-dao" data-s="dao"><circle class="ao" cx="{B.DAO[0]}" cy="{B.DAO[1]}" r="{B.DAO[2]}"/><ellipse cx="{B.DAO[0]-6}" cy="{B.DAO[1]-8}" rx="7" ry="4" fill="#fff" opacity=".35"/></g>
@@ -197,7 +248,9 @@ def build():
 <g id="s-tv" data-s="tv">{tvch}{leaflet(B.TV_SEPT)}{leaflet(B.TV_ANT)}</g>
 <g id="s-mv" data-s="mv">{mvch}{leaflet(B.MV_ANT)}{leaflet(B.MV_POST)}</g>
 </g>''')
-    o.append('''<g id="layer-annotations">
+    o.append(f'''<g id="layer-annotations">
+<g id="s-context"><text class="cx" x="{TH[0] - 236}" y="{TH[1] - 150}">лёгкое</text><text class="cx" x="{TH[0] + 200}" y="{TH[1] - 150}">лёгкое</text>
+<text class="cx" x="{SPINE[0] + 48}" y="{SPINE[1] + 8}">позвоночник</text><text class="cx" x="{TH[0] - 34}" y="{TH[1] - TH[3] + 40}">грудная стенка</text></g>
 <g id="s-offset" data-s="offset">
 <line class="and" x1="440" y1="360" x2="506" y2="360"/>
 <line class="and" x1="462" y1="386" x2="506" y2="386"/>
