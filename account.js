@@ -179,7 +179,8 @@ function shutter(p, opts) {
   d.innerHTML = `<div style="max-width:420px;width:100%;background:var(--surface,#fff);color:var(--text,#101828);border:1px solid var(--line,#e4e8f0);border-radius:18px;padding:24px;display:grid;gap:12px;box-shadow:var(--shadow-lg,none);font:15.5px/1.55 var(--body,system-ui,sans-serif)">
     <span style="display:flex;align-items:center;gap:10px;font-weight:700"><img src="icons/icon-192.png" alt="" width="28" height="28">FetalCardio</span>
     <b id="fc-gate-t" style="font:800 1.5rem/1.2 var(--head,system-ui,sans-serif)"></b><p style="margin:0;color:var(--muted,#5d6b82)"></p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap"><a data-go style="font-weight:700;border-radius:12px;padding:10px 18px;background:var(--accent,#4256e0);color:#fff;text-decoration:none"></a></div></div>`;
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a data-go style="font-weight:700;border-radius:12px;padding:10px 18px;background:var(--accent,#4256e0);color:#fff;text-decoration:none"></a>
+      <button type="button" data-install style="font:600 15px var(--body,system-ui,sans-serif);border-radius:12px;padding:10px 16px;cursor:pointer;background:var(--surface2,#f1f4f9);color:var(--text,#101828);border:1px solid var(--line,#e4e8f0)">⤓ Установить приложение</button></div></div>`;
   d.querySelector("b").textContent = title; d.querySelector("p").textContent = text;
   const a = d.querySelector("[data-go]"); a.textContent = btn;
   if (api.broken) { a.href = "#"; a.onclick = e => { e.preventDefault(); location.reload(); }; }

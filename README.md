@@ -26,6 +26,7 @@
 | `atlas/*.svg` | Подробные анатомические SVG-схемы (оригинальные рисунки, слои `layer-*`, структуры `data-s`) |
 | `app.js`, `style.css`, `index.html` | Интерфейс |
 | `sw.js`, `manifest.json` | Офлайн-режим и установка |
+| `install.js` | Кнопка «Установить» (любой элемент с `data-install`): системное окно установки в Chrome/Edge/Яндекс, пошаговая подсказка на iPhone/iPad, Safari на Mac, Firefox и во встроенных браузерах Instagram/Telegram/WhatsApp; в установленном приложении кнопки скрыты |
 | `account.js`, `vendor/` | Вход курсантов (Supabase) и закрытие приложения без доступа |
 | `account.html`, `teacher.html`, `pages.css` | Личный кабинет и кабинет преподавателя |
 | `supabase/` | SQL-скрипты и серверная функция преподавателя для отдельного проекта Supabase |

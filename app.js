@@ -144,6 +144,10 @@
       <button class="btn ghost" data-import="1">⤒ Импорт из файла</button></div>
       <input type="file" id="importFile" accept="application/json,.json" hidden>
     </div>
+    ${FC.install && !FC.install.standalone ? `<div class="card install-card" data-install-card>
+      <div class="row between" style="gap:12px;flex-wrap:wrap"><span><h3 style="margin:0 0 .2em">Установить на телефон или ПК</h3>
+      <span class="small muted">Отдельный значок на экране «Домой» или рабочем столе, открывается в своём окне и работает без интернета.</span></span>
+      <button type="button" class="btn" data-install>${FC.install.icon} Установить</button></div></div>` : ""}
     <div class="note"><b>Главное правило.</b> Ни один срез не исключает ВПС сам по себе. Нормальный 4CV не исключает ТФ, ТМА, ОАС, коарктацию и ТАДЛВ — всегда оценивайте выходные тракты и 3VV/3VT.</div>
     ${foot()}`;
   }

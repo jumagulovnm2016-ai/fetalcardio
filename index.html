@@ -16,6 +16,11 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FetalCardio">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script src="install.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -31,6 +36,7 @@
     <svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="searchInput" type="search" placeholder="Поиск: срез, порок, признак…" autocomplete="off" aria-label="Поиск">
   </form>
+  <button type="button" class="install-btn" data-install aria-label="Установить приложение"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0-4-4m4 4 4-4"/><path d="M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg><span>Установить</span></button>
   <button class="theme-btn" id="themeBtn" type="button" aria-label="Тема оформления"></button>
 </header>
 

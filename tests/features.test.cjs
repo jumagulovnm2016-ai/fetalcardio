@@ -83,6 +83,14 @@ test("index.html подключает все модули, sw.js кэшируе�
     assert.ok(sw.includes(`"${f}"`), `sw.js: ${f}`);
     assert.ok(fs.existsSync(path.join(ROOT, f)), `файл ${f}`);
   }
+  // установка приложения: модуль в <head> (до остальных скриптов), есть кнопка, файл в кэше
+  assert.ok(fs.existsSync(path.join(ROOT, "install.js")), "файл install.js");
+  assert.ok(sw.includes('"install.js"'), "sw.js: install.js");
+  for (const page of ["index.html", "account.html"]) {
+    const h = fs.readFileSync(path.join(ROOT, page), "utf8");
+    assert.ok(h.includes('src="install.js"') && h.indexOf('src="install.js"') < h.indexOf("</head>"), `${page}: install.js в <head>`);
+    assert.ok(/data-install/.test(h), `${page}: кнопка установки`);
+  }
   // модуль входа подключён до app.js
   assert.ok(html.indexOf('src="account.js"') < html.indexOf('src="app.js"'), "account.js после app.js");
 });
