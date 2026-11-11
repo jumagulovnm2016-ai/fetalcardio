@@ -15,7 +15,9 @@ var FC = globalThis.FC = globalThis.FC || {};
      str — непустая строка; strs — непустой массив непустых строк; bool; int;
      enum:<имя> — значение из списка; ref:<коллекция> — id существующей записи;
      obj:str — объект с непустыми строковыми значениями; ddx; refs; structs — структуры атласа;
-     svgpath — путь atlas/<имя>.svg; ? в конце — необязательное поле */
+     svgpath — путь atlas/<имя>.svg; imgpath — путь img/<имя>.(jpg|png|gif|webp);
+     text — строка (может быть пустой); cardrefs — массив "chd:<id>"/"view:<id>";
+     imgsrc — атрибуция изображения (автор, название, ссылка, лицензия); ? в конце — необязательное поле */
   const SCHEMA = {
     VIEWS: {
       id: "slug", abbr: "str", name: "str", aliases: "strs", status: "enum:status",
@@ -38,6 +40,10 @@ var FC = globalThis.FC = globalThis.FC || {};
       svg: "svgpath", orientation: "str", structures: "structs", normal: "strs", review: "strs",
       references: "refs", reviewedBy: "str?", reviewedAt: "date?"
     },
+    IMAGES: {
+      id: "slug", file: "imgpath", label: "str", caption: "text", group: "enum:group", cards: "cardrefs",
+      status: "enum:status", source: "imgsrc", reviewedBy: "str?", reviewedAt: "date?"
+    },
     REFS: {
       organization: "str", title: "str", authors: "str?", journal: "str?", year: "int",
       volume: "str?", issue: "str?", pages: "str?", doi: "doi?", pmid: "str?", url: "url"
@@ -52,7 +58,7 @@ var FC = globalThis.FC = globalThis.FC || {};
       CHD: new Set((D.CHD || []).map(x => x.id)),
       REFS: new Set(Object.keys(D.REFS || {}))
     };
-    const enums = { status: STATUS, level: LEVELS, cat: Object.keys(D.CATS || {}) };
+    const enums = { status: STATUS, level: LEVELS, cat: Object.keys(D.CATS || {}), group: D.IMAGE_GROUPS || [] };
     const isStr = v => typeof v === "string" && v.trim().length > 0;
 
     function check(where, val, type) {
@@ -106,6 +112,25 @@ var FC = globalThis.FC = globalThis.FC || {};
           Object.keys(d).forEach(k => !["id", "name", "key"].includes(k) && err(w, `лишнее поле «${k}»`));
         });
       }
+      else if (t === "imgpath") { if (typeof val !== "string" || !/^img\/[a-z0-9][a-z0-9-]*\.(jpg|png|gif|webp)$/.test(val)) err(where, "ожидается img/<имя>.(jpg|png|gif|webp)"); }
+      else if (t === "text") { if (typeof val !== "string") err(where, "ожидается строка"); }
+      else if (t === "cardrefs") {
+        if (!Array.isArray(val)) { err(where, "ожидается массив"); return; }
+        val.forEach((c, i) => {
+          const m = typeof c === "string" && c.match(/^(chd|view):(.+)$/);
+          if (!m) err(`${where}[${i}]`, "формат chd:<id> или view:<id>");
+          else if (!ids[m[1] === "chd" ? "CHD" : "VIEWS"].has(m[2])) err(`${where}[${i}]`, `нет карточки «${c}»`);
+        });
+        if (new Set(val).size !== val.length) err(where, "повторяющиеся карточки");
+      }
+      else if (t === "imgsrc") {
+        if (!val || typeof val !== "object") { err(where, "ожидается объект"); return; }
+        if (!["article", "commons"].includes(val.kind)) err(where + ".kind", "article или commons");
+        ["authors", "title", "url", "license"].forEach(f => !isStr(val[f]) && err(`${where}.${f}`, "обязательное поле"));
+        if (isStr(val.url) && !/^https:\/\//.test(val.url)) err(where + ".url", "ожидается https-ссылка");
+        if (val.kind === "article") ["journal", "figure", "pmcid"].forEach(f => !isStr(val[f]) && err(`${where}.${f}`, "обязательное поле"));
+        if (val.kind === "article" && !Number.isInteger(val.year)) err(where + ".year", "ожидается год");
+      }
       else if (t === "refs") {
         if (!Array.isArray(val) || !val.length) { err(where, "нужен хотя бы один источник"); return; }
         const seen = new Set();
@@ -136,6 +161,8 @@ var FC = globalThis.FC = globalThis.FC || {};
 
     if (!D.CATS || typeof D.CATS !== "object") err("CATS", "отсутствует");
     ["VIEWS", "ALGOS", "CHD", "QUIZ", "ATLAS"].forEach(n => Array.isArray(D[n]) ? collection(n, D[n], n !== "QUIZ") : err(n, "отсутствует массив"));
+    if (D.IMAGES !== undefined) Array.isArray(D.IMAGES) ? collection("IMAGES", D.IMAGES, false) : err("IMAGES", "ожидается массив");
+    (D.IMAGES || []).forEach(im => { if (im.file && D.IMAGES.filter(x => x.file === im.file).length > 1) err(`IMAGES[${im.id}].file`, "файл используется дважды"); });
     Object.entries(D.REFS || {}).forEach(([id, r]) => {
       if (!SLUG.test(id)) err(`REFS[${id}]`, "id: латиница, цифры, дефис");
       Object.entries(SCHEMA.REFS).forEach(([f, t]) => check(`REFS[${id}].${f}`, r[f], t));

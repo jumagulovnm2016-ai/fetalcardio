@@ -2,13 +2,16 @@
    Важно: на домене *.github.io кэши общие для всех приложений автора,
    поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
 const PREFIX = "fetalcardio-";
-const VERSION = "v6";
+const VERSION = "v7";
 const APP_CACHE = `${PREFIX}app-${VERSION}`;
 const FONT_CACHE = `${PREFIX}fonts-v1`;
-const KEEP = [APP_CACHE, FONT_CACHE];
+/* Эхограммы (img/) не входят в предзагрузку (~17 МБ): кэшируются при первом просмотре
+   в отдельный кэш, который не сбрасывается при обновлении версии приложения. */
+const IMG_CACHE = `${PREFIX}img-v1`;
+const KEEP = [APP_CACHE, FONT_CACHE, IMG_CACHE];
 const FILES = [
   "./", "index.html", "style.css", "app.js", "schemes.js", "search.js", "validate.js", "progress.js",
-  "data/meta.js", "data/references.js", "data/views.js", "data/algorithms.js", "data/pathologies.js", "data/quiz.js", "data/anatomy.js",
+  "data/meta.js", "data/references.js", "data/views.js", "data/algorithms.js", "data/pathologies.js", "data/quiz.js", "data/anatomy.js", "data/images.js",
   "atlas/4cv-normal.svg",
   "account.js", "vendor/supabase-js-2.119.0.umd.js", "account.html", "teacher.html", "pages.css",
   "manifest.json", "icon.svg"
@@ -61,6 +64,21 @@ self.addEventListener("fetch", e => {
 
   // Чужие домены не обрабатываем.
   if (url.origin !== self.location.origin) return;
+
+  // Эхограммы: сначала кэш, затем сеть (файлы неизменны — при замене меняется имя).
+  if (url.pathname.includes("/img/")) {
+    e.respondWith((async () => {
+      const cache = await caches.open(IMG_CACHE);
+      const hit = await cache.match(req, { ignoreSearch: true });
+      if (hit) return hit;
+      try {
+        const r = await fetch(req);
+        if (cacheable(r)) cache.put(req, r.clone());
+        return r;
+      } catch { return new Response("", { status: 504 }); }
+    })());
+    return;
+  }
 
   // Файлы приложения: сначала сеть (свежий контент), при отсутствии сети — кэш.
   e.respondWith((async () => {

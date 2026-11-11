@@ -8,7 +8,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else None
 ROUTES = ["", "views", "view/situs", "view/4cv", "view/lvot", "view/rvot", "view/3vv", "view/3vt",
           "algos", "algo/rv-gt-lv", "algo/overriding", "algo/reverse-flow", "chd",
           "chd/vsd", "chd/avsd", "chd/tof", "chd/tga", "chd/dorv", "chd/cat", "chd/hlhs", "chd/coa", "chd/ebstein", "chd/tapvr",
-          "atlas", "atlas/4cv-normal",
+          "atlas", "atlas/4cv-normal", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
           "quiz", "search?q=" + "%D1%84%D0%B0%D0%BB%D0%BB%D0%BE", "nonexistent"]
 fails = []
 def check(cond, msg):
@@ -46,6 +46,29 @@ with sync_playwright() as p:
             if OUT and scheme == "light" and w == 360:
                 pg.goto(BASE + "#/"); pg.wait_for_timeout(200); pg.screenshot(path=f"{OUT}/home-{w}.png")
             ctx.close()
+
+    # 1б. Эхограммы: все файлы библиотеки загружаются, в карточках есть галерея
+    ctx = b.new_context(viewport={"width": 1280, "height": 900}, service_workers="block")
+    pg = ctx.new_page()
+    pg.goto(BASE + "#/images"); pg.wait_for_timeout(300)
+    pg.evaluate("document.querySelectorAll('.imgs img').forEach(i => i.loading = 'eager')")
+    pg.wait_for_function("[...document.querySelectorAll('.imgs img')].every(i => i.complete)", timeout=30000)
+    broken = pg.evaluate("[...document.querySelectorAll('.imgs img')].filter(i => !i.naturalWidth).map(i => i.getAttribute('src'))")
+    total = pg.locator(".imgs img").count()
+    check(total == pg.evaluate("FC.IMAGES.length"), f"эхограммы: на странице {total}")
+    check(not broken, f"эхограммы: не загрузились {broken[:5]}")
+    for r in ["chd/tga", "chd/tapvr", "view/4cv"]:
+        pg.goto(BASE + "#/" + r); pg.wait_for_timeout(150)
+        check(pg.locator("#s-img").count() == 1 and pg.locator(".imgs img").count() > 0, f"#{r}: нет блока эхограмм")
+    pg.goto(BASE + "#/chd/tga"); pg.wait_for_timeout(150); pg.click(".imgs-i >> nth=0"); pg.wait_for_timeout(200)
+    check(pg.url.split("#/")[1].startswith("img/") and "Лицензия" in pg.inner_text("main"), "открытие снимка: нет страницы с лицензией")
+    if OUT:
+        pg.set_viewport_size({"width": 390, "height": 844})
+        for r, n in [("chd/tga", "chd-tga"), ("images", "images"), ("img/pmc4928259-f8", "img")]:
+            pg.goto(BASE + "#/" + r); pg.wait_for_timeout(500)
+            if r == "chd/tga": pg.locator("#s-img").scroll_into_view_if_needed(); pg.wait_for_timeout(400)
+            pg.screenshot(path=f"{OUT}/{n}.png")
+    ctx.close()
 
     # 2. Переключатель темы, поиск, тест, экспорт/импорт
     ctx = b.new_context(viewport={"width": 390, "height": 844}, accept_downloads=True, service_workers="block")

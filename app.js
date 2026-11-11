@@ -1,6 +1,7 @@
 (() => {
   const { META, CATS, VIEWS, ALGOS, CHD, QUIZ, REFS } = FC;
   const ATLAS = FC.ATLAS || [];
+  const IMAGES = FC.IMAGES || [], IMAGE_GROUPS = FC.IMAGE_GROUPS || [];
   const check = FC.validate ? FC.validate(FC) : { errors: [] };
   if (check.errors.length) console.error("FetalCardio: ошибки контента", check.errors);
   const $app = document.getElementById("app");
@@ -74,6 +75,20 @@
     return `<h2 id="s-refs">Источники</h2><ol class="refs">${items}</ol>`;
   };
 
+  /* ---------- эхограммы из открытых источников ---------- */
+  const imgCredit = s => s.kind === "article"
+    ? `${esc(s.authors)} ${esc(s.title)}${/[.?!]$/.test(s.title) ? "" : "."} <i>${esc(s.journal)}</i> ${s.year}, ${esc(s.figure)}. Лицензия ${esc(s.license)}.`
+    : `${esc(s.authors)}. ${esc(s.title)}. Wikimedia Commons. ${s.licenseUrl ? `Лицензия <a href="${esc(s.licenseUrl)}" target="_blank" rel="noopener">${esc(s.license)}</a>` : esc(s.license === "Public domain" ? "Общественное достояние" : s.license)}.`;
+  const thumbs = list => `<div class="imgs">${list.map(im => `<a class="imgs-i" href="#/img/${im.id}">
+      <img src="${esc(im.file)}" alt="${esc(im.label)}" loading="lazy" decoding="async"><span>${esc(im.label)}</span></a>`).join("")}</div>`;
+  const imgBlock = card => {
+    const list = IMAGES.filter(im => im.cards.includes(card));
+    if (!list.length) return "";
+    return `<h2 id="s-img">Эхограммы из открытых источников</h2>
+      <p class="small muted">${statusBadge("draft")} Привязка снимков к карточке и подписи авторов (на английском) не проверены экспертом. Нажмите на снимок — откроется подпись, источник и лицензия.</p>
+      ${thumbs(list)}`;
+  };
+
   const doneMark = key => isDone(key) ? '<span class="done-mark">✓</span>' : I.chev;
 
   const item = (href, tile, title, sub, key, tileCls = "") => `<a class="card list-item" href="${href}">
@@ -86,7 +101,7 @@
   }).join("")}</div>`;
 
   const foot = () => `<footer class="foot">${esc(META.title)} ${esc(META.version)} · ${esc(META.author)} · ${esc(META.updated)}<br>
-    Учебный материал для врачей. Не заменяет экспертную фетальную ЭхоКГ и клиническое решение. Схемы условные, не являются УЗ-изображениями.</footer>`;
+    Учебный материал для врачей. Не заменяет экспертную фетальную ЭхоКГ и клиническое решение. Схемы условные, не являются УЗ-изображениями. Эхограммы — из открытых источников, авторы и лицензии указаны у каждого снимка.</footer>`;
 
   const doneBtn = key => `<button class="btn ${isDone(key) ? "done" : ""}" data-done="${key}">${isDone(key) ? "✓ Изучено" : "Отметить как изученное"}</button>`;
 
@@ -114,6 +129,8 @@
       ${feat("#/chd", I.heart, "red", "Атлас пороков", `${CHD.length} ключевых ВПС: критерии, срезы, дифдиагноз, ловушки.`)}
       ${feat("#/quiz", I.quiz, "red", "Проверка знаний", `${QUIZ.length} вопросов с разбором ответов.`)}
     </div>
+    ${IMAGES.length ? `<a class="card feature" href="#/images"><span class="tile red">${I.views}</span>
+      <span><h3>Библиотека эхограмм</h3><span class="small muted">${IMAGES.length} снимков и рисунков из открытых источников с указанием автора и лицензии. Черновик.</span></span></a>` : ""}
     ${ATLAS.length ? `<a class="card feature" href="#/atlas"><span class="tile">${I.views}</span>
       <span><h3>Анатомический атлас</h3><span class="small muted">Подробные анатомические схемы срезов с подписями и легендой. Черновики — на экспертной проверке.</span></span></a>` : ""}
     <div class="card">
@@ -147,12 +164,42 @@
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Патологические находки</h2><ul>${v.abnormal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      ${imgBlock("view:" + id)}
       ${algos.length ? `<h2>Алгоритмы для этого среза</h2>${algos.map(a => item(`#/algo/${a.id}`, I.algos, a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
       ${refsBlock(v.references)}
       <div class="row" style="margin-top:18px">${doneBtn("v_" + id)}</div>
       <div class="pager">
         ${prev ? `<a class="card" href="#/view/${prev.id}"><small>← Назад</small><b>${esc(prev.abbr)}</b></a>` : ""}
         ${next ? `<a class="card next" href="#/view/${next.id}"><small>Далее →</small><b>${esc(next.abbr)}</b></a>` : ""}</div>${foot()}`;
+  }
+
+  /* ---------- библиотека эхограмм ---------- */
+  function imagesList() {
+    return `<h1>Библиотека эхограмм</h1>
+      <p class="subtitle">${IMAGES.length} изображений из статей открытого доступа (CC BY) и Wikimedia Commons. Подписи — оригинальные, на английском. У каждого снимка указаны источник и лицензия.</p>
+      <div class="note">${statusBadge("draft")} <b>Черновик.</b> Распределение по разделам и привязка к карточкам не проверены экспертом. Снимки не подтверждают текст карточек: источники утверждений — в разделах «Источники».</div>
+      <nav class="toc">${IMAGE_GROUPS.map((g, i) => IMAGES.some(im => im.group === g) ? `<a href="javascript:void(0)" data-jump="g${i}">${esc(g)}</a>` : "").join("")}</nav>
+      ${IMAGE_GROUPS.map((g, i) => { const list = IMAGES.filter(im => im.group === g); return list.length ? `<h2 id="s-g${i}">${esc(g)} <span class="small muted">· ${list.length}</span></h2>${thumbs(list)}` : ""; }).join("")}
+      ${foot()}`;
+  }
+
+  function imagePage(id) {
+    const im = byId(IMAGES, id); if (!im) return notFound();
+    const list = IMAGES.filter(x => x.group === im.group), i = list.indexOf(im), prev = list[i - 1], next = list[i + 1];
+    const links = im.cards.map(c => { const [k, cid] = c.split(":"); const x = byId(k === "chd" ? CHD : VIEWS, cid);
+      return x ? `<a class="badge view" href="#/${k}/${cid}">${esc(k === "chd" ? x.abbr : "Срез " + x.abbr)}</a>` : ""; }).join(" ");
+    return `<div class="crumb"><a href="#/images">Эхограммы</a> / ${esc(im.group)}</div>
+      <h1>${esc(im.label)}</h1>
+      <div>${statusBadge(im.status)}</div>
+      <figure class="imgfig"><a href="${esc(im.file)}" target="_blank" rel="noopener"><img src="${esc(im.file)}" alt="${esc(im.label)}"></a>
+        <figcaption>${im.caption ? `<span lang="en">${esc(im.caption)}</span>` : '<span class="muted">Автор не указал, какой срез на снимке. Требует экспертной разметки.</span>'}</figcaption></figure>
+      <h2>Источник и лицензия</h2>
+      <p class="small">${imgCredit(im.source)} <a href="${esc(im.source.url)}" target="_blank" rel="noopener">Открыть источник ↗</a></p>
+      ${im.source.license.startsWith("CC BY-SA") ? '<p class="small muted">CC BY-SA: изменённую версию (стрелки, подписи, кадрирование) распространяйте под той же лицензией.</p>' : ""}
+      ${links ? `<h2>Привязан к карточкам</h2><p>${links}</p>` : ""}
+      <div class="pager">
+        ${prev ? `<a class="card" href="#/img/${prev.id}"><small>← Назад</small><b>${esc(prev.label)}</b></a>` : ""}
+        ${next ? `<a class="card next" href="#/img/${next.id}"><small>Далее →</small><b>${esc(next.label)}</b></a>` : ""}</div>${foot()}`;
   }
 
   /* ---------- анатомический атлас ---------- */
@@ -243,7 +290,8 @@
   function chdPage(id) {
     const c = byId(CHD, id); if (!c) return notFound();
     const algos = ALGOS.filter(a => a.ddx.some(d => d.id === id));
-    const sec = [["def", "Суть"], ["keys", "Критерии"], ["views", "Срезы"], ["ddx", "Дифдиагноз"], ["assoc", "Сочетания"], ["pit", "Ловушки"], ["prog", "Прогноз"], ["refs", "Источники"]];
+    const sec = [["def", "Суть"], ["keys", "Критерии"], ["views", "Срезы"], ["ddx", "Дифдиагноз"], ["assoc", "Сочетания"], ["pit", "Ловушки"], ["prog", "Прогноз"],
+      ...(IMAGES.some(im => im.cards.includes("chd:" + id)) ? [["img", "Эхограммы"]] : []), ["refs", "Источники"]];
     return `<div class="crumb"><a href="#/chd">Пороки</a> / ${esc(CATS[c.cat])}</div>
       <h1>${esc(c.name)}</h1>
       <p class="subtitle">${esc(c.en)}</p>
@@ -258,6 +306,7 @@
       <h2 id="s-pit">Диагностические ловушки</h2><ul class="err">${c.pitfalls.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
       <h2 id="s-prog">Ведение и прогноз</h2><p>${esc(c.prognosis)}</p>
       <div class="note info"><b>Тактика:</b> ${esc(c.refer)}</div>
+      ${imgBlock("chd:" + id)}
       ${refsBlock(c.references)}
       ${algos.length ? `<h2>Где встречается в алгоритмах</h2>${algos.map(a => item(`#/algo/${a.id}`, esc(byId(VIEWS, a.view).abbr), a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
       <div class="row" style="margin-top:18px">${doneBtn("c_" + id)}</div>${foot()}`;
@@ -344,6 +393,8 @@
       case "algo": html = algoPage(id); nav = "algos"; break;
       case "chd": html = id ? chdPage(id) : chdList(); break;
       case "atlas": html = id ? atlasPage(id) : atlasList(); nav = "views"; break;
+      case "images": html = imagesList(); nav = ""; break;
+      case "img": html = imagePage(id); nav = ""; break;
       case "quiz": html = quizPage(); break;
       case "search": html = searchPage(decodeURIComponent((qs || "").replace(/^q=/, ""))); nav = ""; break;
       default: html = notFound();

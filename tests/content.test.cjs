@@ -133,3 +133,43 @@ test("валидатор ловит ошибки атласа", () => {
   d = D(); d.ATLAS[0].status = "approved";
   assert.ok(FC.validate(d).errors.some(e => e.includes("reviewedBy")));
 });
+
+/* ---------- библиотека эхограмм ---------- */
+test("эхограммы: каждый файл существует, не пустой и не больше 2 МБ", () => {
+  const fs = require("fs"), path = require("path");
+  assert.ok(FC.IMAGES.length > 0);
+  for (const im of FC.IMAGES) {
+    const f = path.join(__dirname, "..", im.file);
+    assert.ok(fs.existsSync(f), `${im.id}: нет файла ${im.file}`);
+    const size = fs.statSync(f).size;
+    assert.ok(size > 1000 && size < 2 * 1024 * 1024, `${im.id}: размер ${size}`);
+  }
+  const files = new Set(FC.IMAGES.map(im => path.basename(im.file)));
+  for (const f of fs.readdirSync(path.join(__dirname, "..", "img"))) assert.ok(files.has(f), `img/${f} не описан в data/images.js`);
+});
+
+test("эхограммы: у каждого снимка есть автор, источник, ссылка и лицензия; все — черновики", () => {
+  for (const im of FC.IMAGES) {
+    const s = im.source;
+    for (const f of ["authors", "title", "url", "license"]) assert.ok(s[f], `${im.id}: нет ${f}`);
+    if (s.kind === "article") {
+      assert.match(s.url, /^https:\/\/doi\.org\/10\./, `${im.id}: ссылка на статью через DOI`);
+      assert.equal(s.license, "CC BY", `${im.id}: статьи берём только под CC BY`);
+    } else {
+      assert.match(s.url, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/, im.id);
+      assert.ok(["CC BY", "CC BY-SA", "CC0", "Public domain"].some(l => s.license.startsWith(l)), `${im.id}: лицензия ${s.license}`);
+    }
+    assert.equal(im.status, "draft", `${im.id}: до экспертной проверки — draft`);
+  }
+});
+
+test("эхограммы: валидатор ловит несуществующую карточку, чужой путь и пустую лицензию", () => {
+  const D = clone(FC);
+  D.IMAGES[0].cards = ["chd:nope"];
+  D.IMAGES[1].file = "../secret.jpg";
+  D.IMAGES[2].source.license = "";
+  const errs = FC.validate(D).errors.join("\n");
+  assert.match(errs, /нет карточки «chd:nope»/);
+  assert.match(errs, /ожидается img\//);
+  assert.match(errs, /license: обязательное поле/);
+});
