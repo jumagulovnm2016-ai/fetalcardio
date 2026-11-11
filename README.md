@@ -51,13 +51,13 @@
 Вход по логину и коду от преподавателя или регистрация по почте с подтверждением. У каждого курсанта свой срок доступа.
 Один аккаунт курсанта — одно устройство. Без входа приложение закрыто полностью.
 
-Пока в `account.js` не указаны адрес и ключ проекта, закрытие **выключено** и приложение открыто, как раньше.
+Проект Supabase: организация **Fetalcardio**, адрес `https://xzmfcsmmbfgzyzifpnxx.supabase.co` (вписан в `account.js`). Если очистить `CONFIG`, закрытие выключится.
 
 Настройка (один раз):
 1. supabase.com → New project (имя `fetalcardio`, регион — ближайший). На бесплатном тарифе не больше 2 активных проектов.
 2. Authentication → Sign In / Providers → Email: **выключить** «Confirm email».
 3. SQL Editor → New query → вставить `supabase/setup.sql` → Run.
-4. Edge Functions → Deploy a new function → имя `teacher-admin` → вставить `supabase/functions/teacher-admin/index.ts` → Deploy. Если функция пишет, что нет ключа: Edge Functions → Secrets → `SERVICE_KEY` = Secret key (`sb_secret_…`).
+4. Edge Functions → Deploy a new function → имя `teacher-admin` → вставить `supabase/functions/teacher-admin/index.ts` → Deploy. В настройках функции выключить **Verify JWT with legacy secret** (функция сама проверяет, что её вызывает преподаватель). Если функция пишет, что нет ключа: Edge Functions → Secrets → `SERVICE_KEY` = Secret key (`sb_secret_…`).
 5. Project Settings → API: Project URL и Publishable key вписать в `CONFIG` в `account.js`, поднять `VERSION` в `sw.js`, опубликовать.
 6. Открыть сайт → Личный кабинет → Регистрация по своей почте → SQL Editor → `supabase/make-teacher.sql` → Run.
 

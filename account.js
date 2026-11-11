@@ -2,7 +2,7 @@
    Отдельный проект Supabase (не Академия УЗИ): аккаунты, группы и сроки доступа — свои.
    Публичный ключ можно хранить открыто: что разрешено, решают правила доступа в базе (supabase/setup.sql).
 
-   Пока URL и ключ не заданы (CONFIG ниже пустой), закрытие выключено и приложение открыто как раньше.
+   Если очистить URL и ключ в CONFIG, закрытие выключится и приложение станет открытым для всех.
    Как только они заданы, без входа приложение закрыто, а если модуль входа не загрузился — тоже закрыто.
 
    Важно: это ограничение интерфейса. Оно отсекает посторонних, но файлы сайта (data/*.js)
@@ -11,8 +11,8 @@ var FC = globalThis.FC = globalThis.FC || {};
 (function () {
 "use strict";
 const CONFIG = {
-  url: "",   // https://<проект>.supabase.co — Supabase → Project Settings → API → Project URL
-  key: ""    // Publishable key (sb_publishable_…) — там же
+  url: "https://xzmfcsmmbfgzyzifpnxx.supabase.co",   // Supabase → организация Fetalcardio → Project Settings → API → Project URL
+  key: "sb_publishable_n1iK5SPc6oI2Xei-nLYv0Q_4fNtDx3M"   // Publishable key — публичный, его можно хранить открыто
 };
 const DOMAIN = "fetalcardio.invalid";   // служебные адреса аккаунтов «по коду»
 const AUTH_KEY = "fc-auth";             // своё хранилище сеанса, не общее с Академией УЗИ

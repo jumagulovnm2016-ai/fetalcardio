@@ -16,6 +16,19 @@ def check(cond, msg):
 
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=os.environ.get("CHROME", "/usr/bin/google-chrome"))
+    # Приложение закрыто без входа (account.js). Для проверки содержимого — вошедший активный курсант:
+    # сеанс и профиль в localStorage, как после входа; сервер Supabase в тестах недоступен — работает «офлайн-путь».
+    LOGIN = """(() => { try {
+      if (localStorage.getItem('fc-auth')) return;
+      const exp = Math.floor(Date.now() / 1000) + 86400;
+      const user = { id: 'e2e00000-0000-0000-0000-000000000000', aud: 'authenticated', role: 'authenticated', email: 'e2e@fetalcardio.invalid', app_metadata: {}, user_metadata: {} };
+      localStorage.setItem('fc-auth', JSON.stringify({ access_token: 'e2e', refresh_token: 'e2e', token_type: 'bearer', expires_in: 86400, expires_at: exp, user }));
+      localStorage.setItem('fc-profile', JSON.stringify({ id: user.id, full_name: 'Тест', login: 'e2e', role: 'student', status: 'active', access_until: null }));
+    } catch (e) {} })();"""
+    _new_context = b.new_context
+    def new_context(**kw):
+        c = _new_context(**kw); c.add_init_script(LOGIN); return c
+    b.new_context = new_context
 
     # 1. Все страницы, три ширины, две темы: без ошибок JS и без горизонтальной прокрутки
     for w, h in [(360, 740), (768, 1024), (1280, 800)]:

@@ -2,7 +2,7 @@
    Важно: на домене *.github.io кэши общие для всех приложений автора,
    поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
 const PREFIX = "fetalcardio-";
-const VERSION = "v5";
+const VERSION = "v6";
 const APP_CACHE = `${PREFIX}app-${VERSION}`;
 const FONT_CACHE = `${PREFIX}fonts-v1`;
 const KEEP = [APP_CACHE, FONT_CACHE];
