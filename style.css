@@ -240,8 +240,10 @@ mark{background:color-mix(in srgb, var(--warn) 28%, transparent);color:inherit;p
 .atlas-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--line)}
 .atlas-bar .small{color:var(--muted)}
 .atlas-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px}
-.atlas-scroll svg{display:block;width:100%;height:auto;min-width:900px}
-@media (min-width:980px){.atlas-scroll svg{min-width:0}}
+/* по умолчанию схема целиком по ширине экрана; «Увеличить» — крупно с прокруткой */
+.atlas-scroll svg,.atlas-scroll img{display:block;width:100%;height:auto;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px)}
+.atlas-fig.zoom .atlas-scroll svg,.atlas-fig.zoom .atlas-scroll img{min-width:900px;max-height:none}
+@media (min-width:980px){.atlas-fig [data-zoom]{display:none}}
 .atlas-scroll .atlas-loading{padding:40px 12px;text-align:center;color:var(--muted)}
 .atlas-fig figcaption{font-size:.78rem;color:var(--muted);padding:6px 12px 10px;border-top:1px solid var(--line)}
 .atlas-fig.nolabels #layer-labels{display:none}

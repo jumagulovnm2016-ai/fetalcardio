@@ -233,7 +233,8 @@
       <div class="note info small">${esc(t.orientation)}</div>
       <figure class="atlas-fig" id="atlasFig" data-atlas="${esc(t.id)}">
         <div class="atlas-bar"><span class="small">Номера на схеме — как в легенде. Нажмите на структуру в легенде — она подсветится.</span>
-          <span class="row"><button class="btn ghost" type="button" data-labels="1" aria-pressed="false">Скрыть номера</button>
+          <span class="row"><button class="btn ghost" type="button" data-zoom="1" aria-pressed="false">Увеличить</button>
+          <button class="btn ghost" type="button" data-labels="1" aria-pressed="false">Скрыть номера</button>
           <a class="btn ghost" href="${esc(t.svg)}" target="_blank" rel="noopener">SVG ↗</a></span></div>
         <div class="atlas-scroll" id="atlasSvg"><div class="atlas-loading">Загрузка схемы…</div></div>
         <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: ${t.status === "approved" ? `проверено автором (${esc(t.reviewedBy)}, ${esc(t.reviewedAt)})` : "черновик"}.</figcaption>
@@ -264,7 +265,7 @@
       if (document.getElementById("atlasFig") !== fig) return; // страницу успели сменить
       box.replaceChildren(document.importNode(svg, true));
     } catch {
-      box.innerHTML = `<img src="${esc(t.svg)}" alt="${esc(t.title)}" style="display:block;width:100%;min-width:900px;height:auto">`;
+      box.innerHTML = `<img src="${esc(t.svg)}" alt="${esc(t.title)}" >`;
     }
   }
 
@@ -425,6 +426,10 @@
     else if (t.dataset.labels) {
       const fig = document.getElementById("atlasFig"), off = fig.classList.toggle("nolabels");
       t.textContent = off ? "Показать номера" : "Скрыть номера"; t.setAttribute("aria-pressed", off);
+    }
+    else if (t.dataset.zoom) {
+      const fig = document.getElementById("atlasFig"), on = fig.classList.toggle("zoom");
+      t.textContent = on ? "Целиком" : "Увеличить"; t.setAttribute("aria-pressed", on);
     }
     else if (t.dataset.filter) { chdFilter = t.dataset.filter; render(); }
     else if (t.dataset.jump) {
