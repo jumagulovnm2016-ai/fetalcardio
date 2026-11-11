@@ -193,7 +193,7 @@ table.vt td:first-child{width:90px;font:700 .82rem var(--head);color:var(--accen
 .btn.ghost{background:var(--surface);color:var(--text);border:1px solid var(--line);box-shadow:none}
 .btn.done{background:var(--ok-soft);color:var(--ok);box-shadow:none}
 
-.toc{display:flex;gap:6px;overflow-x:auto;margin:10px -16px 4px;padding:2px 16px 6px;scrollbar-width:none;position:sticky;top:61px;z-index:5}
+.toc{display:flex;gap:6px;overflow-x:auto;margin:10px -16px 4px;padding:2px 16px 6px;scrollbar-width:none;position:sticky;top:66px;z-index:5}
 .toc::-webkit-scrollbar{display:none}
 .toc a{white-space:nowrap;font-size:.82rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--glass);color:var(--text);
   border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -222,3 +222,8 @@ footer.foot{margin-top:32px;font-size:.78rem;color:var(--muted);border-top:1px s
 .score{font-family:var(--head);font-size:3rem;font-weight:800;line-height:1;background:linear-gradient(90deg,var(--accent),var(--accent-2));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+ol.refs{padding-left:1.2em;font-size:.88rem}
+ol.refs li{margin:.5em 0;line-height:1.45}
+ol.refs a{word-break:break-all}
+a.card.list-item{display:flex}
+mark{background:color-mix(in srgb, var(--warn) 28%, transparent);color:inherit;padding:0 2px;border-radius:4px}

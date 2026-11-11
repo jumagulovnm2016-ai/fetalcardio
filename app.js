@@ -1,4 +1,7 @@
 (() => {
+  const { META, CATS, VIEWS, ALGOS, CHD, QUIZ, REFS } = FC;
+  const check = FC.validate ? FC.validate(FC) : { errors: [] };
+  if (check.errors.length) console.error("FetalCardio: ошибки контента", check.errors);
   const $app = document.getElementById("app");
   const store = {
     get(k, d) { try { const v = localStorage.getItem("fc_" + k); return v ? JSON.parse(v) : d; } catch { return d; } },
@@ -59,6 +62,17 @@
     ? `<span class="badge ok">✓ проверено автором</span>`
     : `<span class="badge draft">● черновик · на проверке</span>`;
 
+  const refsBlock = refs => {
+    if (!refs || !refs.length) return "";
+    const items = refs.map(r => {
+      const s = REFS[r.source]; if (!s) return "";
+      return `<li><b>${esc(s.organization)}</b>. ${esc(s.title)}. <i>${esc(s.journal || "")}</i> ${s.year}${s.volume ? `;${esc(s.volume)}` : ""}${s.pages ? `:${esc(s.pages)}` : ""}.
+        ${s.doi ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : `<a href="${esc(s.url)}" target="_blank" rel="noopener">ссылка</a>`}
+        <br><span class="badge ${r.verified ? "ok" : "draft"}">${r.verified ? "сверено с текстом" : "источник по теме, утверждения не сверены"}</span></li>`;
+    }).join("");
+    return `<h2 id="s-refs">Источники</h2><ol class="refs">${items}</ol>`;
+  };
+
   const doneMark = key => isDone(key) ? '<span class="done-mark">✓</span>' : I.chev;
 
   const item = (href, tile, title, sub, key, tileCls = "") => `<a class="card list-item" href="${href}">
@@ -99,6 +113,13 @@
       ${feat("#/chd", I.heart, "red", "Атлас пороков", `${CHD.length} ключевых ВПС: критерии, срезы, дифдиагноз, ловушки.`)}
       ${feat("#/quiz", I.quiz, "red", "Проверка знаний", `${QUIZ.length} вопросов с разбором ответов.`)}
     </div>
+    <div class="card">
+      <div class="row between"><h3 style="margin:0">Мой прогресс</h3><span class="small muted">${done} из ${total}</span></div>
+      <p class="small muted" style="margin:.4em 0 .8em">Прогресс хранится только в этом браузере. Сохраните его в файл, чтобы перенести на другое устройство.</p>
+      <div class="row"><button class="btn ghost" data-export="1">⤓ Экспорт в JSON</button>
+      <button class="btn ghost" data-import="1">⤒ Импорт из файла</button></div>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
     <div class="note"><b>Главное правило.</b> Ни один срез не исключает ВПС сам по себе. Нормальный 4CV не исключает ТФ, ТМА, ОАС, коарктацию и ТАДЛВ — всегда оценивайте выводные тракты и 3VV/3VT.</div>
     ${foot()}`;
   }
@@ -115,12 +136,14 @@
     const idx = VIEWS.indexOf(v), prev = VIEWS[idx - 1], next = VIEWS[idx + 1];
     return `<div class="crumb"><a href="#/views">Срезы</a> / ${esc(v.abbr)}</div>
       <h1>${esc(v.name)}</h1>
+      <div>${statusBadge(v.status)}</div>
       <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Патологические находки</h2><ul>${v.abnormal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       ${algos.length ? `<h2>Алгоритмы для этого среза</h2>${algos.map(a => item(`#/algo/${a.id}`, I.algos, a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
+      ${refsBlock(v.references)}
       <div class="row" style="margin-top:18px">${doneBtn("v_" + id)}</div>
       <div class="pager">
         ${prev ? `<a class="card" href="#/view/${prev.id}"><small>← Назад</small><b>${esc(prev.abbr)}</b></a>` : ""}
@@ -138,7 +161,7 @@
     const a = byId(ALGOS, id); if (!a) return notFound();
     const v = byId(VIEWS, a.view);
     return `<div class="crumb"><a href="#/algos">Находки</a> / <a href="#/view/${v.id}">${esc(v.abbr)}</a></div>
-      <h1>${esc(a.title)}</h1><p class="subtitle">${esc(a.finding)}</p>
+      <h1>${esc(a.title)}</h1><p class="subtitle">${esc(a.finding)}</p><div>${statusBadge(a.status)}</div>
       <h2>Что проверить</h2><ol class="steps">${a.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
       <h2>Дифференциальный ряд</h2>${ddxList(a.ddx)}
       ${a.note ? `<div class="note info">${esc(a.note)}</div>` : ""}
@@ -161,7 +184,7 @@
   function chdPage(id) {
     const c = byId(CHD, id); if (!c) return notFound();
     const algos = ALGOS.filter(a => a.ddx.some(d => d.id === id));
-    const sec = [["def", "Суть"], ["keys", "Критерии"], ["views", "Срезы"], ["ddx", "Дифдиагноз"], ["assoc", "Сочетания"], ["pit", "Ловушки"], ["prog", "Прогноз"]];
+    const sec = [["def", "Суть"], ["keys", "Критерии"], ["views", "Срезы"], ["ddx", "Дифдиагноз"], ["assoc", "Сочетания"], ["pit", "Ловушки"], ["prog", "Прогноз"], ["refs", "Источники"]];
     return `<div class="crumb"><a href="#/chd">Пороки</a> / ${esc(CATS[c.cat])}</div>
       <h1>${esc(c.name)}</h1>
       <p class="subtitle">${esc(c.en)}</p>
@@ -176,6 +199,7 @@
       <h2 id="s-pit">Диагностические ловушки</h2><ul class="err">${c.pitfalls.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
       <h2 id="s-prog">Ведение и прогноз</h2><p>${esc(c.prognosis)}</p>
       <div class="note info"><b>Тактика:</b> ${esc(c.refer)}</div>
+      ${refsBlock(c.references)}
       ${algos.length ? `<h2>Где встречается в алгоритмах</h2>${algos.map(a => item(`#/algo/${a.id}`, esc(byId(VIEWS, a.view).abbr), a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
       <div class="row" style="margin-top:18px">${doneBtn("c_" + id)}</div>${foot()}`;
   }
@@ -225,15 +249,23 @@
   }
 
   /* ---------- поиск ---------- */
+  let searchIndex = null;
   function searchPage(q) {
-    const s = q.trim().toLowerCase();
-    if (!s) return `<h1>Поиск</h1><p class="muted">Введите запрос.</p>`;
-    const hit = (...t) => t.join(" ").toLowerCase().includes(s);
-    const r = [];
-    VIEWS.forEach(v => hit(v.abbr, v.name, ...v.check, ...v.abnormal, ...v.errors) && r.push(item(`#/view/${v.id}`, esc(v.abbr), v.name, "срез", "v_" + v.id)));
-    ALGOS.forEach(a => hit(a.title, a.finding, ...a.steps, ...a.ddx.map(d => d.name + " " + d.key)) && r.push(item(`#/algo/${a.id}`, I.algos, a.title, "находка", "a_" + a.id)));
-    CHD.forEach(c => hit(c.abbr, c.name, c.en, c.def, ...c.keys, c.assoc, ...c.pitfalls, ...Object.values(c.views)) && r.push(item(`#/chd/${c.id}`, esc(c.abbr.slice(0, 5)), c.name, "порок", "c_" + c.id, "red")));
-    return `<h1>Поиск</h1><p class="subtitle">«${esc(q)}» — найдено: ${r.length}</p>${r.length ? r.join("") : '<p class="muted">Ничего не найдено. Попробуйте сокращение (ТФ, 3VT) или признак («верхом», «коронарный синус»).</p>'}`;
+    if (!q.trim()) return `<h1>Поиск</h1><p class="muted">Введите запрос: название, сокращение (ТФ, TOF, 3VT), синоним или признак.</p>`;
+    searchIndex = searchIndex || FC.search.buildIndex(FC);
+    const res = FC.search.query(searchIndex, q);
+    const hl = sn => {
+      let out = "", pos = 0;
+      sn.ranges.forEach(([s, e]) => { out += esc(sn.text.slice(pos, s)) + "<mark>" + esc(sn.text.slice(s, e)) + "</mark>"; pos = e; });
+      return (sn.pre ? "…" : "") + out + esc(sn.text.slice(pos)) + (sn.post ? "…" : "");
+    };
+    const kind = { view: ["срез", ""], algo: ["находка", ""], chd: ["порок", "red"] };
+    const rows = res.map(r => {
+      const tile = r.type === "chd" ? esc(byId(CHD, r.id).abbr.slice(0, 5)) : r.type === "view" ? esc(byId(VIEWS, r.id).abbr) : I.algos;
+      const sub = r.snippet ? `<span class="badge view">${esc(r.snippet.label)}</span> ${hl(r.snippet)}` : kind[r.type][0];
+      return item(r.href, tile, r.title, sub, (r.type === "view" ? "v_" : r.type === "algo" ? "a_" : "c_") + r.id, kind[r.type][1]);
+    });
+    return `<h1>Поиск</h1><p class="subtitle">«${esc(q)}» — найдено: ${res.length}</p>${rows.length ? rows.join("") : '<p class="muted">Ничего не найдено. Попробуйте сокращение (ТФ, TOF, 3VT), английское название или признак («верхом», «коронарный синус»).</p>'}`;
   }
 
   const notFound = () => `<h1>Страница не найдена</h1><p><a href="#/">На главную</a></p>`;
@@ -276,7 +308,41 @@
       if (quiz.choice === q.a) quiz.score++; else quiz.wrong.push(q);
       render();
     }
+    else if (t.dataset.export) exportProgress();
+    else if (t.dataset.import) document.getElementById("importFile").click();
     else if (t.dataset.next) { quiz.i++; quiz.answered = false; quiz.choice = null; render(); window.scrollTo(0, 0); }
+  });
+
+  function exportProgress() {
+    const data = FC.progress.build({ studied: studied(), quizBest: store.get("quizBest", null) });
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `fetalcardio-progress-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast("Прогресс сохранён в файл");
+  }
+
+  $app.addEventListener("change", async e => {
+    if (e.target.id !== "importFile" || !e.target.files[0]) return;
+    const file = e.target.files[0]; e.target.value = "";
+    if (file.size > 1e6) return alert("Файл слишком большой для файла прогресса.");
+    const res = FC.progress.parse(await file.text(), FC);
+    if (!res.ok) return alert("Импорт невозможен. " + res.error);
+    const cur = Object.keys(studied()).length, next = Object.keys(res.data.studied).length;
+    const best = store.get("quizBest", null), nb = res.data.quizBest;
+    const msg = [
+      "Текущий прогресс будет заменён данными из файла.",
+      `Изучено: ${cur} → ${next}`,
+      `Лучший тест: ${best ? best.score + "/" + best.total : "—"} → ${nb ? nb.score + "/" + nb.total : "—"}`,
+      res.skipped.length ? `Пропущено неизвестных записей: ${res.skipped.length}` : "",
+      "", "Продолжить?"
+    ].filter(x => x !== null).join("\n");
+    if (!confirm(msg)) return;
+    store.set("studied", res.data.studied);
+    nb ? store.set("quizBest", nb) : (() => { try { localStorage.removeItem("fc_quizBest"); } catch {} })();
+    render(); toast("Прогресс импортирован");
   });
 
   document.getElementById("searchForm").addEventListener("submit", e => {
