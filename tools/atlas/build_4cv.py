@@ -156,10 +156,10 @@ def markers():
 
 def build():
     o = []
-    o.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W4} {H4}" role="img" aria-labelledby="t4cv d4cv" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
-<title id="t4cv">Четырёхкамерный срез сердца плода — анатомическая схема нормы (DRAFT)</title>
-<desc id="d4cv">Оригинальная учебная схема FetalCardio в стиле медицинской иллюстрации: правые отделы — синие, левые — красные. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди), предсердия внизу (кзади); правые отделы слева, левые справа. Номера структур — в легенде. Пропорции и толщины условны. Статус: DRAFT / REQUIRES EXPERT REVIEW.</desc>
-<metadata>{{"app":"FetalCardio","id":"4cv-normal","status":"draft","review":"REQUIRES EXPERT REVIEW","author":"Жумагулов Н.М.","created":"2026-11-11","version":4}}</metadata>
+    o.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W4} {H4}" role="img" aria-labelledby="t4cv d4cv" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="approved">
+<title id="t4cv">Четырёхкамерный срез сердца плода — анатомическая схема нормы</title>
+<desc id="d4cv">Оригинальная учебная схема FetalCardio в стиле медицинской иллюстрации: правые отделы — синие, левые — красные. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди), предсердия внизу (кзади); правые отделы слева, левые справа. Номера структур — в легенде. Пропорции и толщины условны. Статус: проверено автором (Жумагулов Н.М., 12.11.2026).</desc>
+<metadata>{{"app":"FetalCardio","id":"4cv-normal","status":"approved","reviewedBy":"Жумагулов Н.М.","reviewedAt":"2026-11-12","author":"Жумагулов Н.М.","created":"2026-11-11","version":4}}</metadata>
 <defs>
 <radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="430" cy="300" r="380">
   <stop offset="0" stop-color="#fdf2ee"/><stop offset=".6" stop-color="#f6dcd4"/><stop offset="1" stop-color="#e9bfb3"/>
@@ -223,13 +223,15 @@ def build():
 .om{{fill:var(--sv-text,#101828);font-size:13px;opacity:.7}}
 .dr{{fill:none;stroke:var(--sv-draft,#c0392b);stroke-width:1.5}}
 .drt{{fill:var(--sv-draft,#c0392b);font-size:13px;font-weight:700;letter-spacing:.04em}}
+.ok{{fill:none;stroke:#16794a;stroke-width:1.5}}
+.okt{{fill:#16794a;font-size:12.5px;font-weight:700}}
 .cs{{fill:var(--sv-text,#101828);font-size:12px;font-weight:700;letter-spacing:.08em;opacity:.5}}
 </style>
 <rect class="bg" x="0" y="0" width="{W4}" height="{H4}"/>
 <g id="layer-header">
 <text class="hd" x="24" y="34">Четырёхкамерный срез (4CV): анатомическая схема нормы</text>
-<rect class="dr" x="24" y="48" width="290" height="28" rx="6"/>
-<text class="drt" x="169" y="67" text-anchor="middle">DRAFT · REQUIRES EXPERT REVIEW</text>
+<rect class="ok" x="24" y="48" width="330" height="28" rx="6"/>
+<text class="okt" x="189" y="67" text-anchor="middle">✓ Проверено автором · Жумагулов Н.М. · 12.11.2026</text>
 <text class="cs" x="40" y="128">ПРАВЫЕ ОТДЕЛЫ</text>
 <text class="cs" x="{W4 - 40}" y="128" text-anchor="end">ЛЕВЫЕ ОТДЕЛЫ</text>
 </g>

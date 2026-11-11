@@ -158,8 +158,8 @@
     return `<div class="crumb"><a href="#/views">Срезы</a> / ${esc(v.abbr)}</div>
       <h1>${esc(v.name)}</h1>
       <div>${statusBadge(v.status)}</div>
-      <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза (черновик, пропорции условны). Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
-      ${ATLAS.filter(t => t.view === id).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · черновик`, "t_" + t.id)).join("")}
+      <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза; проверена автором 12.11.2026, пропорции условны. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
+      ${ATLAS.filter(t => t.view === id).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -209,7 +209,7 @@
   function atlasList() {
     return `<h1>Анатомический атлас</h1>
       <p class="subtitle">Подробные анатомические схемы стандартных срезов. Это рисунки строения сердца, а не УЗ-изображения. Все схемы — черновики до проверки врачом-экспертом.</p>
-      ${ATLAS.map(t => item(`#/atlas/${t.id}`, esc(t.abbr), t.title, `${t.structures.length} структур · черновик`, "t_" + t.id)).join("")}${foot()}`;
+      ${ATLAS.map(t => item(`#/atlas/${t.id}`, esc(t.abbr), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}${foot()}`;
   }
 
   function atlasPage(id) {
@@ -227,11 +227,11 @@
           <span class="row"><button class="btn ghost" type="button" data-labels="1" aria-pressed="false">Скрыть номера</button>
           <a class="btn ghost" href="${esc(t.svg)}" target="_blank" rel="noopener">SVG ↗</a></span></div>
         <div class="atlas-scroll" id="atlasSvg"><div class="atlas-loading">Загрузка схемы…</div></div>
-        <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик.</figcaption>
+        <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: ${t.status === "approved" ? `проверено автором (${esc(t.reviewedBy)}, ${esc(t.reviewedAt)})` : "черновик"}.</figcaption>
       </figure>
       <h2>Структуры на схеме</h2><ol class="legend">${legend}</ol>
       <h2>Нормальные анатомические признаки ${esc(t.abbr)}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-      <h2>Требует экспертной проверки</h2><ul class="err">${t.review.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2>${t.status === "approved" ? "Принятые упрощения схемы" : "Требует экспертной проверки"}</h2><ul class="err">${t.review.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       ${refsBlock(t.references)}
       <div class="row" style="margin-top:18px">${doneBtn("t_" + id)}</div>
       <div class="pager"><a class="card" href="#/view/${v.id}"><small>← Срез</small><b>${esc(v.name)}</b></a></div>${foot()}`;

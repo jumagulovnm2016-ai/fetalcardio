@@ -80,14 +80,19 @@ const fs = require("fs"), path = require("path");
 const { ROOT } = require("./load.cjs");
 const svgOf = t => fs.readFileSync(path.join(ROOT, t.svg), "utf8");
 
-test("атлас: файлы SVG существуют, статус draft, плашка DRAFT, без скриптов", () => {
+test("атлас: файлы SVG существуют, статус в SVG совпадает с данными, без скриптов", () => {
   assert.ok(FC.ATLAS.length > 0);
   for (const t of FC.ATLAS) {
     const svg = svgOf(t);
     assert.match(svg, /^<svg[^>]+viewBox="0 0 \d+ \d+"/, `${t.id}: корневой svg с viewBox`);
-    assert.equal(t.status, "draft", `${t.id}: до экспертной проверки только draft`);
-    assert.match(svg, /data-status="draft"/, `${t.id}: data-status`);
-    assert.match(svg, /DRAFT · REQUIRES EXPERT REVIEW/, `${t.id}: плашка DRAFT`);
+    assert.ok(["draft", "approved"].includes(t.status), `${t.id}: статус`);
+    assert.match(svg, new RegExp(`data-status="${t.status}"`), `${t.id}: data-status в SVG = статус в data/anatomy.js`);
+    if (t.status === "draft") assert.match(svg, /DRAFT · REQUIRES EXPERT REVIEW/, `${t.id}: плашка DRAFT`);
+    else {
+      assert.ok(t.reviewedBy && /^\d{4}-\d{2}-\d{2}$/.test(t.reviewedAt), `${t.id}: кто и когда проверил`);
+      assert.match(svg, /Проверено автором/, `${t.id}: отметка о проверке`);
+      assert.doesNotMatch(svg, /DRAFT/, `${t.id}: проверенная схема без плашки DRAFT`);
+    }
     assert.doesNotMatch(svg, /<script|<foreignObject|on\w+=/i, `${t.id}: активное содержимое`);
     assert.doesNotMatch(svg, /<image|href="http/i, `${t.id}: внешние ресурсы`);
   }
@@ -130,7 +135,7 @@ test("валидатор ловит ошибки атласа", () => {
   assert.ok(FC.validate(d).errors.some(e => e.includes("atlas/<имя>.svg")));
   d = D(); d.ATLAS[0].view = "nope";
   assert.ok(FC.validate(d).errors.some(e => e.includes("nope")));
-  d = D(); d.ATLAS[0].status = "approved";
+  d = D(); d.ATLAS[0].status = "approved"; delete d.ATLAS[0].reviewedBy; delete d.ATLAS[0].reviewedAt;
   assert.ok(FC.validate(d).errors.some(e => e.includes("reviewedBy")));
 });
 
