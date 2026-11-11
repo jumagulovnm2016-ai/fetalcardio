@@ -5,29 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FetalCardio</title>
 <meta name="description" content="Фетальная эхокардиография: срезы, алгоритмы «от находки к диагнозу», атлас ВПС, тесты">
-<meta name="theme-color" content="#0f2a44">
+<meta name="theme-color" content="#f5f7fb" id="themeColor">
+<script>
+/* Тема применяется до отрисовки, чтобы не было мигания */
+(function(){
+  var t = 'auto'; try { t = JSON.parse(localStorage.getItem('fc_theme')) || 'auto'; } catch(e){}
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar">
   <a href="#/" class="brand" aria-label="На главную">
-    <img src="icon.svg" alt="" width="28" height="28">
-    <span>FetalCardio</span>
+    <img src="icon.svg" alt="" width="32" height="32">
+    <span>Fetal<b>Cardio</b></span>
   </a>
   <form class="search" id="searchForm" role="search">
+    <svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="searchInput" type="search" placeholder="Поиск: срез, порок, признак…" autocomplete="off" aria-label="Поиск">
   </form>
+  <button class="theme-btn" id="themeBtn" type="button" aria-label="Тема оформления"></button>
 </header>
 
 <nav class="nav" id="nav" aria-label="Разделы">
-  <a href="#/" data-nav="home"><span class="ni">⌂</span><span>Главная</span></a>
-  <a href="#/views" data-nav="views"><span class="ni">◎</span><span>Срезы</span></a>
-  <a href="#/algos" data-nav="algos"><span class="ni">⇢</span><span>Находки</span></a>
-  <a href="#/chd" data-nav="chd"><span class="ni">♥</span><span>Пороки</span></a>
-  <a href="#/quiz" data-nav="quiz"><span class="ni">✓</span><span>Тест</span></a>
+  <a href="#/" data-nav="home"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Главная</span></a>
+  <a href="#/views" data-nav="views"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg><span>Срезы</span></a>
+  <a href="#/algos" data-nav="algos"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><path d="M7.2 6H11v12H7.2M11 12h5.8"/></svg><span>Находки</span></a>
+  <a href="#/chd" data-nav="chd"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg><span>Пороки</span></a>
+  <a href="#/quiz" data-nav="quiz"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span>Тест</span></a>
 </nav>
 
 <main id="app" tabindex="-1"></main>

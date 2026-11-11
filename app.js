@@ -10,9 +10,60 @@
   const isDone = key => !!studied()[key];
   const toggleDone = key => { const s = studied(); s[key] ? delete s[key] : (s[key] = 1); store.set("studied", s); };
 
+  /* ---------- иконки ---------- */
+  const I = {
+    chev: '<svg class="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>',
+    sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>',
+    moon: '<svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>',
+    auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/></svg>',
+    views: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg>',
+    algos: '<svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><path d="M7.2 6H11v12H7.2M11 12h5.8"/></svg>',
+    heart: '<svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>',
+    quiz: '<svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>'
+  };
+
+  /* ---------- тема ---------- */
+  const THEMES = ["auto", "light", "dark"];
+  const THEME_LABEL = { auto: "Тема: как в системе", light: "Тема: дневная", dark: "Тема: ночная" };
+  const $themeBtn = document.getElementById("themeBtn");
+  function applyTheme(t) {
+    const root = document.documentElement;
+    t === "auto" ? root.removeAttribute("data-theme") : root.setAttribute("data-theme", t);
+    const dark = t === "dark" || (t === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+    document.getElementById("themeColor").setAttribute("content", dark ? "#0a0f1a" : "#f5f7fb");
+    $themeBtn.innerHTML = I[t === "auto" ? "auto" : t === "light" ? "sun" : "moon"];
+    $themeBtn.title = THEME_LABEL[t]; $themeBtn.setAttribute("aria-label", THEME_LABEL[t]);
+  }
+  let theme = store.get("theme", "auto");
+  applyTheme(theme);
+  $themeBtn.addEventListener("click", () => {
+    theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
+    store.set("theme", theme); applyTheme(theme); toast(THEME_LABEL[theme]);
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => theme === "auto" && applyTheme("auto"));
+
+  let toastTimer;
+  function toast(msg) {
+    let el = document.getElementById("toast");
+    if (!el) {
+      el = document.createElement("div"); el.id = "toast";
+      el.style.cssText = "position:fixed;left:50%;top:70px;transform:translateX(-50%);z-index:50;padding:9px 16px;border-radius:12px;font-size:14px;font-weight:600;background:var(--text);color:var(--bg);box-shadow:var(--shadow-lg);transition:opacity .25s;pointer-events:none";
+      document.body.appendChild(el);
+    }
+    el.textContent = msg; el.style.opacity = "1";
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => el.style.opacity = "0", 1300);
+  }
+
+  /* ---------- общие блоки ---------- */
   const statusBadge = st => st === "approved"
-    ? `<span class="badge ok">проверено автором</span>`
-    : `<span class="badge draft">черновик · на проверке</span>`;
+    ? `<span class="badge ok">✓ проверено автором</span>`
+    : `<span class="badge draft">● черновик · на проверке</span>`;
+
+  const doneMark = key => isDone(key) ? '<span class="done-mark">✓</span>' : I.chev;
+
+  const item = (href, tile, title, sub, key, tileCls = "") => `<a class="card list-item" href="${href}">
+    <span class="tile ${tileCls}">${tile}</span>
+    <span class="li-body"><b>${esc(title)}</b><br><span class="small muted">${sub}</span></span>${doneMark(key)}</a>`;
 
   const ddxList = items => `<div class="ddx">${items.map(d => {
     const inner = `<b>${esc(d.name)}</b><span class="small muted">${esc(d.key)}</span>`;
@@ -22,26 +73,31 @@
   const foot = () => `<footer class="foot">${esc(META.title)} ${esc(META.version)} · ${esc(META.author)} · ${esc(META.updated)}<br>
     Учебный материал для врачей. Не заменяет экспертную фетальную ЭхоКГ и клиническое решение. Схемы условные, не являются УЗ-изображениями.</footer>`;
 
-  const doneBtn = key => `<button class="btn ${isDone(key) ? "ghost" : ""}" data-done="${key}">${isDone(key) ? "✓ Изучено" : "Отметить как изученное"}</button>`;
+  const doneBtn = key => `<button class="btn ${isDone(key) ? "done" : ""}" data-done="${key}">${isDone(key) ? "✓ Изучено" : "Отметить как изученное"}</button>`;
 
   /* ---------- страницы ---------- */
   function home() {
     const total = VIEWS.length + ALGOS.length + CHD.length;
     const done = Object.keys(studied()).length;
     const best = store.get("quizBest", null);
+    const feat = (href, icon, cls, title, sub) => `<a class="card feature" href="${href}"><span class="tile ${cls}">${icon}</span>
+      <span><h3>${title}</h3><span class="small muted">${sub}</span></span></a>`;
     return `<section class="hero">
       <div class="kicker">Фетальная эхокардиография</div>
       <h1>От находки к диагнозу</h1>
-      <p class="muted">Врач у аппарата видит не «тетраду Фалло», а «аорту верхом» или «два сосуда в 3VV». Поэтому здесь путь начинается со среза и находки.</p>
+      <p>Врач у аппарата видит не «тетраду Фалло», а «аорту верхом» или «два сосуда в 3VV». Поэтому здесь путь начинается со среза и находки.</p>
+      <div class="stats">
+        <div class="stat"><b>${done}/${total}</b><span>изучено</span></div>
+        <div class="stat"><b>${best ? `${best.score}/${best.total}` : "—"}</b><span>лучший тест</span></div>
+        <div class="stat"><b>${CHD.length}</b><span>пороков</span></div>
+      </div>
+      <div class="progress" style="margin:14px 0 0"><i style="width:${Math.round(done / total * 100)}%"></i></div>
     </section>
-    <div class="card"><div class="row" style="justify-content:space-between"><b>Прогресс</b><span class="small muted">${done} из ${total}</span></div>
-      <div class="progress"><i style="width:${Math.round(done / total * 100)}%"></i></div>
-      <span class="small muted">${best ? `Лучший результат теста: ${best.score} из ${best.total}` : "Тест ещё не пройден"}</span></div>
     <div class="grid two">
-      <a class="card" href="#/views"><h3>◎ Стандартные срезы</h3><span class="small muted">Situs, 4CV, LVOT, RVOT, 3VV, 3VT — схема, техника, чек-лист, ошибки.</span></a>
-      <a class="card" href="#/algos"><h3>⇢ От находки к диагнозу</h3><span class="small muted">${ALGOS.length} алгоритмов: что проверить и какой дифференциальный ряд.</span></a>
-      <a class="card" href="#/chd"><h3>♥ Атлас пороков</h3><span class="small muted">${CHD.length} ключевых ВПС: критерии, срезы, дифдиагноз, ловушки.</span></a>
-      <a class="card" href="#/quiz"><h3>✓ Проверка знаний</h3><span class="small muted">${QUIZ.length} вопросов с разбором.</span></a>
+      ${feat("#/views", I.views, "", "Стандартные срезы", "Situs, 4CV, LVOT, RVOT, 3VV, 3VT — схема, техника, чек-лист, ошибки.")}
+      ${feat("#/algos", I.algos, "", "От находки к диагнозу", `${ALGOS.length} алгоритмов: что проверить и какой дифференциальный ряд.`)}
+      ${feat("#/chd", I.heart, "red", "Атлас пороков", `${CHD.length} ключевых ВПС: критерии, срезы, дифдиагноз, ловушки.`)}
+      ${feat("#/quiz", I.quiz, "red", "Проверка знаний", `${QUIZ.length} вопросов с разбором ответов.`)}
     </div>
     <div class="note"><b>Главное правило.</b> Ни один срез не исключает ВПС сам по себе. Нормальный 4CV не исключает ТФ, ТМА, ОАС, коарктацию и ТАДЛВ — всегда оценивайте выводные тракты и 3VV/3VT.</div>
     ${foot()}`;
@@ -49,49 +105,45 @@
 
   function viewsList() {
     return `<h1>Стандартные срезы</h1>
-      <p class="muted">Скрининговое исследование сердца плода: situs → 4CV → LVOT → RVOT → 3VV → 3VT. Сегментарный принцип: предсердия, желудочки, магистральные артерии и соединения между ними.</p>
-      ${VIEWS.map(v => `<a class="card" href="#/view/${v.id}"><div class="row" style="justify-content:space-between">
-        <h3>${esc(v.abbr)}</h3>${isDone("v_" + v.id) ? '<span class="done-mark">✓</span>' : ""}</div>
-        <span class="small muted">${esc(v.name)}</span></a>`).join("")}${foot()}`;
+      <p class="subtitle">Скрининг сердца плода по порядку: situs → 4CV → LVOT → RVOT → 3VV → 3VT. Сегментарный принцип: предсердия, желудочки, магистральные артерии и соединения между ними.</p>
+      ${VIEWS.map(v => item(`#/view/${v.id}`, esc(v.abbr), v.name, `${v.check.length} пунктов чек-листа`, "v_" + v.id)).join("")}${foot()}`;
   }
 
   function viewPage(id) {
     const v = byId(VIEWS, id); if (!v) return notFound();
     const algos = ALGOS.filter(a => a.view === id);
     const idx = VIEWS.indexOf(v), prev = VIEWS[idx - 1], next = VIEWS[idx + 1];
-    return `<div class="crumb"><a href="#/views">Срезы</a> /</div>
+    return `<div class="crumb"><a href="#/views">Срезы</a> / ${esc(v.abbr)}</div>
       <h1>${esc(v.name)}</h1>
       <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
-      <h2>Как получить</h2><ul>${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Патологические находки</h2><ul>${v.abnormal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-      ${algos.length ? `<h2>Алгоритмы для этого среза</h2>${algos.map(a => `<a class="card" href="#/algo/${a.id}"><b>${esc(a.title)}</b><br><span class="small muted">${esc(a.finding)}</span></a>`).join("")}` : ""}
-      <div class="row" style="margin-top:16px">${doneBtn("v_" + id)}</div>
-      <div class="row" style="justify-content:space-between;margin-top:14px">
-        ${prev ? `<a href="#/view/${prev.id}">← ${esc(prev.abbr)}</a>` : "<span></span>"}
-        ${next ? `<a href="#/view/${next.id}">${esc(next.abbr)} →</a>` : ""}</div>${foot()}`;
+      ${algos.length ? `<h2>Алгоритмы для этого среза</h2>${algos.map(a => item(`#/algo/${a.id}`, I.algos, a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
+      <div class="row" style="margin-top:18px">${doneBtn("v_" + id)}</div>
+      <div class="pager">
+        ${prev ? `<a class="card" href="#/view/${prev.id}"><small>← Назад</small><b>${esc(prev.abbr)}</b></a>` : ""}
+        ${next ? `<a class="card next" href="#/view/${next.id}"><small>Далее →</small><b>${esc(next.abbr)}</b></a>` : ""}</div>${foot()}`;
   }
 
   function algosList() {
     const groups = VIEWS.map(v => ({ v, items: ALGOS.filter(a => a.view === v.id) })).filter(g => g.items.length);
     return `<h1>От находки к диагнозу</h1>
-      <p class="muted">Выберите, что вы видите на экране. Алгоритм подскажет, что проверить дальше и какие пороки входят в дифференциальный ряд.</p>
-      ${groups.map(g => `<h2>${esc(g.v.abbr)}</h2>${g.items.map(a => `<a class="card" href="#/algo/${a.id}">
-        <div class="row" style="justify-content:space-between"><b>${esc(a.title)}</b>${isDone("a_" + a.id) ? '<span class="done-mark">✓</span>' : ""}</div>
-        <span class="small muted">${esc(a.finding)}</span></a>`).join("")}`).join("")}${foot()}`;
+      <p class="subtitle">Выберите, что вы видите на экране. Алгоритм подскажет, что проверить дальше и какие пороки входят в дифференциальный ряд.</p>
+      ${groups.map(g => `<h2>${esc(g.v.abbr)}</h2>${g.items.map(a => item(`#/algo/${a.id}`, esc(g.v.abbr), a.title, esc(a.finding), "a_" + a.id)).join("")}`).join("")}${foot()}`;
   }
 
   function algoPage(id) {
     const a = byId(ALGOS, id); if (!a) return notFound();
     const v = byId(VIEWS, a.view);
     return `<div class="crumb"><a href="#/algos">Находки</a> / <a href="#/view/${v.id}">${esc(v.abbr)}</a></div>
-      <h1>${esc(a.title)}</h1><p class="muted">${esc(a.finding)}</p>
-      <h2>Что проверить</h2><ol>${a.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+      <h1>${esc(a.title)}</h1><p class="subtitle">${esc(a.finding)}</p>
+      <h2>Что проверить</h2><ol class="steps">${a.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
       <h2>Дифференциальный ряд</h2>${ddxList(a.ddx)}
       ${a.note ? `<div class="note info">${esc(a.note)}</div>` : ""}
       <div class="note">Алгоритм сужает поиск, но не ставит диагноз. При любой находке — экспертная фетальная ЭхоКГ.</div>
-      <div class="row" style="margin-top:16px">${doneBtn("a_" + id)}</div>${foot()}`;
+      <div class="row" style="margin-top:18px">${doneBtn("a_" + id)}</div>${foot()}`;
   }
 
   let chdFilter = "all";
@@ -100,10 +152,9 @@
     return `<h1>Атлас пороков</h1>
       <div class="chips">${[["all", "Все"], ...Object.entries(CATS)].map(([k, t]) =>
         `<button class="chip ${chdFilter === k ? "on" : ""}" data-filter="${k}">${esc(t)}</button>`).join("")}</div>
-      ${list.map(c => `<a class="card" href="#/chd/${c.id}">
-        <div class="row" style="justify-content:space-between"><b>${esc(c.name)}</b>${isDone("c_" + c.id) ? '<span class="done-mark">✓</span>' : ""}</div>
-        <span class="small muted">${esc(c.en)}</span><div style="margin-top:6px">
-        <span class="badge">${esc(c.level)}</span>${c.normal4cv ? '<span class="badge view">4CV часто норма</span>' : ""}</div></a>`).join("")}
+      ${list.map(c => item(`#/chd/${c.id}`, esc(c.abbr.slice(0, 5)), c.name,
+        `${esc(c.en)}<br><span class="badge" style="margin-top:6px">${esc(c.level)}</span>${c.normal4cv ? '<span class="badge view">4CV часто норма</span>' : ""}`,
+        "c_" + c.id, "red")).join("")}
       ${list.length ? "" : '<p class="muted">Нет пороков в этой группе.</p>'}${foot()}`;
   }
 
@@ -113,7 +164,7 @@
     const sec = [["def", "Суть"], ["keys", "Критерии"], ["views", "Срезы"], ["ddx", "Дифдиагноз"], ["assoc", "Сочетания"], ["pit", "Ловушки"], ["prog", "Прогноз"]];
     return `<div class="crumb"><a href="#/chd">Пороки</a> / ${esc(CATS[c.cat])}</div>
       <h1>${esc(c.name)}</h1>
-      <p class="muted" style="margin-top:-4px">${esc(c.en)}</p>
+      <p class="subtitle">${esc(c.en)}</p>
       <div><span class="badge">${esc(c.level)}</span>${statusBadge(c.status)}</div>
       <nav class="toc">${sec.map(([k, t]) => `<a href="javascript:void(0)" data-jump="${k}">${t}</a>`).join("")}</nav>
       ${c.normal4cv ? `<div class="note"><b>Четырёхкамерный срез часто нормальный.</b> Порок выявляется в выводных трактах и 3VV/3VT.</div>` : ""}
@@ -125,52 +176,52 @@
       <h2 id="s-pit">Диагностические ловушки</h2><ul class="err">${c.pitfalls.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
       <h2 id="s-prog">Ведение и прогноз</h2><p>${esc(c.prognosis)}</p>
       <div class="note info"><b>Тактика:</b> ${esc(c.refer)}</div>
-      ${algos.length ? `<h2>Где встречается в алгоритмах</h2>${algos.map(a => `<a class="card" href="#/algo/${a.id}"><b>${esc(a.title)}</b> <span class="badge view">${esc(byId(VIEWS, a.view).abbr)}</span></a>`).join("")}` : ""}
-      <div class="row" style="margin-top:16px">${doneBtn("c_" + id)}</div>${foot()}`;
+      ${algos.length ? `<h2>Где встречается в алгоритмах</h2>${algos.map(a => item(`#/algo/${a.id}`, esc(byId(VIEWS, a.view).abbr), a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
+      <div class="row" style="margin-top:18px">${doneBtn("c_" + id)}</div>${foot()}`;
   }
 
   /* ---------- тест ---------- */
   let quiz = null;
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   function startQuiz(n) {
-    quiz = { items: shuffle(QUIZ).slice(0, n).map(q => {
-      const order = shuffle(q.opts.map((_, i) => i));
-      return { ...q, order };
-    }), i: 0, score: 0, answered: false, choice: null, wrong: [] };
+    quiz = { items: shuffle(QUIZ).slice(0, n).map(q => ({ ...q, order: shuffle(q.opts.map((_, i) => i)) })),
+      i: 0, score: 0, answered: false, choice: null, wrong: [] };
   }
   function quizPage() {
     if (!quiz) {
       const best = store.get("quizBest", null);
       return `<h1>Проверка знаний</h1>
-        <p class="muted">Вопросы выбираются случайно, варианты перемешиваются. После каждого ответа — разбор.</p>
-        ${best ? `<div class="card small">Лучший результат: <b>${best.score} из ${best.total}</b></div>` : ""}
-        <div class="row"><button class="btn" data-quiz="10">10 вопросов</button><button class="btn ghost" data-quiz="${QUIZ.length}">Все ${QUIZ.length}</button></div>${foot()}`;
+        <p class="subtitle">Вопросы выбираются случайно, варианты перемешиваются. После каждого ответа — разбор.</p>
+        ${best ? `<div class="card row between"><span class="muted">Лучший результат</span><b>${best.score} из ${best.total}</b></div>` : ""}
+        <div class="row" style="margin-top:14px"><button class="btn" data-quiz="10">Начать: 10 вопросов</button><button class="btn ghost" data-quiz="${QUIZ.length}">Все ${QUIZ.length}</button></div>${foot()}`;
     }
     const total = quiz.items.length;
     if (quiz.i >= total) {
       const best = store.get("quizBest", null);
       const pct = quiz.score / total;
       if (!best || pct > best.score / best.total) store.set("quizBest", { score: quiz.score, total });
-      const wrong = quiz.wrong.map(q => `<div class="card"><b>${esc(q.q)}</b><br><span class="small">Верно: ${esc(q.opts[q.a])}</span><br>
+      const wrong = quiz.wrong.map(q => `<div class="card"><b>${esc(q.q)}</b><br><span class="small">Верно: <b>${esc(q.opts[q.a])}</b></span><br>
         <span class="small muted">${esc(q.exp)}</span>${q.link ? `<br><a class="small" href="#/chd/${q.link}">Открыть карточку →</a>` : ""}</div>`).join("");
-      return `<h1>Результат: ${quiz.score} из ${total}</h1>
-        <div class="progress"><i style="width:${Math.round(pct * 100)}%"></i></div>
-        <p class="muted">${pct >= .85 ? "Отличный уровень." : pct >= .6 ? "Хорошая база, повторите разобранные вопросы." : "Стоит вернуться к срезам и алгоритмам."}</p>
-        ${wrong ? `<h2>Ошибки</h2>${wrong}` : ""}
-        <div class="row" style="margin-top:12px"><button class="btn" data-quiz="10">Ещё раз</button><button class="btn ghost" data-quizreset="1">К началу</button></div>${foot()}`;
+      return `<div class="card" style="text-align:center;padding:26px 18px">
+          <div class="kicker muted">Результат</div><div class="score">${quiz.score} / ${total}</div>
+          <div class="progress" style="max-width:280px;margin:14px auto"><i style="width:${Math.round(pct * 100)}%"></i></div>
+          <p class="muted" style="margin:0">${pct >= .85 ? "Отличный уровень." : pct >= .6 ? "Хорошая база — повторите разобранные вопросы." : "Стоит вернуться к срезам и алгоритмам."}</p></div>
+        ${wrong ? `<h2>Разбор ошибок</h2>${wrong}` : ""}
+        <div class="row" style="margin-top:14px"><button class="btn" data-quiz="10">Ещё раз</button><button class="btn ghost" data-quizreset="1">К началу</button></div>${foot()}`;
     }
     const q = quiz.items[quiz.i];
-    const opts = q.order.map(oi => {
+    const letters = "АБВГ";
+    const opts = q.order.map((oi, k) => {
       let cls = "opt";
       if (quiz.answered) { if (oi === q.a) cls += " right"; else if (oi === quiz.choice) cls += " wrong"; }
-      return `<button class="${cls}" data-ans="${oi}" ${quiz.answered ? "disabled" : ""}>${esc(q.opts[oi])}</button>`;
+      return `<button class="${cls}" data-ans="${oi}" ${quiz.answered ? "disabled" : ""}><span class="ol">${letters[k]}</span><span>${esc(q.opts[oi])}</span></button>`;
     }).join("");
-    return `<div class="row" style="justify-content:space-between"><span class="small muted">Вопрос ${quiz.i + 1} из ${total}</span><span class="small muted">Верно: ${quiz.score}</span></div>
+    return `<div class="row between"><span class="small muted">Вопрос ${quiz.i + 1} из ${total}</span><span class="badge ok">Верно: ${quiz.score}</span></div>
       <div class="progress"><i style="width:${Math.round(quiz.i / total * 100)}%"></i></div>
-      <h2 style="margin-top:0">${esc(q.q)}</h2>${opts}
+      <h2 style="margin-top:4px">${esc(q.q)}</h2>${opts}
       ${quiz.answered ? `<div class="note ${quiz.choice === q.a ? "info" : ""}">${quiz.choice === q.a ? "<b>Верно.</b> " : "<b>Неверно.</b> "}${esc(q.exp)}
         ${q.link ? `<br><a href="#/chd/${q.link}">Открыть карточку порока →</a>` : ""}</div>
-        <button class="btn" data-next="1">${quiz.i + 1 < total ? "Дальше" : "Результат"}</button>` : ""}`;
+        <button class="btn" data-next="1">${quiz.i + 1 < total ? "Дальше →" : "Результат"}</button>` : ""}`;
   }
 
   /* ---------- поиск ---------- */
@@ -179,10 +230,10 @@
     if (!s) return `<h1>Поиск</h1><p class="muted">Введите запрос.</p>`;
     const hit = (...t) => t.join(" ").toLowerCase().includes(s);
     const r = [];
-    VIEWS.forEach(v => hit(v.abbr, v.name, ...v.check, ...v.abnormal, ...v.errors) && r.push({ h: `#/view/${v.id}`, t: v.name, k: "срез" }));
-    ALGOS.forEach(a => hit(a.title, a.finding, ...a.steps, ...a.ddx.map(d => d.name + " " + d.key)) && r.push({ h: `#/algo/${a.id}`, t: a.title, k: "находка" }));
-    CHD.forEach(c => hit(c.abbr, c.name, c.en, c.def, ...c.keys, c.assoc, ...c.pitfalls, ...Object.values(c.views)) && r.push({ h: `#/chd/${c.id}`, t: c.name, k: "порок" }));
-    return `<h1>Поиск: «${esc(q)}»</h1>${r.length ? r.map(x => `<a class="card" href="${x.h}"><span class="badge view">${x.k}</span> <b>${esc(x.t)}</b></a>`).join("") : '<p class="muted">Ничего не найдено. Попробуйте сокращение (ТФ, 3VT) или признак («верхом», «коронарный синус»).</p>'}`;
+    VIEWS.forEach(v => hit(v.abbr, v.name, ...v.check, ...v.abnormal, ...v.errors) && r.push(item(`#/view/${v.id}`, esc(v.abbr), v.name, "срез", "v_" + v.id)));
+    ALGOS.forEach(a => hit(a.title, a.finding, ...a.steps, ...a.ddx.map(d => d.name + " " + d.key)) && r.push(item(`#/algo/${a.id}`, I.algos, a.title, "находка", "a_" + a.id)));
+    CHD.forEach(c => hit(c.abbr, c.name, c.en, c.def, ...c.keys, c.assoc, ...c.pitfalls, ...Object.values(c.views)) && r.push(item(`#/chd/${c.id}`, esc(c.abbr.slice(0, 5)), c.name, "порок", "c_" + c.id, "red")));
+    return `<h1>Поиск</h1><p class="subtitle">«${esc(q)}» — найдено: ${r.length}</p>${r.length ? r.join("") : '<p class="muted">Ничего не найдено. Попробуйте сокращение (ТФ, 3VT) или признак («верхом», «коронарный синус»).</p>'}`;
   }
 
   const notFound = () => `<h1>Страница не найдена</h1><p><a href="#/">На главную</a></p>`;
@@ -205,6 +256,7 @@
       default: html = notFound();
     }
     $app.innerHTML = html;
+    $app.style.animation = "none"; void $app.offsetWidth; $app.style.animation = "";
     document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("active", a.dataset.nav === nav));
   }
 
@@ -213,7 +265,10 @@
     if (!t) return;
     if (t.dataset.done) { toggleDone(t.dataset.done); render(); }
     else if (t.dataset.filter) { chdFilter = t.dataset.filter; render(); }
-    else if (t.dataset.jump) { document.getElementById("s-" + t.dataset.jump)?.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    else if (t.dataset.jump) {
+      const el = document.getElementById("s-" + t.dataset.jump);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 120, behavior: "smooth" });
+    }
     else if (t.dataset.quiz) { startQuiz(+t.dataset.quiz); render(); window.scrollTo(0, 0); }
     else if (t.dataset.quizreset) { quiz = null; render(); }
     else if (t.dataset.ans !== undefined) {

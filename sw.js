@@ -1,4 +1,4 @@
-const CACHE = "fetalcardio-v1";
+const CACHE = "fetalcardio-v2";
 const FILES = ["./", "index.html", "style.css", "data.js", "schemes.js", "app.js", "manifest.json", "icon.svg"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
