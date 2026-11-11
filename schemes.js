@@ -68,7 +68,7 @@ ${inner}
   <path class="vl" d="M4,13 L13,-6"/><path class="vl" d="M48,12 L39,-7"/>
   <!-- лёгочные вены впадают в заднюю стенку ЛП -->
   <path class="svn" d="M18,44 L32,58" stroke-width="6"/><path class="svn" d="M38,40 L52,54" stroke-width="6"/>
-  ${lvot ? `<!-- выводной тракт ЛЖ и восходящая аорта: передняя стенка аорты продолжает МЖП -->
+  ${lvot ? `<!-- выходной тракт ЛЖ и восходящая аорта: передняя стенка аорты продолжает МЖП -->
   <path class="sao" d="M10,4 C0,-8 -18,-16 -40,-22 C-58,-26 -72,-30 -86,-36" stroke-width="15"/>
   <path d="M10,4 C0,-8 -18,-16 -40,-22 C-58,-26 -72,-30 -86,-36" stroke="var(--sv-chamber)" stroke-width="8" fill="none" stroke-linecap="round" opacity=".5"/>
   <path class="vl" d="M-6,-6 l4,-8 M-12,-2 l-2,-8"/>` : ""}`;
@@ -134,7 +134,7 @@ ${inner}
 <circle class="ao" cx="146" cy="128" r="12"/>
 <circle class="vn" cx="114" cy="136" r="7"/>
 <circle class="ao" cx="182" cy="204" r="9"/>
-<path class="ld" d="M150,62 L130,30"/><text class="tx" x="96" y="26">ПЖ (выводной отдел)</text>
+<path class="ld" d="M150,62 L130,30"/><text class="tx" x="96" y="26">ПЖ (выходной отдел)</text>
 <path class="ld" d="M196,112 L240,98"/><text class="tx" x="242" y="96">ствол ЛА</text>
 <path class="ld" d="M138,126 L80,104"/><text class="tx" x="46" y="100">Ао</text>
 <path class="ld" d="M108,138 L70,136"/><text class="tx" x="36" y="140">ВПВ</text>

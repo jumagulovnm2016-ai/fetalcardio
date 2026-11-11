@@ -33,21 +33,21 @@ test("обязательные поля у каждой патологии", () 
   for (const c of FC.CHD) for (const f of req) assert.ok(c[f] !== undefined && c[f] !== "", `${c.id}: нет поля ${f}`);
 });
 
-test("у каждой патологии есть references с организацией, названием, годом, DOI/URL и разделом", () => {
+test("у каждой патологии есть references с организацией или авторами, названием, годом, DOI/URL и разделом", () => {
   for (const c of FC.CHD) {
     assert.ok(c.references.length > 0, c.id);
     for (const r of c.references) {
       const s = FC.REFS[r.source];
-      assert.ok(s.organization && s.title && Number.isInteger(s.year) && (s.doi || s.url) && r.section, `${c.id} → ${r.source}`);
+      assert.ok((s.organization || s.authors) && s.title && Number.isInteger(s.year) && (s.doi || s.url) && r.section, `${c.id} → ${r.source}`);
     }
   }
 });
 
-test("источники: DOI совпадает с URL, без непроверенных пометок verified", () => {
+test("источники: DOI совпадает с URL; verified=true только для конкретного раздела, не для всей карточки", () => {
   for (const [id, s] of Object.entries(FC.REFS)) {
     if (s.doi) assert.equal(s.url, "https://doi.org/" + s.doi, id);
   }
-  for (const x of [...FC.VIEWS, ...FC.CHD]) for (const r of x.references) assert.equal(r.verified, false, `${x.id}: verified=true без рецензии`);
+  for (const x of [...FC.VIEWS, ...FC.CHD]) for (const r of x.references) if (r.verified) assert.notEqual(r.section, "card", `${x.id}: verified=true для всей карточки — сверка возможна только по разделу`);
 });
 
 test("тест: ответы корректны", () => {

@@ -45,7 +45,7 @@ var FC = globalThis.FC = globalThis.FC || {};
       status: "enum:status", source: "imgsrc", reviewedBy: "str?", reviewedAt: "date?"
     },
     REFS: {
-      organization: "str", title: "str", authors: "str?", journal: "str?", year: "int",
+      organization: "str?", title: "str", authors: "str?", journal: "str?", year: "int",
       volume: "str?", issue: "str?", pages: "str?", doi: "doi?", pmid: "str?", url: "url"
     }
   };

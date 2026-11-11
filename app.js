@@ -64,13 +64,16 @@
     ? `<span class="badge ok">✓ проверено автором</span>`
     : `<span class="badge draft">● черновик · на проверке</span>`;
 
+  const SEC_RU = { def: "Суть", keys: "Критерии", views: "По срезам", ddx: "Дифдиагноз", assoc: "Сочетания и генетика",
+    pitfalls: "Ловушки", prognosis: "Прогноз", refer: "Тактика", how: "Как получить", check: "Что оценить в норме",
+    errors: "Типичные ошибки", abnormal: "Патологические находки", steps: "Шаги", card: "вся карточка" };
   const refsBlock = refs => {
     if (!refs || !refs.length) return "";
     const items = refs.map(r => {
       const s = REFS[r.source]; if (!s) return "";
-      return `<li><b>${esc(s.organization)}</b>. ${esc(s.title)}. <i>${esc(s.journal || "")}</i> ${s.year}${s.volume ? `;${esc(s.volume)}` : ""}${s.pages ? `:${esc(s.pages)}` : ""}.
+      return `<li><b>${esc(s.organization || s.authors)}</b>. ${esc(s.title)}. <i>${esc(s.journal || "")}</i> ${s.year}${s.volume ? `;${esc(s.volume)}` : ""}${s.pages ? `:${esc(s.pages)}` : ""}.
         ${s.doi ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : `<a href="${esc(s.url)}" target="_blank" rel="noopener">ссылка</a>`}
-        <br><span class="badge ${r.verified ? "ok" : "draft"}">${r.verified ? "сверено с текстом" : "источник по теме, утверждения не сверены"}</span></li>`;
+        <br><span class="badge wrap ${r.verified ? "ok" : "draft"}">${r.verified ? `сверено с текстом: раздел «${SEC_RU[r.section] || r.section}»` : "источник по теме, утверждения не сверены"}</span></li>`;
     }).join("");
     return `<h2 id="s-refs">Источники</h2><ol class="refs">${items}</ol>`;
   };
@@ -141,7 +144,7 @@
       <button class="btn ghost" data-import="1">⤒ Импорт из файла</button></div>
       <input type="file" id="importFile" accept="application/json,.json" hidden>
     </div>
-    <div class="note"><b>Главное правило.</b> Ни один срез не исключает ВПС сам по себе. Нормальный 4CV не исключает ТФ, ТМА, ОАС, коарктацию и ТАДЛВ — всегда оценивайте выводные тракты и 3VV/3VT.</div>
+    <div class="note"><b>Главное правило.</b> Ни один срез не исключает ВПС сам по себе. Нормальный 4CV не исключает ТФ, ТМА, ОАС, коарктацию и ТАДЛВ — всегда оценивайте выходные тракты и 3VV/3VT.</div>
     ${foot()}`;
   }
 
@@ -302,7 +305,7 @@
       <p class="subtitle">${esc(c.en)}</p>
       <div><span class="badge">${esc(c.level)}</span>${statusBadge(c.status)}</div>
       <nav class="toc">${sec.map(([k, t]) => `<a href="javascript:void(0)" data-jump="${k}">${t}</a>`).join("")}</nav>
-      ${c.normal4cv ? `<div class="note"><b>Четырёхкамерный срез часто нормальный.</b> Порок выявляется в выводных трактах и 3VV/3VT.</div>` : ""}
+      ${c.normal4cv ? `<div class="note"><b>Четырёхкамерный срез часто нормальный.</b> Порок выявляется в выходных трактах и 3VV/3VT.</div>` : ""}
       <h2 id="s-def">Суть</h2><p>${esc(c.def)}</p><p class="small muted">${esc(c.freq)}</p>
       <h2 id="s-keys">Ключевые критерии</h2><ul class="check">${c.keys.map(k => `<li>${esc(k)}</li>`).join("")}</ul>
       <h2 id="s-views">По срезам</h2><table class="vt">${Object.entries(c.views).map(([k, t]) => `<tr><td>${esc(k)}</td><td>${esc(t)}</td></tr>`).join("")}</table>
