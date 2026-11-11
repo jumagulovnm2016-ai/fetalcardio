@@ -1,0 +1,45 @@
+/* FetalCardio — отдельные страницы: личный кабинет и кабинет преподавателя.
+   Цвета и шрифты — из style.css. */
+body.page{padding-bottom:40px}
+[hidden]{display:none!important}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 40px}
+.wrap.narrow{max-width:560px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:0 0 12px}
+.tabs button{font:600 15px var(--body);background:none;border:0;border-bottom:3px solid transparent;padding:9px 10px;color:var(--muted);cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--accent-ink);border-bottom-color:var(--accent)}
+.tabs .cnt{display:inline-block;min-width:20px;padding:0 6px;margin-left:5px;border-radius:10px;background:var(--bad);color:#fff;font-size:12px;text-align:center}
+.form{display:grid;gap:12px}
+label.f{display:grid;gap:4px;font-weight:600}
+label.f small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=password],select,textarea{font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
+select{width:auto}
+textarea{min-height:120px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.chk{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:.875rem;color:var(--muted)}
+.chk input{width:20px;height:20px;margin-top:1px;accent-color:var(--accent)}
+.err{color:var(--bad);font-weight:600;margin:0}
+.ok{color:var(--ok);font-weight:600;margin:0}
+.notice{padding:10px 12px;border-radius:12px;background:var(--warn-soft);color:var(--warn);font-weight:600;margin:0 0 10px}
+.notice.bad{background:var(--bad-soft);color:var(--bad)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:4px 0 14px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:600}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{padding:6px 11px;font-size:13.5px;border-radius:10px}
+.btn.danger{background:var(--surface);color:var(--bad);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent);box-shadow:none}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:8px 6px;border-top:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;color:var(--muted);font-weight:600;border-top:0;white-space:nowrap}
+th.sort{cursor:pointer} th.sort:hover{color:var(--text)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr.click{cursor:pointer} tr.click:hover td{background:var(--surface2)}
+.st{font-size:.75rem;font-weight:600;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.st.active{background:var(--ok-soft);color:var(--ok)} .st.pending{background:var(--warn-soft);color:var(--warn)} .st.blocked{background:var(--bad-soft);color:var(--bad)}
+.warn{color:var(--warn);font-weight:600} .bad{color:var(--bad);font-weight:600}
+.creds{background:var(--surface2);border-radius:12px;padding:12px;display:grid;gap:8px}
+.creds pre{margin:0;font:13px/1.5 ui-monospace,Consolas,monospace;white-space:pre-wrap}
+dialog{border:1px solid var(--line);border-radius:var(--r);padding:0;max-width:min(680px,94vw);width:100%;background:var(--surface);color:var(--text)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog .card{border:0;box-shadow:none;margin:0;display:grid;gap:12px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+.toolbar input[type=text]{flex:1 1 200px;width:auto}

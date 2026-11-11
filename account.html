@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Личный кабинет · FetalCardio</title>
+<meta name="theme-color" content="#f5f7fb">
+<script>
+(function(){ var t = 'auto'; try { t = JSON.parse(localStorage.getItem('fc_theme')) || 'auto'; } catch(e){}
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); })();
+</script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body class="page">
+<header class="topbar">
+  <a href="./" class="brand" aria-label="На главную"><img src="icon.svg" alt="" width="32" height="32"><span>Fetal<b>Cardio</b></span></a>
+</header>
+<main class="wrap narrow">
+  <div class="crumb"><a href="./">← В приложение</a></div>
+  <h1>Личный кабинет</h1>
+  <p class="muted" id="loading">Загрузка…</p>
+  <p class="notice bad" id="off" hidden>Вход ещё не настроен: в приложении не указан сервер. Обратитесь к преподавателю.</p>
+
+  <!-- не вошёл -->
+  <section class="card" id="out" hidden>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="t-in" aria-selected="true">Вход</button>
+      <button type="button" role="tab" id="t-up" aria-selected="false">Регистрация</button>
+    </div>
+    <form id="f-in" class="form" novalidate>
+      <label class="f">Логин или почта<small>логин и код выдаёт преподаватель; если вы регистрировались сами — введите почту</small>
+        <input type="text" id="in-who" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+      <label class="f">Пароль или код<input type="password" id="in-pass" autocomplete="current-password" required></label>
+      <p class="err" id="in-err" role="alert" hidden></p>
+      <div class="row"><button class="btn" type="submit" id="in-go">Войти</button></div>
+      <p class="muted small">Забыли пароль или код? Напишите преподавателю — он выдаст новый. Один аккаунт работает на одном устройстве.</p>
+    </form>
+    <form id="f-up" class="form" novalidate hidden>
+      <label class="f">ФИО полностью<input type="text" id="up-name" autocomplete="name" maxlength="120" placeholder="Иванов Иван Иванович" required></label>
+      <label class="f">Почта<input type="email" id="up-email" autocomplete="email" autocapitalize="none" spellcheck="false" required></label>
+      <label class="f">Пароль<small>не меньше 6 символов</small><input type="password" id="up-pass" autocomplete="new-password" minlength="6" required></label>
+      <label class="chk"><input type="checkbox" id="up-ok"><span>Согласен(на), что ФИО и почта хранятся на сервере FetalCardio и видны преподавателю курса.</span></label>
+      <p class="err" id="up-err" role="alert" hidden></p>
+      <div class="row"><button class="btn" type="submit" id="up-go">Зарегистрироваться</button></div>
+      <p class="muted small">После регистрации преподаватель подтвердит заявку и откроет доступ. До этого приложение закрыто.</p>
+    </form>
+  </section>
+
+  <!-- вошёл -->
+  <section class="card" id="in" hidden>
+    <p class="notice" id="st-pending" hidden>Регистрация ожидает подтверждения преподавателем. Как только доступ откроют, приложение заработает.</p>
+    <p class="notice bad" id="st-expired" hidden>Срок доступа истёк. Чтобы продлить доступ, обратитесь к преподавателю.</p>
+    <p class="notice bad" id="st-blocked" hidden>Аккаунт отключён. Обратитесь к преподавателю.</p>
+    <dl class="kv">
+      <dt>ФИО</dt><dd id="p-name"></dd>
+      <dt id="p-idk">Логин</dt><dd id="p-id"></dd>
+      <dt>Группа</dt><dd id="p-group"></dd>
+      <dt>Доступ</dt><dd id="p-acc"></dd>
+    </dl>
+    <p id="p-go" hidden><a class="btn" href="./">Открыть FetalCardio</a></p>
+    <p id="p-teacher" hidden>Вы — преподаватель. <a href="teacher.html"><b>Кабинет преподавателя →</b></a></p>
+    <div class="row"><button class="btn ghost" id="out-btn" type="button">Выйти</button></div>
+  </section>
+</main>
+
+<script src="vendor/supabase-js-2.119.0.umd.js"></script>
+<script src="account.js"></script>
+<script>
+(function () {
+"use strict";
+const $ = id => document.getElementById(id);
+const A = FC.account;
+const dlong = s => new Date(s).toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+
+if (!A.enabled) { $("loading").hidden = true; $("off").hidden = false; return; }
+if (!A.client) { $("loading").textContent = "Не удалось загрузить модуль входа. Проверьте интернет и обновите страницу."; return; }
+
+function tab(up) {
+  $("t-in").setAttribute("aria-selected", String(!up)); $("t-up").setAttribute("aria-selected", String(up));
+  $("f-in").hidden = up; $("f-up").hidden = !up;
+}
+$("t-in").onclick = () => tab(false); $("t-up").onclick = () => tab(true);
+
+async function busy(btn, fn, errEl) {
+  errEl.hidden = true; btn.disabled = true;
+  try { await fn(); } catch (e) { errEl.textContent = e.message || String(e); errEl.hidden = false; }
+  finally { btn.disabled = false; }
+}
+const fail = (el, t) => { el.textContent = t; el.hidden = false; };
+$("f-in").onsubmit = e => { e.preventDefault();
+  if (!$("in-who").value.trim() || !$("in-pass").value) return fail($("in-err"), "Введите логин (или почту) и пароль.");
+  busy($("in-go"), () => A.signIn($("in-who").value, $("in-pass").value), $("in-err")); };
+$("f-up").onsubmit = e => { e.preventDefault();
+  if (!$("up-ok").checked) return fail($("up-err"), "Нужно согласие на хранение данных.");
+  if ($("up-pass").value.length < 6) return fail($("up-err"), "Пароль — не меньше 6 символов.");
+  busy($("up-go"), () => A.signUp($("up-name").value, $("up-email").value, $("up-pass").value), $("up-err")); };
+$("out-btn").onclick = () => { if (confirm("Выйти из аккаунта на этом устройстве?")) A.signOut(); };
+
+function render(p) {
+  $("loading").hidden = true;
+  $("out").hidden = !!p; $("in").hidden = !p;
+  if (!p) return;
+  $("p-name").textContent = p.full_name || "—";
+  $("p-idk").textContent = p.login ? "Логин" : "Почта"; $("p-id").textContent = p.login || p.email || "—";
+  $("p-group").textContent = p.group || (p.role === "teacher" ? "—" : "пока не назначена");
+  $("st-pending").hidden = p.status !== "pending"; $("st-blocked").hidden = p.status !== "blocked";
+  $("st-expired").hidden = !(p.status === "active" && A.expired(p) && p.role !== "teacher");
+  $("p-teacher").hidden = p.role !== "teacher";
+  $("p-go").hidden = !A.allowed(p);
+  if (!p.access_until) $("p-acc").textContent = p.status === "active" ? "без срока" : "закрыт";
+  else { const a = new Date(p.access_until), b = new Date(); a.setHours(0, 0, 0, 0); b.setHours(0, 0, 0, 0); const left = Math.round((a - b) / 864e5);
+    $("p-acc").textContent = "до " + dlong(p.access_until) + (A.expired(p) ? " — истёк" : left === 0 ? " (последний день)" : ` (осталось ${left} дн.)`); }
+}
+// после входа — вернуться туда, откуда пришли (только внутренние страницы приложения)
+const next = new URLSearchParams(location.search).get("next");
+const goNext = p => { if (A.allowed(p) && next && /^(index\.html)?(#\/[^\s<>"]*)?$/.test(next)) { location.replace("./" + next); return true; } return false; };
+A.onChange(p => { if (!goNext(p)) render(p); });
+A.ready.then(p => { if (!goNext(p)) render(p); });
+})();
+</script>
+</body>
+</html>

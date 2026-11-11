@@ -79,10 +79,31 @@ test("index.html подключает все модули, sw.js кэшируе�
     assert.ok(fs.existsSync(path.join(ROOT, f)), `файл ${f}`);
   }
   for (const t of FC.ATLAS) assert.ok(sw.includes(`"${t.svg}"`), `sw.js: ${t.svg}`);
+  for (const f of ["account.js", "vendor/supabase-js-2.119.0.umd.js", "account.html", "teacher.html", "pages.css"]) {
+    assert.ok(sw.includes(`"${f}"`), `sw.js: ${f}`);
+    assert.ok(fs.existsSync(path.join(ROOT, f)), `файл ${f}`);
+  }
+  // модуль входа подключён до app.js
+  assert.ok(html.indexOf('src="account.js"') < html.indexOf('src="app.js"'), "account.js после app.js");
 });
 test("sw.js удаляет только свои кэши и кэширует только успешные ответы", () => {
   const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
   assert.match(sw, /k\.startsWith\(PREFIX\)/);
   assert.match(sw, /r\.ok/);
   assert.match(sw, /const PREFIX = "fetalcardio-"/);
+});
+
+test("доступ: сессия хранится отдельно от Академии УЗИ, служебный домен свой", () => {
+  const src = fs.readFileSync(path.join(ROOT, "account.js"), "utf8");
+  assert.match(src, /AUTH_KEY = "fc-auth"/);
+  assert.match(src, /DOMAIN = "fetalcardio\.invalid"/);
+  assert.doesNotMatch(src, /acad-auth|uzi-academy\.invalid/);
+  const fn = fs.readFileSync(path.join(ROOT, "supabase/functions/teacher-admin/index.ts"), "utf8");
+  assert.match(fn, /DOMAIN = "fetalcardio\.invalid"/);
+  const sql = fs.readFileSync(path.join(ROOT, "supabase/setup.sql"), "utf8");
+  assert.ok(sql.includes("@fetalcardio.invalid") && !sql.includes("uzi-academy.invalid"));
+});
+test("доступ: секретный ключ не попал в файлы сайта", () => {
+  for (const f of ["account.js", "account.html", "teacher.html", "app.js"])
+    assert.doesNotMatch(fs.readFileSync(path.join(ROOT, f), "utf8"), /sb_secret_[A-Za-z0-9]|service_role["']?\s*[:=]\s*["']ey/, f);
 });

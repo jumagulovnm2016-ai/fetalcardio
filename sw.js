@@ -2,7 +2,7 @@
    Важно: на домене *.github.io кэши общие для всех приложений автора,
    поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
 const PREFIX = "fetalcardio-";
-const VERSION = "v4";
+const VERSION = "v5";
 const APP_CACHE = `${PREFIX}app-${VERSION}`;
 const FONT_CACHE = `${PREFIX}fonts-v1`;
 const KEEP = [APP_CACHE, FONT_CACHE];
@@ -10,6 +10,7 @@ const FILES = [
   "./", "index.html", "style.css", "app.js", "schemes.js", "search.js", "validate.js", "progress.js",
   "data/meta.js", "data/references.js", "data/views.js", "data/algorithms.js", "data/pathologies.js", "data/quiz.js", "data/anatomy.js",
   "atlas/4cv-normal.svg",
+  "account.js", "vendor/supabase-js-2.119.0.umd.js", "account.html", "teacher.html", "pages.css",
   "manifest.json", "icon.svg"
 ];
 const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];

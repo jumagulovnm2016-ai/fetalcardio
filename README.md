@@ -24,6 +24,9 @@
 | `atlas/*.svg` | Подробные анатомические SVG-схемы (оригинальные рисунки, слои `layer-*`, структуры `data-s`) |
 | `app.js`, `style.css`, `index.html` | Интерфейс |
 | `sw.js`, `manifest.json` | Офлайн-режим и установка |
+| `account.js`, `vendor/` | Вход курсантов (Supabase) и закрытие приложения без доступа |
+| `account.html`, `teacher.html`, `pages.css` | Личный кабинет и кабинет преподавателя |
+| `supabase/` | SQL-скрипты и серверная функция преподавателя для отдельного проекта Supabase |
 | `tests/` | Автоматические тесты |
 
 ## Медицинский контент
@@ -42,6 +45,26 @@
 - Все схемы — `status: "draft"` и плашка «DRAFT · REQUIRES EXPERT REVIEW» до проверки врачом-экспертом. Пункты, требующие проверки, перечислены в поле `review`.
 - Добавить схему: SVG в `atlas/` → запись в `data/anatomy.js` → путь в `FILES` в `sw.js` (и поднять `VERSION`) → `npm test` и `tests/e2e.py`.
 
+## Доступ курсантов
+
+Как в Академии УЗИ, но **отдельный проект Supabase**: аккаунты Академии сюда не пускают, и наоборот.
+Вход по логину и коду от преподавателя или регистрация по почте с подтверждением. У каждого курсанта свой срок доступа.
+Один аккаунт курсанта — одно устройство. Без входа приложение закрыто полностью.
+
+Пока в `account.js` не указаны адрес и ключ проекта, закрытие **выключено** и приложение открыто, как раньше.
+
+Настройка (один раз):
+1. supabase.com → New project (имя `fetalcardio`, регион — ближайший). На бесплатном тарифе не больше 2 активных проектов.
+2. Authentication → Sign In / Providers → Email: **выключить** «Confirm email».
+3. SQL Editor → New query → вставить `supabase/setup.sql` → Run.
+4. Edge Functions → Deploy a new function → имя `teacher-admin` → вставить `supabase/functions/teacher-admin/index.ts` → Deploy. Если функция пишет, что нет ключа: Edge Functions → Secrets → `SERVICE_KEY` = Secret key (`sb_secret_…`).
+5. Project Settings → API: Project URL и Publishable key вписать в `CONFIG` в `account.js`, поднять `VERSION` в `sw.js`, опубликовать.
+6. Открыть сайт → Личный кабинет → Регистрация по своей почте → SQL Editor → `supabase/make-teacher.sql` → Run.
+
+Секретный ключ (`sb_secret_…`) никогда не вписывается в файлы сайта — только в Secrets функции.
+
+Ограничение: закрытие работает на уровне интерфейса. Посторонний не увидит приложение, но файлы сайта (`data/*.js`) и репозиторий на GitHub публичны.
+
 ## Проверка
 
 ```bash
@@ -49,6 +72,7 @@ npm test                       # контент, ссылки, ID, ответы 
 npm run validate               # только проверка контента
 python3 -m http.server 8765 &  # затем браузерная проверка (нужен Playwright):
 python3 tests/e2e.py           # все страницы × 3 ширины × 2 темы, офлайн, экспорт/импорт
+python3 tests/auth_e2e.py      # закрытый доступ с имитацией Supabase: вход, срок, одно устройство, офлайн
 ```
 
 Перед публикацией изменений контента запускайте `npm test`. При изменении списка файлов обновите `FILES` и `VERSION` в `sw.js`.
