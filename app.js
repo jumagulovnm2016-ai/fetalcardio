@@ -158,7 +158,7 @@
     return `<div class="crumb"><a href="#/views">Срезы</a> / ${esc(v.abbr)}</div>
       <h1>${esc(v.name)}</h1>
       <div>${statusBadge(v.status)}</div>
-      <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
+      <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза (черновик, пропорции условны). Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
       ${ATLAS.filter(t => t.view === id).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · черновик`, "t_" + t.id)).join("")}
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -195,7 +195,7 @@
         <figcaption>${im.captionRu ? `<p class="cap-ru">${esc(im.captionRu)}</p>` : ""}
           ${im.caption ? `<details class="cap-en"${im.captionRu ? "" : " open"}><summary>Оригинальная подпись автора</summary><p lang="${im.source.kind === "commons" && /semanas/.test(im.id) ? "es" : "en"}">${esc(im.caption)}</p></details>` : ""}
           ${im.group === IMAGE_GROUPS[IMAGE_GROUPS.length - 1] ? '<p class="small muted">Автор не указал, какой срез на снимке. Требует экспертной разметки.</p>' : ""}
-          ${im.captionRu ? '<p><span class="badge draft">перевод подписи — черновик, не проверен экспертом</span></p>' : ""}</figcaption></figure>
+          ${im.captionRu ? `<p><span class="badge draft wrap">перевод подписи — черновик, не проверен экспертом</span></p>` : ""}</figcaption></figure>
       <h2>Источник и лицензия</h2>
       <p class="small">${imgCredit(im.source)} <a href="${esc(im.source.url)}" target="_blank" rel="noopener">Открыть источник ↗</a></p>
       ${im.source.license.startsWith("CC BY-SA") ? '<p class="small muted">CC BY-SA: изменённую версию (стрелки, подписи, кадрирование) распространяйте под той же лицензией.</p>' : ""}

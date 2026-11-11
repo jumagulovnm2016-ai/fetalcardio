@@ -276,3 +276,4 @@ figure.imgfig .cap-ru{margin:0 0 8px}
 figure.imgfig .cap-en{font-size:.8rem;color:var(--muted);margin:4px 0 8px}
 figure.imgfig .cap-en summary{cursor:pointer;font-weight:600}
 figure.imgfig .cap-en p{margin:6px 0 0}
+.badge.wrap{white-space:normal;display:inline-block;line-height:1.35}
