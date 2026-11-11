@@ -2,13 +2,14 @@
 var FC = globalThis.FC = globalThis.FC || {};
 (function () {
   const APP = "fetalcardio", FORMAT = 1;
-  const KEY_RE = /^([vac])_([a-z0-9-]+)$/;
+  const KEY_RE = /^([vact])_([a-z0-9-]+)$/;
 
   function validKeys(D) {
     return new Set([
       ...(D.VIEWS || []).map(x => "v_" + x.id),
       ...(D.ALGOS || []).map(x => "a_" + x.id),
-      ...(D.CHD || []).map(x => "c_" + x.id)
+      ...(D.CHD || []).map(x => "c_" + x.id),
+      ...(D.ATLAS || []).map(x => "t_" + x.id)
     ]);
   }
 

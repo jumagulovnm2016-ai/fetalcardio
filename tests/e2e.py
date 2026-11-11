@@ -8,6 +8,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else None
 ROUTES = ["", "views", "view/situs", "view/4cv", "view/lvot", "view/rvot", "view/3vv", "view/3vt",
           "algos", "algo/rv-gt-lv", "algo/overriding", "algo/reverse-flow", "chd",
           "chd/vsd", "chd/avsd", "chd/tof", "chd/tga", "chd/dorv", "chd/cat", "chd/hlhs", "chd/coa", "chd/ebstein", "chd/tapvr",
+          "atlas", "atlas/4cv-normal",
           "quiz", "search?q=" + "%D1%84%D0%B0%D0%BB%D0%BB%D0%BE", "nonexistent"]
 fails = []
 def check(cond, msg):
@@ -59,6 +60,61 @@ with sync_playwright() as p:
     check(pg.locator("[data-quizreset]").count() == 1, "тест: нет результата")
     ctx.close()
 
+    # 2a. Анатомический атлас: схема встроена, подписи не перекрываются, анатомические отношения
+    for scheme in ["light", "dark"]:
+        ctx = b.new_context(viewport={"width": 1280, "height": 900}, color_scheme=scheme, service_workers="block")
+        pg = ctx.new_page()
+        pg.goto(BASE + "#/atlas/4cv-normal"); pg.wait_for_selector("#atlasSvg svg #heart", timeout=5000)
+        res = pg.evaluate("""() => {
+          const svg = document.querySelector('#atlasSvg svg'), q = s => svg.querySelector(s);
+          const bb = s => q(s).getBBox();
+          // 1. подписи не перекрываются (по рамкам текстов и кружков с номерами)
+          const boxes = [...svg.querySelectorAll('#layer-labels text, #layer-labels circle.nb')].map(e => {
+            const r = e.getBBox(); return { id: e.closest('g').id, x: r.x, y: r.y, w: r.width, h: r.height }; });
+          const over = [];
+          for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+            const a = boxes[i], c = boxes[j]; if (a.id === c.id) continue;
+            if (a.x < c.x + c.w && c.x < a.x + a.w && a.y < c.y + c.h && c.y < a.y + a.h) over.push(a.id + '/' + c.id);
+          }
+          // подписи в пределах холста
+          const vb = svg.viewBox.baseVal, out = boxes.filter(r => r.x < 0 || r.y < 0 || r.x + r.w > vb.width || r.y + r.h > vb.height).map(r => r.id);
+          const pt = (s, end) => { const e = q(s), l = end ? e.getTotalLength() : 0; return e.getPointAtLength(l); };
+          const inside = (s, p) => q(s).isPointInFill(new DOMPoint(p.x, p.y));
+          const rv = bb('#s-rv'), lv = bb('#s-lv'), ra = bb('#s-ra'), la = bb('#s-la'), ivs = bb('#s-ivs');
+          const tvHinge = pt('#s-tv path.vl'), mvHinge = pt('#s-mv path.vl');
+          const mb = q('#s-mb'), mbA = pt('#s-mb'), mbB = pt('#s-mb', true);
+          const flapEnd = pt('#s-flap', true), ias = bb('#s-ias'), fo = bb('#s-fo');
+          const lumens = [...svg.querySelectorAll('#layer-veins-lumen path')].map(e => e.getPointAtLength(e.getTotalLength()));
+          return {
+            over, out, n: boxes.length,
+            lvApex: lv.y < rv.y,                                  // ЛЖ формирует верхушку
+            sides: rv.x < lv.x && ra.x < la.x,                    // правые слева, левые справа
+            ventriclesAbove: rv.y + rv.height <= ra.y + ra.height && lv.y < la.y,
+            offset: tvHinge.y < mvHinge.y,                        // ТК ближе к верхушке (выше на схеме)
+            mbInRV: inside('#s-rv', mbA) || inside('#s-rv', {x: (mbA.x + mbB.x) / 2, y: (mbA.y + mbB.y) / 2}),
+            mbNotLV: !inside('#s-lv', {x: (mbA.x + mbB.x) / 2, y: (mbA.y + mbB.y) / 2}),
+            flapInLA: inside('#s-la', flapEnd),                   // клапан ОО направлен в ЛП
+            foInSeptum: fo.y > ias.y && fo.y + fo.height < ias.y + ias.height,
+            pvToLA: lumens.length === 2 && lumens.every(p => inside('#s-la', p) || inside('#s-la', {x: p.x, y: p.y - 3})),
+            ivsSpan: ivs.y < rv.y + 20 && ivs.y + ivs.height >= tvHinge.y - 1,
+            asym: Math.abs(rv.width - lv.width) > 5 || Math.abs(rv.height - lv.height) > 5,
+            laPosterior: la.y + la.height >= ra.y + ra.height - 10,
+          };
+        }""")
+        check(not res["over"], f"атлас {scheme}: перекрытие подписей {res['over'][:5]}")
+        check(not res["out"], f"атлас {scheme}: подписи за пределами холста {res['out']}")
+        for k in ["lvApex", "sides", "ventriclesAbove", "offset", "mbInRV", "mbNotLV", "flapInLA", "foInSeptum", "pvToLA", "ivsSpan", "asym", "laPosterior"]:
+            check(res[k], f"атлас {scheme}: анатомическая проверка {k} не пройдена")
+        # подсветка из легенды и скрытие подписей
+        pg.click("[data-hl='mb']")
+        check(pg.evaluate("document.querySelector('#atlasSvg svg').classList.contains('focus') && document.querySelectorAll('#atlasSvg [data-s=mb].hl').length >= 2"), f"атлас {scheme}: подсветка")
+        pg.click("[data-hl='mb']")
+        check(pg.evaluate("!document.querySelector('#atlasSvg svg').classList.contains('focus')"), f"атлас {scheme}: снятие подсветки")
+        pg.click("[data-labels]")
+        check(pg.evaluate("getComputedStyle(document.querySelector('#layer-labels')).display") == "none", f"атлас {scheme}: скрытие подписей")
+        if OUT: pg.locator("#atlasFig").screenshot(path=f"{OUT}/atlas-4cv-{scheme}.png")
+        ctx.close()
+
     # 3. Офлайн: после первой загрузки с Service Worker приложение открывается без сети
     ctx = b.new_context(viewport={"width": 390, "height": 844})
     pg = ctx.new_page()
@@ -68,9 +124,10 @@ with sync_playwright() as p:
     caches = pg.evaluate("caches.keys()")
     check(any(k.startswith("fetalcardio-app-") for k in caches), f"кэш: {caches}")
     ctx.set_offline(True)
-    for r in ["", "chd/hlhs", "view/3vt", "search?q=TOF"]:
+    for r in ["", "chd/hlhs", "view/3vt", "search?q=TOF", "atlas/4cv-normal"]:
         pg.goto(BASE + "#/" + r); pg.wait_for_timeout(300)
         check(pg.locator("main h1").count() >= 1, f"офлайн #{r}: не открылось")
+    check(pg.locator("#atlasSvg svg #heart").count() == 1, "офлайн: схема атласа не загрузилась из кэша")
     pg.reload(); pg.wait_for_timeout(500)
     check(pg.locator("main h1").count() >= 1, "офлайн: перезагрузка не удалась")
     ctx.set_offline(False)

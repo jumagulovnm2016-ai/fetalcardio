@@ -14,7 +14,8 @@ var FC = globalThis.FC = globalThis.FC || {};
   /* Типы полей:
      str — непустая строка; strs — непустой массив непустых строк; bool; int;
      enum:<имя> — значение из списка; ref:<коллекция> — id существующей записи;
-     obj:str — объект с непустыми строковыми значениями; ddx; refs; ? в конце — необязательное поле */
+     obj:str — объект с непустыми строковыми значениями; ddx; refs; structs — структуры атласа;
+     svgpath — путь atlas/<имя>.svg; ? в конце — необязательное поле */
   const SCHEMA = {
     VIEWS: {
       id: "slug", abbr: "str", name: "str", aliases: "strs", status: "enum:status",
@@ -32,6 +33,11 @@ var FC = globalThis.FC = globalThis.FC || {};
       prognosis: "str", refer: "str", references: "refs", reviewedBy: "str?", reviewedAt: "date?"
     },
     QUIZ: { q: "str", opts: "strs", a: "int", exp: "str", link: "ref:CHD|null" },
+    ATLAS: {
+      id: "slug", view: "ref:VIEWS", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
+      svg: "svgpath", orientation: "str", structures: "structs", normal: "strs", review: "strs",
+      references: "refs", reviewedBy: "str?", reviewedAt: "date?"
+    },
     REFS: {
       organization: "str", title: "str", authors: "str?", journal: "str?", year: "int",
       volume: "str?", issue: "str?", pages: "str?", doi: "doi?", pmid: "str?", url: "url"
@@ -63,6 +69,22 @@ var FC = globalThis.FC = globalThis.FC || {};
       else if (t === "int") { if (!Number.isInteger(val)) err(where, "ожидается целое число"); }
       else if (t === "date") { if (!isStr(val) || !DATE.test(val)) err(where, "ожидается дата ГГГГ-ММ-ДД"); }
       else if (t === "doi") { if (!isStr(val) || !DOI.test(val)) err(where, "некорректный DOI"); }
+      else if (t === "svgpath") { if (!isStr(val) || !/^atlas\/[a-z0-9-]+\.svg$/.test(val)) err(where, "ожидается путь atlas/<имя>.svg"); }
+      else if (t === "structs") {
+        if (!Array.isArray(val) || !val.length) { err(where, "ожидается непустой массив структур"); return; }
+        const keys = new Set(), nums = new Set();
+        val.forEach((s, i) => {
+          const w = `${where}[${i}]`;
+          if (!isStr(s.key) || !SLUG.test(s.key)) err(w + ".key", "латиница, цифры, дефис");
+          else { if (keys.has(s.key)) err(w + ".key", `повторяющийся ключ «${s.key}»`); keys.add(s.key); }
+          if (!(s.n === null || (Number.isInteger(s.n) && s.n > 0))) err(w + ".n", "ожидается целое > 0 или null");
+          else if (s.n !== null) { if (nums.has(s.n)) err(w + ".n", `повторяющийся номер ${s.n}`); nums.add(s.n); }
+          if (!isStr(s.name)) err(w + ".name", "обязательное поле");
+          if (!isStr(s.abbr)) err(w + ".abbr", "обязательное поле");
+          if (s.note !== undefined && !isStr(s.note)) err(w + ".note", "ожидается непустая строка");
+          Object.keys(s).forEach(k => !["n", "key", "name", "abbr", "note"].includes(k) && err(w, `лишнее поле «${k}»`));
+        });
+      }
       else if (t === "url") { if (!isStr(val) || !/^https:\/\//.test(val)) err(where, "ожидается https-ссылка"); }
       else if (t.startsWith("enum:")) { const e = enums[t.slice(5)]; if (!e.includes(val)) err(where, `допустимо: ${e.join(", ")}`); }
       else if (t.startsWith("ref:")) {
@@ -113,7 +135,7 @@ var FC = globalThis.FC = globalThis.FC || {};
     }
 
     if (!D.CATS || typeof D.CATS !== "object") err("CATS", "отсутствует");
-    ["VIEWS", "ALGOS", "CHD", "QUIZ"].forEach(n => Array.isArray(D[n]) ? collection(n, D[n], n !== "QUIZ") : err(n, "отсутствует массив"));
+    ["VIEWS", "ALGOS", "CHD", "QUIZ", "ATLAS"].forEach(n => Array.isArray(D[n]) ? collection(n, D[n], n !== "QUIZ") : err(n, "отсутствует массив"));
     Object.entries(D.REFS || {}).forEach(([id, r]) => {
       if (!SLUG.test(id)) err(`REFS[${id}]`, "id: латиница, цифры, дефис");
       Object.entries(SCHEMA.REFS).forEach(([f, t]) => check(`REFS[${id}].${f}`, r[f], t));
@@ -133,7 +155,7 @@ var FC = globalThis.FC = globalThis.FC || {};
 
     (D.CHD || []).forEach(c => (c.ddx || []).forEach(d => d.id === c.id && err(`CHD[${c.id}].ddx`, "порок ссылается сам на себя")));
     const used = new Set();
-    ["VIEWS", "ALGOS", "CHD"].forEach(n => (D[n] || []).forEach(x => (x.references || []).forEach(r => used.add(r.source))));
+    ["VIEWS", "ALGOS", "CHD", "ATLAS"].forEach(n => (D[n] || []).forEach(x => (x.references || []).forEach(r => used.add(r.source))));
     ids.REFS.forEach(id => !used.has(id) && warnings.push(`REFS[${id}]: источник нигде не используется`));
 
     return { errors, warnings, ok: errors.length === 0 };

@@ -74,3 +74,62 @@ test("валидатор ловит неверный индекс ответа",
 test("валидатор ловит approved без рецензента", () => assert.ok(broken(D => D.CHD[0].status = "approved").some(e => e.includes("reviewedBy"))));
 test("валидатор ловит неизвестный источник", () => assert.ok(broken(D => D.CHD[0].references[0].source = "fake").some(e => e.includes("fake"))));
 test("валидатор ловит лишнее поле", () => assert.ok(broken(D => D.CHD[0].extra = "x").some(e => e.includes("extra"))));
+
+/* ---------- Анатомический атлас ---------- */
+const fs = require("fs"), path = require("path");
+const { ROOT } = require("./load.cjs");
+const svgOf = t => fs.readFileSync(path.join(ROOT, t.svg), "utf8");
+
+test("атлас: файлы SVG существуют, статус draft, плашка DRAFT, без скриптов", () => {
+  assert.ok(FC.ATLAS.length > 0);
+  for (const t of FC.ATLAS) {
+    const svg = svgOf(t);
+    assert.match(svg, /^<svg[^>]+viewBox="0 0 \d+ \d+"/, `${t.id}: корневой svg с viewBox`);
+    assert.equal(t.status, "draft", `${t.id}: до экспертной проверки только draft`);
+    assert.match(svg, /data-status="draft"/, `${t.id}: data-status`);
+    assert.match(svg, /DRAFT · REQUIRES EXPERT REVIEW/, `${t.id}: плашка DRAFT`);
+    assert.doesNotMatch(svg, /<script|<foreignObject|on\w+=/i, `${t.id}: активное содержимое`);
+    assert.doesNotMatch(svg, /<image|href="http/i, `${t.id}: внешние ресурсы`);
+  }
+});
+
+test("атлас: каждая структура легенды есть на схеме и в подписях", () => {
+  for (const t of FC.ATLAS) {
+    const svg = svgOf(t);
+    for (const s of t.structures) {
+      assert.ok(svg.includes(`id="s-${s.key}"`), `${t.id}: нет структуры s-${s.key}`);
+      assert.ok(svg.includes(`id="lbl-${s.key}"`), `${t.id}: нет подписи lbl-${s.key}`);
+      assert.ok(svg.includes(s.abbr.split(" ")[0]), `${t.id}: подпись без обозначения ${s.abbr}`);
+    }
+    const inSvg = [...svg.matchAll(/id="lbl-([a-z0-9-]+)"/g)].map(m => m[1]);
+    assert.deepEqual(inSvg.filter(k => !t.structures.some(s => s.key === k)), [], `${t.id}: подписи без легенды`);
+  }
+});
+
+test("атлас 4CV: все 17 обязательных структур, номера 1–17, нужные слои", () => {
+  const t = FC.ATLAS.find(x => x.id === "4cv-normal");
+  const nums = t.structures.map(s => s.n).filter(n => n !== null).sort((a, b) => a - b);
+  assert.deepEqual([...nums], Array.from({ length: 17 }, (_, i) => i + 1));
+  const svg = svgOf(t);
+  for (const layer of ["myocardium", "cavities", "ventricular-septum", "atrial-septum", "rv-morphology",
+    "lv-morphology", "av-valves", "crux", "veins", "annotations", "labels"])
+    assert.ok(svg.includes(`id="layer-${layer}"`), `нет слоя ${layer}`);
+  // модераторный пучок — в слое морфологии ПЖ, не ЛЖ
+  const rvLayer = svg.slice(svg.indexOf('id="layer-rv-morphology"'), svg.indexOf('id="layer-lv-morphology"'));
+  assert.ok(rvLayer.includes('id="s-mb"'), "модераторный пучок вне слоя ПЖ");
+  // числовых диагностических критериев в учебном тексте нет
+  for (const x of [...t.normal, ...t.structures.map(s => s.note || "")])
+    assert.doesNotMatch(x, /\d+\s*(мм|см|%|°)/, `числовой критерий без источника: ${x}`);
+});
+
+test("валидатор ловит ошибки атласа", () => {
+  const D = () => ({ ...FC, ATLAS: clone(FC.ATLAS) });
+  let d = D(); d.ATLAS[0].structures[1].key = d.ATLAS[0].structures[0].key;
+  assert.ok(FC.validate(d).errors.some(e => e.includes("повторяющийся ключ")));
+  d = D(); d.ATLAS[0].svg = "../evil.svg";
+  assert.ok(FC.validate(d).errors.some(e => e.includes("atlas/<имя>.svg")));
+  d = D(); d.ATLAS[0].view = "nope";
+  assert.ok(FC.validate(d).errors.some(e => e.includes("nope")));
+  d = D(); d.ATLAS[0].status = "approved";
+  assert.ok(FC.validate(d).errors.some(e => e.includes("reviewedBy")));
+});

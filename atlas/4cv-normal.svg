@@ -1,0 +1,257 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 1030" role="img" aria-labelledby="t4cv d4cv" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
+<title id="t4cv">Четырёхкамерный срез сердца плода — анатомическая схема нормы (DRAFT)</title>
+<desc id="d4cv">Оригинальная учебная схема FetalCardio. Анатомический рисунок, не УЗ-изображение. Апикальная ориентация: верхушка вверху (кпереди), предсердия внизу (кзади); правые отделы слева, левые справа. Пропорции и толщины условны. Статус: DRAFT / REQUIRES EXPERT REVIEW.</desc>
+<metadata>{"app":"FetalCardio","id":"4cv-normal","status":"draft","review":"REQUIRES EXPERT REVIEW","author":"Жумагулов Н.М.","created":"2026-11-11"}</metadata>
+<style>
+.bg{fill:var(--sv-bg,#ffffff)}
+.myo{fill:var(--sv-wall,#d3909a);stroke:var(--sv-wall-edge,#a8606d);stroke-width:2}
+.cav{fill:var(--sv-chamber,#f8e8ea);stroke:var(--sv-chamber,#f8e8ea);stroke-width:.8}
+.sep{fill:var(--sv-wall,#d3909a)}
+.mus{stroke:var(--sv-wall,#d3909a);fill:none;stroke-linecap:round}
+.musf{fill:var(--sv-wall,#d3909a)}
+.net{stroke:var(--sv-wall,#d3909a);fill:none;stroke-width:2.2;stroke-linecap:round}
+.vl{stroke:var(--sv-valve,#7a4b12);fill:none;stroke-width:4;stroke-linecap:round}
+.ch{stroke:var(--sv-valve,#7a4b12);stroke-width:1.2;opacity:.75}
+.fib{fill:var(--sv-fibrous,#f3efe6);stroke:var(--sv-valve,#7a4b12);stroke-width:1.2}
+.avs{fill:var(--sv-accent-soft,rgba(224,138,0,.28));stroke:var(--sv-accent,#c26a00);stroke-width:1.2;stroke-dasharray:3 2}
+.vo{stroke:var(--sv-vein,#8250c4);fill:none;stroke-width:17;stroke-linecap:round}
+.vi{stroke:var(--sv-chamber,#f8e8ea);fill:none;stroke-width:8;stroke-linecap:round}
+.ao{fill:var(--sv-ao,#d6334a)}
+.an{stroke:var(--sv-accent,#c26a00);stroke-width:1.6;fill:none}
+.and{stroke:var(--sv-accent,#c26a00);stroke-width:1.4;fill:none;stroke-dasharray:4 3}
+.anf{fill:var(--sv-accent,#c26a00)}
+.ld{stroke:var(--sv-text,#101828);stroke-width:1;fill:none;opacity:.55}
+.ad{fill:var(--sv-text,#101828);stroke:var(--sv-halo,#ffffff);stroke-width:1.5}
+.nb{fill:var(--sv-text,#101828)}
+.nb0{opacity:.45}
+.nt{fill:var(--sv-halo,#ffffff);font-size:13px;font-weight:700}
+.l1{fill:var(--sv-text,#101828);font-size:18px;font-weight:600}
+.l2{fill:var(--sv-text,#101828);font-size:14.5px;opacity:.8}
+.l3{fill:var(--sv-text,#101828);font-size:14px;opacity:.62;font-style:italic}
+.hd{fill:var(--sv-text,#101828);font-size:24px;font-weight:700}
+.sh{fill:var(--sv-text,#101828);font-size:15px;font-weight:700;letter-spacing:.06em;opacity:.55}
+.om{fill:var(--sv-text,#101828);font-size:15px;opacity:.7}
+.dr{fill:none;stroke:var(--sv-draft,#c0392b);stroke-width:1.5}
+.drt{fill:var(--sv-draft,#c0392b);font-size:15px;font-weight:700;letter-spacing:.04em}
+</style>
+<rect class="bg" x="0" y="0" width="1320" height="1030"/>
+<g id="layer-header">
+<text class="hd" x="24" y="38">Четырёхкамерный срез (4CV): анатомическая схема нормы</text>
+<rect class="dr" x="960" y="16" width="336" height="34" rx="7"/>
+<text class="drt" x="1128" y="38.5" text-anchor="middle">DRAFT · REQUIRES EXPERT REVIEW</text>
+<text class="sh" x="342" y="96" text-anchor="end">ПРАВЫЕ ОТДЕЛЫ</text>
+<text class="sh" x="978" y="96">ЛЕВЫЕ ОТДЕЛЫ</text>
+</g>
+<g id="heart" transform="translate(120.0,-4.0) scale(1.2)">
+<g id="layer-veins">
+<g id="s-dao" data-s="dao"><circle class="ao" cx="562" cy="676" r="21"/></g>
+<g id="s-pv" data-s="pv"><path class="vo" d="M 372,724 C 410,690 470,646 488,606"/><path class="vo" d="M 672,712 C 662,670 642,626 624,600"/><path class="vi" d="M 372,724 C 410,690 470,646 488,606"/><path class="vi" d="M 672,712 C 662,670 642,626 624,600"/></g>
+</g>
+<g id="layer-myocardium"><path id="s-myo" class="myo" d="M 512,88 C 610,100 656,200 656,300 C 657,352 646,380 632,394 C 658,428 664,505 646,552 C 622,602 540,620 452,610 C 380,622 300,616 270,590 C 232,560 226,460 262,404 C 248,384 244,352 248,320 C 256,240 340,170 432,134 C 466,120 488,96 512,88 Z"/></g>
+<g id="layer-cavities">
+<path id="s-rv" data-s="rv" class="cav" d="M 448,360 L 478,160 C 474,146 458,142 440,150 C 360,190 276,250 268,320 C 265,356 272,384 284,400 Z"/>
+<path id="s-lv" data-s="lv" class="cav" d="M 468,386 L 503,136 Q 508,112 528,114 C 594,128 634,206 636,298 C 637,344 628,372 614,388 Z"/>
+<path id="s-ra" data-s="ra" class="cav" d="M 284,400 L 448,360 L 452,394 L 446,592 C 400,606 322,604 288,578 C 252,548 246,462 284,400 Z"/>
+<path id="s-la" data-s="la" class="cav" d="M 468,386 L 614,388 C 642,420 648,500 630,548 C 610,590 540,604 454,592 L 462,394 Z"/>
+</g>
+<g id="layer-veins-lumen"><path class="vi" d="M 486,616 L 490,584"/><path class="vi" d="M 628,608 L 602,570"/></g>
+<g id="layer-ventricular-septum">
+<path id="s-ivs" data-s="ivs" class="sep" d="M 448,360 L 478,160 Q 490,138 503,136 L 471.7,360 Z"/>
+</g>
+<g id="layer-rv-morphology">
+<g id="s-trab" data-s="trab" style="stroke-width:6"><line class="mus" stroke-width="8" x1="270" y1="282" x2="296" y2="278"/><line class="mus" stroke-width="8" x1="280" y1="256" x2="304" y2="258"/><line class="mus" stroke-width="8" x1="296" y1="232" x2="318" y2="238"/><line class="mus" stroke-width="8" x1="318" y1="210" x2="336" y2="222"/><line class="mus" stroke-width="8" x1="344" y1="190" x2="358" y2="206"/><line class="mus" stroke-width="8" x1="372" y1="172" x2="382" y2="190"/><line class="mus" stroke-width="8" x1="402" y1="158" x2="408" y2="176"/><line class="mus" stroke-width="8" x1="428" y1="150" x2="432" y2="168"/><line class="mus" stroke-width="8" x1="452" y1="148" x2="454" y2="166"/><line class="mus" stroke-width="8" x1="476" y1="186" x2="464" y2="190"/><line class="mus" stroke-width="8" x1="473" y1="208" x2="462" y2="212"/><path class="net" d="M 296,278 Q 306,268 304,258 M 304,258 Q 314,248 318,238 M 318,238 Q 330,230 336,222 M 336,222 Q 348,214 358,206 M 358,206 Q 372,198 382,190 M 382,190 Q 396,182 408,176 M 408,176 Q 420,172 432,168 M 432,168 Q 444,168 454,166"/></g>
+<path id="s-apm" class="musf" d="M 268,296 C 284,296 314,300 320,314 C 300,320 282,320 268,322 Z"/>
+<path id="s-mb" data-s="mb" class="mus" stroke-width="10" d="M 467,236 Q 380,262 296,304"/>
+</g>
+<g id="layer-lv-morphology">
+<g id="s-lvtrab"><line class="mus" stroke-width="3" x1="536" y1="120" x2="538" y2="134"/><line class="mus" stroke-width="3" x1="566" y1="130" x2="560" y2="142"/><line class="mus" stroke-width="3" x1="590" y1="146" x2="580" y2="154"/></g>
+<path id="s-lvpm" class="musf" d="M 637,254 C 624,262 610,284 604,300 C 614,306 628,312 637,318 Z"/>
+</g>
+<g id="layer-atrial-septum">
+<g id="s-ias" data-s="ias"><path class="sep" d="M 452,394 L 462,394 L 458.8,472 L 449.6,472 Z"/><path class="sep" d="M 448.4,514 L 457.2,514 L 454,592 L 446,592 Z"/></g>
+<path id="s-fo" data-s="fo" class="cav" d="M 447.6,471 L 460.8,471 L 459.2,515 L 446.4,515 Z"/>
+<path id="s-flap" data-s="flap" class="vl" style="stroke:var(--sv-wall-edge,#a8606d);stroke-width:3.2" d="M 459,472 C 492,480 497,518 469,534"/>
+</g>
+<g id="layer-crux">
+<path id="s-avs" data-s="avs" class="avs" d="M 448,360 L 471.7,360 L 468,386 L 462,394 L 452,394 Z"/>
+<path id="s-cfb" data-s="cfb" class="fib" d="M 452,389 L 460,381 L 468,389 L 460,398 Z"/>
+<g id="s-crux" data-s="crux"><circle cx="460" cy="392" r="15" fill="none" stroke="var(--sv-accent,#c26a00)" stroke-width="1.4" stroke-dasharray="2 2"/></g>
+</g>
+<g id="layer-av-valves">
+<g id="s-tv" data-s="tv"><line class="ch" x1="432" y1="355" x2="452.5" y2="330"/><line class="ch" x1="410" y1="353" x2="454.3" y2="318"/><line class="ch" x1="392" y1="352" x2="456" y2="306"/><line class="ch" x1="330" y1="376" x2="318" y2="316"/><line class="ch" x1="350" y1="364" x2="320" y2="314"/><path class="vl" d="M 448,360 Q 410,350 372,352"/><path class="vl" d="M 284,400 Q 330,372 372,352"/></g>
+<g id="s-mv" data-s="mv"><line class="ch" x1="508" y1="371" x2="600" y2="298"/><line class="ch" x1="528" y1="366" x2="601" y2="300"/><line class="ch" x1="568" y1="368" x2="603" y2="302"/><line class="ch" x1="592" y1="376" x2="606" y2="304"/><path class="vl" d="M 468,386 Q 505,370 544,364"/><path class="vl" d="M 614,388 Q 582,370 546,365"/></g>
+</g>
+<g id="layer-annotations">
+<g id="s-offset" data-s="offset">
+<line class="and" x1="440" y1="360" x2="506" y2="360"/>
+<line class="and" x1="462" y1="386" x2="506" y2="386"/>
+<line class="an" x1="499" y1="364" x2="499" y2="382"/>
+<path class="anf" d="M 499,361 L 495,368 L 503,368 Z"/>
+<path class="anf" d="M 499,385 L 495,378 L 503,378 Z"/>
+</g>
+</g>
+</g>
+<g id="layer-labels">
+<g id="lbl-trab" class="lbl" data-s="trab">
+<path class="ld" d="M 380,265 L 398,265 L 516.0,264.8"/>
+<circle class="ad" cx="516.0" cy="264.8" r="3.6"/>
+<circle class="nb" cx="366" cy="265" r="12.5"/>
+<text class="nt" x="366" y="269.5" text-anchor="middle">10</text>
+<text class="l1" x="342" y="260" text-anchor="end">Трабекулы ПЖ</text>
+<text class="l2" x="342" y="280" text-anchor="end">(RV trabeculations)</text>
+</g>
+<g id="lbl-mb" class="lbl" data-s="mb">
+<path class="ld" d="M 380,337 L 398,337 L 588.0,315.2"/>
+<circle class="ad" cx="588.0" cy="315.2" r="3.6"/>
+<circle class="nb" cx="366" cy="337" r="12.5"/>
+<text class="nt" x="366" y="341.5" text-anchor="middle">11</text>
+<text class="l1" x="342" y="332" text-anchor="end">Модераторный пучок</text>
+<text class="l2" x="342" y="352" text-anchor="end">(moderator band)</text>
+<text class="l3" x="342" y="369" text-anchor="end">от МЖП к передней сосочковой мышце</text>
+</g>
+<g id="lbl-rv" class="lbl" data-s="rv">
+<path class="ld" d="M 380,409 L 398,409 L 566.4,344.0"/>
+<circle class="ad" cx="566.4" cy="344.0" r="3.6"/>
+<circle class="nb" cx="366" cy="409" r="12.5"/>
+<text class="nt" x="366" y="413.5" text-anchor="middle">7</text>
+<text class="l1" x="342" y="404" text-anchor="end">Правый желудочек</text>
+<text class="l2" x="342" y="424" text-anchor="end">(RV)</text>
+<text class="l3" x="342" y="441" text-anchor="end">грубые трабекулы, укороченная верхушка</text>
+</g>
+<g id="lbl-tv" class="lbl" data-s="tv">
+<path class="ld" d="M 380,481 L 398,481 L 542.4,428.0"/>
+<circle class="ad" cx="542.4" cy="428.0" r="3.6"/>
+<circle class="nb" cx="366" cy="481" r="12.5"/>
+<text class="nt" x="366" y="485.5" text-anchor="middle">12</text>
+<text class="l1" x="342" y="476" text-anchor="end">Трёхстворчатый клапан</text>
+<text class="l2" x="342" y="496" text-anchor="end">(TV)</text>
+<text class="l3" x="342" y="513" text-anchor="end">септальная и передняя створки</text>
+</g>
+<g id="lbl-avs" class="lbl" data-s="avs">
+<path class="ld" d="M 380,553 L 398,553 L 666.0,447.2"/>
+<circle class="ad" cx="666.0" cy="447.2" r="3.6"/>
+<circle class="nb" cx="366" cy="553" r="12.5"/>
+<text class="nt" x="366" y="557.5" text-anchor="middle">15</text>
+<text class="l1" x="342" y="548" text-anchor="end">Атриовентрикулярная перегородка</text>
+<text class="l2" x="342" y="568" text-anchor="end">(AV septum)</text>
+<text class="l3" x="342" y="585" text-anchor="end">разделяет ПП и ЛЖ</text>
+</g>
+<g id="lbl-cfb" class="lbl" data-s="cfb">
+<path class="ld" d="M 380,625 L 398,625 L 672.0,462.8"/>
+<circle class="ad" cx="672.0" cy="462.8" r="3.6"/>
+<circle class="nb" cx="366" cy="625" r="12.5"/>
+<text class="nt" x="366" y="629.5" text-anchor="middle">16</text>
+<text class="l1" x="342" y="620" text-anchor="end">Центральное фиброзное тело</text>
+<text class="l2" x="342" y="640" text-anchor="end">(central fibrous body)</text>
+</g>
+<g id="lbl-fo" class="lbl" data-s="fo">
+<path class="ld" d="M 380,697 L 398,697 L 663.6,588.8"/>
+<circle class="ad" cx="663.6" cy="588.8" r="3.6"/>
+<circle class="nb" cx="366" cy="697" r="12.5"/>
+<text class="nt" x="366" y="701.5" text-anchor="middle">4</text>
+<text class="l1" x="342" y="692" text-anchor="end">Овальное окно</text>
+<text class="l2" x="342" y="712" text-anchor="end">(foramen ovale)</text>
+<text class="l3" x="342" y="729" text-anchor="end">отверстие в перегородке, не дефект</text>
+</g>
+<g id="lbl-ra" class="lbl" data-s="ra">
+<path class="ld" d="M 380,769 L 398,769 L 475.2,675.2"/>
+<circle class="ad" cx="475.2" cy="675.2" r="3.6"/>
+<circle class="nb" cx="366" cy="769" r="12.5"/>
+<text class="nt" x="366" y="773.5" text-anchor="middle">1</text>
+<text class="l1" x="342" y="764" text-anchor="end">Правое предсердие</text>
+<text class="l2" x="342" y="784" text-anchor="end">(RA)</text>
+</g>
+<g id="lbl-ias" class="lbl" data-s="ias">
+<path class="ld" d="M 380,841 L 398,841 L 660.0,663.2"/>
+<circle class="ad" cx="660.0" cy="663.2" r="3.6"/>
+<circle class="nb" cx="366" cy="841" r="12.5"/>
+<text class="nt" x="366" y="845.5" text-anchor="middle">3</text>
+<text class="l1" x="342" y="836" text-anchor="end">Межпредсердная перегородка</text>
+<text class="l2" x="342" y="856" text-anchor="end">(IAS)</text>
+</g>
+<g id="lbl-lv" class="lbl" data-s="lv">
+<path class="ld" d="M 940,284 L 922,284 L 804.0,284.0"/>
+<circle class="ad" cx="804.0" cy="284.0" r="3.6"/>
+<circle class="nb" cx="954" cy="284" r="12.5"/>
+<text class="nt" x="954" y="288.5" text-anchor="middle">8</text>
+<text class="l1" x="978" y="279" text-anchor="start">Левый желудочек</text>
+<text class="l2" x="978" y="299" text-anchor="start">(LV)</text>
+<text class="l3" x="978" y="316" text-anchor="start">формирует верхушку, гладкая МЖП</text>
+</g>
+<g id="lbl-ivs" class="lbl" data-s="ivs">
+<path class="ld" d="M 940,356 L 922,356 L 700.8,296.0"/>
+<circle class="ad" cx="700.8" cy="296.0" r="3.6"/>
+<circle class="nb" cx="954" cy="356" r="12.5"/>
+<text class="nt" x="954" y="360.5" text-anchor="middle">9</text>
+<text class="l1" x="978" y="351" text-anchor="start">Межжелудочковая перегородка</text>
+<text class="l2" x="978" y="371" text-anchor="start">(IVS)</text>
+<text class="l3" x="978" y="388" text-anchor="start">от верхушки до AV-соединения</text>
+</g>
+<g id="lbl-mv" class="lbl" data-s="mv">
+<path class="ld" d="M 940,438 L 922,438 L 792.0,437.6"/>
+<circle class="ad" cx="792.0" cy="437.6" r="3.6"/>
+<circle class="nb" cx="954" cy="438" r="12.5"/>
+<text class="nt" x="954" y="442.5" text-anchor="middle">13</text>
+<text class="l1" x="978" y="433" text-anchor="start">Митральный клапан</text>
+<text class="l2" x="978" y="453" text-anchor="start">(MV)</text>
+<text class="l3" x="978" y="470" text-anchor="start">передняя и задняя створки</text>
+</g>
+<g id="lbl-offset" class="lbl" data-s="offset">
+<path class="ld" d="M 940,510 L 922,510 L 716.4,443.6"/>
+<circle class="ad" cx="716.4" cy="443.6" r="3.6"/>
+<circle class="nb" cx="954" cy="510" r="12.5"/>
+<text class="nt" x="954" y="514.5" text-anchor="middle">14</text>
+<text class="l1" x="978" y="505" text-anchor="start">Смещение мест прикрепления</text>
+<text class="l2" x="978" y="525" text-anchor="start">(AV valve offset)</text>
+<text class="l3" x="978" y="542" text-anchor="start">ТК ближе к верхушке, чем МК</text>
+</g>
+<g id="lbl-crux" class="lbl" data-s="crux">
+<path class="ld" d="M 940,582 L 922,582 L 674.4,476.0"/>
+<circle class="ad" cx="674.4" cy="476.0" r="3.6"/>
+<circle class="nb" cx="954" cy="582" r="12.5"/>
+<text class="nt" x="954" y="586.5" text-anchor="middle">17</text>
+<text class="l1" x="978" y="577" text-anchor="start">Крест сердца</text>
+<text class="l2" x="978" y="597" text-anchor="start">(crux cordis)</text>
+<text class="l3" x="978" y="614" text-anchor="start">соединение перегородок и AV-колец</text>
+</g>
+<g id="lbl-la" class="lbl" data-s="la">
+<path class="ld" d="M 940,654 L 922,654 L 799.2,560.0"/>
+<circle class="ad" cx="799.2" cy="560.0" r="3.6"/>
+<circle class="nb" cx="954" cy="654" r="12.5"/>
+<text class="nt" x="954" y="658.5" text-anchor="middle">2</text>
+<text class="l1" x="978" y="649" text-anchor="start">Левое предсердие</text>
+<text class="l2" x="978" y="669" text-anchor="start">(LA)</text>
+</g>
+<g id="lbl-flap" class="lbl" data-s="flap">
+<path class="ld" d="M 940,726 L 922,726 L 704.4,603.2"/>
+<circle class="ad" cx="704.4" cy="603.2" r="3.6"/>
+<circle class="nb" cx="954" cy="726" r="12.5"/>
+<text class="nt" x="954" y="730.5" text-anchor="middle">5</text>
+<text class="l1" x="978" y="721" text-anchor="start">Клапан овального окна</text>
+<text class="l2" x="978" y="741" text-anchor="start">(septum primum)</text>
+<text class="l3" x="978" y="758" text-anchor="start">открывается в ЛП</text>
+</g>
+<g id="lbl-pv" class="lbl" data-s="pv">
+<path class="ld" d="M 940,798 L 922,798 L 696.0,754.4"/>
+<circle class="ad" cx="696.0" cy="754.4" r="3.6"/>
+<path class="ld" d="M 940,798 L 922,798 L 900.0,766.4"/>
+<circle class="ad" cx="900.0" cy="766.4" r="3.6"/>
+<circle class="nb" cx="954" cy="798" r="12.5"/>
+<text class="nt" x="954" y="802.5" text-anchor="middle">6</text>
+<text class="l1" x="978" y="793" text-anchor="start">Лёгочные вены → ЛП</text>
+<text class="l2" x="978" y="813" text-anchor="start">(pulmonary veins)</text>
+</g>
+<g id="lbl-dao" class="lbl" data-s="dao">
+<path class="ld" d="M 940,870 L 922,870 L 811.2,816.8"/>
+<circle class="ad" cx="811.2" cy="816.8" r="3.6"/>
+<circle class="nb nb0" cx="954" cy="870" r="12.5"/>
+<text class="nt" x="954" y="874.5" text-anchor="middle">•</text>
+<text class="l1" x="978" y="865" text-anchor="start">Нисходящая аорта</text>
+<text class="l2" x="978" y="885" text-anchor="start">(DAo) — ориентир</text>
+</g>
+</g>
+<g id="layer-orientation">
+<text class="om" x="24" y="986">Ориентация: верхушка — вверху (кпереди), предсердия — внизу (кзади, к позвоночнику); правые отделы — слева, левые — справа.</text>
+<text class="om" x="24" y="1012">Анатомическая схема, не УЗ-изображение. Клапаны закрыты; пропорции, толщины и величина смещения условны. © FetalCardio, оригинальный рисунок.</text>
+</g>
+</svg>

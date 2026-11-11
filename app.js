@@ -1,5 +1,6 @@
 (() => {
   const { META, CATS, VIEWS, ALGOS, CHD, QUIZ, REFS } = FC;
+  const ATLAS = FC.ATLAS || [];
   const check = FC.validate ? FC.validate(FC) : { errors: [] };
   if (check.errors.length) console.error("FetalCardio: ошибки контента", check.errors);
   const $app = document.getElementById("app");
@@ -91,7 +92,7 @@
 
   /* ---------- страницы ---------- */
   function home() {
-    const total = VIEWS.length + ALGOS.length + CHD.length;
+    const total = VIEWS.length + ALGOS.length + CHD.length + ATLAS.length;
     const done = Object.keys(studied()).length;
     const best = store.get("quizBest", null);
     const feat = (href, icon, cls, title, sub) => `<a class="card feature" href="${href}"><span class="tile ${cls}">${icon}</span>
@@ -113,6 +114,8 @@
       ${feat("#/chd", I.heart, "red", "Атлас пороков", `${CHD.length} ключевых ВПС: критерии, срезы, дифдиагноз, ловушки.`)}
       ${feat("#/quiz", I.quiz, "red", "Проверка знаний", `${QUIZ.length} вопросов с разбором ответов.`)}
     </div>
+    ${ATLAS.length ? `<a class="card feature" href="#/atlas"><span class="tile">${I.views}</span>
+      <span><h3>Анатомический атлас</h3><span class="small muted">Подробные анатомические схемы срезов с подписями и легендой. Черновики — на экспертной проверке.</span></span></a>` : ""}
     <div class="card">
       <div class="row between"><h3 style="margin:0">Мой прогресс</h3><span class="small muted">${done} из ${total}</span></div>
       <p class="small muted" style="margin:.4em 0 .8em">Прогресс хранится только в этом браузере. Сохраните его в файл, чтобы перенести на другое устройство.</p>
@@ -138,6 +141,7 @@
       <h1>${esc(v.name)}</h1>
       <div>${statusBadge(v.status)}</div>
       <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
+      ${ATLAS.filter(t => t.view === id).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · черновик`, "t_" + t.id)).join("")}
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -148,6 +152,60 @@
       <div class="pager">
         ${prev ? `<a class="card" href="#/view/${prev.id}"><small>← Назад</small><b>${esc(prev.abbr)}</b></a>` : ""}
         ${next ? `<a class="card next" href="#/view/${next.id}"><small>Далее →</small><b>${esc(next.abbr)}</b></a>` : ""}</div>${foot()}`;
+  }
+
+  /* ---------- анатомический атлас ---------- */
+  function atlasList() {
+    return `<h1>Анатомический атлас</h1>
+      <p class="subtitle">Подробные анатомические схемы стандартных срезов. Это рисунки строения сердца, а не УЗ-изображения. Все схемы — черновики до проверки врачом-экспертом.</p>
+      ${ATLAS.map(t => item(`#/atlas/${t.id}`, esc(t.abbr), t.title, `${t.structures.length} структур · черновик`, "t_" + t.id)).join("")}${foot()}`;
+  }
+
+  function atlasPage(id) {
+    const t = byId(ATLAS, id); if (!t) return notFound();
+    const v = byId(VIEWS, t.view);
+    const legend = t.structures.map(s => `<li><button type="button" data-hl="${esc(s.key)}" aria-pressed="false">
+      <span class="n ${s.n ? "" : "o"}">${s.n || "•"}</span>
+      <span><b>${esc(s.name)}</b> (${esc(s.abbr)})${s.note ? `<small>${esc(s.note)}</small>` : ""}</span></button></li>`).join("");
+    return `<div class="crumb"><a href="#/atlas">Атлас</a> / <a href="#/view/${v.id}">${esc(v.abbr)}</a></div>
+      <h1>${esc(t.title)}</h1>
+      <div class="row">${statusBadge(t.status)} ${t.status !== "approved" ? '<span class="badge review">DRAFT · REQUIRE EXPERT REVIEW</span>' : ""}</div>
+      <div class="note info small">${esc(t.orientation)}</div>
+      <figure class="atlas-fig" id="atlasFig" data-atlas="${esc(t.id)}">
+        <div class="atlas-bar"><span class="small">Нажмите на структуру в легенде — она подсветится на схеме.</span>
+          <span class="row"><button class="btn ghost" type="button" data-labels="1" aria-pressed="false">Скрыть подписи</button>
+          <a class="btn ghost" href="${esc(t.svg)}" target="_blank" rel="noopener">SVG ↗</a></span></div>
+        <div class="atlas-scroll" id="atlasSvg"><div class="atlas-loading">Загрузка схемы…</div></div>
+        <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик.</figcaption>
+      </figure>
+      <h2>Структуры на схеме</h2><ol class="legend">${legend}</ol>
+      <h2>Нормальные анатомические признаки ${esc(t.abbr)}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2>Требует экспертной проверки</h2><ul class="err">${t.review.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      ${refsBlock(t.references)}
+      <div class="row" style="margin-top:18px">${doneBtn("t_" + id)}</div>
+      <div class="pager"><a class="card" href="#/view/${v.id}"><small>← Срез</small><b>${esc(v.name)}</b></a></div>${foot()}`;
+  }
+
+  /* SVG встраивается в страницу (а не через <img>), чтобы работали темы и подсветка структур. */
+  const svgCache = {};
+  async function mountAtlas() {
+    const fig = document.getElementById("atlasFig"); if (!fig) return;
+    const t = byId(ATLAS, fig.dataset.atlas), box = document.getElementById("atlasSvg");
+    try {
+      if (!svgCache[t.svg]) {
+        const r = await fetch(t.svg);
+        if (!r.ok) throw new Error(r.status);
+        svgCache[t.svg] = await r.text();
+      }
+      const doc = new DOMParser().parseFromString(svgCache[t.svg], "image/svg+xml");
+      const svg = doc.documentElement;
+      if (svg.nodeName !== "svg" || doc.querySelector("parsererror")) throw new Error("parse");
+      svg.querySelectorAll("script, foreignObject").forEach(n => n.remove());
+      if (document.getElementById("atlasFig") !== fig) return; // страницу успели сменить
+      box.replaceChildren(document.importNode(svg, true));
+    } catch {
+      box.innerHTML = `<img src="${esc(t.svg)}" alt="${esc(t.title)}" style="display:block;width:100%;min-width:900px;height:auto">`;
+    }
   }
 
   function algosList() {
@@ -259,11 +317,12 @@
       sn.ranges.forEach(([s, e]) => { out += esc(sn.text.slice(pos, s)) + "<mark>" + esc(sn.text.slice(s, e)) + "</mark>"; pos = e; });
       return (sn.pre ? "…" : "") + out + esc(sn.text.slice(pos)) + (sn.post ? "…" : "");
     };
-    const kind = { view: ["срез", ""], algo: ["находка", ""], chd: ["порок", "red"] };
+    const kind = { view: ["срез", ""], algo: ["находка", ""], chd: ["порок", "red"], atlas: ["атлас", ""] };
     const rows = res.map(r => {
-      const tile = r.type === "chd" ? esc(byId(CHD, r.id).abbr.slice(0, 5)) : r.type === "view" ? esc(byId(VIEWS, r.id).abbr) : I.algos;
+      const tile = r.type === "chd" ? esc(byId(CHD, r.id).abbr.slice(0, 5)) : r.type === "view" ? esc(byId(VIEWS, r.id).abbr)
+        : r.type === "atlas" ? esc(byId(ATLAS, r.id).abbr) : I.algos;
       const sub = r.snippet ? `<span class="badge view">${esc(r.snippet.label)}</span> ${hl(r.snippet)}` : kind[r.type][0];
-      return item(r.href, tile, r.title, sub, (r.type === "view" ? "v_" : r.type === "algo" ? "a_" : "c_") + r.id, kind[r.type][1]);
+      return item(r.href, tile, r.title, sub, ({ view: "v_", algo: "a_", chd: "c_", atlas: "t_" })[r.type] + r.id, kind[r.type][1]);
     });
     return `<h1>Поиск</h1><p class="subtitle">«${esc(q)}» — найдено: ${res.length}</p>${rows.length ? rows.join("") : '<p class="muted">Ничего не найдено. Попробуйте сокращение (ТФ, TOF, 3VT), английское название или признак («верхом», «коронарный синус»).</p>'}`;
   }
@@ -283,6 +342,7 @@
       case "algos": html = algosList(); break;
       case "algo": html = algoPage(id); nav = "algos"; break;
       case "chd": html = id ? chdPage(id) : chdList(); break;
+      case "atlas": html = id ? atlasPage(id) : atlasList(); nav = "views"; break;
       case "quiz": html = quizPage(); break;
       case "search": html = searchPage(decodeURIComponent((qs || "").replace(/^q=/, ""))); nav = ""; break;
       default: html = notFound();
@@ -290,12 +350,18 @@
     $app.innerHTML = html;
     $app.style.animation = "none"; void $app.offsetWidth; $app.style.animation = "";
     document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("active", a.dataset.nav === nav));
+    if (p === "atlas" && id) mountAtlas();
   }
 
   $app.addEventListener("click", e => {
     const t = e.target.closest("button, a[data-jump]");
     if (!t) return;
     if (t.dataset.done) { toggleDone(t.dataset.done); render(); }
+    else if (t.dataset.hl) highlight(t.dataset.hl);
+    else if (t.dataset.labels) {
+      const fig = document.getElementById("atlasFig"), off = fig.classList.toggle("nolabels");
+      t.textContent = off ? "Показать подписи" : "Скрыть подписи"; t.setAttribute("aria-pressed", off);
+    }
     else if (t.dataset.filter) { chdFilter = t.dataset.filter; render(); }
     else if (t.dataset.jump) {
       const el = document.getElementById("s-" + t.dataset.jump);
@@ -312,6 +378,29 @@
     else if (t.dataset.import) document.getElementById("importFile").click();
     else if (t.dataset.next) { quiz.i++; quiz.answered = false; quiz.choice = null; render(); window.scrollTo(0, 0); }
   });
+
+  function highlight(key) {
+    const svg = document.querySelector("#atlasSvg svg");
+    const btn = document.querySelector(`[data-hl="${key}"]`);
+    const on = btn.getAttribute("aria-pressed") !== "true";
+    document.querySelectorAll("[data-hl]").forEach(b => b.setAttribute("aria-pressed", "false"));
+    if (svg) {
+      svg.querySelectorAll(".hl").forEach(n => n.classList.remove("hl"));
+      svg.classList.toggle("focus", on);
+      if (on) svg.querySelectorAll(`[data-s="${key}"]`).forEach(n => n.classList.add("hl"));
+    }
+    if (on) {
+      btn.setAttribute("aria-pressed", "true");
+      // на узком экране схема шире рамки — прокручиваем к подсвеченной структуре
+      const box = document.getElementById("atlasSvg"), el = svg && svg.querySelector(`#heart [data-s="${key}"]`);
+      if (box && el && box.scrollWidth > box.clientWidth) {
+        const b = box.getBoundingClientRect(), e = el.getBoundingClientRect();
+        box.scrollTo({ left: box.scrollLeft + (e.left + e.width / 2) - (b.left + b.width / 2), behavior: "smooth" });
+      }
+      const fig = document.getElementById("atlasFig"), r = fig.getBoundingClientRect();
+      if (r.top < 60 || r.top > innerHeight * .5) window.scrollTo({ top: r.top + scrollY - 80, behavior: "smooth" });
+    }
+  }
 
   function exportProgress() {
     const data = FC.progress.build({ studied: studied(), quizBest: store.get("quizBest", null) });

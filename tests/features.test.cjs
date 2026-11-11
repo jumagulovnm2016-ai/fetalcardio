@@ -28,6 +28,11 @@ test("поиск: по ddx, prognosis, assoc", () => {
   assert.ok(top("22q11").includes("cat"), "assoc");
   assert.ok(top("аортолегочное окно").includes("cat"), "ddx");
 });
+test("поиск: анатомический атлас", () => {
+  assert.ok(top("модераторный пучок").includes("4cv-normal"));
+  assert.ok(top("crux cordis").includes("4cv-normal"));
+  assert.ok(top("фиброзное тело").includes("4cv-normal"));
+});
 test("поиск: словоформы", () => assert.ok(top("трисомия 21").includes("avsd")));
 test("поиск: пустой запрос и отсутствие совпадений", () => {
   assert.deepEqual(top("   "), []);
@@ -47,6 +52,10 @@ test("прогресс: экспорт → импорт без потерь", ()
   assert.deepEqual(Object.keys(r.data.studied).sort(), Object.keys(state.studied).sort());
   assert.deepEqual({ ...r.data.quizBest }, state.quizBest);
   assert.deepEqual([...r.skipped], []);
+});
+test("прогресс: отметка атласа сохраняется", () => {
+  const r = FC.progress.parse(JSON.stringify(FC.progress.build({ studied: { "t_4cv-normal": 1 } })), FC);
+  assert.deepEqual(Object.keys(r.data.studied), ["t_4cv-normal"]);
 });
 test("прогресс: отклоняет чужие и битые файлы", () => {
   assert.equal(FC.progress.parse("не json", FC).ok, false);
@@ -69,6 +78,7 @@ test("index.html подключает все модули, sw.js кэшируе�
     assert.ok(sw.includes(`"${f}"`), `sw.js: ${f}`);
     assert.ok(fs.existsSync(path.join(ROOT, f)), `файл ${f}`);
   }
+  for (const t of FC.ATLAS) assert.ok(sw.includes(`"${t.svg}"`), `sw.js: ${t.svg}`);
 });
 test("sw.js удаляет только свои кэши и кэширует только успешные ответы", () => {
   const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");

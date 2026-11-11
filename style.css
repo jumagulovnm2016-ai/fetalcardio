@@ -10,6 +10,8 @@
   --shadow-lg:0 2px 6px rgba(16,24,40,.06), 0 18px 40px rgba(16,24,40,.10);
   --sv-chamber:#f8e8ea; --sv-wall:#d3909a; --sv-ao:#d6334a; --sv-pa:#3d5fd6; --sv-vein:#8250c4;
   --sv-bone:#cdd5e0; --sv-text:#101828; --sv-fluid:#26303d; --sv-organ:#f2e3d3; --sv-air:#e8eefb;
+  --sv-bg:transparent; --sv-halo:#ffffff; --sv-wall-edge:#a8606d; --sv-valve:#7a4b12; --sv-fibrous:#f3efe6;
+  --sv-accent:#c26a00; --sv-accent-soft:rgba(224,138,0,.28); --sv-draft:#c0392b;
 }
 :root[data-theme="dark"]{
   color-scheme: dark;
@@ -22,6 +24,8 @@
   --shadow-lg:0 2px 6px rgba(0,0,0,.35), 0 18px 40px rgba(0,0,0,.4);
   --sv-chamber:#3a2229; --sv-wall:#b56c79; --sv-ao:#ff5a6e; --sv-pa:#6e8cff; --sv-vein:#b58bf0;
   --sv-bone:#3c4a60; --sv-text:#e8edf6; --sv-fluid:#03060b; --sv-organ:#3b3027; --sv-air:#1b2740;
+  --sv-bg:transparent; --sv-halo:#121a29; --sv-wall-edge:#d4919c; --sv-valve:#e6aa62; --sv-fibrous:#4a4238;
+  --sv-accent:#ffb84d; --sv-accent-soft:rgba(255,184,77,.25); --sv-draft:#ff8a80;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -35,6 +39,8 @@
     --shadow-lg:0 2px 6px rgba(0,0,0,.35), 0 18px 40px rgba(0,0,0,.4);
     --sv-chamber:#3a2229; --sv-wall:#b56c79; --sv-ao:#ff5a6e; --sv-pa:#6e8cff; --sv-vein:#b58bf0;
     --sv-bone:#3c4a60; --sv-text:#e8edf6; --sv-fluid:#03060b; --sv-organ:#3b3027; --sv-air:#1b2740;
+  --sv-bg:transparent; --sv-halo:#121a29; --sv-wall-edge:#d4919c; --sv-valve:#e6aa62; --sv-fibrous:#4a4238;
+  --sv-accent:#ffb84d; --sv-accent-soft:rgba(255,184,77,.25); --sv-draft:#ff8a80;
   }
 }
 
@@ -227,3 +233,31 @@ ol.refs li{margin:.5em 0;line-height:1.45}
 ol.refs a{word-break:break-all}
 a.card.list-item{display:flex}
 mark{background:color-mix(in srgb, var(--warn) 28%, transparent);color:inherit;padding:0 2px;border-radius:4px}
+
+/* ---------- Анатомический атлас ---------- */
+.badge.review{background:var(--bad-soft);color:var(--bad);letter-spacing:.02em}
+.atlas-fig{margin:12px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.atlas-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--line)}
+.atlas-bar .small{color:var(--muted)}
+.atlas-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px}
+.atlas-scroll svg{display:block;width:100%;height:auto;min-width:900px}
+@media (min-width:980px){.atlas-scroll svg{min-width:0}}
+.atlas-scroll .atlas-loading{padding:40px 12px;text-align:center;color:var(--muted)}
+.atlas-fig figcaption{font-size:.78rem;color:var(--muted);padding:6px 12px 10px;border-top:1px solid var(--line)}
+.atlas-fig.nolabels #layer-labels{display:none}
+.atlas-fig svg [data-s]{transition:opacity .2s, filter .2s}
+.atlas-fig svg.focus #heart [data-s]:not(.hl){filter:grayscale(1) opacity(.55)}
+.atlas-fig svg.focus #heart [data-s].cav:not(.hl){filter:grayscale(1)}
+.atlas-fig svg.focus #layer-labels [data-s]:not(.hl){opacity:.22}
+.atlas-fig svg [data-s].hl{filter:drop-shadow(0 0 3px var(--sv-accent)) drop-shadow(0 0 6px var(--sv-accent))}
+.legend{list-style:none;padding:0;margin:.4em 0 1em;display:grid;gap:6px}
+@media (min-width:640px){.legend{grid-template-columns:1fr 1fr}}
+.legend button{all:unset;box-sizing:border-box;display:flex;gap:10px;align-items:flex-start;width:100%;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 11px;font-size:.9rem;line-height:1.4}
+.legend button:hover{border-color:var(--line-strong)}
+.legend button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend button[aria-pressed="true"]{border-color:var(--sv-accent);background:color-mix(in srgb, var(--sv-accent) 10%, var(--surface))}
+.legend .n{flex:none;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--text);color:var(--surface);font-size:.75rem;font-weight:700}
+.legend .n.o{opacity:.45}
+.legend small{display:block;color:var(--muted)}
+.atlas-link{display:flex;gap:12px;align-items:center}

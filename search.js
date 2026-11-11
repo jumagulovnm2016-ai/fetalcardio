@@ -25,7 +25,8 @@ var FC = globalThis.FC = globalThis.FC || {};
     how: "Как получить", check: "Норма", errors: "Ошибки", abnormal: "Патология",
     finding: "Находка", steps: "Что проверить", ddx: "Дифдиагноз", note: "Примечание",
     def: "Суть", freq: "Частота", keys: "Критерии", views: "По срезам", assoc: "Сочетания",
-    pitfalls: "Ловушки", prognosis: "Прогноз", refer: "Тактика"
+    pitfalls: "Ловушки", prognosis: "Прогноз", refer: "Тактика",
+    structures: "Структуры", normal: "Признаки нормы", review: "На проверке"
   };
 
   function buildIndex(D) {
@@ -46,6 +47,8 @@ var FC = globalThis.FC = globalThis.FC || {};
     (D.CHD || []).forEach(c => add("chd", c.id, `#/chd/${c.id}`, c.name, [c.abbr, c.name, c.en, ...(c.aliases || [])],
       { def: c.def, freq: c.freq, keys: c.keys, views: c.views, ddx: c.ddx.map(d => `${d.name} — ${d.key}`),
         assoc: c.assoc, pitfalls: c.pitfalls, prognosis: c.prognosis, refer: c.refer }));
+    (D.ATLAS || []).forEach(t => add("atlas", t.id, `#/atlas/${t.id}`, t.title, [t.abbr, t.title, ...(t.aliases || [])],
+      { structures: t.structures.map(s => `${s.name} (${s.abbr})${s.note ? " — " + s.note : ""}`), normal: t.normal, review: t.review }));
     return docs;
   }
 
@@ -79,7 +82,7 @@ var FC = globalThis.FC = globalThis.FC || {};
       const part = inName ? null : d.parts.find(p => toks.some(t => p.norm.includes(t)));
       res.push({ type: d.type, id: d.id, href: d.href, title: d.title, score, snippet: part ? snippet(part, toks) : null });
     });
-    const order = { chd: 0, view: 1, algo: 2 };
+    const order = { chd: 0, view: 1, algo: 2, atlas: 3 };
     return res.sort((a, b) => b.score - a.score || order[a.type] - order[b.type]);
   }
 
