@@ -1,14 +1,77 @@
-const CACHE = "fetalcardio-v2";
-const FILES = ["./", "index.html", "style.css", "data.js", "schemes.js", "app.js", "manifest.json", "icon.svg"];
-self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
-self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))));
-  self.clients.claim();
+/* FetalCardio — Service Worker.
+   Важно: на домене *.github.io кэши общие для всех приложений автора,
+   поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
+const PREFIX = "fetalcardio-";
+const VERSION = "v3";
+const APP_CACHE = `${PREFIX}app-${VERSION}`;
+const FONT_CACHE = `${PREFIX}fonts-v1`;
+const KEEP = [APP_CACHE, FONT_CACHE];
+const FILES = [
+  "./", "index.html", "style.css", "app.js", "schemes.js", "search.js", "validate.js", "progress.js",
+  "data/meta.js", "data/references.js", "data/views.js", "data/algorithms.js", "data/pathologies.js", "data/quiz.js",
+  "manifest.json", "icon.svg"
+];
+const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
+
+/* Кэшируем только успешные ответы (2xx). Ошибки 404/500, редиректы и непрозрачные ответы не кэшируются. */
+const cacheable = r => r && r.ok && (r.type === "basic" || r.type === "cors");
+
+self.addEventListener("install", e => {
+  e.waitUntil((async () => {
+    const cache = await caches.open(APP_CACHE);
+    await Promise.all(FILES.map(async f => {
+      const r = await fetch(f, { cache: "reload" });
+      if (!cacheable(r)) throw new Error(`Не удалось закэшировать ${f}: ${r.status}`);
+      await cache.put(f, r);
+    }));
+    await self.skipWaiting();
+  })());
 });
-// Сеть в приоритете (свежий контент), кэш — офлайн.
+
+self.addEventListener("activate", e => {
+  e.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter(k => k.startsWith(PREFIX) && !KEEP.includes(k)).map(k => caches.delete(k)));
+    await self.clients.claim();
+  })());
+});
+
 self.addEventListener("fetch", e => {
-  if (e.request.method !== "GET") return;
-  e.respondWith(fetch(e.request).then(r => {
-    const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return r;
-  }).catch(() => caches.match(e.request, { ignoreSearch: true }).then(r => r || caches.match("index.html"))));
+  const req = e.request;
+  if (req.method !== "GET") return;
+  const url = new URL(req.url);
+  if (!/^https?:$/.test(url.protocol)) return;
+
+  // Шрифты: сначала кэш, затем сеть.
+  if (FONT_HOSTS.includes(url.hostname)) {
+    e.respondWith((async () => {
+      const cache = await caches.open(FONT_CACHE);
+      const hit = await cache.match(req);
+      if (hit) return hit;
+      try {
+        const r = await fetch(req);
+        if (cacheable(r)) cache.put(req, r.clone());
+        return r;
+      } catch { return new Response("", { status: 504 }); }
+    })());
+    return;
+  }
+
+  // Чужие домены не обрабатываем.
+  if (url.origin !== self.location.origin) return;
+
+  // Файлы приложения: сначала сеть (свежий контент), при отсутствии сети — кэш.
+  e.respondWith((async () => {
+    const cache = await caches.open(APP_CACHE);
+    try {
+      const r = await fetch(req);
+      if (cacheable(r)) cache.put(req, r.clone());
+      return r;
+    } catch {
+      const hit = await cache.match(req, { ignoreSearch: true });
+      if (hit) return hit;
+      if (req.mode === "navigate") return (await cache.match("index.html")) || (await cache.match("./"));
+      return new Response("Нет соединения", { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } });
+    }
+  })());
 });
