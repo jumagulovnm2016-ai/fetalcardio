@@ -1,5 +1,5 @@
 /* FetalCardio — библиотека эхограмм и рисунков из открытых источников.
-   Подпись (caption) — оригинальная подпись автора на английском, без перевода.
+   caption — оригинальная подпись автора (без изменений); captionRu — перевод на русский (черновик, проверяет эксперт).
    source — откуда взято изображение и на каких условиях (лицензия). Это атрибуция картинки,
    а НЕ подтверждение медицинских утверждений карточки: такие источники — в data/references.js.
    cards — к каким карточкам привязан снимок (chd:<id>, view:<id>). Привязка — черновик до экспертной проверки.
@@ -12,6 +12,7 @@ FC.IMAGES = [
   "file": "img/pmc13723304-f1.webp",
   "label": "Echocardiography 2026, рис. 1",
   "caption": "Position and Refine before STIC acquisition. (A) Initial assessment of fetal position and cardiac orientation using the OB General preset. (B) After switching to the Fetal Heart preset, acoustic shadowing and multiple unequal rib arcs may suggest an unfavorable or oblique insonation plane. (C) After transducer repositioning and 2D optimization, the heart is centered in the four‐chamber view and the ROI encompasses the fetal thorax and heart, ready for STIC acquisition. The rib‐arc appearance is a practical teaching cue, not an independently validated diagnostic or adequacy criterion. ROI, region of interest; STIC, spatiotemporal image correlation.",
+  "captionRu": "Позиционирование и оптимизация перед STIC-сбором. (A) Первичная оценка положения плода и ориентации сердца с пресетом OB General. (B) После переключения на пресет Fetal Heart акустическая тень и несколько неодинаковых дуг рёбер могут указывать на неблагоприятную или косую плоскость инсонации. (C) После перемещения датчика и оптимизации 2D-режима сердце находится в центре четырёхкамерного среза, а ROI охватывает грудную клетку и сердце плода — можно начинать STIC-сбор. Вид дуг рёбер — практический учебный ориентир, а не самостоятельно валидированный диагностический критерий или критерий адекватности. ROI — область интереса; STIC — пространственно-временная корреляция изображения.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -33,6 +34,7 @@ FC.IMAGES = [
   "file": "img/pmc13723304-f2.webp",
   "label": "Echocardiography 2026, рис. 2",
   "caption": "Obtain: STIC volume quality‐control checkpoint. The acquired volume is reviewed in STICLOOP for inclusion of required anatomy and targets, absence of obscuring artifacts, preserved spatial continuity during motion review, and coherence of adjacent planes. The volume is classified as adequate when all criteria are met, usable but suboptimal when a localized imperfection remains but required anatomy is assessable, or inadequate when required anatomy or targets are obscured, distorted or uncertain. Adequate volumes proceed to Build; suboptimal volumes require documentation of the limitation and local refinement; inadequate volumes require reassessment of Position/Refine and reacquisition. These proposed operational teaching categories require prospective validation. Rib‐arc continuity, when used to assess coherence, is a teaching aid and has not been independently validated as an adequacy criterion.",
+  "captionRu": "Получение: контрольная точка качества STIC-объёма. Полученный объём просматривают в STICLOOP: включены ли необходимые анатомические структуры и ориентиры, нет ли маскирующих артефактов, сохранена ли пространственная непрерывность при просмотре в движении и согласованы ли соседние плоскости. Объём считают адекватным, если выполнены все критерии; пригодным, но неоптимальным — если остаётся локальный дефект, но необходимая анатомия оценима; неадекватным — если необходимая анатомия или ориентиры скрыты, искажены или сомнительны. Адекватные объёмы переходят к этапу «Построение»; для неоптимальных нужно задокументировать ограничение и локально уточнить; при неадекватных — заново оценить позиционирование/оптимизацию и повторить сбор. Эти предложенные учебные категории требуют проспективной валидации. Непрерывность дуг рёбер, если её используют для оценки согласованности, — учебное пособие и не валидирована как критерий адекватности.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -54,6 +56,7 @@ FC.IMAGES = [
   "file": "img/pmc13723304-f3.webp",
   "label": "Echocardiography 2026, рис. 3",
   "caption": "Build: seven‐landmark sequence and decision logic. The anatomical schematics show the Anatomic Box® marking sequence: (1) cross‐section of the aorta at the stomach level; (2) cross‐section of the aorta at the four‐chamber level; (3) crux cordis; (4) right atrial wall; (5) pulmonary valve; (6) cross‐section of the superior vena cava; and (7) transverse aortic arch. Green crosses indicate the marking sites. At the right atrial wall, the green guide indicates alignment with the interventricular septum and ends at the wall marker. For every landmark, the operator navigates, recognizes the anatomy, confirms the plane and cardiac phase, and then marks. Orientation and cardiac phase are reassessed after the crux. Uncertainty prompts local reassessment; repeated difficulty prompts review of source‐volume quality and return to Position, Refine or Obtain when needed. The schematics are not to scale. The marking sequence is specific to FINE; anatomical confirmation and iterative reassessment are transferable teaching principles.",
+  "captionRu": "Построение: последовательность из семи ориентиров и логика решений. Анатомические схемы показывают последовательность разметки Anatomic Box®: (1) поперечное сечение аорты на уровне желудка; (2) поперечное сечение аорты на уровне четырёхкамерного среза; (3) крест сердца; (4) стенка правого предсердия; (5) клапан лёгочной артерии; (6) поперечное сечение верхней полой вены; (7) поперечная дуга аорты. Зелёные кресты — места разметки. У стенки правого предсердия зелёная направляющая показывает выравнивание по межжелудочковой перегородке и заканчивается на метке стенки. Для каждого ориентира оператор перемещается, узнаёт анатомию, подтверждает плоскость и фазу сердечного цикла и только затем ставит метку. После креста сердца ориентацию и фазу цикла оценивают повторно. При неуверенности — локальная переоценка; при повторных затруднениях — проверка качества исходного объёма и возврат к позиционированию, оптимизации или получению. Схемы не в масштабе. Последовательность разметки специфична для FINE; анатомическое подтверждение и итеративная переоценка — переносимые учебные принципы.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -75,6 +78,7 @@ FC.IMAGES = [
   "file": "img/pmc13723304-f4.webp",
   "label": "Echocardiography 2026, рис. 4",
   "caption": "Evaluate: critical review of reconstructed diagnostic planes. Each view is reviewed for anatomical coverage, plane orientation, cardiac phase and relevant artifacts. Navigation with VIS‐Assistance or Maestro Planar Navigation is used, as appropriate, to interrogate the plane and surrounding anatomy. Following adjustment, the plane is reassessed and updated when appropriate. A technically inadequate plane prompts review of landmark placement and source‐volume quality, with reacquisition when needed. Any suspicious finding that persists after plane interrogation, or cannot be confidently attributed to a recognized artifact, requires verification with real‐time 2D ultrasound and color Doppler, with referral for fetal echocardiography when indicated. The grayscale PROBE workflow does not constitute a complete fetal cardiac assessment; interpretation remains the operator's responsibility.",
+  "captionRu": "Оценка: критический просмотр реконструированных диагностических плоскостей. Каждый срез проверяют на анатомический охват, ориентацию плоскости, фазу сердечного цикла и значимые артефакты. Для изучения плоскости и окружающей анатомии используют, по ситуации, навигацию VIS-Assistance или Maestro Planar Navigation. После коррекции плоскость оценивают заново и при необходимости обновляют. Технически неадекватная плоскость — повод проверить расстановку ориентиров и качество исходного объёма, при необходимости — повторить сбор. Любая подозрительная находка, сохраняющаяся после изучения плоскости или не объяснимая известным артефактом, требует проверки в реальном 2D-режиме с цветовым допплером и, по показаниям, направления на фетальную эхокардиографию. Протокол PROBE в серой шкале не является полной оценкой сердца плода; интерпретация остаётся ответственностью оператора.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -96,6 +100,7 @@ FC.IMAGES = [
   "file": "img/pmc2949622-f1.jpg",
   "label": "Cardiovasc Ultrasound 2010, рис. 1",
   "caption": "After standardization of fetal position in the STIC volume dataset to place the fetus in the exact dorsal supine position, navigating in the volume is similar to moving the transducer over the fetal chest in real time 2-dimensional scanning. The transverse planes are displayed in plane A and the saggital planes are displayed in plane B.",
+  "captionRu": "После стандартизации положения плода в STIC-объёме (плод строго на спине) навигация в объёме похожа на перемещение датчика по грудной клетке плода при 2D-сканировании в реальном времени. Поперечные плоскости показаны в плоскости A, сагиттальные — в плоскости B.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -117,6 +122,7 @@ FC.IMAGES = [
   "file": "img/pmc2949622-f2.jpg",
   "label": "Cardiovasc Ultrasound 2010, рис. 2",
   "caption": "This image illustrates the steps to standardize virtual fetal position in order to place the fetus in the \"exact dorsal supine position\". a. In plane A, rotate the spine down to six o'clock. b. In plane A, move the reference dot to the center of the aorta. c. In plane B, spin the volume around the y-axis to display long axis of the descending aorta d. In plane B, rotate the volume around the z-axis to place the descending aorta horizontally. (According to this movement, the volume is placed as if the fetus was lying down on a flat table. However, the fetus may not lie in the exact supine position but more or less on its side.) e. Move to plane A and scrolling parallel up and down through the volume until the sternum echo is depicted. f. Rotate the image in plane A around the z-axis until the sternum and the spine are in a vertical alignment. This last movement results in the exact dorsal supine fetal position.",
+  "captionRu": "Этапы стандартизации виртуального положения плода, чтобы расположить его «строго на спине». a. В плоскости A поверните позвоночник вниз, на 6 часов. b. В плоскости A переместите опорную точку в центр аорты. c. В плоскости B поверните объём вокруг оси y, чтобы вывести длинную ось нисходящей аорты. d. В плоскости B поверните объём вокруг оси z, чтобы нисходящая аорта легла горизонтально. (После этого объём расположен так, будто плод лежит на ровном столе. Однако плод может лежать не строго на спине, а более или менее на боку.) e. Перейдите в плоскость A и прокручивайте объём параллельно вверх и вниз, пока не появится эхо грудины. f. Поверните изображение в плоскости A вокруг оси z, пока грудина и позвоночник не окажутся на одной вертикали. Это последнее движение даёт точное положение плода на спине.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -138,6 +144,7 @@ FC.IMAGES = [
   "file": "img/pmc2949622-f3.jpg",
   "label": "Cardiovasc Ultrasound 2010, рис. 3",
   "caption": "After standardization of fetal position in the STIC volume dataset to place the fetus in the exact dorsal supine position, navigating systematically in the volume usually provides a reproducible image from a corresponded movement. Placing the reference dot in the center of the aorta in the four-chamber (4 CH) view in plane A simultaneously displays long axis of the ductal arch in plane B.",
+  "captionRu": "После стандартизации положения плода в STIC-объёме (строго на спине) систематическая навигация обычно даёт воспроизводимое изображение при соответствующем движении. Если поместить опорную точку в центр аорты на четырёхкамерном срезе (4 CH) в плоскости A, в плоскости B одновременно выводится длинная ось дуги артериального протока.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -159,6 +166,7 @@ FC.IMAGES = [
   "file": "img/pmc2949622-f4.jpg",
   "label": "Cardiovasc Ultrasound 2010, рис. 4",
   "caption": "After standardization of fetal position in the STIC volume dataset to place the fetus in the exact dorsal supine position, navigating systematically in the volume usually provides a reproducible image from a corresponded movement. Placing the reference dot at the aortic valve in the five-chamber view in plane A and spin the volume around y-axis 15-30 degrees simultaneously displays the LVOT in plane A and short axis of the great vessels in plane B.",
+  "captionRu": "После стандартизации положения плода в STIC-объёме (строго на спине) систематическая навигация обычно даёт воспроизводимое изображение при соответствующем движении. Если поместить опорную точку на аортальный клапан на пятикамерном срезе в плоскости A и повернуть объём вокруг оси y на 15–30°, в плоскости A выводится LVOT, а в плоскости B одновременно — короткая ось магистральных сосудов.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -180,6 +188,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f1.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 1",
   "caption": "Multiplanar slicing of a fetus with normal cardiac structure of 19 gestational weeks. Panels a, b, and c represent three orthogonal planes (A, transverse; B, sagittal; and C, coronal). The cardiac apex in the 4CV was oriented upwards and the reference point (indicated by the green arrow) was placed in the crux of the heart in Panel a (A). Move the reference point to the left ventricle in Panel a. By adjusting the position of the reference point in Panel a, near the position of the outflow tract (at the basal part of the left ventricle, near the crux of the heart), a great artery with clear course could be visualized in Panel b (B). Moving the reference point to this artery and then navigating along the course of the artery in Panel B, we could demonstrate a round (transverse) cross section of one great artery and a longitudinal section of the other great artery (characterized by the short trunk with bifurcation) (C). They were aorta and the pulmonary artery. As the reference point was located at the aorta, it could be confirmed that aorta was originated from the left ventricle. Back to the initial state in Panel a (A). Move the reference point to the right ventricle in Panel a. By adjusting the position of the reference point in Panel A, near the position of the outflow tract (at the basal part of the right ventricle, near the crux of the heart), a great artery with its valve could be clearly visualized in Panel b (D). Moving the reference point to the valve in Panel b, two great arteries with cross section and longitudinal section respectively could be visualized in Panel a (E). As the reference point was located at the pulmonary artery, it could be confirmed that the pulmonary artery was originated from the right ventricle. AO, aorta; LV, left ventricle; PA, pulmonary artery; RV, right ventricle",
+  "captionRu": "Мультипланарные срезы у плода 19 недель с нормальным строением сердца. Панели a, b и c — три ортогональные плоскости (A — поперечная, B — сагиттальная, C — корональная). Верхушка сердца на 4CV направлена вверх, опорная точка (зелёная стрелка) установлена на кресте сердца на панели a (A). Переместите опорную точку в левый желудочек на панели a. Подбирая положение опорной точки на панели a у выводного тракта (базальный отдел левого желудочка у креста сердца), на панели b можно вывести магистральную артерию с отчётливым ходом (B). Если переместить опорную точку на эту артерию и пройти по её ходу на панели B, видны круглое (поперечное) сечение одной магистральной артерии и продольное сечение другой (короткий ствол с бифуркацией) (C). Это аорта и лёгочная артерия. Поскольку опорная точка находилась в аорте, подтверждено, что аорта отходит от левого желудочка. Возврат к исходному положению на панели a (A). Переместите опорную точку в правый желудочек на панели a. Подбирая положение опорной точки у выводного тракта (базальный отдел правого желудочка у креста сердца), на панели b отчётливо видна магистральная артерия с клапаном (D). Если переместить опорную точку на клапан на панели b, на панели a видны две магистральные артерии — в поперечном и продольном сечении (E). Поскольку опорная точка находилась в лёгочной артерии, подтверждено, что лёгочная артерия отходит от правого желудочка. AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек.",
   "group": "Норма и методика",
   "cards": [],
   "status": "draft",
@@ -201,6 +210,7 @@ FC.IMAGES = [
   "file": "img/pmc8303209-f1.jpg",
   "label": "Diagnostics (Basel) 2021, рис. 1",
   "caption": "(A) LVOT angle measured in a 22 week fetus. (B) Drawing of the LVOT measurement. Ao—aorta; IVS—interventricular septum; LV—left ventricle; RV—right ventricle.",
+  "captionRu": "(A) Угол LVOT, измеренный у плода 22 недель. (B) Схема измерения угла LVOT. Ao — аорта; IVS — межжелудочковая перегородка; LV — левый желудочек; RV — правый желудочек.",
   "group": "Норма и методика",
   "cards": [
    "view:lvot"
@@ -224,6 +234,7 @@ FC.IMAGES = [
   "file": "img/pmc8303209-f6.jpg",
   "label": "Diagnostics (Basel) 2021, рис. 6",
   "caption": "Schematic presentation of the normal LVOT angle with normal variation marked by the green triangle. The red triangle represents the angle seen in cases of AV canal. The orange triangle represents the angle seen in cases of D-TGA or AS.",
+  "captionRu": "Схема нормального угла LVOT; зелёный треугольник — диапазон нормальной вариабельности. Красный треугольник — угол при атриовентрикулярном канале. Оранжевый треугольник — угол при D-ТМА или аортальном стенозе.",
   "group": "Норма и методика",
   "cards": [
    "view:lvot"
@@ -247,6 +258,7 @@ FC.IMAGES = [
   "file": "img/commons-aortic-stenosis-1.jpg",
   "label": "Wikimedia Commons: Aortic stenosis 1.JPG",
   "caption": "Aortic stenosis: Four chamber view ((Foetus 26 weeks)",
+  "captionRu": "Аортальный стеноз: четырёхкамерный срез (плод 26 недель).",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -264,6 +276,7 @@ FC.IMAGES = [
   "file": "img/commons-aortic-stenosis-2.jpg",
   "label": "Wikimedia Commons: Aortic stenosis 2.JPG",
   "caption": "Aortic stenosis: Narrowed aorta 3mm ((Foetus 26 weeks)",
+  "captionRu": "Аортальный стеноз: суженная аорта 3 мм (плод 26 недель).",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -281,6 +294,7 @@ FC.IMAGES = [
   "file": "img/commons-aortic-stenosis-3.jpg",
   "label": "Wikimedia Commons: Aortic stenosis 3.JPG",
   "caption": "Aortic stenosis: Pulmonary arteria 7 mm ((Foetus 26 weeks)",
+  "captionRu": "Аортальный стеноз: лёгочная артерия 7 мм (плод 26 недель).",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -298,6 +312,7 @@ FC.IMAGES = [
   "file": "img/commons-reprodmed-03-00005-g004-550.jpg",
   "label": "Wikimedia Commons: Reprodmed-03-00005-g004-550.jpg",
   "caption": "Figure 4. Images of Case 2. (A) Prenatal ultrasound at 13 weeks shows hydrops fetalis; (B) Hypoplastic left heart syndrome at 13 weeks; (C) 15-week fetus postpartum showing loose skin as a result of extreme hydrops. Also visible are typical dysmorphic facial features, including hypertelorism, small chin, bulbous nose, and cleft lip.",
+  "captionRu": "Рисунок 4. Изображения случая 2. (A) Пренатальное УЗИ в 13 недель: водянка плода; (B) синдром гипоплазии левых отделов сердца в 13 недель; (C) плод 15 недель после рождения: дряблая кожа вследствие выраженной водянки. Видны также типичные дизморфические черты лица: гипертелоризм, маленький подбородок, луковицеобразный нос и расщелина губы.",
   "group": "Другие ВПС",
   "cards": [
    "chd:hlhs"
@@ -317,6 +332,7 @@ FC.IMAGES = [
   "file": "img/commons-tgvecho1.gif",
   "label": "Wikimedia Commons: TGVecho1.gif",
   "caption": "TGV - echo foetal",
+  "captionRu": "ТМА — фетальная эхокардиография.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -336,6 +352,7 @@ FC.IMAGES = [
   "file": "img/commons-tgvecho2.gif",
   "label": "Wikimedia Commons: TGVecho2.gif",
   "caption": "TGV - echo foetal aorte",
+  "captionRu": "ТМА — фетальная эхокардиография, аорта.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -355,6 +372,7 @@ FC.IMAGES = [
   "file": "img/commons-tgvecho3.gif",
   "label": "Wikimedia Commons: TGVecho3.gif",
   "caption": "TGV - Echo foetal hros vaisseaux",
+  "captionRu": "ТМА — фетальная эхокардиография, магистральные сосуды.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -374,6 +392,7 @@ FC.IMAGES = [
   "file": "img/commons-tgvecho4.gif",
   "label": "Wikimedia Commons: TGVecho4.gif",
   "caption": "Transposition of the great vessels",
+  "captionRu": "Транспозиция магистральных сосудов.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -393,6 +412,7 @@ FC.IMAGES = [
   "file": "img/pmc10282755-f2.jpg",
   "label": "Front Pediatr 2023, рис. 2",
   "caption": "The prenatal sonographic features of supracardiac TAPVC. (A) The posterior wall of LA was smooth without orifice of PV, the pulmonary venous confluence behind the LA. (B) The left and right PVs converging to form a common PV truck, the CPV going upward as VV. (C) The VV drained into the SVC via the LBCV. (D) The entire drainage route of PVs. TAPVC, total anomalous pulmonary venous connection; PV, pulmonary vein; LA, left atrium; CPV, common pulmonary vein; VV, vertical vein; SVC, superior vena cava; LBCV, left brachiocephalic vein.",
+  "captionRu": "Пренатальные эхографические признаки супракардиального ТАДЛВ. (A) Задняя стенка ЛП гладкая, без устьев лёгочных вен; за ЛП — коллектор лёгочных вен. (B) Левые и правые лёгочные вены сливаются в общий коллектор (CPV), от которого вверх идёт вертикальная вена (VV). (C) Вертикальная вена впадает в ВПВ через левую брахиоцефальную вену. (D) Весь путь дренажа лёгочных вен. TAPVC — тотальный аномальный дренаж лёгочных вен; PV — лёгочная вена; LA — левое предсердие; CPV — общий коллектор лёгочных вен; VV — вертикальная вена; SVC — верхняя полая вена; LBCV — левая брахиоцефальная вена.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -416,6 +436,7 @@ FC.IMAGES = [
   "file": "img/pmc10282755-f3.jpg",
   "label": "Front Pediatr 2023, рис. 3",
   "caption": "The prenatal and postnatal sonographic features of intracardiac TAPVC. (A) The four-chamber view showed ventricular discrepancy and no connection between PVs and LA. (B) The PVs drained into RA via dilated CS. (C) The entire drainage route of anomalous PVs. (D) The obvious asymmetry on the four-chamber view after birth. (E) All the PVs were not connected with LA. (F) The CPV drained into RA via dilated CS. TAPVC, total anomalous pulmonary venous connection; PV, pulmonary vein; LA, left atrium; RA, right atrium; CPV, common pulmonary vein; CS, coronary sinus.",
+  "captionRu": "Пренатальные и постнатальные эхографические признаки интракардиального ТАДЛВ. (A) На четырёхкамерном срезе — диспропорция желудочков, лёгочные вены не соединяются с ЛП. (B) Лёгочные вены впадают в ПП через расширенный коронарный синус. (C) Весь путь аномального дренажа лёгочных вен. (D) Выраженная асимметрия на четырёхкамерном срезе после рождения. (E) Ни одна лёгочная вена не соединена с ЛП. (F) Общий коллектор впадает в ПП через расширенный коронарный синус. TAPVC — тотальный аномальный дренаж лёгочных вен; PV — лёгочная вена; LA — левое предсердие; RA — правое предсердие; CPV — общий коллектор лёгочных вен; CS — коронарный синус.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -439,6 +460,7 @@ FC.IMAGES = [
   "file": "img/pmc10282755-f4.jpg",
   "label": "Front Pediatr 2023, рис. 4",
   "caption": "The sonographic features of infracardiac TAPVC and postnatal confirmation. (A) CPV was located behind the LA, with an increased posterior left atrium space. (B) The Doppler spectrum of PV was continuous instead of pulsatile. (C) The VV appeared as an extra vessel in the transabdominal section. (D) The VV drained into DV in a turbulent flow. (E) The obstruction was confirmed postnatally. (F) The CTA showed the entire drainage route of PVs. TAPVC, total anomalous pulmonary venous connection; PV, pulmonary vein; LA, left atrium; CPV, common pulmonary vein; VV, vertical vein; DV, ductus venous; CTA, computerized tomographic angiography.",
+  "captionRu": "Эхографические признаки инфракардиального ТАДЛВ и постнатальное подтверждение. (A) Общий коллектор лёгочных вен расположен позади ЛП, пространство позади левого предсердия увеличено. (B) Допплеровский спектр лёгочной вены непрерывный, а не пульсирующий. (C) На поперечном срезе живота вертикальная вена видна как дополнительный сосуд. (D) Вертикальная вена впадает в венозный проток с турбулентным потоком. (E) Обструкция подтверждена после рождения. (F) КТ-ангиография показала весь путь дренажа лёгочных вен. TAPVC — тотальный аномальный дренаж лёгочных вен; PV — лёгочная вена; LA — левое предсердие; CPV — общий коллектор лёгочных вен; VV — вертикальная вена; DV — венозный проток; CTA — КТ-ангиография.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -462,6 +484,7 @@ FC.IMAGES = [
   "file": "img/pmc10282755-f5.jpg",
   "label": "Front Pediatr 2023, рис. 5",
   "caption": "The sonographic features of mixed TAPVC and postnatal anatomic cardiovascular casting findings. (A) A dilated IVC in transabdominal section. (B) The ventricles were asymmetrical and the CPV was located behind the LA. (C) The VV appeared as an extra vessel behind the aorta. (D) The color Doppler showed the drainage of the RSPV, RLPV, and the LSPV into the LBCV via VV. (E) The LLPV drained into IVC. (F,G) Obstruction was confirmed in both the supracardiac and infracardiac pathways. (H) The entire drainage route of all PVs. (I): The postnatal casting of the TAPVC heart showed the RSPV, RLPV, and LSPV drainage into LBCV via the VV, and the LLPV drainage into the IVC. TAPVC, total anomalous pulmonary venous connection; IVC, inferior vena cava; CPV, common pulmonary vein; LA, left atrium; VV, vertical vein; RSPV, right superior pulmonary vein; RLPV, right low pulmonary vein; LSPV, left superior pulmonary vein; LBCV, left brachiocephalic vein; LLPV, left low pulmonary vein.",
+  "captionRu": "Эхографические признаки смешанного ТАДЛВ и постнатальные данные анатомического коррозионного слепка сердца. (A) Расширенная НПВ на поперечном срезе живота. (B) Желудочки асимметричны, общий коллектор лёгочных вен расположен позади ЛП. (C) Вертикальная вена видна как дополнительный сосуд позади аорты. (D) Цветовой допплер показывает дренаж правой верхней, правой нижней и левой верхней лёгочных вен в левую брахиоцефальную вену через вертикальную вену. (E) Левая нижняя лёгочная вена впадает в НПВ. (F, G) Обструкция подтверждена и на супракардиальном, и на инфракардиальном путях. (H) Весь путь дренажа всех лёгочных вен. (I) Постнатальный слепок сердца с ТАДЛВ: правая верхняя, правая нижняя и левая верхняя лёгочные вены дренируются в левую брахиоцефальную вену через вертикальную вену, левая нижняя — в НПВ. TAPVC — тотальный аномальный дренаж лёгочных вен; IVC — нижняя полая вена; CPV — общий коллектор лёгочных вен; LA — левое предсердие; VV — вертикальная вена; RSPV — правая верхняя лёгочная вена; RLPV — правая нижняя лёгочная вена; LSPV — левая верхняя лёгочная вена; LBCV — левая брахиоцефальная вена; LLPV — левая нижняя лёгочная вена.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -485,6 +508,7 @@ FC.IMAGES = [
   "file": "img/pmc10475158-f1.jpg",
   "label": "Cureus 2023, рис. 1",
   "caption": "Initial echocardiogram at 25 weeks of gestational ageLeft ventricular outflow tract (LVOT) view demonstrating a dilated ascending aorta diameter measuring 7.99 mm, immediately distal to the LVOT at the initial echocardiogram at 25 weeks of gestation",
+  "captionRu": "Первая эхокардиография в 25 недель. Срез выводного тракта левого желудочка (LVOT): расширенная восходящая аорта диаметром 7,99 мм сразу дистальнее выводного тракта.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -506,6 +530,7 @@ FC.IMAGES = [
   "file": "img/pmc10475158-f2.jpg",
   "label": "Cureus 2023, рис. 2",
   "caption": "Apical four-chamber and transverse view at 25 weeks of gestational ageApical four-chamber view (A) and transverse view (B) demonstrating an absence of ventricular hypertrophy, endocardial fibroelastosis (EFE), or pericardial effusion at the initial echocardiogram at 25 weeks of gestation",
+  "captionRu": "Апикальный четырёхкамерный и поперечный срезы в 25 недель. Апикальный четырёхкамерный (A) и поперечный (B) срезы: нет гипертрофии желудочков, эндокардиального фиброэластоза и перикардиального выпота (первое исследование в 25 недель).",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -527,6 +552,7 @@ FC.IMAGES = [
   "file": "img/pmc10475158-f3.jpg",
   "label": "Cureus 2023, рис. 3",
   "caption": "Doppler echocardiogram at 25 weeks of gestational agePulsed wave Doppler demonstrating markedly increased pressures across the aortic valve with a maximum peak gradient of 53 mmHg and a mean of 32 mmHg (peak velocity: 3.6 m/s)",
+  "captionRu": "Допплерэхокардиография в 25 недель. Импульсно-волновой допплер: значительно повышенный градиент на аортальном клапане — пиковый 53 мм рт. ст., средний 32 мм рт. ст. (пиковая скорость 3,6 м/с).",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -548,6 +574,7 @@ FC.IMAGES = [
   "file": "img/pmc10475158-f4.jpg",
   "label": "Cureus 2023, рис. 4",
   "caption": "Echocardiogram at 32 and 6/7 weeks of gestation(A) LVOT view demonstrating turbulent blood flow through the narrowed aortic outflow tract. (B) Apical four-chamber view of the fetal heart minimal pericardial effusion measuring 4.2 mm on echocardiography performed at 32 and 6/7 weeks of gestationLVOT: left ventricular outflow tract",
+  "captionRu": "Эхокардиография в 32 6/7 недели. (A) Срез LVOT: турбулентный поток через суженный выводной тракт аорты. (B) Апикальный четырёхкамерный срез сердца плода: минимальный перикардиальный выпот 4,2 мм. LVOT — выводной тракт левого желудочка.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -569,6 +596,7 @@ FC.IMAGES = [
   "file": "img/pmc10475158-f5.jpg",
   "label": "Cureus 2023, рис. 5",
   "caption": "M-mode image at 32 and 6/7 weeks of gestationM-mode recording in SVT with 1:1 AV relation; fetal HR of 257 bpm seen at 32 and 6/7 weeks of gestationSVT, supraventricular tachycardia; AV, atrioventricular; HR, heart rate; bpm, beats per minute",
+  "captionRu": "М-режим в 32 6/7 недели: наджелудочковая тахикардия с атриовентрикулярным проведением 1:1, ЧСС плода 257 уд/мин. SVT — наджелудочковая тахикардия; AV — атриовентрикулярный; HR — ЧСС; bpm — уд/мин.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -590,6 +618,7 @@ FC.IMAGES = [
   "file": "img/pmc10772931-f1.jpg",
   "label": "CASE (Phila) 2023, рис. 1",
   "caption": "Transabdominal two-dimensional fetal echocardiogram, 4-chamber view, demonstrates a severely hypoplastic, hypertrophied, and aneurysmal RV with an atretic tricuspid valve (asterisk). LA, Left atrium; RA, right atrium.",
+  "captionRu": "Трансабдоминальная двумерная фетальная эхокардиография, четырёхкамерный срез: резко гипоплазированный, гипертрофированный и аневризматически изменённый ПЖ с атрезией трикуспидального клапана (звёздочка). LA — левое предсердие; RA — правое предсердие.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -611,6 +640,7 @@ FC.IMAGES = [
   "file": "img/pmc10772931-f2.jpg",
   "label": "CASE (Phila) 2023, рис. 2",
   "caption": "Transabdominal two-dimensional fetal echocardiogram, outflow tract view, demonstrates a normal-sized MPA and no evidence of PV leaflets (asterisk). Ao, Aorta; SVC, superior vena cava.",
+  "captionRu": "Трансабдоминальная двумерная фетальная эхокардиография, срез выводных трактов: ствол лёгочной артерии нормального размера, створки клапана лёгочной артерии не определяются (звёздочка). Ao — аорта; SVC — верхняя полая вена.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -632,6 +662,7 @@ FC.IMAGES = [
   "file": "img/pmc10894161-f1.jpg",
   "label": "Arch Gynecol Obstet 2024, рис. 1",
   "caption": "Sonographic appearance of the FO flap. A redundant FO flap that extents more than 50% across the left atrium (‘spinnaker-like’, B flat FO, the flap swings less than 30% into the left atrium, C fixed FO without any swinging movements of the flap, D and E hypermobile FO flap, that bidirectionally oscillates through the small FO orifice between the left (D) and the right atrium (E)",
+  "captionRu": "Эхографический вид клапана овального окна. A — избыточный клапан, заходящий более чем на 50% ширины левого предсердия («парус-спинакер»); B — плоский клапан, отклоняется в левое предсердие менее чем на 30%; C — фиксированный клапан без колебаний; D и E — гипермобильный клапан, колеблющийся в обе стороны через маленькое отверстие овального окна между левым (D) и правым (E) предсердием.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -655,6 +686,7 @@ FC.IMAGES = [
   "file": "img/pmc10894161-f2.jpg",
   "label": "Arch Gynecol Obstet 2024, рис. 2",
   "caption": "Flow patterns of pulmonary veins. A continuous forward flow with a ‘plateau’ and small a-wave reversal, B continuous forward flow with an increased a-wave reversal (‘pulsatile’), C to-and-fro flow pattern with absent early diastolic forward flow, highly suspicious for restrictive FO",
+  "captionRu": "Типы кровотока в лёгочных венах. A — непрерывный антеградный поток с «плато» и небольшой реверсией волны a; B — непрерывный антеградный поток с увеличенной реверсией волны a («пульсирующий»); C — возвратно-поступательный поток без раннедиастолического антеградного кровотока: высоко подозрителен на рестриктивное овальное окно.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -678,6 +710,7 @@ FC.IMAGES = [
   "file": "img/pmc10894161-f3.jpg",
   "label": "Arch Gynecol Obstet 2024, рис. 3",
   "caption": "Maximum Doppler flow velocity in the pulmonary vein",
+  "captionRu": "Максимальная скорость допплеровского потока в лёгочной вене.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -701,6 +734,7 @@ FC.IMAGES = [
   "file": "img/pmc10894161-f4.jpg",
   "label": "Arch Gynecol Obstet 2024, рис. 4",
   "caption": "DA in the 3-vessel view in B-mode and Color Doppler. A ventriculo-arterial discordance with the pulmonary trunk arising from the left ventricle, B 3-vessel view with restrictive arterial duct, the arrow shows the size of the arterial duct, C 3-vessel view in Color Doppler, showing an antegrade perfusion of the restrictive arterial duct. (LV left ventricle, RV right ventricle, TP main pulmonary trunk, LPA left pulmonary artery, RPA right pulmonary artery, Ao descending aorta, AoA aortic arch)",
+  "captionRu": "Артериальный проток на срезе трёх сосудов в B-режиме и при цветовом допплере. A — вентрикулоартериальная дискордантность: ствол лёгочной артерии отходит от левого желудочка; B — срез трёх сосудов с рестриктивным артериальным протоком, стрелка показывает размер протока; C — срез трёх сосудов при цветовом допплере: антеградный кровоток через рестриктивный проток. LV — левый желудочек; RV — правый желудочек; TP — ствол лёгочной артерии; LPA — левая лёгочная артерия; RPA — правая лёгочная артерия; Ao — нисходящая аорта; AoA — дуга аорты.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -724,6 +758,7 @@ FC.IMAGES = [
   "file": "img/pmc11122070-f1.jpg",
   "label": "J Cardiovasc Dev Dis 2024, рис. 1",
   "caption": "Panel (A): Paired fetal echocardiographic apical still frame images showing cardiomegaly, right atrial dilation, tricuspid annular dilation, and right ventricular enlargement at presentation at 28 6/7 weeks gestation. RA = Right Atrium, RV = Right Ventricle, LA = Left Atrium, LV = Left Ventricle. Doppler Color flow mapping superimposed on the panel at right demonstrates severe tricuspid insufficiency (arrow). Panel (B): Paired fetal echocardiographic sagittal still frame images of the dilated RV, the normal-sized RVOT, and the reverse-oriented ductus. RV = Right Ventricle, PV = Pulmonary Valve, MPA = Main Pulmonary Artery, LV = Left Ventricle, DA = Ductus Arteriosus. Doppler Color flow mapping in the panel at right demonstrates retrograde flow in the reverse-oriented ductus (blue), retrograde flow in the main pulmonary artery (orange), and marked pulmonary valve insufficiency (red). All images were produced on a GE Voluson E10 Ultrasound System.",
+  "captionRu": "Панель (A): парные апикальные стоп-кадры фетальной эхокардиографии при обращении в 28 6/7 недели: кардиомегалия, дилатация правого предсердия, расширение трикуспидального кольца и увеличение правого желудочка. RA — правое предсердие, RV — правый желудочек, LA — левое предсердие, LV — левый желудочек. Цветовое допплеровское картирование на правой панели: выраженная трикуспидальная недостаточность (стрелка). Панель (B): парные сагиттальные стоп-кадры: расширенный ПЖ, выводной тракт ПЖ нормального размера и артериальный проток обратной ориентации. RV — правый желудочек, PV — клапан лёгочной артерии, MPA — ствол лёгочной артерии, LV — левый желудочек, DA — артериальный проток. Цветовое картирование на правой панели: ретроградный поток в протоке обратной ориентации (синий), ретроградный поток в стволе лёгочной артерии (оранжевый) и выраженная недостаточность клапана лёгочной артерии (красный). Все изображения получены на GE Voluson E10.",
   "group": "Другие ВПС",
   "cards": [
    "chd:ebstein"
@@ -747,6 +782,7 @@ FC.IMAGES = [
   "file": "img/pmc11122070-f3.jpg",
   "label": "J Cardiovasc Dev Dis 2024, рис. 3",
   "caption": "Echocardiographic sagittal still frame image of the fetal chest and abdomen demonstrating ascites and pericardial effusion (arrows) in the setting of early fetal hydrops at 30 6/7 weeks gestation (GE Voluson E10 Imaging System).",
+  "captionRu": "Сагиттальный эхокардиографический стоп-кадр грудной клетки и живота плода: асцит и перикардиальный выпот (стрелки) при начинающейся водянке плода в 30 6/7 недели (GE Voluson E10).",
   "group": "Другие ВПС",
   "cards": [
    "chd:ebstein"
@@ -770,6 +806,7 @@ FC.IMAGES = [
   "file": "img/pmc11122070-f4.jpg",
   "label": "J Cardiovasc Dev Dis 2024, рис. 4",
   "caption": "Echocardiographic sagittal still frame image of the fetal thorax with color flow mapping demonstrating retrograde flow in a diminutive ductus arteriosus (arrow). RA = Right Atrium, AAo = Ascending Aorta, LA = Left Atrium, DAo = Descending Aorta (GE Voluson E10 Imaging System).",
+  "captionRu": "Сагиттальный эхокардиографический стоп-кадр грудной клетки плода с цветовым картированием: ретроградный поток в узком артериальном протоке (стрелка). RA — правое предсердие, AAo — восходящая аорта, LA — левое предсердие, DAo — нисходящая аорта (GE Voluson E10).",
   "group": "Другие ВПС",
   "cards": [
    "chd:ebstein"
@@ -793,6 +830,7 @@ FC.IMAGES = [
   "file": "img/pmc12338190-f1.jpg",
   "label": "Medicine (Baltimore) 2025, рис. 1",
   "caption": "Imaging of pentalogy of Cantrell. (A) Fetal chest wall defect with exposed heart; (B) upper abdominal wall defect above the umbilicus with exposed liver; (C) fetal umbilical herniation; (D) the postnatal photograph following induced labor.",
+  "captionRu": "Визуализация пентады Кантрелла. (A) Дефект грудной стенки плода с эвентрацией сердца; (B) дефект передней брюшной стенки выше пупка с эвентрацией печени; (C) пупочная грыжа плода; (D) фотография после индуцированных родов.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -814,6 +852,7 @@ FC.IMAGES = [
   "file": "img/pmc12426840-f1.jpg",
   "label": "CASE (Phila) 2025, рис. 1",
   "caption": "Two-dimensional fetal echocardiogram, obtained at 21 weeks of gestation, transverse plane, four-chamber view (A), demonstrates levocardia, two balanced ventricles, and a common atrioventricular valve consistent with an AVSD; transverse plane, three-vessel view superior sweep with color flow Doppler (B) demonstrates four vessels, different color displays of the two venous vessels (opposite direction of flow), a prominent IV (C) with an ascending vein to the left of the PA draining to the IV (D). 4th V, Fourth vessel; LV, left ventricle; RV, right ventricle; SVC, superior vena cava.",
+  "captionRu": "Двумерная фетальная эхокардиография в 21 неделю. Поперечная плоскость, четырёхкамерный срез (A): леворасположенное сердце, два сбалансированных желудочка и общий атриовентрикулярный клапан, что соответствует АВСД. Поперечная плоскость, краниальное смещение от среза трёх сосудов с цветовым допплером (B): четыре сосуда, два венозных сосуда окрашены по-разному (противоположное направление потока), выраженная безымянная вена (C), восходящая вена слева от лёгочной артерии впадает в безымянную вену (D). 4th V — четвёртый сосуд; LV — левый желудочек; RV — правый желудочек; SVC — верхняя полая вена.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -837,6 +876,7 @@ FC.IMAGES = [
   "file": "img/pmc12426840-f2.jpg",
   "label": "CASE (Phila) 2025, рис. 2",
   "caption": "Two-dimensional fetal echocardiogram with color flow and pulsed-wave Doppler obtained at 21 weeks of gestation, transverse plane, demonstrates the spectral Doppler display from one presumed pulmonary vein (arrow) with an unclear site of drainage; the spectral Doppler profile is abnormal, as the pattern below the baseline does not demonstrate conventional phasic flow patterns seen with pulmonary veins.",
+  "captionRu": "Двумерная фетальная эхокардиография с цветовым и импульсно-волновым допплером в 21 неделю, поперечная плоскость: спектр от предполагаемой лёгочной вены (стрелка) с неясным местом впадения; спектр патологический — кривая ниже изолинии не имеет обычной фазности, характерной для лёгочных вен.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -860,6 +900,7 @@ FC.IMAGES = [
   "file": "img/pmc12426840-f3.jpg",
   "label": "CASE (Phila) 2025, рис. 3",
   "caption": "Two-dimensional fetal echocardiogram, obtained at 28 weeks of gestation, transverse plane, four-chamber view without (left) and with (right) simultaneous color flow Doppler, demonstrates AVSD (arrow) and, by tilting posteriorly, reveals a small pulmonary venous confluence (PVC; arrow) behind the left atrium. LV, Left ventricle; RV, right ventricle.",
+  "captionRu": "Двумерная фетальная эхокардиография в 28 недель, поперечная плоскость, четырёхкамерный срез без (слева) и с (справа) цветовым допплером: АВСД (стрелка); при наклоне датчика кзади виден небольшой коллектор лёгочных вен (PVC; стрелка) позади левого предсердия. LV — левый желудочек; RV — правый желудочек.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -883,6 +924,7 @@ FC.IMAGES = [
   "file": "img/pmc12426840-f4.jpg",
   "label": "CASE (Phila) 2025, рис. 4",
   "caption": "Two-dimensional fetal echocardiogram, obtained at 28 weeks of gestation, sagittal plane, bicaval view, demonstrates that the superior vena cava is larger than the inferior vena cava, which suggests drainage of the TAPVC to the RSVC.",
+  "captionRu": "Двумерная фетальная эхокардиография в 28 недель, сагиттальная плоскость, бикавальный срез: верхняя полая вена шире нижней, что указывает на дренаж ТАДЛВ в правую ВПВ.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -906,6 +948,7 @@ FC.IMAGES = [
   "file": "img/pmc12426840-f5.jpg",
   "label": "CASE (Phila) 2025, рис. 5",
   "caption": "Two-dimensional fetal echocardiogram, obtained at 28 weeks of gestation, sagittal plane, without (left) and with (right) simultaneous color flow Doppler, demonstrates pulmonary veins joining the confluence, the ascending vein (AV) draining toward the IV, and the right upper pulmonary vein (RUPV) draining directly to the RSVC. PVC, Pulmonary venous connection; SVC, superior vena cava.",
+  "captionRu": "Двумерная фетальная эхокардиография в 28 недель, сагиттальная плоскость без (слева) и с (справа) цветовым допплером: лёгочные вены впадают в коллектор, восходящая вена (AV) дренируется в сторону безымянной вены, а правая верхняя лёгочная вена (RUPV) впадает непосредственно в правую ВПВ. PVC — соединение лёгочных вен; SVC — верхняя полая вена.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -929,6 +972,7 @@ FC.IMAGES = [
   "file": "img/pmc12564150-f1.jpg",
   "label": "Diagnostics (Basel) 2025, рис. 1",
   "caption": "Four-chamber view in case nr 1 and case nr 2 with critical aortic stenosis, with schematic presentation of functional parameters for the left and right ventricles in fetuses at 35 weeks of pregnancy, with significantly reduced parameters: GS—global strain; FAC—fractional area change; and EF—ejection for left akinetic. Dilated left ventricle with endocardial fibroelastosis for case 2. End-diastole and end-systole are defined in different colors.",
+  "captionRu": "Четырёхкамерный срез у случаев 1 и 2 с критическим аортальным стенозом и схематичное представление функциональных параметров левого и правого желудочков у плодов в 35 недель; параметры значительно снижены: GS — глобальная деформация (strain); FAC — фракционное изменение площади; EF — фракция выброса (для акинетичного левого желудочка). В случае 2 — дилатированный левый желудочек с эндокардиальным фиброэластозом. Конец диастолы и конец систолы обозначены разными цветами.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -950,6 +994,7 @@ FC.IMAGES = [
   "file": "img/pmc12771062-f1.jpg",
   "label": "Cureus 2025, рис. 1",
   "caption": "(A-B) Pre-natal ultrasound scan. A modified long-axis view of the three-vessel view showed the three vessels (SVC, aorta, and MPA) and a large single cystic mass adjacent to the left side of the fetal heart, but it failed to demonstrate communication with the LA.Ao: aortic valve; Cyst: congenital left atrial appendage aneurysm (CLAAA); MPA: main pulmonary artery; RA: right atrium; SVC: superior vena cava; LA: left atrium",
+  "captionRu": "(A–B) Пренатальное УЗИ. Модифицированный длинноосевой вариант среза трёх сосудов: три сосуда (ВПВ, аорта и ствол лёгочной артерии) и крупное единичное кистозное образование у левого края сердца плода; сообщение с ЛП не выявлено. Ao — аортальный клапан; Cyst — врождённая аневризма ушка левого предсердия (CLAAA); MPA — ствол лёгочной артерии; RA — правое предсердие; SVC — верхняя полая вена; LA — левое предсердие.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -971,6 +1016,7 @@ FC.IMAGES = [
   "file": "img/pmc12771062-f2.jpg",
   "label": "Cureus 2025, рис. 2",
   "caption": "(A-D) Fetal echocardiography in a long-axis view, tilted cranially from the four-chamber view, showed a single cystic mass adjacent to the left side of the heart representing the CLAAA. Color Doppler demonstrated flow from the CLAAA to the LA (bold white arrow, image D) during diastole when the TV is open, and flow returning to it (bold black arrow, image B) during systole when the TV is closed, with forward flow seen across the Ao. The slim orange arrow indicates the level of the Ao.Ao: aortic valve; CLAAA: congenital left atrial appendage aneurysm; LA: left atrium; RA: right atrium; TV: tricuspid valve",
+  "captionRu": "(A–D) Фетальная эхокардиография в длинной оси с краниальным наклоном от четырёхкамерного среза: единичное кистозное образование у левого края сердца — аневризма ушка ЛП. Цветовой допплер: поток из аневризмы в ЛП (жирная белая стрелка, D) в диастолу, когда трикуспидальный клапан открыт, и обратный поток в аневризму (жирная чёрная стрелка, B) в систолу, когда трикуспидальный клапан закрыт; антеградный поток через аорту. Тонкая оранжевая стрелка — уровень аорты. Ao — аортальный клапан; CLAAA — врождённая аневризма ушка левого предсердия; LA — левое предсердие; RA — правое предсердие; TV — трикуспидальный клапан.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -992,6 +1038,7 @@ FC.IMAGES = [
   "file": "img/pmc12880957-f1.jpg",
   "label": "Prenat Diagn 2026, рис. 1",
   "caption": "Atrial morphology patterns categorized into four types based on imaging characteristics. The four types (1–4) are displayed with (a) image examples from the fetal cardiac four‐chamber view, (b) short descriptions, and (c) bar‐plot showing distributions among the types. LA, left atrium; RA, right atrium; RV, right ventricle.",
+  "captionRu": "Морфология предсердий, разделённая на четыре типа по визуальным признакам. Для каждого типа (1–4) показаны (a) примеры изображений на четырёхкамерном срезе сердца плода, (b) краткие описания и (c) столбчатая диаграмма распределения по типам. LA — левое предсердие; RA — правое предсердие; RV — правый желудочек.",
   "group": "Другие ВПС",
   "cards": [
    "chd:hlhs"
@@ -1015,6 +1062,7 @@ FC.IMAGES = [
   "file": "img/pmc12967494-f1.jpg",
   "label": "Cureus 2026, рис. 1",
   "caption": "Four-chamber viewA. Inversion of the ventricles, with the morphological right ventricle (RV) (thin arrow) positioned on the left; the morphological left ventricle (LV) positioned on the right (white arrow); the left atrium (star) connected to the morphological right ventricle (RV); the right atrium (blue arrow) connected to the morphological left ventricle (LV)B. Pulmonary artery (blue arrow) originating from the morphological left ventricle (LV) (white arrow)C. Aorta (blue arrow) originating from the morphological right ventricle (RV) (white arrow)Maternal right (MR), Maternal left (ML), Fetal right (R), Fetal left (L)",
+  "captionRu": "Четырёхкамерный срез. A. Инверсия желудочков: морфологически правый желудочек (RV, тонкая стрелка) расположен слева, морфологически левый (LV) — справа (белая стрелка); левое предсердие (звёздочка) соединено с морфологически правым желудочком, правое предсердие (синяя стрелка) — с морфологически левым. B. Лёгочная артерия (синяя стрелка) отходит от морфологически левого желудочка (белая стрелка). C. Аорта (синяя стрелка) отходит от морфологически правого желудочка (белая стрелка). MR — справа у матери, ML — слева у матери, R — справа у плода, L — слева у плода.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1036,6 +1084,7 @@ FC.IMAGES = [
   "file": "img/pmc12967494-f2.jpg",
   "label": "Cureus 2026, рис. 2",
   "caption": "Color Doppler imagingA. The pulmonary artery originating from the morphological left ventricle (LV); B. The aorta (white arrow) originating from the morphological right ventricle (RV) (thin arrow)",
+  "captionRu": "Цветовое допплеровское картирование. A. Лёгочная артерия отходит от морфологически левого желудочка (LV). B. Аорта (белая стрелка) отходит от морфологически правого желудочка (RV, тонкая стрелка).",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1057,6 +1106,7 @@ FC.IMAGES = [
   "file": "img/pmc2778174-f1.jpg",
   "label": "Obstet Gynecol Int 2009, рис. 1",
   "caption": "Apical four-chamber view showing a defect of isolated complete atrioventricular septal defet. AVSD: atrioventricular septal defet; RV: right ventricle; LV: left ventricle.",
+  "captionRu": "Апикальный четырёхкамерный срез: изолированная полная форма атриовентрикулярного септального дефекта. AVSD — атриовентрикулярный септальный дефект; RV — правый желудочек; LV — левый желудочек.",
   "group": "Другие ВПС",
   "cards": [
    "chd:avsd",
@@ -1081,6 +1131,7 @@ FC.IMAGES = [
   "file": "img/pmc4827237-f1.jpg",
   "label": "Cardiovasc Ultrasound 2016, рис. 1",
   "caption": "Measurement of right ventricular end-diastolic volume in a normal fetus a a fetus with HLHS and visible left ventricular cavity b and a fetus with HLHS and invisible left ventricular cavity c. HLHS: Hypoplastic left heart syndrome",
+  "captionRu": "Измерение конечно-диастолического объёма правого желудочка: у нормального плода (a), у плода с СГЛОС и видимой полостью левого желудочка (b) и у плода с СГЛОС без видимой полости левого желудочка (c). HLHS — синдром гипоплазии левых отделов сердца.",
   "group": "Другие ВПС",
   "cards": [
    "chd:hlhs"
@@ -1104,6 +1155,7 @@ FC.IMAGES = [
   "file": "img/pmc4827237-f2.jpg",
   "label": "Cardiovasc Ultrasound 2016, рис. 2",
   "caption": "Measurement of right ventricular end-systolic volume in a normal fetus a a fetus with HLHS and visible left ventricular cavity b and a fetus with HLHS and invisible left ventricular cavity c. HLHS: Hypoplastic left heart syndrome",
+  "captionRu": "Измерение конечно-систолического объёма правого желудочка: у нормального плода (a), у плода с СГЛОС и видимой полостью левого желудочка (b) и у плода с СГЛОС без видимой полости левого желудочка (c). HLHS — синдром гипоплазии левых отделов сердца.",
   "group": "Другие ВПС",
   "cards": [
    "chd:hlhs"
@@ -1127,6 +1179,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f2.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 2",
   "caption": "Sonographic images of a 22-gestational-week fetus diagnosed with TAPVC. In the 4CV, a tubular-like structure was detected between the LA and DAO (a). Gradual rotation of the ultrasound beam; two tiny structures were visualized to drain into the tubular-like structure (b). This was suspected to be TAPVC by screening sonographers under Protocol B, for whom this characteristic sign had been made evident. 4CV, four chamber view; AAO, ascending aorta; DAO, descending aorta; L, left; R, right; LA, left atrium; LV, left ventricle; RA, right atrium; RV, right ventricle; S, spine. The areas indicated by the white arrows depict the tubular-like structure",
+  "captionRu": "Эхограммы плода 22 недель с ТАДЛВ. На 4CV между ЛП и нисходящей аортой выявлена трубчатая структура (a). При постепенном повороте датчика видно, как в неё впадают две тонкие структуры (b). Врачи, работавшие по протоколу B, где этот характерный признак был разобран, заподозрили ТАДЛВ. 4CV — четырёхкамерный срез; AAO — восходящая аорта; DAO — нисходящая аорта; L — слева; R — справа; LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек; S — позвоночник. Белые стрелки — трубчатая структура.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tapvr"
@@ -1150,6 +1203,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f4.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 4",
   "caption": "Sonographic images of a 22-gestational-week fetus diagnosed with TGA. The 4CV (a) shows four symmetric chambers with no obvious anomalies present. In the left (b) and right (c) outflow tract views, the connections of LV with MPA and RV with AAO are detected, respectively. Correct identification of the AAO and MPA was critical in making the diagnosis, which was accomplished by sonographers under Protocol B but failed under Protocol A. 4CV, four-chamber view; AAO, ascending aorta; DAO, descending aorta; LA, left atrium; LV, left ventricle; MPA, main pulmonary artery; RA, right atrium; RV, right ventricle; S, spine; TGA, transposition of the great arteries. The arrow indicates the bifurcation of the MPA",
+  "captionRu": "Эхограммы плода 22 недель с ТМА. На 4CV (a) — четыре симметричные камеры без явных аномалий. На срезах левого (b) и правого (c) выводных трактов выявлено соединение ЛЖ со стволом лёгочной артерии и ПЖ — с восходящей аортой. Ключом к диагнозу было правильное распознавание восходящей аорты и ствола лёгочной артерии: врачи по протоколу B поставили диагноз, по протоколу A — нет. 4CV — четырёхкамерный срез; AAO — восходящая аорта; DAO — нисходящая аорта; LA — левое предсердие; LV — левый желудочек; MPA — ствол лёгочной артерии; RA — правое предсердие; RV — правый желудочек; S — позвоночник; TGA — транспозиция магистральных артерий. Стрелка — бифуркация лёгочного ствола.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -1173,6 +1227,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f5.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 5",
   "caption": "Sonographic images of a 22-gestational-week fetus diagnosed with ccTGA. The 4CV (a) showed four symmetric chambers that were considered to be normal by sonographers under Protocol A. However, it was confirmed as atrioventricular discordance by carefully visualizing the position of the atrioventricular valves that insert into the septum. In addition, the left (b) and right (c) outflow tract views substantiate that MPA was connected to morphological LV, while AAO connected to morphological RV. Sequential segmental analysis allowed sonographers under Protocol B to detect this anomaly. 4CV, four-chamber view; AAO, ascending aorta; ccTGA, congenitally corrected transposition of the great arteries; DAO, descending aorta; LA, left atrium; LPA, left pulmonary artery; LV, left ventricle; MPA, main pulmonary artery; RA, right atrium; RPA, right pulmonary artery; RV, right ventricle; S, spine",
+  "captionRu": "Эхограммы плода 22 недель с корригированной ТМА. На 4CV (a) — четыре симметричные камеры, которые врачи по протоколу A сочли нормальными. Однако при внимательной оценке мест прикрепления атриовентрикулярных клапанов к перегородке подтверждена атриовентрикулярная дискордантность. Кроме того, на срезах левого (b) и правого (c) выводных трактов видно, что ствол лёгочной артерии соединён с морфологически левым желудочком, а восходящая аорта — с морфологически правым. Последовательный сегментарный анализ позволил врачам по протоколу B выявить порок. 4CV — четырёхкамерный срез; AAO — восходящая аорта; ccTGA — корригированная транспозиция магистральных артерий; DAO — нисходящая аорта; LA — левое предсердие; LPA — левая лёгочная артерия; LV — левый желудочек; MPA — ствол лёгочной артерии; RA — правое предсердие; RPA — правая лёгочная артерия; RV — правый желудочек; S — позвоночник.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1194,6 +1249,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f6.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 6",
   "caption": "Sonographic images of a 24-gestational-week fetus diagnosed with pulmonary valve atresia. Thickened pulmonary valves (indicated by arrows) were visualized in the right outflow tract view (a) via 2D. However, this anomaly was neglected by the sonographers under Protocol A because the valvular movement was difficult to visualize at times. However, color Doppler resolved this problem by visualizing the retrograde flow in the MPA (b), indicating pulmonary valve atresia. At the same time, no blood flow was detected entering the MPA across the thickened PV. AAO, ascending aorta; MPA, main pulmonary artery; PV, pulmonary valve; RV, right ventricle; S, spine",
+  "captionRu": "Эхограммы плода 24 недель с атрезией клапана лёгочной артерии. На срезе выводного тракта ПЖ в 2D видны утолщённые створки клапана (стрелки) (a). Врачи по протоколу A пропустили порок, так как движение створок было трудно оценить. Цветовой допплер решил проблему: ретроградный поток в стволе лёгочной артерии (b) указывал на атрезию клапана. Кровоток через утолщённый клапан в ствол лёгочной артерии не регистрировался. AAO — восходящая аорта; MPA — ствол лёгочной артерии; PV — клапан лёгочной артерии; RV — правый желудочек; S — позвоночник.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1215,6 +1271,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f7.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 7",
   "caption": "Sonographic images of a 24-gestational-week fetus diagnosed with tricuspid dysplasia. The 4CV was considered to be normal by sonographers under Protocol A because they did not find a thickened tricuspid valve (a). In fact, the RA was a little large in size according to careful observation. Also, the thickened tricuspid valves could be detected after careful scan (b). Color Doppler made it quite easy to detect tricuspid regurgitation, which would direct attention to valvular structural anomalies (c). DAO, descending aorta; LA, left atrium; LV, left ventricle; RA, right atrium; RV, right ventricle; S, spine; TR, tricuspid regurgitation; TV, tricuspid valve. The arrows indicate the thickened valves",
+  "captionRu": "Эхограммы плода 24 недель с дисплазией трикуспидального клапана. Врачи по протоколу A сочли 4CV нормальным, так как не увидели утолщения клапана (a). На самом деле при внимательном осмотре ПП было несколько увеличено, а утолщённые створки обнаруживались при тщательном сканировании (b). Цветовой допплер легко выявлял трикуспидальную регургитацию, которая направляет внимание на структурную патологию клапана (c). DAO — нисходящая аорта; LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек; S — позвоночник; TR — трикуспидальная регургитация; TV — трикуспидальный клапан. Стрелки — утолщённые створки.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1236,6 +1293,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f8.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 8",
   "caption": "Sonographic images of a 24-gestational-week fetus in which VSD was falsely suspected. In the 4CV, a small echo drop-out was visualized at the perimembraneous septum, as indicated by the white arrows (a). This was at times easily considered to be a VSD, whereas it was actually an artifact. Color Doppler helped to resolve this problem. No flow signals were identified across the septum in either systolic (b) or diastolic (c) phases",
+  "captionRu": "Эхограммы плода 24 недель с ложным подозрением на ДМЖП. На 4CV в перимембранозной части перегородки видно небольшое выпадение эхосигнала (белые стрелки) (a). Его легко принять за ДМЖП, но это артефакт. Помог цветовой допплер: потока через перегородку нет ни в систолу (b), ни в диастолу (c).",
   "group": "Другие ВПС",
   "cards": [
    "chd:vsd",
@@ -1260,6 +1318,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f9.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 9",
   "caption": "Sonographic images of a 21-gestational-week fetus in which PAVSD was falsely suspected. In the 4CV, a deficiency of the atrial septem primum was suspected by sonographers under Protocol A, as indicated by the white arrows. It was in actuality the echo of the coronary sinus which could be visualized when a non-standard 4CV was obtained with the section across the atrioventricular groove. These specific signs were mentioned in Protocol B",
+  "captionRu": "Эхограммы плода 21 недели с ложным подозрением на неполную форму АВСД. На 4CV врачи по протоколу A заподозрили дефект первичной межпредсердной перегородки (белые стрелки). На самом деле это было эхо коронарного синуса, которое видно, когда нестандартный 4CV проходит через атриовентрикулярную борозду. Эти признаки были разобраны в протоколе B.",
   "group": "Другие ВПС",
   "cards": [
    "chd:avsd",
@@ -1284,6 +1343,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f2.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 2",
   "caption": "Multiplanar slicing of TGA in a fetus of 25 gestational weeks. Panels a, b, and c represent three orthogonal planes (A, transverse; B, sagittal; and C, coronal). The cardiac apex in the 4CV was oriented upwards and the reference point (indicated by the green arrow) was placed in the crux of the heart in Panel a (A). Move the reference point to the right ventricle in Panel a. By adjusting the position of the reference point in Panel a, a great artery connecting to the right ventricle could be visualized in Panel b (B). Moving the reference point to the valve (C) and then navigating along the artery (D) in Panel b, we could then confirm that aorta was originated from the right ventricle and the pulmonary artery (characterized by the short trunk with bifurcation) from the left in Panel a. The parallel relationship of the two great arteries was also demonstrated. In addition, a VSD in large size could also be identified. AO, aorta; LV, left ventricle; PA, pulmonary artery; RV, right ventricle; TGA, transposition of the great arteries; VSD, ventricular septal defect",
+  "captionRu": "Мультипланарные срезы при ТМА у плода 25 недель. Панели a, b и c — три ортогональные плоскости (A — поперечная, B — сагиттальная, C — корональная). Верхушка сердца на 4CV направлена вверх, опорная точка (зелёная стрелка) установлена на кресте сердца на панели a (A). Переместите опорную точку в правый желудочек на панели a. Подбирая её положение, на панели b можно вывести магистральную артерию, отходящую от правого желудочка (B). Переместив опорную точку на клапан (C) и пройдя по ходу артерии (D) на панели b, на панели a подтверждаем, что аорта отходит от правого желудочка, а лёгочная артерия (короткий ствол с бифуркацией) — от левого. Показан также параллельный ход двух магистральных артерий. Кроме того, выявлен большой ДМЖП. AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек; TGA — транспозиция магистральных артерий; VSD — дефект межжелудочковой перегородки.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -1307,6 +1367,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f3.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 3",
   "caption": "Multiplanar slicing of DORV in a fetus of 26 gestational weeks. Panels a, b, and c represent three orthogonal planes (A, transverse; B, sagittal; and C, coronal). The cardiac apex in the 4CV was oriented upwards and the reference point (indicated by the green arrow) was placed in the crux of the heart in Panel a (A). Move the reference point to the right ventricle in Panel a. By adjusting the position of the reference point in Panel a, a great artery connecting to the right ventricle could be visualized in Panel b (B). Moving the reference point to the valve (C) and then navigating along the artery (D) in Panel b, we could then confirm that aorta and the pulmonary artery (characterized by the short trunk with bifurcation) were both originated from the right ventricle and were coursing in parallel in Panel a. AO, aorta; DORV, double-outlet right ventricle; LV, left ventricle; PA, pulmonary artery; RV, right ventricle",
+  "captionRu": "Мультипланарные срезы при DORV у плода 26 недель. Панели a, b и c — три ортогональные плоскости (A — поперечная, B — сагиттальная, C — корональная). Верхушка сердца на 4CV направлена вверх, опорная точка (зелёная стрелка) установлена на кресте сердца на панели a (A). Переместите опорную точку в правый желудочек на панели a. Подбирая её положение, на панели b можно вывести магистральную артерию, отходящую от правого желудочка (B). Переместив опорную точку на клапан (C) и пройдя по ходу артерии (D) на панели b, на панели a подтверждаем, что и аорта, и лёгочная артерия (короткий ствол с бифуркацией) отходят от правого желудочка и идут параллельно. AO — аорта; DORV — двойное отхождение сосудов от правого желудочка; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек.",
   "group": "Другие ВПС",
   "cards": [
    "chd:dorv"
@@ -1330,6 +1391,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f4.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 4",
   "caption": "Multiplanar slicing of TOF in a fetus of 24 gestational weeks. Panels a, b, and c represent three orthogonal planes (A, transverse; B, sagittal; and C, coronal). The cardiac apex in the 4CV was oriented upwards and the reference point (indicated by the green arrow) was placed in the crux of the heart in Panel a (A). Move the reference point to the position of the outflow tracts (at the basal part of the ventricles, near the crux of the heart) in Panel a. By adjusting the position of the reference point in Panel a, a great artery could be visualized in Panel b (B). Moving the reference point to the valve (C) and then navigating along the artery (D) in Panel b, we could then confirm that aorta was originated from both left and right ventricles in Panel a. A large-sized VSD could also be identified. Navigating the reference point further along aorta (E) in Panel b, we could visualize that the pulmonary artery (characterized by the short trunk with bifurcation) was originated from the right ventricle with a thickened valve in Panel a. AO, aorta; LV, left ventricle; PA, pulmonary artery; RV, right ventricle; TOF, tetralogy of Fallot; VSD, ventricular septal defect",
+  "captionRu": "Мультипланарные срезы при ТФ у плода 24 недель. Панели a, b и c — три ортогональные плоскости (A — поперечная, B — сагиттальная, C — корональная). Верхушка сердца на 4CV направлена вверх, опорная точка (зелёная стрелка) установлена на кресте сердца на панели a (A). Переместите опорную точку к выводным трактам (базальный отдел желудочков у креста сердца) на панели a. Подбирая её положение, на панели b можно вывести магистральную артерию (B). Переместив опорную точку на клапан (C) и пройдя по ходу артерии (D) на панели b, на панели a подтверждаем, что аорта отходит от обоих желудочков. Выявлен также большой ДМЖП. Продвигая опорную точку дальше по аорте (E) на панели b, на панели a видим, что лёгочная артерия (короткий ствол с бифуркацией) отходит от правого желудочка и имеет утолщённый клапан. AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек; TOF — тетрада Фалло; VSD — дефект межжелудочковой перегородки.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tof"
@@ -1353,6 +1415,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f5.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 5",
   "caption": "Multiplanar slicing of TCA in a fetus of 28 gestational weeks. Panels a, b, and c represent three orthogonal planes (A, transverse; B, sagittal; and C, coronal). The cardiac apex in the 4CV was oriented upwards and the reference point (indicated by the green arrow) was placed in the crux of the heart in Panel a (A). Move the reference point to the position of the outflow tracts (at the basal part of the ventricles, near the crux of the heart) in Panel a. By adjusting the position of the reference point in Panel a, a great artery could be visualized in Panel b. A VSD could also be identified (B). Moving the reference point to the valve (C) and then navigating along the artery (D) in Panel b, we could then confirm that only one great artery arising from both ventricles (mainly from the right ventricle) in Panel a. This great artery is aorta. The pulmonary artery was visualized arising from the root of aorta in Panel a. AO, aorta; LV, left ventricle; PA, pulmonary artery; RV, right ventricle; TCA, truncus arteriosus; VSD, ventricular septal defect",
+  "captionRu": "Мультипланарные срезы при общем артериальном стволе у плода 28 недель. Панели a, b и c — три ортогональные плоскости (A — поперечная, B — сагиттальная, C — корональная). Верхушка сердца на 4CV направлена вверх, опорная точка (зелёная стрелка) установлена на кресте сердца на панели a (A). Переместите опорную точку к выводным трактам (базальный отдел желудочков у креста сердца) на панели a. Подбирая её положение, на панели b можно вывести магистральную артерию; выявлен также ДМЖП (B). Переместив опорную точку на клапан (C) и пройдя по ходу артерии (D) на панели b, на панели a подтверждаем, что от обоих желудочков (преимущественно от правого) отходит только одна магистральная артерия. Авторы называют её аортой. Лёгочная артерия отходит от корня этого сосуда на панели a. AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек; TCA — общий артериальный ствол; VSD — дефект межжелудочковой перегородки.",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1376,6 +1439,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f6.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 6",
   "caption": "Detection of great arteries alignment in TGA and normal fetuses using 4D volumes with color flow information. In a 24-gestational-week fetus with TGA (a), parallel great arteries were clearly identified by the 4D rendered image. The pulmonary artery was originated from the left ventricle while the right ventricle gave off the aorta. In a normal fetus (b) of similar gestational age, the 4D rendered image demonstrated that the two great arteries were orthogonal to each other originating from each ventricle. AO, aorta; LV, left ventricle; PA, pulmonary artery; RV, right ventricle; TGA, transposition of the great arteries",
+  "captionRu": "Оценка взаиморасположения магистральных артерий при ТМА и в норме по 4D-объёмам с цветовым картированием. У плода 24 недель с ТМА (a) на 4D-реконструкции отчётливо видны параллельные магистральные артерии: лёгочная артерия отходит от левого желудочка, аорта — от правого. У нормального плода того же срока (b) на 4D-реконструкции две магистральные артерии перекрещиваются под прямым углом и отходят каждая от своего желудочка. AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек; TGA — транспозиция магистральных артерий.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga"
@@ -1399,6 +1463,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f7.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 7",
   "caption": "Detection of TOF in a fetus of 24 gestational weeks using 4D volumes with color flow information. The 4D rendered image clearly showed that the large in sized aorta was connected to both ventricles (a). Another image showed the stenosis pulmonary artery was connected to the right ventricle (b). AO, aorta; LV, left ventricle; PA, pulmonary artery; RV, right ventricle; TOF, tetralogy of Fallot",
+  "captionRu": "Выявление ТФ у плода 24 недель по 4D-объёмам с цветовым картированием. На 4D-реконструкции отчётливо видно, что расширенная аорта соединена с обоими желудочками (a). На другом изображении — стенозированная лёгочная артерия, соединённая с правым желудочком (b). AO — аорта; LV — левый желудочек; PA — лёгочная артерия; RV — правый желудочек; TOF — тетрада Фалло.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tof"
@@ -1422,6 +1487,7 @@ FC.IMAGES = [
   "file": "img/pmc5481875-f8.jpg",
   "label": "Cardiovasc Ultrasound 2017, рис. 8",
   "caption": "Detection of TCA in a fetus of 28 gestational weeks using 4D volumes with color flow information. The 4D rendered image clearly showed that a large in sized great artery(aorta) was originated from both ventricles. The main pulmonary artery was connected to the root of aorta. AO, aorta; LPA, left pulmonary artery; MPA, main pulmonary artery; RPA, right pulmonary artery; TCA, truncus arteriosus",
+  "captionRu": "Выявление общего артериального ствола у плода 28 недель по 4D-объёмам с цветовым картированием. На 4D-реконструкции отчётливо видно, что крупная магистральная артерия (по авторам — аорта) отходит от обоих желудочков. Ствол лёгочной артерии соединён с корнем этого сосуда. AO — аорта; LPA — левая лёгочная артерия; MPA — ствол лёгочной артерии; RPA — правая лёгочная артерия; TCA — общий артериальный ствол.",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1445,6 +1511,7 @@ FC.IMAGES = [
   "file": "img/pmc5701355-f1.jpg",
   "label": "BMC Pregnancy Childbirth 2017, рис. 1",
   "caption": "US show a fetus at the gestational age of 21.1 weeks with levocardia. The heart is located in the normal levo position with a left-sided cardiac apex (shown on a). The stomach is located in the right side of the abdomen (shown in b)",
+  "captionRu": "УЗИ плода 21,1 недели с леворасположенным сердцем. Сердце в обычном левом положении, верхушка слева (a). Желудок расположен в правой половине живота (b).",
   "group": "Другие ВПС",
   "cards": [
    "view:situs"
@@ -1468,6 +1535,7 @@ FC.IMAGES = [
   "file": "img/pmc5701355-f2.jpg",
   "label": "BMC Pregnancy Childbirth 2017, рис. 2",
   "caption": "US shows a fetus at the gestational age of 22.7 weeks with dextrocardia. The heart is located in the right hemithorax with the heart axis directed to the right and caudad (shown on a). The stomach is located in the left side of the abdomen (shown in b)",
+  "captionRu": "УЗИ плода 22,7 недели с декстрокардией. Сердце в правой половине грудной клетки, ось сердца направлена вправо и каудально (a). Желудок расположен в левой половине живота (b).",
   "group": "Другие ВПС",
   "cards": [
    "view:situs"
@@ -1491,6 +1559,7 @@ FC.IMAGES = [
   "file": "img/pmc6824646-f1.jpg",
   "label": "Medicine (Baltimore) 2019, рис. 1",
   "caption": "The diagnostic classification of pulmonary atresia with intact ventricular septum. (A) Type I—pulmonary atresia (narrow), the presence of right ventricular inlet portion, trabecular portion and infundibulum portion, the absence of venticulo-coronary artery communication; (B) Type II—pulmonary atresia (narrow), the absence of right ventricular trabecular portion, the presence of right ventricular inlet portion and infundibulum portion but the cavity is small, the absence of venticulo-coronary artery communication; (C) Type III—pulmonary atresia (narrow), the absence of right ventricular trabecular portion and infundibulum, only a small inlet portion, venticulo-coronary artery communication (circle in the right ventricular myocardium indicates sinusoids ). A = left atrium, AO = aorta, LV = left ventricle, PA = pulmonary atresia, RA = right atrium, RV = right ventricle.",
+  "captionRu": "Диагностическая классификация атрезии лёгочной артерии с интактной межжелудочковой перегородкой. (A) Тип I — атрезия лёгочной артерии (сужение); присутствуют приточный, трабекулярный и инфундибулярный отделы правого желудочка, вентрикулокоронарных сообщений нет. (B) Тип II — атрезия лёгочной артерии (сужение); трабекулярного отдела ПЖ нет, приточный и инфундибулярный отделы есть, но полость мала; вентрикулокоронарных сообщений нет. (C) Тип III — атрезия лёгочной артерии (сужение); нет трабекулярного и инфундибулярного отделов ПЖ, только небольшой приточный отдел; есть вентрикулокоронарные сообщения (кружок в миокарде ПЖ — синусоиды). A — левое предсердие, AO — аорта, LV — левый желудочек, PA — атрезия лёгочной артерии, RA — правое предсердие, RV — правый желудочек.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1512,6 +1581,7 @@ FC.IMAGES = [
   "file": "img/pmc6824646-f3.jpg",
   "label": "Medicine (Baltimore) 2019, рис. 3",
   "caption": "The prenatal and postnatal echocardiography of type I pulmonary atresia with intact ventricular septum. (A) The prenatal echocardiography at 23 weeks’ gestation, four-chamber view shows right ventricle is well developed, no venticulo-coronary artery communication, intact ventricular septum. (B) The 3-vessel-trachea view shows pulmonary atresia (narrow). (C) The postnatal echocardiography of the same fetus, four-chamber view shows right ventricle is well developed, severe tricuspid regurgitation, no venticulo-coronary artery communication. (D) Parasternal short axis shows pulmonary atresia (arrow), patent ductus arteriosus. AO = aorta, DAo = descending aorta, LA = left atrium, LPA = left pulmonary artery, LV = left ventricle, PA = pulmonary atresia, PDA = patent ductus arteriosus, RA = right atrium, RPA = right pulmonary artery, RV = right ventricle, SVC = superior vena cava, VCAC = ventriculo-coronary artery communication.",
+  "captionRu": "Пренатальная и постнатальная эхокардиография при атрезии лёгочной артерии с интактной МЖП, тип I. (A) Пренатально в 23 недели, четырёхкамерный срез: правый желудочек хорошо развит, вентрикулокоронарных сообщений нет, МЖП интактна. (B) Срез трёх сосудов и трахеи: атрезия лёгочной артерии (сужение). (C) Постнатальная эхокардиография того же ребёнка, четырёхкамерный срез: ПЖ хорошо развит, выраженная трикуспидальная регургитация, вентрикулокоронарных сообщений нет. (D) Парастернальная короткая ось: атрезия лёгочной артерии (стрелка), открытый артериальный проток. AO — аорта, DAo — нисходящая аорта, LA — левое предсердие, LPA — левая лёгочная артерия, LV — левый желудочек, PA — атрезия лёгочной артерии, PDA — открытый артериальный проток, RA — правое предсердие, RPA — правая лёгочная артерия, RV — правый желудочек, SVC — верхняя полая вена, VCAC — вентрикулокоронарное сообщение.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1533,6 +1603,7 @@ FC.IMAGES = [
   "file": "img/pmc6824646-f4.jpg",
   "label": "Medicine (Baltimore) 2019, рис. 4",
   "caption": "The prenatal and postnatal echocardiography of type II pulmonary atresia with intact ventricular septum. (A) The prenatal echocardiography at 22 weeks’ gestation, four-chamber view shows the absence of right ventricular trabecular portion, no venticulo-coronary artery communication, intact ventricular septum. (B) The 3-vessel-trachea view shows pulmonary atresia (narrow). (C) The postnatal echocardiography of the same fetus, four-chamber view shows the absence of right ventricular trabecular portion, no venticulo-coronary artery communication, no tricuspid regurgitation. (D) Parasternal short axis shows pulmonary atresia (arrow), patent ductus arteriosus. AO = aorta, DAo = descending aorta, LA = left atrium, LPA = left pulmonary artery, LV = left ventricle, PA = pulmonary atresia, PDA = patent ductus arteriosus, RA = right atrium, RPA = right pulmonary artery, RV = right ventricle, SVC = superior vena cava, VCAC = ventriculo-coronary artery communication.",
+  "captionRu": "Пренатальная и постнатальная эхокардиография при атрезии лёгочной артерии с интактной МЖП, тип II. (A) Пренатально в 22 недели, четырёхкамерный срез: трабекулярного отдела ПЖ нет, вентрикулокоронарных сообщений нет, МЖП интактна. (B) Срез трёх сосудов и трахеи: атрезия лёгочной артерии (сужение). (C) Постнатальная эхокардиография того же ребёнка, четырёхкамерный срез: трабекулярного отдела ПЖ нет, вентрикулокоронарных сообщений нет, трикуспидальной регургитации нет. (D) Парастернальная короткая ось: атрезия лёгочной артерии (стрелка), открытый артериальный проток. AO — аорта, DAo — нисходящая аорта, LA — левое предсердие, LPA — левая лёгочная артерия, LV — левый желудочек, PA — атрезия лёгочной артерии, PDA — открытый артериальный проток, RA — правое предсердие, RPA — правая лёгочная артерия, RV — правый желудочек, SVC — верхняя полая вена, VCAC — вентрикулокоронарное сообщение.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1554,6 +1625,7 @@ FC.IMAGES = [
   "file": "img/pmc6824646-f5.jpg",
   "label": "Medicine (Baltimore) 2019, рис. 5",
   "caption": "The prenatal and postnatal echocardiography of type III pulmonary atresia with intact ventricular septum. (A) The prenatal echocardiography at 25 weeks’ gestation, four-chamber view shows the absence of right ventricular trabecular portion, intact ventricular septum. (B) Color Doppler shows venticulo-coronary artery communication (narrow). (C) The postnatal echocardiography of the same fetus, four-chamber view shows the absence of right ventricular trabecular portion, venticulo-coronary artery communication (narrow). (D) Parasternal short axis shows pulmonary atresia (arrow), patent ductus arteriosus. DAo = descending aorta, LA = left atrium, LV = left ventricle, PA = pulmonary atresia, PDA = patent ductus arteriosus, RA = right atrium, RV = right ventricle, VCAC = ventriculo-coronary artery communication.",
+  "captionRu": "Пренатальная и постнатальная эхокардиография при атрезии лёгочной артерии с интактной МЖП, тип III. (A) Пренатально в 25 недель, четырёхкамерный срез: трабекулярного отдела ПЖ нет, МЖП интактна. (B) Цветовой допплер: вентрикулокоронарное сообщение (сужение). (C) Постнатальная эхокардиография того же ребёнка, четырёхкамерный срез: трабекулярного отдела ПЖ нет, вентрикулокоронарное сообщение (сужение). (D) Парастернальная короткая ось: атрезия лёгочной артерии (стрелка), открытый артериальный проток. DAo — нисходящая аорта, LA — левое предсердие, LV — левый желудочек, PA — атрезия лёгочной артерии, PDA — открытый артериальный проток, RA — правое предсердие, RV — правый желудочек, VCAC — вентрикулокоронарное сообщение.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1575,6 +1647,7 @@ FC.IMAGES = [
   "file": "img/pmc8087597-f1.jpg",
   "label": "Arch Gynecol Obstet 2021, рис. 1",
   "caption": "a Four-chamber view in a fetus with isolated ccTGA (24 + 2 weeks): levocardia, the aorta descendens (Ao) is located to the left, pulmonary veins drain into the left atrium (LA), connected to the left-sided anatomic right ventricle (RV), where the moderator band (asterisk) is found and the septal leaflet of the tricuspid valve (TV) inserts lower to the interventricular septum than the anterior leaflet of the mitral valve (MV); the right atrium (RA) is connected to the right-sided anatomic left ventricle (LV), that forms the apex of the heart. b Diastolic inflow in left (LV) and right (RV) ventricle. c From the right-sided left ventricle (LV) arises the pulmonary trunk (TP), the blood flow separates into the pulmonary arteries (PA) and the ductus arteriosus",
+  "captionRu": "a Четырёхкамерный срез у плода с изолированной корригированной ТМА (24+2 недели): леворасположенное сердце, нисходящая аорта (Ao) слева, лёгочные вены впадают в левое предсердие (LA), соединённое с левосторонним анатомически правым желудочком (RV) — в нём есть модераторный пучок (звёздочка), а септальная створка трикуспидального клапана (TV) прикрепляется к межжелудочковой перегородке ниже (ближе к верхушке), чем передняя створка митрального клапана (MV); правое предсердие (RA) соединено с правосторонним анатомически левым желудочком (LV), который формирует верхушку сердца. b Диастолический приток в левый (LV) и правый (RV) желудочки. c От правостороннего левого желудочка (LV) отходит ствол лёгочной артерии (TP); кровоток разделяется на лёгочные артерии (PA) и артериальный проток.",
   "group": "Другие ВПС",
   "cards": [],
   "status": "draft",
@@ -1596,6 +1669,7 @@ FC.IMAGES = [
   "file": "img/pmc8303209-f3.jpg",
   "label": "Diagnostics (Basel) 2021, рис. 3",
   "caption": "LVOT angle in fetus with D-TGA at 24 gestational weeks.",
+  "captionRu": "Угол LVOT у плода 24 недель с D-ТМА.",
   "group": "Другие ВПС",
   "cards": [
    "chd:tga",
@@ -1620,6 +1694,7 @@ FC.IMAGES = [
   "file": "img/pmc8553718-f2.jpg",
   "label": "Arch Gynecol Obstet 2021, рис. 2",
   "caption": "Common arterial trunk (TAC) overriding a large VSD (*)",
+  "captionRu": "Общий артериальный ствол (TAC) над большим ДМЖП (*).",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1643,6 +1718,7 @@ FC.IMAGES = [
   "file": "img/pmc8553718-f3.jpg",
   "label": "Arch Gynecol Obstet 2021, рис. 3",
   "caption": "Large common arterial trunk valve (arrow). LV left ventricle, RV right ventricle, *VSD",
+  "captionRu": "Крупный клапан общего артериального ствола (стрелка). LV — левый желудочек, RV — правый желудочек, * — ДМЖП.",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1666,6 +1742,7 @@ FC.IMAGES = [
   "file": "img/pmc8553718-f4.jpg",
   "label": "Arch Gynecol Obstet 2021, рис. 4",
   "caption": "TAC type 1 with overriding common arterial trunk (TAC). The aorta (Ao) arises from the right side of the common trunk, a short main pulmonary artery (MPA) from the left side of the common trunk. The MPA then divides into the right (RPA) and left pulmonary artery (LPA). (*VSD; RV right ventricle, LV left ventricle)",
+  "captionRu": "Общий артериальный ствол, тип 1, сидящий верхом на перегородке (TAC). Аорта (Ao) отходит от правой стороны общего ствола, короткий ствол лёгочной артерии (MPA) — от левой. Затем ствол лёгочной артерии делится на правую (RPA) и левую (LPA) лёгочные артерии. (* — ДМЖП; RV — правый желудочек, LV — левый желудочек.)",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1689,6 +1766,7 @@ FC.IMAGES = [
   "file": "img/pmc8553718-f5.jpg",
   "label": "Arch Gynecol Obstet 2021, рис. 5",
   "caption": "TAC type 2. Cross-section of the common arterial trunk (TAC) with a separate branching of the right (RPA) and left pulmonary artery (LPA). In this case the branching of both pulmonary arteries is close together",
+  "captionRu": "Общий артериальный ствол, тип 2. Поперечное сечение общего ствола (TAC) с раздельным отхождением правой (RPA) и левой (LPA) лёгочных артерий. В этом случае устья обеих лёгочных артерий расположены близко друг к другу.",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1712,6 +1790,7 @@ FC.IMAGES = [
   "file": "img/pmc8553718-f6.jpg",
   "label": "Arch Gynecol Obstet 2021, рис. 6",
   "caption": "TAC type A4. The aorta (Ao) and the main pulmonary artery (MPA) arise from the common arterial trunk (TAC). The interrupted aorta divides into the brachiocephalic and left common carotid arteries (interrupted aortic arch type B)",
+  "captionRu": "Общий артериальный ствол, тип A4. Аорта (Ao) и ствол лёгочной артерии (MPA) отходят от общего артериального ствола (TAC). Прерванная аорта делится на брахиоцефальный ствол и левую общую сонную артерию (перерыв дуги аорты, тип B).",
   "group": "Другие ВПС",
   "cards": [
    "chd:cat"
@@ -1735,6 +1814,7 @@ FC.IMAGES = [
   "file": "img/pmc8859889-f1.jpg",
   "label": "Cardiovasc Ultrasound 2022, рис. 1",
   "caption": "Measurements of the fetal cardiac parameters. In the right ventricular outflow tract view, pulmonary valve annulus is measured from hinge point to hinge point at the location of maximal expansion during peak systole (A, arrow). In the three-vessel view, the right pulmonary artery is measured at the proximal part of its bifurcation (B, arrow). In the left ventricular outflow tract view, the aortic valve annulus is measured from hinge point to hinge point at the location of maximal expansion during peak systole (C, arrow). In the ductal arch view, pulmonary valve peak systolic velocity is measured at the level of the pulmonary valve using pulsed Doppler (D). In the aortic arch view, the descending aorta is measured at the level of the diaphragm (E, arrow)",
+  "captionRu": "Измерение параметров сердца плода. На срезе выводного тракта ПЖ фиброзное кольцо клапана лёгочной артерии измеряют от точки прикрепления до точки прикрепления створок в момент максимального раскрытия в пиковую систолу (A, стрелка). На срезе трёх сосудов правую лёгочную артерию измеряют в проксимальной части у бифуркации (B, стрелка). На срезе выводного тракта ЛЖ фиброзное кольцо аортального клапана измеряют от точки до точки прикрепления створок в момент максимального раскрытия в пиковую систолу (C, стрелка). На срезе дуги протока пиковую систолическую скорость на клапане лёгочной артерии измеряют импульсно-волновым допплером на уровне клапана (D). На срезе дуги аорты нисходящую аорту измеряют на уровне диафрагмы (E, стрелка).",
   "group": "Другие ВПС",
   "cards": [
    "chd:tof",
@@ -1759,6 +1839,7 @@ FC.IMAGES = [
   "file": "img/pmc9589048-f1.jpg",
   "label": "Front Pediatr 2022, рис. 1",
   "caption": "The diagram reproduces the three vessel and the tracheal view and shows the pulmonary artery (PA) leading into the arterial duct (D), the aortic arch (AO), and the superior vena cava (SVC). The lines show the measurement of, respectively, the isthmus (I), the duct, and the distal transverse aortic arch (TA) diameter.",
+  "captionRu": "Схема среза трёх сосудов и трахеи: лёгочная артерия (PA), переходящая в артериальный проток (D), дуга аорты (AO) и верхняя полая вена (SVC). Линии — места измерения диаметров перешейка (I), протока и дистальной части поперечной дуги аорты (TA).",
   "group": "Другие ВПС",
   "cards": [
    "chd:coa",
@@ -1783,6 +1864,7 @@ FC.IMAGES = [
   "file": "img/commons-agenesis-of-ductus-venosus-human-1400px.jpg",
   "label": "Wikimedia Commons: Agenesis of ductus venosus human.jpg",
   "caption": "Figure 3. Agenesis of ductus venosus (ADV) in a first trimester case with umbilical vein drainage into inferior vena cava (IVC) and increased nuchal translucency. (A): Transverse plane of the FT fetal abdomen, with high-definition directional power Doppler applied. An ”H”-shaped variant of the intrahepatic portal veins connection is identified; (B): high-definition directional power Doppler in the sagittal plane of the fetal abdomen (same case) showing ADV with umbilical vein drainage into the inferior vena cava; (C): mid-sagittal view of the fetal face with the measurement of the thickened NT. MPV main portal vein, St stomach, LPV left portal vein, UV umbilical vein, RPVa anterior branch of right portal vein, RPVp posterior branch of right portal vein, Ao aorta, IVC inferior vena cava, ADV ductus venosus agenesis, P palate, NB nasal bone, NT nuchal translucency.",
+  "captionRu": "Рисунок 3. Агенезия венозного протока (ADV) в первом триместре с дренажем пупочной вены в нижнюю полую вену и увеличенной толщиной воротникового пространства. (A) Поперечная плоскость живота плода в первом триместре, направленный энергетический допплер высокой чёткости: H-образный вариант соединения внутрипечёночных воротных вен. (B) Направленный энергетический допплер высокой чёткости в сагиттальной плоскости живота (тот же случай): агенезия венозного протока с дренажем пупочной вены в нижнюю полую вену. (C) Срединный сагиттальный срез лица плода с измерением увеличенной ТВП. MPV — основной ствол воротной вены, St — желудок, LPV — левая воротная вена, UV — пупочная вена, RPVa — передняя ветвь правой воротной вены, RPVp — задняя ветвь правой воротной вены, Ao — аорта, IVC — нижняя полая вена, ADV — агенезия венозного протока, P — нёбо, NB — носовая кость, NT — толщина воротникового пространства.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -1800,6 +1882,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f1.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 1",
   "caption": "Sonographic images of a 22-gestational-week fetus diagnosed with interrupted IVC and azygos continuation. In the 4CV, a venous-like structure was detected adjacent to the DAO (a). Gradual rotation of the ultrasound beam; this structure was visualized to drain into the RA (b), and suspected to be the azygos. The abnormal structures were missed by sonographer under Protocol A, while they were detected under Protocol B as this sonographer knew that this sign was an indication of interrupted IVC and azygos continuation. 4CV, four-chamber view; DAO, descending aorta; LA, left atrium; LV, left ventricle; RA, right atrium; RV, right ventricle; Z, azygos",
+  "captionRu": "Эхограммы плода 22 недель с перерывом нижней полой вены и продолжением в непарную вену. На 4CV рядом с нисходящей аортой выявлена структура, похожая на вену (a). При постепенном повороте датчика видно, что она впадает в ПП (b); заподозрена непарная вена. Врач по протоколу A пропустил эти изменения, а врач по протоколу B выявил, так как знал, что этот признак указывает на перерыв НПВ с продолжением в непарную вену. 4CV — четырёхкамерный срез; DAO — нисходящая аорта; LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек; Z — непарная вена.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -1821,6 +1904,7 @@ FC.IMAGES = [
   "file": "img/pmc4928259-f3.jpg",
   "label": "BMC Pregnancy Childbirth 2016, рис. 3",
   "caption": "Sonographic images of a 23-gestational-week fetus diagnosed with right aortic arch. In the 3VT, the confluence of the DA and aortic arch formed a “U”-like structure, surrounding the trachea and esophagus. This was a characteristic sign of right aortic arch. 3VT, three-vessel-trachea view; DA, ductus arteriosus; E, esophagus; MPA, main pulmonary artery; S, spine; SVC, superior vena cava; T, trachea",
+  "captionRu": "Эхограммы плода 23 недель с правой дугой аорты. На 3VT слияние артериального протока и дуги аорты образует U-образную структуру вокруг трахеи и пищевода. Это характерный признак правой дуги аорты. 3VT — срез трёх сосудов и трахеи; DA — артериальный проток; E — пищевод; MPA — ствол лёгочной артерии; S — позвоночник; SVC — верхняя полая вена; T — трахея.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [
    "view:3vt"
@@ -1844,6 +1928,7 @@ FC.IMAGES = [
   "file": "img/pmc5809570-f1.jpg",
   "label": "Int J Cardiovasc Imaging 2018, рис. 1",
   "caption": "The fetal heart is imaged in a basic four-chamber view. The wall of the coronary sinus can be visualized",
+  "captionRu": "Сердце плода на базовом четырёхкамерном срезе. Видна стенка коронарного синуса.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [
    "view:4cv"
@@ -1867,6 +1952,7 @@ FC.IMAGES = [
   "file": "img/pmc5809570-f2.jpg",
   "label": "Int J Cardiovasc Imaging 2018, рис. 2",
   "caption": "A standard fetal apical four-chamber view. Dilatation of the coronary sinus with PLSVC can be visualized",
+  "captionRu": "Стандартный апикальный четырёхкамерный срез сердца плода. Видно расширение коронарного синуса при ДЛВПВ.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [
    "view:4cv"
@@ -1890,6 +1976,7 @@ FC.IMAGES = [
   "file": "img/pmc5809570-f3.jpg",
   "label": "Int J Cardiovasc Imaging 2018, рис. 3",
   "caption": "a M-mode tracing obtained from a normal coronary sinus. b M-mode tracing obtained from a dilated coronary sinus with PLSVC",
+  "captionRu": "a — М-режим нормального коронарного синуса. b — М-режим расширенного коронарного синуса при ДЛВПВ.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -1911,6 +1998,7 @@ FC.IMAGES = [
   "file": "img/pmc6435603-f1.jpg",
   "label": "Arch Gynecol Obstet 2019, рис. 1",
   "caption": "a Right aortic arch at 21 weeks of gestation in gray scale mode. The transverse arch is on the right of the trachea with a left ductus arteriosus (DA). The aortic arch and DA form a U-shaped configuration with the trachea between the two vessels (U-sign). b Right aortic arch with color Doppler at 21 weeks of gestation",
+  "captionRu": "a — Правая дуга аорты в 21 неделю в серой шкале. Поперечная дуга расположена справа от трахеи, артериальный проток (DA) — левый. Дуга аорты и проток образуют U-образную фигуру, трахея — между двумя сосудами (U-признак). b — Правая дуга аорты при цветовом допплере в 21 неделю.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [
    "view:3vt"
@@ -1934,6 +2022,7 @@ FC.IMAGES = [
   "file": "img/pmc7552480-f2.jpg",
   "label": "BMC Pregnancy Childbirth 2020, рис. 2",
   "caption": "Bifurcation of the ascending aorta and a complete vascular ring of the DAA on fetal echocardiography. a Left ventricular outflow tract view: The distal ascending aorta bifurcation is confirmed as the right arch and left arch. b Three-vessel tracheal view: A bifurcation of the ascending aorta into the right aortic arch and left aortic arch to form a complete O-shaped ring encircling the trachea, together with a number 9 configuration connecting with the left-sided ductus arteriosus. Both aortic arches demonstrate antegrade blood flow (AO or AAO: ascending aorta; R: right aortic arch; L: left aortic arch; PA: pulmonary artery; DA: ductus arteriosus; T: trachea)",
+  "captionRu": "Бифуркация восходящей аорты и полное сосудистое кольцо при двойной дуге аорты на фетальной эхокардиографии. a — Срез выводного тракта левого желудочка: дистальная часть восходящей аорты раздваивается на правую и левую дуги. b — Срез трёх сосудов и трахеи: восходящая аорта раздваивается на правую и левую дуги, образуя полное O-образное кольцо вокруг трахеи, вместе с конфигурацией в виде цифры 9 при соединении с левосторонним артериальным протоком. В обеих дугах — антеградный кровоток. AO или AAO — восходящая аорта; R — правая дуга аорты; L — левая дуга аорты; PA — лёгочная артерия; DA — артериальный проток; T — трахея.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -1955,6 +2044,7 @@ FC.IMAGES = [
   "file": "img/pmc7552480-f3.jpg",
   "label": "BMC Pregnancy Childbirth 2020, рис. 3",
   "caption": "DAA with distal left aortic arch atresia on fetal echocardiography. a Nonstandard three-vessel tracheal view of gray-scale imaging: The vascular echo at the distal end of the left aortic arch is interrupted and replaced by a fibrous cord (arrowhead). b. Nonstandard three-vessel tracheal view of color Doppler imaging shows the interruption of color flow at the distal end of the left aortic arch(arrowhead) and an incomplete vascular ring(L-ARCH: left aortic arch; DAO: descending aorta; T: trachea)",
+  "captionRu": "Двойная дуга аорты с атрезией дистальной части левой дуги на фетальной эхокардиографии. a — Нестандартный срез трёх сосудов и трахеи в серой шкале: эхосигнал сосуда в дистальном отделе левой дуги прерывается и замещается фиброзным тяжом (наконечник стрелки). b — Тот же нестандартный срез при цветовом допплере: перерыв цветового сигнала в дистальном отделе левой дуги (наконечник стрелки) и неполное сосудистое кольцо. L-ARCH — левая дуга аорты; DAO — нисходящая аорта; T — трахея.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [
    "view:3vt"
@@ -1978,6 +2068,7 @@ FC.IMAGES = [
   "file": "img/pmc7552480-f4.jpg",
   "label": "BMC Pregnancy Childbirth 2020, рис. 4",
   "caption": "Branching pattern of DAA on fetal echocardiography. a Sagittal view of the right aortic arch: The dominant right arch gives rise to the RCCA and RSA. b Sagittal view of the left aortic arch: The small left aortic arch gives rise to the LCCA and LSA. c The coronal view of the aortic arch shows the symmetric appearance of the common carotid artery and subclavian artery originating from the ipsilateral aortic arch simultaneously(R-ARCH: right aortic arch; L-ARCH: left aortic arch; RCCA: right common carotid artery; RSA: right subclavian artery; LCCA: left common carotid artery; LSA: left subclavian artery)",
+  "captionRu": "Варианты ветвления при двойной дуге аорты на фетальной эхокардиографии. a — Сагиттальный срез правой дуги: доминирующая правая дуга даёт правую общую сонную (RCCA) и правую подключичную (RSA) артерии. b — Сагиттальный срез левой дуги: небольшая левая дуга даёт левую общую сонную (LCCA) и левую подключичную (LSA) артерии. c — Корональный срез дуги аорты: симметричное отхождение общей сонной и подключичной артерий от дуги своей стороны. R-ARCH — правая дуга аорты; L-ARCH — левая дуга аорты; RCCA — правая общая сонная артерия; RSA — правая подключичная артерия; LCCA — левая общая сонная артерия; LSA — левая подключичная артерия.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -1999,6 +2090,7 @@ FC.IMAGES = [
   "file": "img/pmc7552480-f5.jpg",
   "label": "BMC Pregnancy Childbirth 2020, рис. 5",
   "caption": "Branching pattern variant of DAA on fetal echocardiography. a Sagittal view of the left aortic arch: One branch can be viewed from the left aortic arch (H: heart, 1: left common carotid artery). Sagittal view of the right aortic arch: Three branches can be viewed from the right aortic arch (H: heart, 1: right common carotid artery, 2: right subclavian artery, 3: left subclavian artery, L-ARCH: left aortic arch; R-ARCH: right aortic arch; DAO: descending aorta)",
+  "captionRu": "Вариант ветвления при двойной дуге аорты на фетальной эхокардиографии. a — Сагиттальный срез левой дуги: от неё отходит одна ветвь (H — сердце, 1 — левая общая сонная артерия). Сагиттальный срез правой дуги: от неё отходят три ветви (H — сердце, 1 — правая общая сонная артерия, 2 — правая подключичная артерия, 3 — левая подключичная артерия). L-ARCH — левая дуга аорты; R-ARCH — правая дуга аорты; DAO — нисходящая аорта.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -2020,6 +2112,7 @@ FC.IMAGES = [
   "file": "img/pmc7552480-f6.jpg",
   "label": "BMC Pregnancy Childbirth 2020, рис. 6",
   "caption": "Three-dimensional color-rendered image with spatiotemporal image correlation of DAA: The left aortic arch and the dominant right aortic arch develop a complete vascular loop, join the left ductus arteriosus, and converge into the descending aorta together. Symmetrical initial parts of the two branches can probably be observed on each arch. (R-ARCH: right aortic arch; L-ARCH: left aortic arch; RCCA: right common carotid artery; RSA: right subclavian artery; LCCA: left common carotid artery; LSA: left subclavian artery; DA: ductus arteriosus; DAO: descending aorta)",
+  "captionRu": "Трёхмерная цветовая реконструкция STIC при двойной дуге аорты: левая и доминирующая правая дуги образуют полное сосудистое кольцо, соединяются с левым артериальным протоком и вместе переходят в нисходящую аорту. На каждой дуге, вероятно, видны симметричные начальные отделы двух ветвей. R-ARCH — правая дуга аорты; L-ARCH — левая дуга аорты; RCCA — правая общая сонная артерия; RSA — правая подключичная артерия; LCCA — левая общая сонная артерия; LSA — левая подключичная артерия; DA — артериальный проток; DAO — нисходящая аорта.",
   "group": "Аномалии дуги аорты и вен",
   "cards": [],
   "status": "draft",
@@ -2041,6 +2134,7 @@ FC.IMAGES = [
   "file": "img/commons-embryofetal-heart-rates.jpg",
   "label": "Wikimedia Commons: Embryofetal Heart Rates.jpg",
   "caption": "The heart rate throughout gestation. The first month of beating the embryonic heart rate accelerates from about the mothers heart rate to a peak rate in the 9th LMP week at approximately 175 B/M.",
+  "captionRu": "ЧСС на протяжении беременности. В первый месяц сердцебиения ЧСС эмбриона нарастает примерно от частоты сердечных сокращений матери до пика на 9-й неделе от последней менструации — около 175 уд/мин.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2058,6 +2152,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-017.jpg",
   "label": "Wikimedia Commons: Ultrasound Scan ND 017.jpg",
   "caption": "Ultrasound scan. Provided as-is. Fetal cardiac activity. Please feel free to categorise, add description, crop or rename.",
+  "captionRu": "УЗ-снимок без доработки. Сердечная деятельность плода. Автор разрешает классифицировать, описывать, кадрировать и переименовывать.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2075,6 +2170,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-062.jpg",
   "label": "Wikimedia Commons: Ultrasound Scan ND 062.jpg",
   "caption": "Fetal heart beat 200 bpm. Ultrasound scan. Provided as-is. Please feel free to categorize, add description, crop or rename.",
+  "captionRu": "ЧСС плода 200 уд/мин. УЗ-снимок без доработки. Автор разрешает классифицировать, описывать, кадрировать и переименовывать.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2092,6 +2188,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-180.jpg",
   "label": "Wikimedia Commons: Ultrasound Scan ND 180.jpg",
   "caption": "Ultrasound scan. Fetal cardiac activity",
+  "captionRu": "УЗ-снимок. Сердечная деятельность плода.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2109,6 +2206,7 @@ FC.IMAGES = [
   "file": "img/pmc4219454-f1.jpg",
   "label": "BMC Pregnancy Childbirth 2013, рис. 1",
   "caption": "Ultrasonograms of two-dimensional foetal echocardiograpy. Atrial (A) and ventricular (V) contractions.",
+  "captionRu": "Двумерная фетальная эхокардиография: сокращения предсердий (A) и желудочков (V).",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2130,6 +2228,7 @@ FC.IMAGES = [
   "file": "img/pmc8934222-f2.jpg",
   "label": "Case Rep Obstet Gynecol 2022, рис. 2",
   "caption": "Transabdominal ultrasound of fetus prior to and after fetal intramuscular injection of digoxin. Fetal heart rate is 194 bpm after 6 days of treatment with oral digoxin (a). After the procedure, fetal heart rate is 152 bpm (b).",
+  "captionRu": "Трансабдоминальное УЗИ плода до и после внутримышечного введения дигоксина плоду. ЧСС плода 194 уд/мин после 6 дней приёма дигоксина матерью внутрь (a). После процедуры ЧСС плода 152 уд/мин (b).",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2151,6 +2250,7 @@ FC.IMAGES = [
   "file": "img/pmc9003959-f2.jpg",
   "label": "BMC Pregnancy Childbirth 2022, рис. 2",
   "caption": "Fetal M-mode ultrasound. Ventriculo-atrial dissociation in atypical junctional ectopic tachycardia; junctional ectopic tachycardia was diagnosed postnatally, and the findings were detected retrospectively. In the four-chamber view of the heart, which shows the left ventricle and right atrium, the wide arrow indicates atrial contraction, the narrow arrow indicates ventricular contraction, and the arrowhead indicates a premature ventricular contraction",
+  "captionRu": "М-режим у плода. Вентрикулоатриальная диссоциация при атипичной узловой эктопической тахикардии; диагноз узловой эктопической тахикардии поставлен после рождения, изменения выявлены ретроспективно. На четырёхкамерном срезе виден левый желудочек и правое предсердие; широкая стрелка — сокращение предсердия, узкая — сокращение желудочка, наконечник стрелки — желудочковая экстрасистола.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2172,6 +2272,7 @@ FC.IMAGES = [
   "file": "img/pmc9319402-f1.jpg",
   "label": "Diagnostics (Basel) 2022, рис. 1",
   "caption": "(A) M-mode shows a ventricular rate of (v) 245 bpm and an atrial rate of (a) 490 bpm; (B) Doppler waveforms of the renal vein (a-rate: 245 bpm) and renal artery (v-rate: 505 bpm); (C): Atrial septal aneurysm (*): wide excursion of the foramen ovale flap; (D): Color flow mapping in the septal aneurysm shows turbulent reversed flow returning back to the right atrium (FFo: flap of foramen ovale; LA: left atrium; RA: right atrium).",
+  "captionRu": "(A) М-режим: частота желудочков (v) 245 уд/мин, частота предсердий (a) 490 уд/мин. (B) Допплеровские кривые почечной вены (частота a — 245 уд/мин) и почечной артерии (частота v — 505 уд/мин). (C) Аневризма межпредсердной перегородки (*): широкая экскурсия клапана овального окна. (D) Цветовое картирование в аневризме: турбулентный обратный поток в правое предсердие. FFo — клапан овального окна; LA — левое предсердие; RA — правое предсердие.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2193,6 +2294,7 @@ FC.IMAGES = [
   "file": "img/pmc9319402-f2.jpg",
   "label": "Diagnostics (Basel) 2022, рис. 2",
   "caption": "(A) Umbilical artery waveforms show premature atrial contraction/bigeminy (a): (B) M-mode shows atrial flutter; atrial rate (a): ventricular rate (v) 2:1).",
+  "captionRu": "(A) Кривые пупочной артерии: предсердные экстрасистолы по типу бигеминии (a). (B) М-режим: трепетание предсердий; соотношение частоты предсердий (a) и желудочков (v) 2:1.",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2214,6 +2316,7 @@ FC.IMAGES = [
   "file": "img/pmc9319402-f3.jpg",
   "label": "Diagnostics (Basel) 2022, рис. 3",
   "caption": "(A) M-mode shows supraventricular tachycardia; atrial rate (a): ventricular rate (v) (A): ascites; LA: left atrium; RA: right atrium); (B) cardiac Doppler waveforms at left inflow and outflow shows atrial flutter; atrial rate (a): ventricular rate (v) 2:1 (440:226).",
+  "captionRu": "(A) М-режим: наджелудочковая тахикардия; соотношение частоты предсердий (a) и желудочков (v); (A) — асцит; LA — левое предсердие; RA — правое предсердие. (B) Допплеровские кривые притока и выброса левых отделов: трепетание предсердий, соотношение частоты предсердий (a) и желудочков (v) 2:1 (440:226).",
   "group": "Нарушения ритма",
   "cards": [],
   "status": "draft",
@@ -2235,6 +2338,7 @@ FC.IMAGES = [
   "file": "img/pmc10059978-f1.jpg",
   "label": "Pediatr Rep 2023, рис. 1",
   "caption": "Echocardiographic four-chamber view at 25 + 1 GW showing a large rhabdomyoma covering nearly the entire right side of the cardiac structures. TM: tumor, IVS: interventricular septum; RA: right atrium; RV: right ventricle; LV: left ventricle (tumor circumference in green).",
+  "captionRu": "Эхокардиография, четырёхкамерный срез в 25+1 недели: крупная рабдомиома, занимающая почти всю правую половину сердца. TM — опухоль; IVS — межжелудочковая перегородка; RA — правое предсердие; RV — правый желудочек; LV — левый желудочек (контур опухоли — зелёным).",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2256,6 +2360,7 @@ FC.IMAGES = [
   "file": "img/pmc12010453-f1.jpg",
   "label": "Cureus 2025, рис. 1",
   "caption": "Fetal echocardiographic findings on the day of presentation in Case 1(A) Enlargement of the ductus arteriosus and pulmonary artery with reduced prograde flow; (B) Narrowing and tortuosity of the ductus arteriosus and acceleration of ductal blood flow velocity (white arrow); (C) Doppler of ductal blood flow velocity (systolic velocity of 3.5 m/second and diastolic velocity of 1.87 m/second) and ductus arteriosus pulsatility index of 0.65.PA, pulmonary artery; Ao, aorta; duct, ductus arteriosus.",
+  "captionRu": "Данные фетальной эхокардиографии в день обращения, случай 1. (A) Расширение артериального протока и лёгочной артерии со сниженным антеградным кровотоком. (B) Сужение и извитость артериального протока, ускорение кровотока в протоке (белая стрелка). (C) Допплерография протока: систолическая скорость 3,5 м/с, диастолическая 1,87 м/с, пульсационный индекс протока 0,65. PA — лёгочная артерия; Ao — аорта; duct — артериальный проток.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2277,6 +2382,7 @@ FC.IMAGES = [
   "file": "img/pmc12010453-f2.jpg",
   "label": "Cureus 2025, рис. 2",
   "caption": "Fetal echocardiographic findings on the second day in Case 1(A) The prograde flow into the pulmonary artery; (B) Doppler of ductal blood flow velocity (systolic velocity of 2.9 m/second and diastolic velocity of 0.88 m/second) and ductus arteriosus pulsatility index of 1.12.PA, pulmonary artery; Ao, aorta",
+  "captionRu": "Данные фетальной эхокардиографии на второй день, случай 1. (A) Антеградный кровоток в лёгочную артерию. (B) Допплерография протока: систолическая скорость 2,9 м/с, диастолическая 0,88 м/с, пульсационный индекс протока 1,12. PA — лёгочная артерия; Ao — аорта.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2298,6 +2404,7 @@ FC.IMAGES = [
   "file": "img/pmc12010453-f3.jpg",
   "label": "Cureus 2025, рис. 3",
   "caption": "Fetal echocardiographic findings in Case 1 showing ridge of the site of stenosis and tortuosity (white arrow)PA, pulmonary artery; aA, ascending aorta; dA, descending aorta; duct, ductus arteriosus.",
+  "captionRu": "Фетальная эхокардиография, случай 1: гребень в месте сужения и извитость протока (белая стрелка). PA — лёгочная артерия; aA — восходящая аорта; dA — нисходящая аорта; duct — артериальный проток.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2319,6 +2426,7 @@ FC.IMAGES = [
   "file": "img/pmc12010453-f5.jpg",
   "label": "Cureus 2025, рис. 5",
   "caption": "Fetal echocardiogram in Case 2 showing enlargement of the ductus arteriosus and pulmonary artery, closure of the ductus arteriosus (white arrow)aA, ascending aorta; dA, descending aorta; duct, ductus arteriosus.",
+  "captionRu": "Фетальная эхокардиография, случай 2: расширение артериального протока и лёгочной артерии, закрытие артериального протока (белая стрелка). aA — восходящая аорта; dA — нисходящая аорта; duct — артериальный проток.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2340,6 +2448,7 @@ FC.IMAGES = [
   "file": "img/pmc8189142-f1.jpg",
   "label": "Ann Med 2021, рис. 1",
   "caption": "(A) Four chamber view at 33 gestational weeks: hypertrophic and dilated right ventricle, with mild pericardial effusion. (B) Tricuspid valve regurgitation peak velocity (130 cm/s).",
+  "captionRu": "(A) Четырёхкамерный срез в 33 недели: гипертрофированный и расширенный правый желудочек, небольшой перикардиальный выпот. (B) Пиковая скорость трикуспидальной регургитации — 130 см/с.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2361,6 +2470,7 @@ FC.IMAGES = [
   "file": "img/pmc8189142-f2.jpg",
   "label": "Ann Med 2021, рис. 2",
   "caption": "Two-dimensional echocardiography, showing ductus arteriosus constriction (arrow). (A) Right outflow tract. (B) Ductal arch view. (C) three-vessel view.",
+  "captionRu": "Двумерная эхокардиография: сужение артериального протока (стрелка). (A) Выводной тракт правого желудочка. (B) Срез дуги протока. (C) Срез трёх сосудов.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2382,6 +2492,7 @@ FC.IMAGES = [
   "file": "img/pmc8908010-f1.jpg",
   "label": "Front Genet 2022, рис. 1",
   "caption": "Clinical phenotypes and molecular findings of the fetus. (A–D): Echocardiography of the fetus at 25 weeks’ gestation. The phenotype includes biventricular noncompaction cardiomyopathy (A), pulmonary stenosis (B), sinus bradycardia (C) and second-degree 2:1 atrioventricular block (D). A. The area between the white arrows indicate numerous ventricular trabeculae (C). Sinus bradycardia was seen with ventricular rate of 113 bpm by umbilical artery blood flow spectrum (D). Mitral inflow and left ventricular outflow spectrum shows a 2:1 second-degree atrioventricular block (E): Pathological anatomy shows that the noncompaction myocardium below the level of the left ventricular papillary muscle is obvious. The white arrows indicate the noncompaction myocardium (F): Sanger sequencing shows that the mutation is heterozygous in the fetus. LA: left atrium; LV: left ventricle; RA: right atrium; RV: right ventricle.",
+  "captionRu": "Клинический фенотип и молекулярные данные плода. (A–D) Эхокардиография плода в 25 недель. Фенотип: бивентрикулярная некомпактная кардиомиопатия (A), стеноз лёгочной артерии (B), синусовая брадикардия (C) и атриовентрикулярная блокада II степени 2:1 (D). A — между белыми стрелками многочисленные трабекулы желудочков. (C) Синусовая брадикардия: частота желудочков 113 уд/мин по спектру кровотока в пупочной артерии. (D) Спектр митрального притока и выброса из левого желудочка: АВ-блокада II степени 2:1. (E) Патологическая анатомия: некомпактный миокард ниже уровня папиллярных мышц левого желудочка выражен отчётливо (белые стрелки). (F) Секвенирование по Сэнгеру: мутация у плода в гетерозиготном состоянии. LA — левое предсердие; LV — левый желудочек; RA — правое предсердие; RV — правый желудочек.",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2403,6 +2514,7 @@ FC.IMAGES = [
   "file": "img/pmc9682154-f1.jpg",
   "label": "Front Pediatr 2022, рис. 1",
   "caption": "Clinical characteristics of the fetus in this study. (A) Ultrasound showed that the fetal cardiothoracic area ratio was increased, approximately 0.45, and the left atrium and left ventricle sizes were increased substantially. (B) Ultrasound showed hypertrophy of fetal myocardium and free fluid in the pericardial cavity (white arrow). (C) Ultrasound showed a large amount of free fluid in the fetal abdominal cavity and thickened abdominal skin tissue (white arrow). (D) After induced labor, autopsy revealed the heart was considerably enlarged. (E) Pathological sections showed thickening and fibrosis of the endocardial tissue (red arrows). (F) The muscular trabeculae were thick, the sinus recess of the myocardium persisted, the deep depression was staggered, the formation of dense myocardium in the corresponding area was reduced and thin, and the ventricular wall muscle layer remained loose (red circle).",
+  "captionRu": "Клинические характеристики плода. (A) УЗИ: кардиоторакальное отношение площадей увеличено, около 0,45; левое предсердие и левый желудочек значительно увеличены. (B) УЗИ: гипертрофия миокарда плода и свободная жидкость в полости перикарда (белая стрелка). (C) УЗИ: большое количество свободной жидкости в брюшной полости плода и утолщение кожи живота (белая стрелка). (D) Аутопсия после индуцированных родов: сердце значительно увеличено. (E) Гистология: утолщение и фиброз эндокарда (красные стрелки). (F) Мышечные трабекулы толстые, межтрабекулярные углубления сохранены, глубокие карманы расположены в шахматном порядке, компактный миокард в соответствующей зоне истончён, мышечный слой стенки желудочка остаётся рыхлым (красный круг).",
   "group": "Опухоли, кардиомиопатии, сужение протока",
   "cards": [],
   "status": "draft",
@@ -2424,6 +2536,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f1.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 1",
   "caption": "Assessment of ventricular shortening fraction (SF). (a) Optimized four‐chamber view with adjustment of two‐dimensional image depth and magnification so that the fetal heart occupies more than two‐thirds of the image sector. Plane of the M‐mode cursor passes through the right ventricular free wall, ventricular septum and left ventricular free wall perpendicular to their plane and just below the mitral valve annulus. (b) The four‐chamber M‐mode tracing acquired demonstrates multiple cardiac cycles. The end‐diastolic diameter (EDD) is measured as the largest diameter of the ventricle, shown here in the left ventricle, and the end‐systolic diameter (ESD) as the smallest diameter. SF (%) is calculated as ((EDD − ESD)/EDD) × 100. (c) From a four‐chamber view with the ventricular septum and free walls perpendicular to the ultrasound beam, the transducer is rotated 90°, and an M‐mode tracing through the ventricular short axis at the level of the ventricular papillary muscles can also be used to assess SF. Dashed line indicates M‐mode cursor.",
+  "captionRu": "Оценка фракции укорочения желудочка (SF). (a) Оптимизированный четырёхкамерный срез: глубина и увеличение 2D-изображения подобраны так, чтобы сердце плода занимало более двух третей сектора. Курсор М-режима проходит через свободную стенку правого желудочка, межжелудочковую перегородку и свободную стенку левого желудочка перпендикулярно им, чуть ниже кольца митрального клапана. (b) Полученная запись М-режима на четырёхкамерном срезе показывает несколько сердечных циклов. Конечно-диастолический диаметр (EDD) измеряют как наибольший диаметр желудочка (здесь левого), конечно-систолический (ESD) — как наименьший. SF (%) = ((EDD − ESD)/EDD) × 100. (c) Из четырёхкамерного среза, где перегородка и свободные стенки перпендикулярны лучу, датчик поворачивают на 90°; для оценки SF можно использовать и запись М-режима по короткой оси желудочков на уровне папиллярных мышц. Пунктир — курсор М-режима.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2445,6 +2558,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f2.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 2",
   "caption": "Assessment of tricuspid (TAPSE) and mitral (MAPSE) annular plane systolic excursion. (a) TAPSE and MAPSE are obtained from an apical four‐chamber view with the apex oriented toward the transducer, and the M‐mode cursor (dashed lines) placed from the ventricular apex to the lateral aspect of each valve. (b) Longitudinal annular motion is displayed by M‐mode, and TAPSE and MAPSE can be calculated as the distance that the annulus moves between systole and diastole (double‐headed arrow). (c) Example of spatiotemporal image correlation (STIC) (red arrow) used to assess TAPSE in a 26‐week fetus with hydrops. Despite suboptimal fetal position for M‐mode cursor alignment, STIC permits maneuvering of the image to optimize cursor placement.",
+  "captionRu": "Оценка систолической экскурсии плоскости трикуспидального (TAPSE) и митрального (MAPSE) кольца. (a) TAPSE и MAPSE получают из апикального четырёхкамерного среза с верхушкой, направленной к датчику; курсор М-режима (пунктир) проводят от верхушки желудочка к латеральному краю каждого клапана. (b) Продольное движение кольца отображается в М-режиме; TAPSE и MAPSE рассчитывают как расстояние, на которое смещается кольцо между систолой и диастолой (двунаправленная стрелка). (c) Пример использования STIC (красная стрелка) для оценки TAPSE у плода 26 недель с водянкой. Несмотря на неоптимальное для курсора М-режима положение плода, STIC позволяет повернуть изображение и правильно установить курсор.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2466,6 +2580,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f3.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 3",
   "caption": "Assessment of ventricular ejection fraction (EF) and fractional area change (FAC). (a) EF is measured from a high frame rate (> 60 fps) apical four‐chamber view, avoiding ventricular foreshortening. Ventricular cavity measurement using Phillips Intelli Space Cardiovascular software (Phillips Healthcare, Andover, MA, USA) to calculate end‐diastolic volume (EDV) by tracing the ventricular endocardial border at end‐diastole (largest cavity, just before atrioventricular (AV) valve closure) is shown. (b) For measurement of end‐systolic volume (ESV), the frame with the smallest ventricular cavity, just before AV valve opening, is selected and the endocardial border traced from one side to the other of the AV valve annulus. EF is then calculated using the equation (EDV − ESV)/EDV. (c) Measurement of the right ventricular (RV) end‐diastolic area (EDA) using the image with the largest RV cavity is shown. (d) To obtain the RV end‐systolic area (ESA), RV is measured when the cavity is smallest. FAC (%) is then calculated as ((RV‐EDA − RV‐ESA)/RV‐EDA) × 100. For the 20‐week (w) fetus shown in (c,d), the FAC would be ((0.89−0.61)/0.89) × 100 = 31%. L, left; P, posterior.",
+  "captionRu": "Оценка фракции выброса (EF) и фракционного изменения площади (FAC). (a) EF измеряют на апикальном четырёхкамерном срезе с высокой частотой кадров (> 60 кадров/с), избегая укорочения желудочка. Показано измерение полости желудочка в программе Philips IntelliSpace Cardiovascular (Philips Healthcare, Андовер, Массачусетс, США): конечно-диастолический объём (EDV) рассчитывают, обводя эндокардиальный контур в конце диастолы (наибольшая полость, непосредственно перед закрытием атриовентрикулярных клапанов). (b) Для конечно-систолического объёма (ESV) выбирают кадр с наименьшей полостью желудочка, непосредственно перед открытием АВ-клапанов, и обводят эндокардиальный контур от одного края кольца АВ-клапана до другого. EF = (EDV − ESV)/EDV. (c) Измерение конечно-диастолической площади ПЖ (EDA) по кадру с наибольшей полостью ПЖ. (d) Конечно-систолическую площадь ПЖ (ESA) измеряют, когда полость наименьшая. FAC (%) = ((ПЖ-EDA − ПЖ-ESA)/ПЖ-EDA) × 100. Для плода 20 недель на (c, d) FAC = ((0,89 − 0,61)/0,89) × 100 = 31%. L — слева; P — кзади.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2487,6 +2602,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f4.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 4",
   "caption": "Assessment of diastolic function through pulsed‐wave Doppler interrogation. (a) Normal left (LV) and right (RV) ventricular Doppler inflow acquisition requires alignment of the Doppler sample volume parallel to flow (< 20°), at or just below the atrioventricular valve annulus, as demonstrated for the LV (left panel). Normal Doppler flow profile sampled through the mitral (left) and tricuspid (right) valves demonstrates the usual biphasic flow pattern with E‐ (early diastole) and A‐ (atrial contraction) waves and a duration of nearly half the cardiac cycle length. (b) Uniphasic ventricular inflow (ID, inflow duration) of very short duration (during atrial systole) relative to the cardiac cycle length (CCL) is shown in a fetus with dilated cardiomyopathy. (c) Normal inferior vena cava and hepatic venous Doppler profile demonstrates three phases: forward flow in systole (S), forward flow in early diastole (E) and short velocity A‐wave reversal during atrial contraction (A). (d) With increased ventricular and atrial filling pressures there is loss of flow in early diastole and progressive A‐wave reversal (velocity and duration). Eventually flow may become bidirectional. (e) The normal ductus venosus flow profile has the same three phases as seen for the systemic veins; however, during atrial systole there is a reduction in forward flow velocity and no flow reversal should be present. (f) With increasing central venous pressures due to poor function, there is eventual reversal of flow in the ductus venous during atrial systole. (g) Umbilical venous Doppler demonstrates abnormal pulsatility with reduction or cessation of flow in atrial systole. Normally, there is low velocity non‐phasic flow or undulating flow with fetal breathing.",
+  "captionRu": "Оценка диастолической функции импульсно-волновым допплером. (a) Для записи нормального притока в левый (LV) и правый (RV) желудочки контрольный объём устанавливают параллельно потоку (угол < 20°) на уровне или чуть ниже кольца атриовентрикулярного клапана, как показано для ЛЖ (левая панель). Нормальный спектр через митральный (слева) и трикуспидальный (справа) клапаны — обычный двухфазный: волны E (ранняя диастола) и A (сокращение предсердий), длительность около половины сердечного цикла. (b) Однофазный приток очень короткой длительности (во время систолы предсердий) относительно длительности цикла (CCL) у плода с дилатационной кардиомиопатией. ID — длительность притока. (c) Нормальный допплеровский спектр нижней полой и печёночных вен трёхфазный: антеградный поток в систолу (S), антеградный поток в раннюю диастолу (E) и кратковременная реверсия волны A при сокращении предсердий (A). (d) При повышении давления наполнения желудочков и предсердий исчезает раннедиастолический поток и нарастает реверсия волны A (скорость и длительность). В итоге поток может стать двунаправленным. (e) Нормальный спектр венозного протока имеет те же три фазы, что и системные вены, но в систолу предсердий антеградная скорость лишь снижается, реверсии быть не должно. (f) При нарастании центрального венозного давления из-за сниженной функции в итоге появляется реверсия потока в венозном протоке в систолу предсердий. (g) Допплерография пупочной вены: патологическая пульсация со снижением или прекращением потока в систолу предсердий. В норме поток низкоскоростной, нефазный или волнообразный при дыхательных движениях плода.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2508,6 +2624,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f5.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 5",
   "caption": "Calculation of fetal left and right ventricular outputs. Still‐frame 2D ultrasound images and Doppler spectra demonstrating the Doppler‐based method of calculating fetal ventricular stroke volumes and outputs. Aortic (top left) and pulmonary (bottom left) valve annuli are measured in systole in as close to an axial plane as possible. The cross sectional area (CSA, in cm) of the valve is then calculated using the equation π × (valve diameter/2)2. Pulsed‐wave Doppler interrogation through the aortic (top right) and pulmonary (bottom right) valves with the cursor aligned parallel to flow (and no angle correction) provides a spectral tracing for each valve, which are then planimetered to generate the velocity time integral (VTI) in cm. The ventricular stroke volume (SV) is calculated using CSA × VTI (in cm3 or mL) and ventricular output is calculated using SV × fetal heart rate. By combining the ventricular outputs (usually measured in units of mL/min and indexed by estimated fetal weight (mL/kg/min)), the combined cardiac output can be derived. Ao, aorta; LV, left ventricle; LVOT, left ventricular outflow tract; MV, mitral valve; PA, pulmonary artery; RVOT, right ventricular outflow tract.",
+  "captionRu": "Расчёт выброса левого и правого желудочков плода. Стоп-кадры 2D-УЗИ и допплеровские спектры, показывающие допплеровский метод расчёта ударного объёма и выброса желудочков. Кольца аортального (вверху слева) и лёгочного (внизу слева) клапанов измеряют в систолу, по возможности в осевой плоскости. Площадь поперечного сечения (CSA, см²) клапана рассчитывают по формуле π × (диаметр клапана/2)². Импульсно-волновой допплер через аортальный (вверху справа) и лёгочный (внизу справа) клапаны при курсоре, параллельном потоку (без коррекции угла), даёт спектр для каждого клапана; его обводят и получают интеграл скорости по времени (VTI, см). Ударный объём (SV) = CSA × VTI (см³ или мл), выброс желудочка = SV × ЧСС плода. Суммируя выброс обоих желудочков (обычно в мл/мин, с индексацией на предполагаемую массу плода, мл/кг/мин), получают общий сердечный выброс. Ao — аорта; LV — левый желудочек; LVOT — выводной тракт ЛЖ; MV — митральный клапан; PA — лёгочная артерия; RVOT — выводной тракт ПЖ.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2529,6 +2646,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f6.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 6",
   "caption": "Assessment of myocardial performance index (MPI). (a) Left ventricular (LV) inflow‐outflow Doppler waveform with a sample gate placed within the LV in a location where both inflow (above baseline) and outflow (below baseline) signals are captured simultaneously, with measurement of ‘a’ (offset of one inflow to onset of next inflow) and ‘b’ (ejection time (ET)). Note the ‘valve clicks’, which can guide measurement. The MPI is calculated using the equation (a − b)/b. (b,c) Calculation of MPI for the right ventricle (RV) requires separate inflow and outflow Doppler signals. (b) From inflow tracings, ‘a’ can be measured from the offset of one inflow to the onset of the other. (c) From the outflow tracings, ‘b’ is measured as the ET. (d) The numerator in the MPI equation (a − b) equates to the sum of the isovolumetric relaxation time (IRT, from offset of outflow to onset of inflow) and isovolumetric contraction time (ICT, from offset of inflow to onset of outflow), as measured in this LV inflow‐outflow Doppler waveform. (e) MPI can also be assessed using tissue Doppler for both RV and LV. Similarly, valve clicks are helpful to guide measurement. Unlike with pulsed‐wave Doppler, a simultaneous inflow‐outflow tissue Doppler signal can be used to measure RV‐MPI. A major disadvantage is lack of availability of tissue Doppler imaging software/resources on many ultrasound systems.",
+  "captionRu": "Оценка индекса производительности миокарда (MPI). (a) Спектр притока-выброса левого желудочка: контрольный объём в ЛЖ установлен так, чтобы одновременно регистрировались приток (над изолинией) и выброс (под изолинией); измеряют «a» (от окончания одного притока до начала следующего) и «b» (время выброса, ET). Обратите внимание на «щелчки клапанов» — они помогают при измерении. MPI = (a − b)/b. (b, c) Для правого желудочка MPI рассчитывают по раздельным спектрам притока и выброса. (b) По спектру притока измеряют «a» — от окончания одного притока до начала следующего. (c) По спектру выброса измеряют «b» — время выброса. (d) Числитель (a − b) равен сумме времени изоволюмического расслабления (IRT, от окончания выброса до начала притока) и изоволюмического сокращения (ICT, от окончания притока до начала выброса), как показано на спектре притока-выброса ЛЖ. (e) MPI можно оценивать и тканевым допплером для ПЖ и ЛЖ; щелчки клапанов также помогают при измерении. В отличие от импульсно-волнового допплера, для MPI ПЖ можно использовать одновременную запись притока и выброса тканевым допплером. Главный недостаток — программы и возможности тканевой допплерографии есть не на всех аппаратах.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2550,6 +2668,7 @@ FC.IMAGES = [
   "file": "img/pmc13325693-f7.jpg",
   "label": "Ultrasound Obstet Gynecol 2026, рис. 7",
   "caption": "Assessment of ventricular strain. (a) Fetal left ventricular (LV) apical four‐chamber strain is derived from speckle‐tracking echocardiography using GE EchoPAC/Voluson integrated strain package. The LV endocardial border is planimetered in an apical four‐chamber view, and the myocardial ‘speckles’ are then tracked throughout systole and diastole with generation of tracings and measurement of strain and strain rate. The graph shown is a strain curve, demonstrating smooth systolic deformation with normal peak systolic strain followed by diastolic relaxation. Importantly, assessment of strain requires high frame rates to generate accurate measures and may differ between different software. (b) Similarly, the right ventricular strain and strain rate can be assessed. ED Border, end‐diastolic endocardial border; ES Border, end‐systolic endocardial border.",
+  "captionRu": "Оценка деформации (strain) желудочков. (a) Деформацию левого желудочка (LV) плода на апикальном четырёхкамерном срезе получают методом speckle-tracking в пакете GE EchoPAC/Voluson. Эндокардиальный контур ЛЖ обводят на апикальном четырёхкамерном срезе, затем «спеклы» миокарда отслеживаются в систолу и диастолу; строятся кривые и измеряются деформация и скорость деформации. На графике — кривая деформации: плавная систолическая деформация с нормальным пиковым систолическим значением и последующим диастолическим расслаблением. Важно: для точной оценки деформации нужна высокая частота кадров, а результаты разных программ могут различаться. (b) Аналогично оценивают деформацию и скорость деформации правого желудочка. ED Border — конечно-диастолический эндокардиальный контур; ES Border — конечно-систолический эндокардиальный контур.",
   "group": "Функция сердца",
   "cards": [],
   "status": "draft",
@@ -2571,6 +2690,7 @@ FC.IMAGES = [
   "file": "img/commons-2916-fetal-circulatory-system-02.jpg",
   "label": "Wikimedia Commons: 2916 Fetal Circulatory System-02.jpg",
   "caption": "The fetal circulatory system includes three shunts to divert blood from undeveloped and partially functioning organs, as well as blood supply to and from the placenta.",
+  "captionRu": "Кровообращение плода включает три шунта, которые направляют кровь в обход недоразвитых и частично функционирующих органов, а также сосуды, несущие кровь к плаценте и от неё.",
   "group": "Схемы и модели",
   "cards": [],
   "status": "draft",
@@ -2588,6 +2708,7 @@ FC.IMAGES = [
   "file": "img/commons-ductus-arteriosusl.jpg",
   "label": "Wikimedia Commons: Ductus arteriosusl.jpg",
   "caption": "DA is a blood vessel in the unborn child, conducting blood from the pulmonary artery to the systemic artery, the aorta",
+  "captionRu": "Артериальный проток — сосуд плода, по которому кровь идёт из лёгочной артерии в большой круг кровообращения, в аорту.",
   "group": "Схемы и модели",
   "cards": [],
   "status": "draft",
@@ -2605,6 +2726,7 @@ FC.IMAGES = [
   "file": "img/commons-fig1-hebee.jpg",
   "label": "Wikimedia Commons: Fig1 HeBee.jpeg",
   "caption": "fetal heart model for prenatal diagnosis and fetal echocardiography",
+  "captionRu": "Модель сердца плода для пренатальной диагностики и фетальной эхокардиографии.",
   "group": "Схемы и модели",
   "cards": [],
   "status": "draft",
@@ -2622,6 +2744,7 @@ FC.IMAGES = [
   "file": "img/commons-doppler-heartbeat-0218103423-1038270-7w-3d.gif",
   "label": "Wikimedia Commons: Doppler heartbeat 0218103423 1038270 7w 3d.gif",
   "caption": "Heart beat",
+  "captionRu": "Сердцебиение.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
   "status": "draft",
@@ -2639,6 +2762,7 @@ FC.IMAGES = [
   "file": "img/commons-fetal-anomaly-ultrasound-scan-in-navi-mumbai.jpg",
   "label": "Wikimedia Commons: Fetal Anomaly Ultrasound Scan in Navi Mumbai.jpg",
   "caption": "A composite image displaying six distinct ultrasound views captured during a fetal anomaly scan (often referred to as a mid-pregnancy or TIFFA scan). The sonograms provide detailed visualization of fetal anatomical structures, clearly showing the hands with visible digits, the facial profile, and skeletal elements. This type of detailed prenatal imaging is a routine part of maternal-fetal medicine and is commonly conducted at diagnostic imaging centers and maternity hospitals across Navi Mumbai, including areas such as Vashi, Nerul, and Kharghar, Taloja, Kalamboli, Kamothe, Panvel, Seawoods, Ulwe, to monitor fetal development and screening for potential congenital conditions.",
+  "captionRu": "Составное изображение из шести УЗ-срезов, полученных при скрининговом исследовании анатомии плода во втором триместре (TIFFA). Видны кисти с пальцами, профиль лица и элементы скелета. Далее в оригинале — перечисление районов Нави-Мумбаи, где проводят такие исследования; к содержанию снимка оно не относится.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
   "status": "draft",
@@ -2656,6 +2780,7 @@ FC.IMAGES = [
   "file": "img/commons-fetus-hartbeat.jpg",
   "label": "Wikimedia Commons: Fetus hartbeat.jpg",
   "caption": "Ultrasound with heartbeat at 14 weeks. Baby was born on 2006-05-20.",
+  "captionRu": "УЗИ с сердцебиением в 14 недель. Ребёнок родился 20.05.2006.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
   "status": "draft",
@@ -2673,6 +2798,7 @@ FC.IMAGES = [
   "file": "img/commons-pregnancy-ultrasound-110303135229-1358380.jpg",
   "label": "Wikimedia Commons: Pregnancy ultrasound 110303135229 1358380.jpg",
   "caption": "Ultrasound images of fetal heart",
+  "captionRu": "УЗ-изображения сердца плода.",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
   "status": "draft",
@@ -2690,6 +2816,7 @@ FC.IMAGES = [
   "file": "img/commons-scan13semanas2.png",
   "label": "Wikimedia Commons: Scan13semanas2.png",
   "caption": "Ecografía (scan) de un feto de 13 semanas. Realizada externamente, por encima de la tripa. En la parte izquierda se puede apreciar la cabeza y el cuerpo del feto, mientras que a la derecha se muestran los latidos del corazón. El feto mide 81 mm y pesa 88 gramos.",
+  "captionRu": "УЗИ плода 13 недель, трансабдоминально. Слева видны голова и туловище плода, справа — сердцебиение. Длина плода 81 мм, масса 88 г. (Оригинал на испанском.)",
   "group": "Ранние сроки и общие снимки",
   "cards": [],
   "status": "draft",
@@ -2707,6 +2834,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0105122250-1227390.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0105122250 1227390.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2724,6 +2852,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0105122250-1227570.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0105122250 1227570.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2741,6 +2870,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0110114646-1156270.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0110114646 1156270.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2758,6 +2888,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0117122151-1228560.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0117122151 1228560.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2775,6 +2906,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0121101156-1017510.gif",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0121101156 1017510.gif",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2792,6 +2924,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0121101156-1017514.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0121101156 1017514.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2809,6 +2942,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0121145201-1456230.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0121145201 1456230.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2826,6 +2960,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0125150351-1512250.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0125150351 1512250.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2843,6 +2978,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0126102338-1029270.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0126102338 1029270.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2860,6 +2996,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0126102338-1029500.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0126102338 1029500.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2877,6 +3014,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0126102338-1030150.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0126102338 1030150.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2894,6 +3032,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0128160735-1611300.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0128160735 1611300.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2911,6 +3050,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0128160735-1615520.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0128160735 1615520.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2928,6 +3068,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-0128160735-1615590.png",
   "label": "Wikimedia Commons: Ultrasound Scan ND 0128160735 1615590.png",
   "caption": "Medical ultrasound image. Provided as-is. Please feel free to categorise, add description, crop.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2945,6 +3086,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-093.jpg",
   "label": "Wikimedia Commons: Ultrasound Scan ND 093.jpg",
   "caption": "Ultrasound scan. Provided as-is. Please feel free to categorise, add description, crop or rename.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",
@@ -2962,6 +3104,7 @@ FC.IMAGES = [
   "file": "img/commons-ultrasound-scan-nd-253.jpg",
   "label": "Wikimedia Commons: Ultrasound Scan ND 253.jpg",
   "caption": "Ultrasound scan. Provided as-is. Please feel free to categorise, add description, crop or rename.",
+  "captionRu": "УЗ-снимок без описания. Срез автор не указал.",
   "group": "Срез не определён (Nevit Dilmen)",
   "cards": [],
   "status": "draft",

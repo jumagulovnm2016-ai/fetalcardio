@@ -272,3 +272,7 @@ figure.imgfig{margin:12px 0;background:var(--surface);border:1px solid var(--lin
 figure.imgfig img{display:block;max-width:100%;max-height:70vh;height:auto;margin:0 auto;background:#000;border-radius:6px}
 figure.imgfig figcaption{font-size:.85rem;padding:8px 4px 2px;line-height:1.45}
 @media (max-width:420px){.imgs{grid-template-columns:repeat(2,1fr)}}
+figure.imgfig .cap-ru{margin:0 0 8px}
+figure.imgfig .cap-en{font-size:.8rem;color:var(--muted);margin:4px 0 8px}
+figure.imgfig .cap-en summary{cursor:pointer;font-weight:600}
+figure.imgfig .cap-en p{margin:6px 0 0}

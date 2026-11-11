@@ -41,7 +41,7 @@ var FC = globalThis.FC = globalThis.FC || {};
       references: "refs", reviewedBy: "str?", reviewedAt: "date?"
     },
     IMAGES: {
-      id: "slug", file: "imgpath", label: "str", caption: "text", group: "enum:group", cards: "cardrefs",
+      id: "slug", file: "imgpath", label: "str", caption: "text", captionRu: "text", group: "enum:group", cards: "cardrefs",
       status: "enum:status", source: "imgsrc", reviewedBy: "str?", reviewedAt: "date?"
     },
     REFS: {

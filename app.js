@@ -85,7 +85,7 @@
     const list = IMAGES.filter(im => im.cards.includes(card));
     if (!list.length) return "";
     return `<h2 id="s-img">Эхограммы из открытых источников</h2>
-      <p class="small muted">${statusBadge("draft")} Привязка снимков к карточке и подписи авторов (на английском) не проверены экспертом. Нажмите на снимок — откроется подпись, источник и лицензия.</p>
+      <p class="small muted">${statusBadge("draft")} Привязка снимков к карточке и перевод подписей авторов не проверены экспертом. Нажмите на снимок — откроется подпись, источник и лицензия.</p>
       ${thumbs(list)}`;
   };
 
@@ -176,7 +176,7 @@
   /* ---------- библиотека эхограмм ---------- */
   function imagesList() {
     return `<h1>Библиотека эхограмм</h1>
-      <p class="subtitle">${IMAGES.length} изображений из статей открытого доступа (CC BY) и Wikimedia Commons. Подписи — оригинальные, на английском. У каждого снимка указаны источник и лицензия.</p>
+      <p class="subtitle">${IMAGES.length} изображений из статей открытого доступа (CC BY) и Wikimedia Commons. Подписи переведены на русский (черновик), оригинал автора — под переводом. У каждого снимка указаны источник и лицензия.</p>
       <div class="note">${statusBadge("draft")} <b>Черновик.</b> Распределение по разделам и привязка к карточкам не проверены экспертом. Снимки не подтверждают текст карточек: источники утверждений — в разделах «Источники».</div>
       <nav class="toc">${IMAGE_GROUPS.map((g, i) => IMAGES.some(im => im.group === g) ? `<a href="javascript:void(0)" data-jump="g${i}">${esc(g)}</a>` : "").join("")}</nav>
       ${IMAGE_GROUPS.map((g, i) => { const list = IMAGES.filter(im => im.group === g); return list.length ? `<h2 id="s-g${i}">${esc(g)} <span class="small muted">· ${list.length}</span></h2>${thumbs(list)}` : ""; }).join("")}
@@ -192,7 +192,10 @@
       <h1>${esc(im.label)}</h1>
       <div>${statusBadge(im.status)}</div>
       <figure class="imgfig"><a href="${esc(im.file)}" target="_blank" rel="noopener"><img src="${esc(im.file)}" alt="${esc(im.label)}"></a>
-        <figcaption>${im.caption ? `<span lang="en">${esc(im.caption)}</span>` : '<span class="muted">Автор не указал, какой срез на снимке. Требует экспертной разметки.</span>'}</figcaption></figure>
+        <figcaption>${im.captionRu ? `<p class="cap-ru">${esc(im.captionRu)}</p>` : ""}
+          ${im.caption ? `<details class="cap-en"${im.captionRu ? "" : " open"}><summary>Оригинальная подпись автора</summary><p lang="${im.source.kind === "commons" && /semanas/.test(im.id) ? "es" : "en"}">${esc(im.caption)}</p></details>` : ""}
+          ${im.group === IMAGE_GROUPS[IMAGE_GROUPS.length - 1] ? '<p class="small muted">Автор не указал, какой срез на снимке. Требует экспертной разметки.</p>' : ""}
+          ${im.captionRu ? '<p><span class="badge draft">перевод подписи — черновик, не проверен экспертом</span></p>' : ""}</figcaption></figure>
       <h2>Источник и лицензия</h2>
       <p class="small">${imgCredit(im.source)} <a href="${esc(im.source.url)}" target="_blank" rel="noopener">Открыть источник ↗</a></p>
       ${im.source.license.startsWith("CC BY-SA") ? '<p class="small muted">CC BY-SA: изменённую версию (стрелки, подписи, кадрирование) распространяйте под той же лицензией.</p>' : ""}

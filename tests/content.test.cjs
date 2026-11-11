@@ -160,6 +160,7 @@ test("эхограммы: у каждого снимка есть автор, и
       assert.ok(["CC BY", "CC BY-SA", "CC0", "Public domain"].some(l => s.license.startsWith(l)), `${im.id}: лицензия ${s.license}`);
     }
     assert.equal(im.status, "draft", `${im.id}: до экспертной проверки — draft`);
+    assert.ok(im.captionRu && /[а-яё]/i.test(im.captionRu), `${im.id}: нет русского перевода подписи`);
   }
 });
 
