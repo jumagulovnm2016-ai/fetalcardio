@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FetalCardio</title>
+<meta name="description" content="Фетальная эхокардиография: срезы, алгоритмы «от находки к диагнозу», атлас ВПС, тесты">
+<meta name="theme-color" content="#0f2a44">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="#/" class="brand" aria-label="На главную">
+    <img src="icon.svg" alt="" width="28" height="28">
+    <span>FetalCardio</span>
+  </a>
+  <form class="search" id="searchForm" role="search">
+    <input id="searchInput" type="search" placeholder="Поиск: срез, порок, признак…" autocomplete="off" aria-label="Поиск">
+  </form>
+</header>
+
+<nav class="nav" id="nav" aria-label="Разделы">
+  <a href="#/" data-nav="home"><span class="ni">⌂</span><span>Главная</span></a>
+  <a href="#/views" data-nav="views"><span class="ni">◎</span><span>Срезы</span></a>
+  <a href="#/algos" data-nav="algos"><span class="ni">⇢</span><span>Находки</span></a>
+  <a href="#/chd" data-nav="chd"><span class="ni">♥</span><span>Пороки</span></a>
+  <a href="#/quiz" data-nav="quiz"><span class="ni">✓</span><span>Тест</span></a>
+</nav>
+
+<main id="app" tabindex="-1"></main>
+
+<script src="data.js"></script>
+<script src="schemes.js"></script>
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>
