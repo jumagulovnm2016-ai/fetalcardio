@@ -2,7 +2,7 @@
    Важно: на домене *.github.io кэши общие для всех приложений автора,
    поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
 const PREFIX = "fetalcardio-";
-const VERSION = "v15";
+const VERSION = "v16";
 const APP_CACHE = `${PREFIX}app-${VERSION}`;
 const FONT_CACHE = `${PREFIX}fonts-v1`;
 /* Эхограммы (img/) не входят в предзагрузку (~17 МБ): кэшируются при первом просмотре
@@ -14,7 +14,7 @@ const FILES = [
   "data/meta.js", "data/references.js", "data/views.js", "data/algorithms.js", "data/pathologies.js", "data/quiz.js", "data/anatomy.js", "data/images.js",
   "atlas/4cv-normal.svg",
   "account.js", "vendor/supabase-js-2.119.0.umd.js", "account.html", "teacher.html", "pages.css",
-  "manifest.json", "icon.svg"
+  "manifest.json", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png", "icons/favicon-64.png"
 ];
 const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 
