@@ -11,3 +11,16 @@ cd tools/atlas && python3 build_4cv.py ../../atlas/4cv-normal.svg
 ```
 
 После сборки: `npm test` и `python3 tests/e2e.py` (проверяют подписи, слои и анатомические соотношения).
+
+## Схемы нормы остальных срезов
+
+`build_views.py` собирает `situs-normal.svg`, `lvot-normal.svg`, `rvot-normal.svg`, `3vv-normal.svg`, `3vt-normal.svg`
+в том же стиле (номера на структурах, расшифровка — в `data/anatomy.js`). LVOT строится из геометрии атласа 4CV
+(без ТК, межпредсердной перегородки и креста сердца, с корнем аорты); остальные — поперечный срез туловища
+с рёбрами, позвонком, лёгкими/органами живота.
+
+```bash
+cd tools/atlas && python3 build_views.py ../../atlas
+```
+
+Номера и ключи структур берутся из списков `M` в каждой функции — при изменении обновите `structures` в `data/anatomy.js`.

@@ -218,7 +218,7 @@
   function atlasList() {
     return `<h1>Анатомический атлас</h1>
       <p class="subtitle">Подробные анатомические схемы нормы и пороков. Это рисунки строения сердца, а не УЗ-изображения. Схема со статусом «черновик» ещё не проверена экспертом.</p>
-      ${[["Норма", ATLAS.filter(t => !t.chd)], ["Пороки", ATLAS.filter(t => t.chd)]].map(([h, list]) => list.length ? `<h2>${h}</h2>${list.map(atlasItem).join("")}` : "").join("")}${foot()}`;
+      ${[["Норма", ATLAS.filter(t => !t.chd).sort((x, y) => VIEWS.findIndex(v => v.id === x.view) - VIEWS.findIndex(v => v.id === y.view))], ["Пороки", ATLAS.filter(t => t.chd)]].map(([h, list]) => list.length ? `<h2>${h}</h2>${list.map(atlasItem).join("")}` : "").join("")}${foot()}`;
   }
   function atlasItem(t) {
     return item(`#/atlas/${t.id}`, esc(t.abbr.slice(0, 5)), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id, t.chd ? "red" : "");

@@ -198,3 +198,15 @@ test("банк теста: не меньше 100 вопросов; approved то
     else if (q.status !== undefined) assert.equal(q.status, "draft", `вопрос ${i}`);
   }
 });
+
+test("атлас нормы: у каждого стандартного среза есть схема нормы", () => {
+  for (const v of FC.VIEWS) {
+    const t = FC.ATLAS.find(x => x.view === v.id && !x.chd);
+    assert.ok(t, `${v.id}: нет схемы нормы в атласе`);
+    const nums = t.structures.map(s => s.n).filter(n => n !== null).sort((a, b) => a - b);
+    assert.deepEqual([...nums], Array.from({ length: nums.length }, (_, i) => i + 1), `${t.id}: номера по порядку`);
+    if (t.id !== "4cv-normal") assert.equal(t.status, "draft", `${t.id}: до проверки автором — черновик`);
+    for (const x of [...t.normal, ...t.structures.map(s => s.note || "")])
+      assert.doesNotMatch(x, /\d+\s*(мм|см|%|°)/, `${t.id}: числовой критерий без источника: ${x}`);
+  }
+});

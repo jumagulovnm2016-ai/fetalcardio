@@ -8,7 +8,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else None
 ROUTES = ["", "views", "view/situs", "view/4cv", "view/lvot", "view/rvot", "view/3vv", "view/3vt",
           "algos", "algo/rv-gt-lv", "algo/overriding", "algo/reverse-flow", "chd",
           "chd/vsd", "chd/avsd", "chd/tof", "chd/tga", "chd/dorv", "chd/cat", "chd/hlhs", "chd/coa", "chd/ebstein", "chd/tapvr",
-          "atlas", "atlas/4cv-normal", "atlas/vsd-types", "atlas/vsd-4cv", "atlas/vsd-5cv", "chd/vsd", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
+          "atlas", "atlas/4cv-normal", "atlas/situs-normal", "atlas/lvot-normal", "atlas/rvot-normal", "atlas/3vv-normal", "atlas/3vt-normal", "atlas/vsd-types", "atlas/vsd-4cv", "atlas/vsd-5cv", "chd/vsd", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
           "quiz", "search?q=" + "%D1%84%D0%B0%D0%BB%D0%BB%D0%BE", "nonexistent"]
 fails = []
 def check(cond, msg):
@@ -150,6 +150,35 @@ with sync_playwright() as p:
         check(pg.evaluate("getComputedStyle(document.querySelector('#layer-labels')).display") == "none", f"атлас {scheme}: скрытие подписей")
         if OUT: pg.locator("#atlasFig").screenshot(path=f"{OUT}/atlas-4cv-{scheme}.png")
         ctx.close()
+
+    # 2b. Атлас нормы остальных срезов: анатомические соотношения (центры структур; верх — кпереди, справа на рисунке — левая сторона плода)
+    ctx = b.new_context(viewport={"width": 1280, "height": 900}, service_workers="block")
+    pg = ctx.new_page()
+    REL = {
+      "situs-normal": ["c('stomach').x > c('spine').x", "c('liver').x < c('spine').x", "c('ao').x > c('spine').x && c('ao').y < c('spine').y",
+                       "c('ivc').x < c('ao').x && c('ivc').y < c('ao').y", "c('heartpos').x > c('axis').x - 40"],
+      "lvot-normal": ["c('ao').x < c('lv').x", "c('aov').x < c('lvot').x", "c('rv').x < c('lv').x", "c('la').y > c('ao').y"],
+      "rvot-normal": ["c('rvot').y < c('mpa').y", "c('ao').x < c('mpa').x", "c('svc').x < c('ao').x", "c('rpa').y > c('ao').y",
+                      "c('da').y > c('mpa').y", "c('dao').x > c('spine').x && c('dao').y < c('spine').y"],
+      "3vv-normal": ["c('svc').x < c('ao').x && c('ao').x < c('mpa').x", "c('mpa').y < c('ao').y && c('ao').y < c('svc').y",
+                     "w('mpa') > w('ao') && w('ao') > w('svc')", "c('thy').y < c('ao').y", "c('rpa').y > c('ao').y"],
+      "3vt-normal": ["c('trachea').x < c('arch').x && c('arch').x < c('da').x", "c('svc').x < c('arch').x", "c('dao').x > c('spine').x",
+                     "c('thy').y < c('arch').y"],
+    }
+    for sid, rels in REL.items():
+        pg.goto(BASE + "#/atlas/" + sid); pg.wait_for_selector("#atlasSvg svg #heart", timeout=5000)
+        res = pg.evaluate("""(rels) => {
+          const svg = document.querySelector('#atlasSvg svg');
+          const bb = k => svg.querySelector('#s-' + k).getBBox();
+          const c = k => { const r = bb(k); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; };
+          const w = k => { const g = svg.querySelector('#s-' + k), ci = g.querySelector('circle');  // диаметр: круг — 2r, сосуд-трубка — толщина линии
+            return ci ? 2 * ci.r.baseVal.value : parseFloat(g.querySelectorAll('path')[1].getAttribute('stroke-width')); };
+          return rels.filter(r => { try { return !eval(r); } catch (e) { return true; } });
+        }""", rels)
+        check(not res, f"атлас {sid}: не выполнены соотношения {res}")
+        check(pg.locator("#atlasSvg svg [data-s]").count() >= 2 * len(rels), f"атлас {sid}: мало структур")
+        if OUT: pg.locator("#atlasFig").screenshot(path=f"{OUT}/atlas-{sid}.png")
+    ctx.close()
 
     # 3. Офлайн: после первой загрузки с Service Worker приложение открывается без сети
     ctx = b.new_context(viewport={"width": 390, "height": 844})

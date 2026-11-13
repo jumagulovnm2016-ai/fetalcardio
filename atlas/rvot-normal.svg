@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 900" role="img" aria-labelledby="t-rvot-normal d-rvot-normal" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
+<title id="t-rvot-normal">Выходной тракт правого желудочка (RVOT): анатомическая схема нормы</title>
+<desc id="d-rvot-normal">Оригинальная учебная схема FetalCardio. Поперечный срез грудной клетки краниальнее LVOT: ствол лёгочной артерии отходит от переднего правого желудочка, перекрещивается с аортой (аорта — в поперечном сечении справа от него), направлен кзади к позвоночнику, делится на ветви и продолжается в артериальный проток. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик, требует проверки экспертом.</desc>
+<metadata>{"app":"FetalCardio","id":"rvot-normal","status":"draft","author":"Жумагулов Н.М.","created":"2026-11-14","version":1}</metadata>
+<defs>
+<radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="430" cy="300" r="380">
+  <stop offset="0" stop-color="#fdf2ee"/><stop offset=".6" stop-color="#f6dcd4"/><stop offset="1" stop-color="#e9bfb3"/>
+</radialGradient>
+<radialGradient id="g-blue" gradientUnits="userSpaceOnUse" cx="350" cy="330" r="260">
+  <stop offset="0" stop-color="#4f7fe0"/><stop offset=".55" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/>
+</radialGradient>
+<radialGradient id="g-red" gradientUnits="userSpaceOnUse" cx="570" cy="330" r="260">
+  <stop offset="0" stop-color="#ec5a4c"/><stop offset=".55" stop-color="#c41d22"/><stop offset="1" stop-color="#7f0c12"/>
+</radialGradient>
+<linearGradient id="g-fo" x1="0" x2="1"><stop offset="0" stop-color="#2452b8"/><stop offset="1" stop-color="#c41d22"/></linearGradient>
+<linearGradient id="g-vein" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c41d22"/><stop offset="1" stop-color="#e2483f"/></linearGradient>
+<radialGradient id="g-ao" cx=".38" cy=".34" r=".72"><stop offset="0" stop-color="#f28a7e"/><stop offset=".6" stop-color="#c41d22"/><stop offset="1" stop-color="#7f0c12"/></radialGradient>
+<pattern id="p-fib" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
+  <path d="M0,4.5 H9" stroke="#c98e80" stroke-width=".7" opacity=".55"/><path d="M0,1 H4" stroke="#b97a6c" stroke-width=".5" opacity=".35"/>
+</pattern>
+<pattern id="p-sheen" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+  <path d="M0,3.5 H7" stroke="#ffffff" stroke-width=".6" opacity=".12"/>
+</pattern>
+<filter id="f-soft" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#3a1414" flood-opacity=".25"/></filter>
+<filter id="f-ish" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="6"/></filter>
+<clipPath id="c-rv"><path d="M 448.0,360.0 448.0,358.4 448.2,356.8 448.6,355.2 448.8,353.6 448.8,352.0 448.8,350.4 448.8,348.8 448.9,347.1 449.0,345.5 448.6,343.9 449.0,342.3 449.7,340.8 450.6,339.3 450.8,337.7 450.2,336.0 449.8,334.3 449.6,332.6 449.5,331.0 449.7,329.4 451.3,328.0 451.8,326.5 452.4,324.9 453.1,323.4 453.3,321.8 453.0,320.2 452.8,318.5 452.7,316.9 452.8,315.3 453.0,313.7 452.1,311.9 452.9,310.4 453.9,308.9 455.2,307.5 455.2,305.9 454.3,304.1 453.8,302.4 453.4,300.8 453.4,299.1 453.6,297.5 454.6,296.1 455.4,294.6 456.3,293.1 457.6,291.7 457.6,290.0 456.8,288.3 456.3,286.6 456.0,284.9 456.0,283.3 456.3,281.7 457.8,280.3 458.4,278.8 459.2,277.3 460.2,275.8 460.2,274.2 459.7,272.5 459.4,270.8 459.3,269.2 459.4,267.6 459.7,266.0 458.6,264.2 459.5,262.7 460.8,261.3 462.3,259.9 462.1,258.2 461.1,256.5 460.5,254.8 460.1,253.1 460.1,251.5 460.4,249.9 462.6,248.6 463.2,247.0 464.0,245.5 465.0,244.1 464.9,242.4 464.5,240.8 464.3,239.1 464.2,237.5 464.3,235.9 464.6,234.3 463.8,232.5 464.7,231.0 465.8,229.6 467.3,228.2 466.9,226.5 466.2,224.8 465.7,223.1 465.5,221.4 465.6,219.8 465.9,218.2 467.5,216.9 468.2,215.3 468.9,213.8 469.9,212.3 469.7,210.7 469.4,209.0 469.3,207.4 469.3,205.8 469.4,204.2 469.7,202.6 470.2,201.0 470.8,199.5 471.5,198.0 472.3,196.5 472.2,194.8 472.0,193.2 471.9,191.5 472.0,189.9 472.2,188.3 472.5,186.8 472.3,185.1 473.0,183.6 473.8,182.1 474.7,180.6 474.5,179.0 474.3,177.3 474.3,175.7 474.4,174.1 474.7,172.5 475.0,170.9 475.1,169.3 475.8,167.8 476.5,166.3 477.2,164.7 477.2,163.1 477.4,161.5 478.0,160.0 475.8,159.2 474.3,158.4 473.0,157.7 472.1,156.9 471.7,155.8 471.7,154.4 472.0,152.4 470.9,151.6 468.7,152.6 465.6,155.7 464.0,157.0 463.0,157.7 462.3,157.5 461.7,156.5 461.2,154.5 460.5,151.8 459.5,148.3 458.0,148.4 456.6,151.4 455.5,155.2 454.3,156.5 453.0,156.7 451.4,156.0 449.5,154.7 447.3,152.9 444.8,151.2 442.2,149.9 440.0,150.0 438.8,151.4 437.5,152.6 436.1,153.8 434.7,154.9 433.2,155.7 431.6,156.4 429.9,156.8 428.0,156.8 426.5,157.8 426.0,160.6 425.1,162.7 424.1,164.5 422.9,165.9 421.5,166.9 419.8,167.5 417.9,167.5 415.6,167.0 413.0,165.9 411.8,167.3 410.1,168.0 409.0,169.5 407.7,170.9 406.4,172.1 404.9,173.0 403.3,173.6 401.5,174.0 399.5,174.2 397.3,174.0 396.1,175.3 396.7,179.8 396.4,182.6 395.6,184.7 394.6,186.3 393.1,187.2 391.2,187.5 388.9,187.0 386.1,185.9 382.8,184.0 382.2,186.3 381.1,187.8 380.4,190.0 379.5,191.7 378.3,193.1 376.9,194.0 375.1,194.5 373.0,194.5 370.6,194.0 367.9,193.1 367.2,195.2 366.5,197.3 365.9,199.3 365.0,201.0 363.8,202.3 362.4,203.2 360.6,203.8 358.6,203.9 356.3,203.7 353.7,203.0 353.1,205.1 352.7,207.5 352.2,209.5 351.3,211.2 350.2,212.5 348.8,213.5 347.1,214.0 345.1,214.2 342.8,214.0 340.1,213.3 339.8,215.6 340.3,218.9 340.1,221.2 339.5,223.1 338.6,224.5 337.2,225.4 335.4,225.8 333.2,225.7 330.6,225.3 327.4,224.2 327.7,227.0 330.0,231.9 330.5,234.8 330.4,237.0 329.7,238.5 328.3,239.3 326.2,239.4 323.4,238.8 320.0,237.6 315.6,235.4 317.3,239.4 316.1,240.4 315.9,242.4 315.5,244.1 314.6,245.4 313.4,246.4 311.7,247.0 309.7,247.2 307.4,247.2 304.5,246.7 305.2,249.4 307.2,253.1 307.7,255.5 307.6,257.4 307.0,258.7 305.7,259.6 303.8,260.0 301.4,259.9 298.5,259.6 294.7,258.6 296.7,261.9 298.0,264.7 298.6,266.9 298.7,268.7 298.1,270.0 296.9,270.9 295.1,271.3 292.7,271.5 289.9,271.4 286.5,271.0 288.5,273.9 288.6,275.6 288.9,277.4 288.8,279.0 288.2,280.2 287.2,281.2 285.8,282.0 284.0,282.6 281.8,283.1 279.5,283.5 280.8,285.7 282.1,287.8 282.6,289.5 282.6,291.0 282.1,292.2 281.1,293.3 279.8,294.2 278.1,294.9 276.0,295.6 274.1,296.3 275.4,298.3 274.7,299.4 274.7,300.9 274.5,302.2 274.1,303.5 273.5,304.7 272.7,305.9 271.8,307.0 270.8,308.2 270.0,309.4 270.3,310.8 270.4,312.2 270.3,313.5 270.0,314.8 269.6,316.1 269.2,317.4 268.6,318.7 268.0,320.0 268.9,322.1 269.2,324.2 269.3,326.2 269.0,328.2 268.4,330.2 267.6,332.1 268.8,334.1 269.8,336.0 270.7,337.9 270.5,339.8 270.8,341.6 270.9,343.5 270.6,345.3 270.1,347.1 269.2,349.0 268.2,350.8 269.9,352.4 271.2,354.0 272.2,355.6 272.5,357.2 272.9,358.9 273.0,360.5 272.8,362.2 272.3,363.9 271.5,365.6 270.7,367.4 272.4,368.7 273.8,369.9 274.9,371.2 276.7,372.2 277.2,373.6 277.3,375.0 277.1,376.6 276.5,378.3 275.6,380.0 274.8,381.8 276.8,382.5 278.3,383.4 279.5,384.4 279.8,385.6 280.3,386.8 280.6,388.1 280.6,389.5 280.5,390.9 280.3,392.4 280.2,393.9 281.5,394.5 282.5,395.4 283.2,396.3 283.5,397.5 283.9,398.6 284.0,400.0 285.6,399.6 287.1,399.2 288.7,398.9 290.2,398.5 291.8,398.1 293.4,397.7 294.9,397.3 296.5,397.0 298.1,396.6 299.6,396.2 301.2,395.8 302.7,395.4 304.3,395.0 305.9,394.7 307.4,394.3 309.0,393.9 310.6,393.5 312.1,393.1 313.7,392.8 315.2,392.4 316.8,392.0 318.4,391.6 319.9,391.2 321.5,390.9 323.0,390.5 324.6,390.1 326.2,389.7 327.7,389.3 329.3,389.0 330.9,388.6 332.4,388.2 334.0,387.8 335.5,387.4 337.1,387.0 338.7,386.7 340.2,386.3 341.8,385.9 343.4,385.5 344.9,385.1 346.5,384.8 348.0,384.4 349.6,384.0 351.2,383.6 352.7,383.2 354.3,382.9 355.8,382.5 357.4,382.1 359.0,381.7 360.5,381.3 362.1,381.0 363.7,380.6 365.2,380.2 366.8,379.8 368.3,379.4 369.9,379.0 371.5,378.7 373.0,378.3 374.6,377.9 376.2,377.5 377.7,377.1 379.3,376.8 380.8,376.4 382.4,376.0 384.0,375.6 385.5,375.2 387.1,374.9 388.6,374.5 390.2,374.1 391.8,373.7 393.3,373.3 394.9,373.0 396.5,372.6 398.0,372.2 399.6,371.8 401.1,371.4 402.7,371.0 404.3,370.7 405.8,370.3 407.4,369.9 409.0,369.5 410.5,369.1 412.1,368.8 413.6,368.4 415.2,368.0 416.8,367.6 418.3,367.2 419.9,366.9 421.4,366.5 423.0,366.1 424.6,365.7 426.1,365.3 427.7,365.0 429.3,364.6 430.8,364.2 432.4,363.8 433.9,363.4 435.5,363.0 437.1,362.7 438.6,362.3 440.2,361.9 441.8,361.5 443.3,361.1 444.9,360.8 446.4,360.4 Z"/></clipPath><clipPath id="c-lv"><path d="M 468.0,386.0 468.2,384.4 468.4,382.8 468.7,381.2 468.9,379.6 469.1,378.0 469.3,376.4 469.6,374.9 469.8,373.3 470.0,371.7 470.2,370.1 470.5,368.5 470.7,366.9 470.9,365.3 471.1,363.7 471.3,362.1 471.6,360.5 471.8,358.9 472.0,357.3 472.2,355.7 472.5,354.2 472.7,352.6 472.9,351.0 473.1,349.4 473.4,347.8 473.6,346.2 473.8,344.6 474.0,343.0 474.2,341.4 474.5,339.8 474.7,338.2 474.9,336.6 475.1,335.0 475.4,333.5 475.6,331.9 475.8,330.3 476.0,328.7 476.2,327.1 476.5,325.5 476.7,323.9 476.9,322.3 477.1,320.7 477.4,319.1 477.6,317.5 477.8,315.9 478.0,314.3 478.3,312.8 478.5,311.2 478.7,309.6 478.9,308.0 479.1,306.4 479.4,304.8 479.6,303.2 479.8,301.6 480.0,300.0 480.3,298.4 480.5,296.8 480.7,295.2 480.9,293.6 481.2,292.1 481.4,290.5 481.6,288.9 481.8,287.3 482.0,285.7 482.3,284.1 482.5,282.5 482.7,280.9 482.9,279.3 483.2,277.7 483.4,276.1 483.6,274.5 483.8,272.9 484.1,271.4 484.3,269.8 484.5,268.2 484.7,266.6 484.9,265.0 485.2,263.4 485.4,261.8 485.6,260.2 485.8,258.6 486.1,257.0 486.3,255.4 486.5,253.8 486.7,252.2 486.9,250.6 487.2,249.1 487.4,247.5 487.6,245.9 487.8,244.3 488.1,242.7 488.3,241.1 488.5,239.5 488.7,237.9 489.0,236.3 489.2,234.7 489.4,233.1 489.6,231.5 489.8,229.9 490.1,228.4 490.3,226.8 490.5,225.2 490.7,223.6 491.0,222.0 491.2,220.4 491.4,218.8 491.6,217.2 491.9,215.6 492.1,214.0 492.3,212.4 492.5,210.8 492.7,209.2 493.0,207.7 493.2,206.1 493.4,204.5 493.6,202.9 493.9,201.3 494.1,199.7 494.3,198.1 494.5,196.5 494.8,194.9 495.0,193.3 495.2,191.7 495.4,190.1 495.6,188.5 495.9,187.0 496.1,185.4 496.3,183.8 496.5,182.2 496.8,180.6 497.0,179.0 497.2,177.4 497.4,175.8 497.6,174.2 497.9,172.6 498.1,171.0 498.3,169.4 498.5,167.8 498.8,166.3 499.0,164.7 499.2,163.1 499.4,161.5 499.7,159.9 499.9,158.3 500.1,156.7 500.3,155.1 500.5,153.5 500.8,151.9 501.0,150.3 501.2,148.7 501.4,147.1 501.7,145.6 501.9,144.0 502.1,142.4 502.3,140.8 502.6,139.2 502.8,137.6 503.0,136.0 504.8,134.3 506.5,132.7 507.5,131.2 507.8,129.5 507.1,127.3 508.2,126.0 509.8,125.2 511.3,124.5 512.2,123.5 512.5,122.1 512.3,120.1 513.0,118.9 515.1,119.6 516.6,119.7 517.5,119.2 518.3,118.0 519.0,116.3 520.1,114.9 521.8,116.0 523.2,116.3 524.7,115.9 526.2,115.0 528.0,114.0 529.3,114.7 530.6,115.2 532.0,115.4 533.5,115.4 534.6,116.3 535.9,117.1 537.1,117.9 538.4,118.3 539.8,118.4 541.4,118.1 542.4,119.2 543.4,120.4 544.4,121.6 545.7,122.1 547.1,122.2 548.8,121.7 549.9,122.6 550.7,124.3 552.2,124.2 553.4,124.8 554.8,125.2 556.3,125.4 557.6,125.9 558.4,127.2 559.0,128.8 560.1,129.6 561.4,130.1 563.0,130.2 564.7,130.2 565.1,132.1 565.8,133.5 567.1,134.1 568.3,134.7 569.7,135.1 571.5,135.2 572.0,136.8 572.6,138.2 572.0,141.1 573.2,141.9 574.9,142.0 577.3,141.5 577.8,143.0 577.6,145.3 578.2,146.6 579.2,147.6 580.8,148.0 583.0,147.9 584.3,148.7 583.8,151.1 585.6,151.4 586.5,152.6 587.7,153.5 589.2,154.1 590.7,154.8 590.8,156.6 591.2,158.2 589.2,161.6 590.6,162.3 592.9,162.5 596.3,161.9 594.7,164.8 594.0,167.1 594.3,168.7 595.4,169.7 597.5,170.2 600.6,170.0 600.2,172.0 599.2,174.5 600.1,175.7 600.9,177.0 602.6,177.8 605.0,178.2 605.8,179.6 604.9,181.9 604.8,183.7 605.4,185.1 606.8,186.1 609.0,186.8 610.8,187.8 609.6,190.1 609.2,192.1 611.1,192.9 612.1,194.3 613.6,195.4 615.5,196.3 614.8,198.4 614.7,200.3 615.5,201.7 616.2,203.2 617.4,204.5 619.0,205.7 618.9,207.5 618.8,209.4 617.4,211.6 618.1,213.2 619.5,214.5 621.6,215.6 621.9,217.3 621.0,219.4 622.2,220.8 622.7,222.4 623.6,224.0 624.8,225.4 625.7,227.0 625.2,228.9 624.8,230.8 625.1,232.6 625.9,234.2 627.1,235.7 628.5,237.2 627.8,239.2 627.5,241.1 627.5,242.9 628.1,244.6 629.2,246.2 630.6,247.8 630.1,249.7 629.8,251.6 630.3,253.4 630.7,255.1 631.4,256.9 632.3,258.6 632.4,260.4 632.2,262.3 631.3,264.3 631.6,266.1 632.3,267.9 633.4,269.7 633.8,271.5 633.2,273.4 633.1,275.3 633.2,277.2 633.7,279.0 634.5,280.9 635.1,282.7 634.7,284.6 634.5,286.6 634.2,288.5 634.6,290.4 635.2,292.3 635.8,294.2 635.7,296.1 636.0,298.0 635.7,300.3 635.4,302.6 635.2,304.9 635.1,307.1 635.3,309.3 636.0,311.5 635.2,313.6 634.6,315.7 634.2,317.7 634.2,319.8 634.4,321.8 635.1,323.9 634.3,325.8 633.3,327.6 632.6,329.5 632.4,331.3 632.7,333.2 633.5,335.1 633.3,336.9 632.1,338.6 631.4,340.2 631.0,341.9 631.1,343.6 631.6,345.4 631.8,347.1 630.6,348.6 629.8,350.0 629.3,351.5 629.2,353.1 629.4,354.7 629.9,356.4 627.6,357.3 626.1,358.4 625.4,359.6 625.3,361.1 625.8,362.7 626.9,364.6 625.3,365.5 623.8,366.3 622.8,367.4 622.5,368.6 622.7,370.1 623.4,371.9 622.7,372.9 621.3,373.6 620.4,374.5 619.9,375.6 619.7,376.9 619.9,378.4 619.6,379.6 618.4,380.2 617.5,380.9 616.9,381.9 616.5,383.0 616.3,384.2 616.0,385.4 615.2,386.1 614.5,387.0 614.0,388.0 612.4,388.0 610.8,388.0 609.2,387.9 607.6,387.9 606.0,387.9 604.4,387.9 602.8,387.8 601.2,387.8 599.6,387.8 598.0,387.8 596.4,387.8 594.7,387.7 593.1,387.7 591.5,387.7 589.9,387.7 588.3,387.6 586.7,387.6 585.1,387.6 583.5,387.6 581.9,387.6 580.3,387.5 578.7,387.5 577.1,387.5 575.5,387.5 573.9,387.5 572.3,387.4 570.7,387.4 569.1,387.4 567.5,387.4 565.9,387.3 564.3,387.3 562.7,387.3 561.1,387.3 559.5,387.3 557.8,387.2 556.2,387.2 554.6,387.2 553.0,387.2 551.4,387.1 549.8,387.1 548.2,387.1 546.6,387.1 545.0,387.1 543.4,387.0 541.8,387.0 540.2,387.0 538.6,387.0 537.0,386.9 535.4,386.9 533.8,386.9 532.2,386.9 530.6,386.9 529.0,386.8 527.4,386.8 525.8,386.8 524.2,386.8 522.5,386.7 520.9,386.7 519.3,386.7 517.7,386.7 516.1,386.7 514.5,386.6 512.9,386.6 511.3,386.6 509.7,386.6 508.1,386.5 506.5,386.5 504.9,386.5 503.3,386.5 501.7,386.5 500.1,386.4 498.5,386.4 496.9,386.4 495.3,386.4 493.7,386.4 492.1,386.3 490.5,386.3 488.9,386.3 487.3,386.3 485.6,386.2 484.0,386.2 482.4,386.2 480.8,386.2 479.2,386.2 477.6,386.1 476.0,386.1 474.4,386.1 472.8,386.1 471.2,386.0 469.6,386.0 Z"/></clipPath><clipPath id="c-ra"><path d="M 284,398.7 L 448,360.0 L 452,394.0 L 446,548.4 C 420,556.2 390,559.4 362,556.2 C 310,550.0 268,523.5 262,476.7 C 258,442.4 264,417.4 284,398.7 Z"/></clipPath><clipPath id="c-la"><path d="M 468,386.0 L 614,388.0 C 648,414.3 658,476.7 640,515.7 C 622,553.1 560,564.0 500,560.9 C 478,559.4 462,553.1 454,548.4 L 462,394.0 Z"/></clipPath>
+</defs>
+<style>
+.bg{fill:var(--sv-bg,#ffffff)}
+.myo{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:2.6;stroke-linejoin:round}
+.fibr{fill:url(#p-fib);stroke:none}
+.cavr{fill:url(#g-blue);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}
+.cavl{fill:url(#g-red);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}
+.sheen{fill:url(#p-sheen);stroke:none}
+.ish{fill:none;stroke:#05102e;stroke-width:18;opacity:.35;filter:url(#f-ish)}
+.ishl{fill:none;stroke:#3a0306;stroke-width:18;opacity:.35;filter:url(#f-ish)}
+.endo2{fill:none;stroke:#ffffff;stroke-width:1;stroke-linejoin:round;opacity:.45}
+.sep{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:1.2}
+.tje{stroke:#2b1a1a;fill:none;stroke-linecap:round}
+.tj{stroke:#f3d2c9;fill:none;stroke-linecap:round}
+.tjh{stroke:#ffffff;fill:none;stroke-linecap:round;opacity:.75}
+.pm{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:1.6}
+.lfe{stroke:#2b1a1a;fill:none;stroke-width:7.2;stroke-linecap:round}
+.lf{stroke:#fbfbff;fill:none;stroke-width:4.4;stroke-linecap:round}
+.ch{stroke:#ffffff;stroke-width:1.1;opacity:.85}
+.che{stroke:#2b1a1a;stroke-width:2.2;opacity:.35}
+.flap{stroke:#fbfbff;fill:none;stroke-width:3.4;stroke-linecap:round}
+.flape{stroke:#2b1a1a;fill:none;stroke-width:6;stroke-linecap:round}
+.fo{fill:url(#g-fo);stroke:none}
+.fib{fill:#fffaf2;stroke:#2b1a1a;stroke-width:1.2}
+.avs{fill:rgba(255,190,60,.35);stroke:#8a5a00;stroke-width:1.2;stroke-dasharray:3 2}
+.vo{stroke:#2b1a1a;fill:none;stroke-width:21;stroke-linecap:round}
+.vm{stroke:url(#g-vein);fill:none;stroke-width:17;stroke-linecap:round}
+.vh{stroke:#ffffff;fill:none;stroke-width:3;stroke-linecap:round;opacity:.35}
+.vi{stroke:#e2483f;fill:none;stroke-width:9;stroke-linecap:round}
+.ao{fill:url(#g-ao);stroke:#2b1a1a;stroke-width:2}
+.an{stroke:#2b1a1a;stroke-width:1.8;fill:none}
+.and{stroke:#2b1a1a;stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.anf{fill:#2b1a1a}
+.ant{fill:#2b1a1a;font-size:11px;font-weight:700}
+.nb{fill:#101828;stroke:#ffffff;stroke-width:1.6}
+.nb0{fill:#5b6578}
+.nt{fill:#ffffff;font-size:12.5px;font-weight:700}
+.hd{fill:var(--sv-text,#101828);font-size:22px;font-weight:700}
+.om{fill:var(--sv-text,#101828);font-size:13px;opacity:.7}
+.dr{fill:none;stroke:var(--sv-draft,#c0392b);stroke-width:1.5}
+.drt{fill:var(--sv-draft,#c0392b);font-size:13px;font-weight:700;letter-spacing:.04em}
+.ok{fill:none;stroke:#16794a;stroke-width:1.5}
+.okt{fill:#16794a;font-size:12.5px;font-weight:700}
+.cs{fill:var(--sv-text,#101828);font-size:12px;font-weight:700;letter-spacing:.08em;opacity:.5}
+</style>
+<defs>
+<linearGradient id="g-vsd" x1="0" x2="1"><stop offset="0" stop-color="#2452b8"/><stop offset=".5" stop-color="#7a3a8c"/><stop offset="1" stop-color="#c41d22"/></linearGradient>
+<radialGradient id="g-hole" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#ef6a5c"/><stop offset=".55" stop-color="#b3161c"/><stop offset="1" stop-color="#5c070b"/></radialGradient>
+<radialGradient id="g-sept" gradientUnits="userSpaceOnUse" cx="430" cy="440" r="380">
+  <stop offset="0" stop-color="#fbe9e3"/><stop offset=".65" stop-color="#f1d0c6"/><stop offset="1" stop-color="#ddb0a3"/></radialGradient>
+<radialGradient id="g-pa" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#6d93e6"/><stop offset=".6" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/></radialGradient>
+</defs>
+<style>
+.hole{fill:url(#g-hole);stroke:#2b1a1a;stroke-width:2}
+.holer{fill:none;stroke:#fff;stroke-width:1.2;opacity:.5}
+.vsd{fill:url(#g-vsd);stroke:none}
+.rim{stroke:#2b1a1a;stroke-width:2.2;fill:none;stroke-linecap:round}
+.zone{fill:none;stroke:#5b2a1f;stroke-width:1.6;stroke-dasharray:7 5;opacity:.75}
+.zt{fill:#5b2a1f;font-size:12px;font-weight:700;letter-spacing:.07em;opacity:.8}
+.sept{fill:url(#g-sept);stroke:#2b1a1a;stroke-width:2}
+.cut{fill:url(#g-myo);stroke:#2b1a1a;stroke-width:2.4;stroke-linejoin:round}
+.cutf{fill:#e9bfb3;stroke:#2b1a1a;stroke-width:1.2}
+.ves{stroke:#2b1a1a;stroke-width:2}
+.ring{fill:none;stroke:#2b1a1a;stroke-width:1.6}
+.cusp{fill:#fbfbff;stroke:#2b1a1a;stroke-width:1.4}
+.fibrous{fill:#fffaf2;stroke:#2b1a1a;stroke-width:1.2}
+.flow{stroke:#ffffff;stroke-width:2.2;fill:none;stroke-linecap:round;opacity:.9}
+.flowh{fill:#ffffff;opacity:.9}
+</style>
+
+<defs>
+<radialGradient id="g-sv" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#5b7fd6"/><stop offset=".6" stop-color="#1f3f99"/><stop offset="1" stop-color="#0f2263"/></radialGradient>
+<radialGradient id="g-uv" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#e76b78"/><stop offset=".6" stop-color="#b52845"/><stop offset="1" stop-color="#6d0f24"/></radialGradient>
+<radialGradient id="g-body" gradientUnits="userSpaceOnUse" cx="410" cy="420" r="380"><stop offset="0" stop-color="#fdf3ec"/><stop offset=".8" stop-color="#f7e2d6"/><stop offset="1" stop-color="#eccbb9"/></radialGradient>
+<radialGradient id="g-lung" cx=".5" cy=".45" r=".7"><stop offset="0" stop-color="#f6e4ea"/><stop offset="1" stop-color="#e5c3cf"/></radialGradient>
+<radialGradient id="g-liver" gradientUnits="userSpaceOnUse" cx="300" cy="360" r="300"><stop offset="0" stop-color="#c0675a"/><stop offset=".7" stop-color="#9c4337"/><stop offset="1" stop-color="#7a2e25"/></radialGradient>
+<radialGradient id="g-thy" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#fbf0dd"/><stop offset="1" stop-color="#ecd3ad"/></radialGradient>
+<radialGradient id="g-stw" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#f2c2b4"/><stop offset="1" stop-color="#d98f7e"/></radialGradient>
+<radialGradient id="g-fl" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#3a4656"/><stop offset="1" stop-color="#1a222d"/></radialGradient>
+<radialGradient id="g-bone" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fffdf6"/><stop offset="1" stop-color="#e5dcc6"/></radialGradient>
+<pattern id="p-lung" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.1" fill="#c99aab" opacity=".45"/><circle cx="8" cy="7.5" r=".9" fill="#c99aab" opacity=".35"/></pattern>
+<pattern id="p-liver" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(18)"><path d="M0,6 H12" stroke="#ffffff" stroke-width=".6" opacity=".12"/></pattern>
+</defs>
+<style>
+.skin{fill:url(#g-body);stroke:#2b1a1a;stroke-width:2.4}
+.wall{fill:#f3d6c9;stroke:#2b1a1a;stroke-width:1;opacity:.9}
+.cavity{fill:#fbf5f1;stroke:#2b1a1a;stroke-width:1.4}
+.rib{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.4}
+.bone{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.8}
+.bonel{fill:none;stroke:#2b1a1a;stroke-width:13;stroke-linecap:round}
+.bonei{fill:none;stroke:#f3ecdb;stroke-width:9.4;stroke-linecap:round}
+.oss{fill:#d8c7a2;opacity:.9}
+.canal{fill:#fbf5f1;stroke:#2b1a1a;stroke-width:1.2}
+.lung{fill:url(#g-lung);stroke:#2b1a1a;stroke-width:1.6}
+.lungt{fill:url(#p-lung)}
+.thy{fill:url(#g-thy);stroke:#2b1a1a;stroke-width:1.6}
+.thyl{fill:none;stroke:#b89a6c;stroke-width:1;opacity:.7}
+.liver{fill:url(#g-liver);stroke:#2b1a1a;stroke-width:2}
+.livert{fill:url(#p-liver)}
+.stw{fill:url(#g-stw);stroke:#2b1a1a;stroke-width:2}
+.stl{fill:url(#g-fl);stroke:#2b1a1a;stroke-width:1}
+.trw{fill:#f4f1ea;stroke:#2b1a1a;stroke-width:2}
+.trl{fill:#dfe8f6;stroke:#2b1a1a;stroke-width:1}
+.trc{fill:none;stroke:#b9b2a2;stroke-width:3.4}
+.vso{stroke:#2b1a1a;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.vsh{stroke:#ffffff;fill:none;stroke-linecap:round;opacity:.33}
+.cut{stroke:#2b1a1a;stroke-width:1.6}
+.mid{stroke:#2b1a1a;stroke-width:1.4;stroke-dasharray:6 5;fill:none;opacity:.55}
+.lin{stroke:#16794a;stroke-width:2;stroke-dasharray:8 5;fill:none}
+.ax{stroke:#c26a00;stroke-width:2.4;fill:none;stroke-linecap:round}
+.axt{fill:#8a4a00;font-size:12.5px;font-weight:700}
+.insb{fill:var(--sv-bg,#ffffff);stroke:#2b1a1a;stroke-width:1.2;opacity:.98}
+.inst{fill:var(--sv-text,#101828);font-size:11.5px;font-weight:700;letter-spacing:.04em;opacity:.65}
+.dir{fill:#2b1a1a;font-size:12px;font-weight:700;opacity:.75}
+.sao{fill:none;stroke:#16c46e;stroke-width:3.4;stroke-linecap:round}
+</style>
+<rect class="bg" x="0" y="0" width="820" height="900"/>
+<g id="layer-header">
+<text class="hd" x="24" y="34">Выходной тракт ПЖ (RVOT): анатомическая схема нормы</text>
+<rect class="dr" x="24" y="48" width="262" height="28" rx="6"/>
+<text class="drt" x="155" y="67" text-anchor="middle">DRAFT · REQUIRES EXPERT REVIEW</text>
+</g>
+<text class="cs" x="410" y="150" text-anchor="middle">КПЕРЕДИ ↑</text><text class="cs" x="40" y="800">← ПРАВАЯ СТОРОНА ПЛОДА</text><text class="cs" x="780" y="800" text-anchor="end">ЛЕВАЯ СТОРОНА ПЛОДА →</text>
+<g id="heart">
+<g id="layer-body"><ellipse class="skin" cx="410" cy="460" rx="318" ry="296"/><ellipse class="cavity" cx="410" cy="460" rx="296" ry="274"/><ellipse class="rib" cx="267.3" cy="211.0" rx="13" ry="8" transform="rotate(332 267.3 211.0)"/><ellipse class="rib" cx="149.4" cy="314.8" rx="13" ry="8" transform="rotate(301 149.4 314.8)"/><ellipse class="rib" cx="106.0" cy="460.0" rx="13" ry="8" transform="rotate(270 106.0 460.0)"/><ellipse class="rib" cx="149.4" cy="605.2" rx="13" ry="8" transform="rotate(239 149.4 605.2)"/><ellipse class="rib" cx="267.3" cy="709.0" rx="13" ry="8" transform="rotate(208 267.3 709.0)"/><ellipse class="rib" cx="552.7" cy="211.0" rx="13" ry="8" transform="rotate(28 552.7 211.0)"/><ellipse class="rib" cx="670.6" cy="314.8" rx="13" ry="8" transform="rotate(59 670.6 314.8)"/><ellipse class="rib" cx="714.0" cy="460.0" rx="13" ry="8" transform="rotate(90 714.0 460.0)"/><ellipse class="rib" cx="670.6" cy="605.2" rx="13" ry="8" transform="rotate(121 670.6 605.2)"/><ellipse class="rib" cx="552.7" cy="709.0" rx="13" ry="8" transform="rotate(152 552.7 709.0)"/><rect class="bone" x="388" y="170" width="44" height="17" rx="8"/></g>
+<g id="layer-lungs"><g id="s-lungs" data-s="lungs"><path class="lung" d="M 338,198 C 238,206 136,296 124,428 C 114,556 186,668 300,700 C 332,690 344,662 336,628 C 324,590 286,566 276,520 C 268,470 270,420 284,376 C 300,326 330,272 338,198 Z"/><path class="lungt" d="M 338,198 C 238,206 136,296 124,428 C 114,556 186,668 300,700 C 332,690 344,662 336,628 C 324,590 286,566 276,520 C 268,470 270,420 284,376 C 300,326 330,272 338,198 Z"/><path class="lung" d="M 486,198 C 584,206 686,296 696,428 C 704,556 634,668 520,700 C 490,690 478,662 486,628 C 498,592 548,566 560,520 C 570,470 572,420 560,376 C 546,326 498,272 486,198 Z"/><path class="lungt" d="M 486,198 C 584,206 686,296 696,428 C 704,556 634,668 520,700 C 490,690 478,662 486,628 C 498,592 548,566 560,520 C 570,470 572,420 560,376 C 546,326 498,272 486,198 Z"/></g></g>
+<g id="layer-spine"><g id="s-spine" data-s="spine"><path class="bonel" d="M 384,662 C 376,692 394,710 410,712 C 426,710 444,692 436,662"/><path class="bonei" d="M 384,662 C 376,692 394,710 410,712 C 426,710 444,692 436,662"/><path class="bonel" stroke-width="9" d="M 410,712 L 410,722"/><path class="bonei" stroke-width="5.4" d="M 410,712 L 410,722"/><circle class="canal" cx="410" cy="686" r="13"/><circle class="bone" cx="410" cy="640" r="30"/><ellipse class="oss" cx="410" cy="641" rx="15" ry="12"/><ellipse class="oss" cx="383" cy="686" rx="5" ry="8" transform="rotate(20 383 686)"/><ellipse class="oss" cx="437" cy="686" rx="5" ry="8" transform="rotate(-20 437 686)"/></g></g>
+<g id="layer-heart">
+<g id="s-rvot" data-s="rvot"><path class="myo" d="M 352,262 C 370,222 470,212 524,238 C 556,254 560,296 542,322 C 526,344 500,352 478,352 L 424,352 C 380,350 342,310 352,262 Z"/><path class="fibr" d="M 352,262 C 370,222 470,212 524,238 C 556,254 560,296 542,322 C 526,344 500,352 478,352 L 424,352 C 380,350 342,310 352,262 Z"/><path class="cavr" d="M 372,266 C 388,238 466,232 510,252 C 532,264 536,294 522,314 C 510,330 492,334 476,334 L 430,334 C 398,332 364,302 372,266 Z"/>
+<path class="tje" stroke-width="6.4" d="M 392,282 Q 404,296 420,300"/><path class="tj" stroke-width="4" d="M 392,282 Q 404,296 420,300"/><path class="tjh" stroke-width="1.1" d="M 392,282 Q 404,296 420,300"/><path class="tje" stroke-width="6.4" d="M 420,256 Q 428,270 440,276"/><path class="tj" stroke-width="4" d="M 420,256 Q 428,270 440,276"/><path class="tjh" stroke-width="1.1" d="M 420,256 Q 428,270 440,276"/></g>
+</g>
+<g id="layer-vessels">
+<g id="s-rpa" data-s="rpa"><path class="vso" stroke-width="23" d="M 496,470 C 466,506 400,516 334,508 C 302,504 282,494 264,478"/><path stroke="#2452b8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="19" d="M 496,470 C 466,506 400,516 334,508 C 302,504 282,494 264,478"/><path class="vsh" stroke-width="4.2" d="M 496,470 C 466,506 400,516 334,508 C 302,504 282,494 264,478" transform="translate(-3.4 -3.4)"/></g>
+<g id="s-lpa" data-s="lpa"><path class="vso" stroke-width="21" d="M 504,474 C 530,504 568,520 604,526"/><path stroke="#2452b8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="17" d="M 504,474 C 530,504 568,520 604,526"/><path class="vsh" stroke-width="3.7" d="M 504,474 C 530,504 568,520 604,526" transform="translate(-3.1 -3.1)"/></g>
+<g id="s-da" data-s="da"><path class="vso" stroke-width="32" d="M 502,474 C 512,520 494,566 466,590"/><path stroke="#2452b8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" d="M 502,474 C 512,520 494,566 466,590"/><path class="vsh" stroke-width="6.2" d="M 502,474 C 512,520 494,566 466,590" transform="translate(-5.0 -5.0)"/></g>
+<g id="s-mpa" data-s="mpa"><path class="vso" stroke-width="50" d="M 482,344 C 492,392 500,430 500,468"/><path stroke="#2452b8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="46" d="M 482,344 C 492,392 500,430 500,468"/><path class="vsh" stroke-width="10.1" d="M 482,344 C 492,392 500,430 500,468" transform="translate(-8.3 -8.3)"/></g>
+<g id="s-dao" data-s="dao"><circle cx="454" cy="594" r="19" fill="url(#g-ao)" stroke="#2b1a1a" stroke-width="2"/><ellipse cx="447.4" cy="586.4" rx="6.6" ry="3.8" fill="#fff" opacity=".35"/></g>
+<g id="s-ao" data-s="ao"><circle cx="396" cy="426" r="25" fill="url(#g-ao)" stroke="#2b1a1a" stroke-width="2"/><ellipse cx="387.2" cy="416.0" rx="8.8" ry="5.0" fill="#fff" opacity=".35"/></g>
+<g id="s-svc" data-s="svc"><circle cx="322" cy="446" r="15" fill="url(#g-sv)" stroke="#2b1a1a" stroke-width="2"/><ellipse cx="316.8" cy="440.0" rx="5.2" ry="3.0" fill="#fff" opacity=".35"/></g>
+<g id="s-pv" data-s="pv"><path class="lfe" d="M 462,344 Q 476,356 486,350"/><path class="lf" d="M 462,344 Q 476,356 486,350"/><path class="lfe" d="M 506,340 Q 494,354 486,350"/><path class="lf" d="M 506,340 Q 494,354 486,350"/></g>
+</g>
+<g id="layer-labels">
+<g id="lbl-rvot" class="lbl" data-s="rvot"><title>1. Выходной отдел правого желудочка (RVOT)</title><circle class="nb" cx="420" cy="300" r="11.5"/><text class="nt" x="420" y="304.2" text-anchor="middle">1</text></g>
+<g id="lbl-pv" class="lbl" data-s="pv"><title>2. Клапан лёгочной артерии (PV)</title><circle class="nb" cx="528" cy="356" r="11.5"/><text class="nt" x="528" y="360.2" text-anchor="middle">2</text></g>
+<g id="lbl-mpa" class="lbl" data-s="mpa"><title>3. Ствол лёгочной артерии (MPA)</title><circle class="nb" cx="498" cy="412" r="11.5"/><text class="nt" x="498" y="416.2" text-anchor="middle">3</text></g>
+<g id="lbl-rpa" class="lbl" data-s="rpa"><title>4. Правая ветвь ЛА (RPA)</title><circle class="nb" cx="360" cy="520" r="11.5"/><text class="nt" x="360" y="524.2" text-anchor="middle">4</text></g>
+<g id="lbl-lpa" class="lbl" data-s="lpa"><title>5. Левая ветвь ЛА (LPA)</title><circle class="nb" cx="590" cy="500" r="11.5"/><text class="nt" x="590" y="504.2" text-anchor="middle">5</text></g>
+<g id="lbl-da" class="lbl" data-s="da"><title>6. Артериальный проток (DA)</title><circle class="nb" cx="520" cy="546" r="11.5"/><text class="nt" x="520" y="550.2" text-anchor="middle">6</text></g>
+<g id="lbl-ao" class="lbl" data-s="ao"><title>7. Аорта (поперечное сечение) (Ao)</title><circle class="nb" cx="396" cy="426" r="11.5"/><text class="nt" x="396" y="430.2" text-anchor="middle">7</text></g>
+<g id="lbl-svc" class="lbl" data-s="svc"><title>8. Верхняя полая вена (SVC)</title><circle class="nb" cx="322" cy="412" r="11.5"/><text class="nt" x="322" y="416.2" text-anchor="middle">8</text></g>
+<g id="lbl-dao" class="lbl" data-s="dao"><title>9. Нисходящая аорта (DAo)</title><circle class="nb" cx="492" cy="610" r="11.5"/><text class="nt" x="492" y="614.2" text-anchor="middle">9</text></g>
+<g id="lbl-lungs" class="lbl" data-s="lungs"><title>•. Лёгкие (lungs)</title><circle class="nb nb0" cx="200" cy="430" r="11.5"/><text class="nt" x="200" y="434.2" text-anchor="middle">•</text></g>
+<g id="lbl-spine" class="lbl" data-s="spine"><title>•. Позвоночник (spine)</title><circle class="nb nb0" cx="456" cy="666" r="11.5"/><text class="nt" x="456" y="670.2" text-anchor="middle">•</text></g>
+</g>
+</g>
+<g id="layer-orientation"><text class="om" x="24" y="852">Поперечный срез: верх — передняя стенка, низ — позвоночник; левая сторона плода — справа на рисунке.</text><text class="om" x="24" y="872">Синий — венозная кровь (ЛА, проток, полые вены), красный — аорта. Номера — в легенде ниже.</text><text class="om" x="24" y="892">Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок.</text></g>
+</svg>
