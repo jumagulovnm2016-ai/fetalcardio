@@ -1,7 +1,7 @@
 """Генератор схем нормы стандартных срезов для атласа FetalCardio (кроме 4CV).
 
   situs-normal.svg — поперечный срез живота (situs) + врезка: положение и ось сердца
-  lvot-normal.svg  — выходной тракт ЛЖ (на основе атласа 4CV, апикальная ориентация)
+  lvot-normal.svg  — выходной тракт ЛЖ (поперечный срез, ось сердца ~45°, как на эхограмме)
   rvot-normal.svg  — выходной тракт ПЖ (поперечный срез)
   3vv-normal.svg   — срез трёх сосудов (поперечный срез верхнего средостения)
   3vt-normal.svg   — срез трёх сосудов и трахеи
@@ -239,80 +239,6 @@ def situs():
 
 
 # =====================================================================================
-# LVOT — на основе атласа 4CV
-# =====================================================================================
-# Корень аорты — в выходном отделе ЛЖ под гребнем МЖП; восходящая аорта идёт к правому плечу плода
-# (на рисунке — влево и немного вверх, кпереди), на месте трёхстворчатого клапана в плоскости 4CV.
-AO_UP = "M 448,360 C 430,350 392,342 340,336 C 300,332 264,328 226,326"     # передняя стенка (продолжает МЖП)
-AO_LO = "M 476,404 C 444,414 398,410 350,398 C 310,390 272,384 234,382"     # задняя стенка (от передней створки МК)
-AO_BODY = (f"{AO_UP} L 234,382 C 272,384 310,390 350,398 C 398,410 444,414 476,404 "
-           "C 478,390 476,374 472,360 Z")
-
-
-def lvot_transform(body):
-    def cut(s, a, b):
-        i, j = s.index(a), s.index(b)
-        return s[:i] + s[j:]
-    body = cut(body, '<g id="layer-atrial-septum">', '<g id="layer-crux">')
-    body = cut(body, '<g id="layer-crux">', '<g id="layer-av-valves">')
-    body = cut(body, '<g id="layer-annotations">', '<g id="layer-labels">')
-    # трёхстворчатый клапан в плоскости LVOT не виден — на его месте корень аорты
-    body = re.sub(r'<g id="s-tv" data-s="tv">.*?</g>\n', "", body, flags=re.S)
-    # передняя створка МК начинается от задней стенки аорты (митрально-аортальный фиброзный контакт)
-    body = body.replace(B.MV_ANT, "M 476,404 Q 508,380 544,364")
-    ao = f'''<g id="layer-aorta">
-<g id="s-ao" data-s="ao"><path fill="url(#g-ao)" d="{AO_BODY}"/>
-<path class="an" stroke-width="2.6" d="{AO_UP}"/><path class="an" stroke-width="2.6" d="{AO_LO}"/>
-<path d="M 440,368 C 400,360 340,352 250,342" stroke="#fff" stroke-width="4" opacity=".3" fill="none" stroke-linecap="round"/>
-<ellipse cx="230" cy="354" rx="8" ry="29" fill="#7f0c12" stroke="#2b1a1a" stroke-width="1.8" transform="rotate(4 230 354)"/></g>
-<g id="s-aov" data-s="aov">{leaflet("M 466,364 Q 446,374 444,384")}{leaflet("M 472,402 Q 450,394 444,384")}</g>
-<g id="s-lvot" data-s="lvot"><path class="and" d="M 480,360 C 500,350 524,352 534,368 C 540,382 528,398 506,402" stroke-width="1.8"/></g>
-<g id="s-sao" data-s="sao"><path class="sao" d="M 442,326 C 446,340 448,352 444,362 C 438,360 432,354 426,350"/></g>
-<g id="s-mac" data-s="mac"><circle cx="477" cy="404" r="7.5" fill="#fffaf2" stroke="#2b1a1a" stroke-width="1.6"/></g>
-<text class="dir" x="214" y="304" text-anchor="middle">к правому</text><text class="dir" x="214" y="318" text-anchor="middle">плечу ↖</text>
-</g>\n'''
-    i = body.index('<g id="layer-av-valves">')
-    j = body.index("</g>", body.index('<g id="layer-av-valves">') + 10)
-    # аорта — поверх полостей, но под митральным клапаном
-    return body[:i] + ao + body[i:]
-
-
-def lvot():
-    M = [
-        (1, "lv", "Левый желудочек", "LV", 590, 230),
-        (2, "lvot", "Выходной тракт ЛЖ (подаортальный отдел)", "LVOT", 512, 336),
-        (3, "aov", "Аортальный клапан", "AoV", 420, 384),
-        (4, "ao", "Корень и восходящая аорта", "Ao", 310, 362),
-        (5, "sao", "Септо-аортальная непрерывность", "septo-aortic continuity", 422, 330),
-        (6, "mac", "Митрально-аортальный фиброзный контакт", "mitral-aortic continuity", 496, 424),
-        (7, "ivs", "Межжелудочковая перегородка", "IVS", 478, 250),
-        (8, "mv", "Митральный клапан", "MV", 566, 344),
-        (9, "rv", "Правый желудочек", "RV", 372, 270),
-        (10, "la", "Левое предсердие", "LA", 586, 480),
-        (11, "ra", "Правое предсердие", "RA", 336, 480),
-        (None, "dao", "Нисходящая аорта", "DAo", B.DAO[0] + 34, B.DAO[1] + 4),
-    ]
-    base = A.build()
-    body = base[base.index('<g id="heart"'):base.index('<g id="layer-orientation">')]
-    body = lvot_transform(body)
-    i = body.index('<g id="layer-labels">')
-    lab_end = body.rindex('</g>\n</g>')
-    body = body[:i] + labels(M) + body[lab_end + len('</g>'):]
-    o = [head("lvot-normal", "Выходной тракт левого желудочка (LVOT): анатомическая схема нормы",
-              "Оригинальная учебная схема FetalCardio на основе атласа 4CV: при наклоне датчика краниально к правому плечу плода "
-              "аорта отходит от левого желудочка; межжелудочковая перегородка продолжается в переднюю стенку аорты, "
-              "передняя створка митрального клапана — в её заднюю стенку. Анатомический рисунок, не УЗ-изображение; пропорции условны.",
-              "Выходной тракт ЛЖ (LVOT): анатомическая схема нормы"),
-         '<text class="cs" x="40" y="128">ПРАВЫЕ ОТДЕЛЫ</text>\n<text class="cs" x="780" y="128" text-anchor="end">ЛЕВЫЕ ОТДЕЛЫ</text>',
-         body,
-         V.foot(["Апикальная ориентация, как в атласе 4CV: верхушка вверху (кпереди), правые отделы слева.",
-                 "LVOT — наклон датчика от 4CV краниально; аорта из ЛЖ идёт к правому плечу плода.",
-                 "Трёхстворчатый клапан, овальное окно и крест сердца в этой плоскости не показаны.",
-                 "Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок."])]
-    return "\n".join(o), M
-
-
-# =====================================================================================
 # Общая рамка грудной клетки для RVOT, 3VV, 3VT
 # =====================================================================================
 TCX, TCY, TRX, TRY = 410, 460, 318, 296
@@ -335,6 +261,23 @@ def thorax_scene(svg_id, title, desc, header, inner, M, foot=FOOT_TR, lungs_on=T
     o.append(labels(M) + "\n</g>")
     o.append(V.foot(foot))
     return "\n".join(o)
+
+
+def flow_arrows(d, ts, sz=7):
+    """Белые стрелки-шевроны по ходу сосуда (направление — от начала пути к концу)."""
+    from svgpathtools import parse_path
+    p = parse_path(d)
+    out = []
+    for t in ts:
+        pt = p.point(t); tg = p.unit_tangent(t)
+        x, y, ux, uy = pt.real, pt.imag, tg.real, tg.imag
+        nx, ny = -uy, ux
+        a = (x + ux * sz, y + uy * sz)
+        b = (x - ux * sz + nx * sz, y - uy * sz + ny * sz)
+        c = (x - ux * sz - nx * sz, y - uy * sz - ny * sz)
+        out.append(f'<path d="M {b[0]:.1f},{b[1]:.1f} L {a[0]:.1f},{a[1]:.1f} L {c[0]:.1f},{c[1]:.1f}" '
+                   f'stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>')
+    return "".join(out)
 
 
 def dao():
@@ -452,8 +395,10 @@ def three_vt():
 <g id="s-arch" data-s="arch">{tube(arch, 28, "a")}</g>
 {dao()}
 <g id="s-svc" data-s="svc">{vcirc(318, 404, 15, "v")}</g>
-</g>'''
+</g>
+<g id="layer-flow"><g id="s-flow" data-s="flow">{flow_arrows(arch, [.3, .62])}{flow_arrows(da, [.3, .62])}{flow_arrows(mpa, [.5])}</g></g>'''
     M = [
+        (None, "flow", "Направление кровотока: в дуге и протоке одинаковое — к нисходящей аорте", "flow", 470, 520),
         (1, "arch", "Поперечная дуга аорты", "aortic arch", 406, 448),
         (2, "da", "Артериальный проток (дуга протока)", "DA", 526, 470),
         (3, "mpa", "Ствол лёгочной артерии", "MPA", 530, 334),
@@ -471,9 +416,122 @@ def three_vt():
                        "Срез трёх сосудов и трахеи (3VT): схема нормы", inner, M,
                        foot=["Поперечный срез: верх — передняя стенка, низ — позвоночник; левая сторона плода — справа на рисунке.",
                              "Дуга аорты и артериальный проток — «V» слева от трахеи, вершина — у нисходящей аорты.",
-                             "Синий — ЛА, проток и ВПВ (венозная кровь), красный — аорта. Номера — в легенде ниже.",
-                             "Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок."])
+                             "Стрелки — кровоток: в дуге и протоке однонаправленный, к нисходящей аорте (на ЦДК — один цвет).",
+                             "Цвет — насыщение крови, а не направление: красный — из ЛЖ, синий — из ПЖ. Схема условна. © FetalCardio"])
     return svg, M
+
+
+# =====================================================================================
+# LVOT — поперечный срез грудной клетки, как на эхограмме (версия 2)
+# =====================================================================================
+# Сердце рисуется в «апикальной» системе (верхушка вверх, ПЖ слева, ЛЖ справа, база внизу)
+# и поворачивается на 45° по часовой стрелке — нормальная ось: верхушка кпереди и влево,
+# ПЖ — самый передний, ЛП — самый задний, у нисходящей аорты.
+# В этой системе восходящая аорта из ЛЖ идёт вниз-влево, т. е. после поворота — к правой стороне плода;
+# МЖП тупым углом переходит в переднюю стенку аорты, передняя створка МК — в заднюю.
+LV_HX, LV_HY, LV_ROT, LV_SC = 440, 362, 45, 1.0
+
+L_OUT = ("M 10,-182 C 74,-174 126,-104 132,-22 C 134,18 128,46 118,62 C 146,90 146,150 110,172 "
+         "C 70,190 20,182 4,160 C -6,148 -14,134 -28,124 C -54,110 -90,90 -112,68 "
+         "C -134,46 -140,10 -134,-24 C -122,-92 -66,-156 -16,-176 C -6,-180 2,-182 10,-182 Z")
+L_LV = ("M 24,48 L 18,-150 Q 22,-164 36,-160 C 82,-142 110,-82 112,-12 C 113,20 108,40 100,54 L 40,64 Z")
+L_RV = ("M -4,28 L -2,-150 C -14,-160 -32,-152 -52,-134 C -92,-98 -120,-42 -118,2 "
+        "C -117,24 -106,40 -90,48 C -62,54 -30,48 -4,28 Z")
+L_IVS = "M -4,28 L -2,-150 Q 8,-160 18,-150 L 24,48 C 16,50 4,44 -4,28 Z"
+L_LA = ("M 40,64 L 100,54 C 132,78 138,140 106,162 C 72,180 30,172 18,150 C 10,134 14,108 28,90 Z")
+AO2_UP = "M -4,28 C -8,52 -26,74 -56,88 C -78,98 -100,106 -122,112"            # передняя стенка = продолжение МЖП
+AO2_LO = "M 40,64 C 30,94 6,120 -30,134 C -62,146 -92,152 -118,156"            # задняя стенка ← передняя створка МК
+AO2 = f"{AO2_UP} L -118,156 C -92,152 -62,146 -30,134 C 6,120 30,94 40,64 C 34,52 26,46 24,48 C 14,50 4,44 -4,28 Z"
+L_MV_A = "M 40,64 Q 60,40 74,20"
+L_MV_P = "M 100,54 Q 92,34 80,22"
+L_MV_CH = [((70, 26), (104, -20)), ((76, 22), (105, -18)), ((84, 24), (106, -16)), ((92, 34), (107, -14))]
+L_LVPM = "M 113,-40 C 102,-34 92,-18 90,-6 C 96,-2 106,2 113,6 Z"
+L_PV = ["M 60,176 C 56,196 50,214 40,230", "M 110,166 C 124,184 132,204 136,224"]
+LUNG_R2 = ("M 300,214 C 214,230 132,312 124,430 C 116,556 186,668 300,700 C 330,690 344,662 336,628 "
+           "C 322,586 270,560 254,500 C 240,446 236,386 244,330 C 252,282 278,240 300,214 Z")
+LUNG_L2 = ("M 596,224 C 660,262 698,340 698,432 C 700,556 634,668 520,700 C 490,690 476,664 484,632 "
+           "C 492,600 540,584 576,552 C 610,516 626,470 626,420 C 626,346 620,282 596,224 Z")
+
+
+def lv_pt(x, y):
+    t = math.radians(LV_ROT)
+    return (round(LV_HX + LV_SC * (x * math.cos(t) - y * math.sin(t)), 1),
+            round(LV_HY + LV_SC * (x * math.sin(t) + y * math.cos(t)), 1))
+
+
+def lvot():
+    RV_C2, RV_E2 = A.wavy(L_RV, [0, 8, 9, 5, 0], seed=5, wl=14)
+    LV_C2, LV_E2 = A.wavy(L_LV, [0, 0, 4, 4, 3, 0, 0], seed=9, wl=10)
+    ch = "".join(A.tline(a, b, "che") + A.tline(a, b, "ch") for a, b in L_MV_CH)
+    trab = "".join(bundle(d, w) for d, w in [("M -96,-70 Q -84,-66 -76,-56", 4.5), ("M -74,-112 Q -64,-104 -60,-92", 4.5),
+                                             ("M -40,-140 Q -34,-128 -32,-116", 4), ("M -112,-24 Q -98,-22 -90,-12", 4.5)])
+    # кровоток из ЛЖ в аорту — белые стрелки по оси выходного тракта
+    flow = ('<path class="flw" d="M 40,10 C 30,40 10,70 -24,96 C -50,114 -76,124 -100,130"/>'
+            '<path class="flwh" d="M -108,132 l 10,-9 l 1,12 Z"/>')
+    heart = f'''<g id="layer-heart" transform="translate({LV_HX} {LV_HY}) rotate({LV_ROT}) scale({LV_SC})">
+<g id="layer-veins"><g id="s-pvn" data-s="pvn">{"".join(f'<path class="vo" stroke-width="15" d="{d}"/><path class="vm" stroke-width="11" d="{d}"/>' for d in L_PV)}</g></g>
+<g id="layer-myocardium" filter="url(#f-soft)"><path class="myo" d="{L_OUT}"/></g>
+<g id="layer-myo-texture"><path class="fibr" d="{L_OUT}"/></g>
+<g id="layer-cavities">
+<path id="s-rv" data-s="rv" class="cavr2" d="{RV_C2}"/>
+<path id="s-lv" data-s="lv" class="cavl2" d="{LV_C2}"/>
+<path id="s-la" data-s="la" class="cavl2" d="{L_LA}"/>
+<path class="sheen" d="{RV_C2} {LV_C2} {L_LA}"/>
+<path class="endo2" d="{RV_E2} {LV_E2}"/>
+</g>
+<g id="layer-ventricular-septum"><path id="s-ivs" data-s="ivs" class="sep" d="{L_IVS}"/><path class="fibr" d="{L_IVS}"/></g>
+<g id="layer-rv-morphology">{trab}<g id="s-mb">{bundle("M -6,-48 C -40,-46 -76,-34 -108,-14", 7)}</g></g>
+<g id="layer-lv-morphology"><path class="pm" d="{L_LVPM}"/></g>
+<g id="layer-aorta">
+<g id="s-ao" data-s="ao"><path fill="url(#g-ao)" d="{AO2}"/>
+<path class="an" stroke-width="2.4" d="{AO2_UP}"/><path class="an" stroke-width="2.4" d="{AO2_LO}"/>
+<ellipse cx="-120" cy="134" rx="23" ry="7" fill="#7f0c12" stroke="#2b1a1a" stroke-width="1.8" transform="rotate(80 -120 134)"/>
+<path d="M -14,62 C -40,88 -70,104 -104,116" stroke="#fff" stroke-width="3.5" opacity=".3" fill="none" stroke-linecap="round"/></g>
+<g id="s-lvot" data-s="lvot"><path class="and" stroke-width="1.6" d="M 0,10 C 14,0 40,4 52,20 C 58,32 52,48 42,56"/></g>
+<g id="s-flow" data-s="flow">{flow}</g>
+<g id="s-aov" data-s="aov">{leaflet("M -2,34 Q -6,52 4,62")}{leaflet("M 38,64 Q 20,70 4,62")}</g>
+<g id="s-sao" data-s="sao"><path class="sao" d="M -4,4 C -4,16 -4,24 -6,36 C -10,52 -18,64 -30,74"/></g>
+<g id="s-mac" data-s="mac"><circle cx="40" cy="64" r="7" fill="#fffaf2" stroke="#2b1a1a" stroke-width="1.6"/></g>
+</g>
+<g id="layer-av-valves"><g id="s-mv" data-s="mv">{ch}{leaflet(L_MV_A)}{leaflet(L_MV_P)}</g></g>
+</g>'''
+    P = lv_pt
+    M = [
+        (1, "lv", "Левый желудочек", "LV", *P(64, -80)),
+        (2, "lvot", "Выходной тракт ЛЖ (подаортальный отдел)", "LVOT", *P(30, 26)),
+        (3, "aov", "Аортальный клапан", "AoV", *P(-6, 78)),
+        (4, "ao", "Корень и восходящая аорта", "Ao", *P(-72, 118)),
+        (5, "sao", "Септо-аортальная непрерывность", "septo-aortic continuity", *P(-30, 40)),
+        (6, "mac", "Митрально-аортальный фиброзный контакт", "mitral-aortic continuity", *P(58, 82)),
+        (7, "ivs", "Межжелудочковая перегородка", "IVS", *P(8, -96)),
+        (8, "mv", "Митральный клапан", "MV", *P(94, 10)),
+        (9, "rv", "Правый желудочек", "RV", *P(-60, -60)),
+        (10, "la", "Левое предсердие", "LA", *P(76, 128)),
+        (11, "pvn", "Лёгочные вены", "pulmonary veins", *P(104, 222)),
+        (None, "flow", "Направление кровотока: из ЛЖ в аорту", "flow", *P(-96, 134)),
+        (None, "dao", "Нисходящая аорта", "DAo", 492, 610),
+        (None, "lungs", "Лёгкие", "lungs", 186, 440),
+        (None, "spine", "Позвоночник", "spine", 456, 666),
+    ]
+    style = """<defs><radialGradient id="g-rb" cx=".55" cy=".6" r=".7"><stop offset="0" stop-color="#4f7fe0"/><stop offset=".6" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/></radialGradient>
+<radialGradient id="g-rr" cx=".45" cy=".55" r=".7"><stop offset="0" stop-color="#ec5a4c"/><stop offset=".6" stop-color="#c41d22"/><stop offset="1" stop-color="#8f1016"/></radialGradient></defs>
+<style>.cavr2{fill:url(#g-rb);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}.cavl2{fill:url(#g-rr);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}
+.flw{stroke:#ffffff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-dasharray:9 6;opacity:.9}
+.flwh{fill:#ffffff;opacity:.9}</style>"""
+    o = [head("lvot-normal", "Выходной тракт левого желудочка (LVOT): анатомическая схема нормы",
+              "Оригинальная учебная схема FetalCardio. Поперечный срез грудной клетки, как на эхограмме: ось сердца направлена влево, "
+              "верхушка кпереди и влево. Аорта отходит от левого желудочка в центре сердца и идёт к правой стороне плода; "
+              "межжелудочковая перегородка продолжается в переднюю стенку аорты, передняя створка митрального клапана — в её заднюю стенку; "
+              "кзади от корня аорты — левое предсердие. Анатомический рисунок, не УЗ-изображение; пропорции условны.",
+              "Выходной тракт ЛЖ (LVOT): анатомическая схема нормы") + style,
+         orient_tr(TCY - TRY), '<g id="heart">', body_frame(TCX, TCY, TRX, TRY, thorax=True),
+         lungs(LUNG_R2, LUNG_L2), f'<g id="layer-spine">{spine(SPX, SPY)}</g>', dao(), heart,
+         labels(M) + "\n</g>",
+         V.foot(["Поперечный срез, как на эхограмме: верх — передняя стенка, низ — позвоночник; левая сторона плода — справа.",
+                 "LVOT — наклон датчика от 4CV краниально к правому плечу плода: аорта из ЛЖ уходит вправо (на рисунке — влево).",
+                 "Правое предсердие и трёхстворчатый клапан в этой плоскости обычно не видны. Пунктир со стрелкой — кровоток.",
+                 "Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок."])]
+    return "\n".join(o), M
 
 
 BUILDERS = {"situs-normal": situs, "lvot-normal": lvot, "rvot-normal": rvot, "3vv-normal": three_vv, "3vt-normal": three_vt}

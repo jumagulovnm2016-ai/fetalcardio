@@ -157,7 +157,8 @@ with sync_playwright() as p:
     REL = {
       "situs-normal": ["c('stomach').x > c('spine').x", "c('liver').x < c('spine').x", "c('ao').x > c('spine').x && c('ao').y < c('spine').y",
                        "c('ivc').x < c('ao').x && c('ivc').y < c('ao').y", "c('heartpos').x > c('axis').x - 40"],
-      "lvot-normal": ["c('ao').x < c('lv').x", "c('aov').x < c('lvot').x", "c('rv').x < c('lv').x", "c('la').y > c('ao').y"],
+      "lvot-normal": ["c('ao').x < c('lv').x", "c('rv').x < c('lv').x", "c('rv').y < c('la').y", "c('la').y > c('aov').y",
+                      "c('dao').y > c('la').y", "c('lv').y < c('la').y"],
       "rvot-normal": ["c('rvot').y < c('mpa').y", "c('ao').x < c('mpa').x", "c('svc').x < c('ao').x", "c('rpa').y > c('ao').y",
                       "c('da').y > c('mpa').y", "c('dao').x > c('spine').x && c('dao').y < c('spine').y"],
       "3vv-normal": ["c('svc').x < c('ao').x && c('ao').x < c('mpa').x", "c('mpa').y < c('ao').y && c('ao').y < c('svc').y",
@@ -169,7 +170,7 @@ with sync_playwright() as p:
         pg.goto(BASE + "#/atlas/" + sid); pg.wait_for_selector("#atlasSvg svg #heart", timeout=5000)
         res = pg.evaluate("""(rels) => {
           const svg = document.querySelector('#atlasSvg svg');
-          const bb = k => svg.querySelector('#s-' + k).getBBox();
+          const bb = k => svg.querySelector('#s-' + k).getBoundingClientRect();  // экранные координаты (LVOT повёрнут)
           const c = k => { const r = bb(k); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; };
           const w = k => { const g = svg.querySelector('#s-' + k), ci = g.querySelector('circle');  // диаметр: круг — 2r, сосуд-трубка — толщина линии
             return ci ? 2 * ci.r.baseVal.value : parseFloat(g.querySelectorAll('path')[1].getAttribute('stroke-width')); };
