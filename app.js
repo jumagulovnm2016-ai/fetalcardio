@@ -79,7 +79,9 @@
   };
 
   /* ---------- эхограммы из открытых источников ---------- */
-  const imgCredit = s => s.kind === "article"
+  const imgCredit = s => s.kind === "own"
+    ? `Эхограмма автора приложения: ${esc(s.authors)}. ${esc(s.title)}. ${esc(s.license)}.`
+    : s.kind === "article"
     ? `${esc(s.authors)} ${esc(s.title)}${/[.?!]$/.test(s.title) ? "" : "."} <i>${esc(s.journal)}</i> ${s.year}, ${esc(s.figure)}. Лицензия ${esc(s.license)}.`
     : `${esc(s.authors)}. ${esc(s.title)}. Wikimedia Commons. ${s.licenseUrl ? `Лицензия <a href="${esc(s.licenseUrl)}" target="_blank" rel="noopener">${esc(s.license)}</a>` : esc(s.license === "Public domain" ? "Общественное достояние" : s.license)}.`;
   const thumbs = list => `<div class="imgs">${list.map(im => `<a class="imgs-i" href="#/img/${im.id}">
@@ -224,6 +226,15 @@
     return item(`#/atlas/${t.id}`, esc(t.abbr.slice(0, 5)), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id, t.chd ? "red" : "");
   }
 
+  /* Эхограммы под схемой атласа: снимки из data/images.js, выбранные для этой схемы (поле images). */
+  function atlasImgs(t) {
+    const list = (t.images || []).map(id => byId(IMAGES, id)).filter(Boolean);
+    if (!list.length) return t.chd ? "" : `<h2 id="s-img">Эхограммы этого среза</h2><p class="small muted">Эхограммы нормы для этой схемы пока не добавлены.</p>`;
+    return `<h2 id="s-img">Эхограммы этого среза</h2>
+      <p class="small muted">${statusBadge("draft")} Подбор снимков к схеме не проверен автором. Нажмите на снимок — откроется подпись, источник и лицензия. Ориентация снимка может отличаться от схемы.</p>
+      ${thumbs(list)}`;
+  }
+
   function atlasPage(id) {
     const t = byId(ATLAS, id); if (!t) return notFound();
     const v = t.view ? byId(VIEWS, t.view) : null, c = t.chd ? byId(CHD, t.chd) : null;
@@ -242,6 +253,7 @@
         <div class="atlas-scroll" id="atlasSvg"><div class="atlas-loading">Загрузка схемы…</div></div>
         <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: ${t.status === "approved" ? `проверено автором (${esc(t.reviewedBy)}, ${esc(t.reviewedAt)})` : "черновик"}.</figcaption>
       </figure>
+      ${atlasImgs(t)}
       <h2>Структуры на схеме</h2><ol class="legend">${legend}</ol>
       <h2>${c ? "Ключевые признаки" : `Нормальные анатомические признаки ${esc(t.abbr)}`}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>${t.status === "approved" ? "Принятые упрощения схемы" : "Требует экспертной проверки"}</h2><ul class="err">${t.review.map(x => `<li>${esc(x)}</li>`).join("")}</ul>

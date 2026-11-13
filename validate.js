@@ -38,7 +38,7 @@ var FC = globalThis.FC = globalThis.FC || {};
     ATLAS: {
       id: "slug", view: "ref:VIEWS?", chd: "ref:CHD?", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
       svg: "svgpath", orientation: "str", structures: "structs", normal: "strs", review: "strs",
-      references: "refs", reviewedBy: "str?", reviewedAt: "date?"
+      references: "refs", images: "imgrefs?", reviewedBy: "str?", reviewedAt: "date?"
     },
     IMAGES: {
       id: "slug", file: "imgpath", label: "str", caption: "text", captionRu: "text", group: "enum:group", cards: "cardrefs",
@@ -56,7 +56,8 @@ var FC = globalThis.FC = globalThis.FC || {};
     const ids = {
       VIEWS: new Set((D.VIEWS || []).map(x => x.id)),
       CHD: new Set((D.CHD || []).map(x => x.id)),
-      REFS: new Set(Object.keys(D.REFS || {}))
+      REFS: new Set(Object.keys(D.REFS || {})),
+      IMAGES: new Set((D.IMAGES || []).map(x => x.id))
     };
     const enums = { status: STATUS, level: LEVELS, cat: Object.keys(D.CATS || {}), group: D.IMAGE_GROUPS || [] };
     const isStr = v => typeof v === "string" && v.trim().length > 0;
@@ -123,9 +124,14 @@ var FC = globalThis.FC = globalThis.FC || {};
         });
         if (new Set(val).size !== val.length) err(where, "повторяющиеся карточки");
       }
+      else if (t === "imgrefs") {
+        if (!Array.isArray(val) || !val.length) { err(where, "ожидается непустой массив id снимков"); return; }
+        val.forEach((id, i) => !ids.IMAGES.has(id) && err(`${where}[${i}]`, `нет снимка «${id}» в data/images.js`));
+        if (new Set(val).size !== val.length) err(where, "повторяющиеся снимки");
+      }
       else if (t === "imgsrc") {
         if (!val || typeof val !== "object") { err(where, "ожидается объект"); return; }
-        if (!["article", "commons"].includes(val.kind)) err(where + ".kind", "article или commons");
+        if (!["article", "commons", "own"].includes(val.kind)) err(where + ".kind", "article, commons или own");
         ["authors", "title", "url", "license"].forEach(f => !isStr(val[f]) && err(`${where}.${f}`, "обязательное поле"));
         if (isStr(val.url) && !/^https:\/\//.test(val.url)) err(where + ".url", "ожидается https-ссылка");
         if (val.kind === "article") ["journal", "figure", "pmcid"].forEach(f => !isStr(val[f]) && err(`${where}.${f}`, "обязательное поле"));
