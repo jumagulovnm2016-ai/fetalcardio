@@ -8,7 +8,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else None
 ROUTES = ["", "views", "view/situs", "view/4cv", "view/lvot", "view/rvot", "view/3vv", "view/3vt",
           "algos", "algo/rv-gt-lv", "algo/overriding", "algo/reverse-flow", "chd",
           "chd/vsd", "chd/avsd", "chd/tof", "chd/tga", "chd/dorv", "chd/cat", "chd/hlhs", "chd/coa", "chd/ebstein", "chd/tapvr",
-          "atlas", "atlas/4cv-normal", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
+          "atlas", "atlas/4cv-normal", "atlas/vsd-types", "atlas/vsd-4cv", "atlas/vsd-5cv", "chd/vsd", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
           "quiz", "search?q=" + "%D1%84%D0%B0%D0%BB%D0%BB%D0%BE", "nonexistent"]
 fails = []
 def check(cond, msg):

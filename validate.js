@@ -36,7 +36,7 @@ var FC = globalThis.FC = globalThis.FC || {};
     },
     QUIZ: { q: "str", opts: "strs", a: "int", exp: "str", link: "ref:CHD|null", status: "enum:status?", reviewedBy: "str?", reviewedAt: "date?" },
     ATLAS: {
-      id: "slug", view: "ref:VIEWS", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
+      id: "slug", view: "ref:VIEWS?", chd: "ref:CHD?", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
       svg: "svgpath", orientation: "str", structures: "structs", normal: "strs", review: "strs",
       references: "refs", reviewedBy: "str?", reviewedAt: "date?"
     },
@@ -180,6 +180,7 @@ var FC = globalThis.FC = globalThis.FC || {};
     const qs = new Set();
     (D.QUIZ || []).forEach((q, i) => { if (qs.has(q.q)) err(`QUIZ[${i}]`, "повторяющийся вопрос"); qs.add(q.q); });
 
+    (D.ATLAS || []).forEach(t => !t.view && !t.chd && err(`ATLAS[${t.id}]`, "нужна привязка: view или chd"));
     (D.CHD || []).forEach(c => (c.ddx || []).forEach(d => d.id === c.id && err(`CHD[${c.id}].ddx`, "порок ссылается сам на себя")));
     const used = new Set();
     ["VIEWS", "ALGOS", "CHD", "ATLAS"].forEach(n => (D[n] || []).forEach(x => (x.references || []).forEach(r => used.add(r.source))));

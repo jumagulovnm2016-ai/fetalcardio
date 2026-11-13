@@ -139,6 +139,17 @@ test("валидатор ловит ошибки атласа", () => {
   assert.ok(FC.validate(d).errors.some(e => e.includes("reviewedBy")));
 });
 
+test("атлас пороков: схемы ДМЖП привязаны к карточке, без привязки — ошибка", () => {
+  const vsd = FC.ATLAS.filter(t => t.chd === "vsd").map(t => t.id).sort();
+  assert.equal(vsd.join(","), "vsd-4cv,vsd-5cv,vsd-types");
+  for (const id of vsd) assert.equal(FC.ATLAS.find(t => t.id === id).status, "draft", `${id}: до проверки автором — черновик`);
+  const d = { ...FC, ATLAS: clone(FC.ATLAS) }, t = d.ATLAS.find(x => x.id === "vsd-types");
+  delete t.chd;
+  assert.ok(FC.validate(d).errors.some(e => e.includes("нужна привязка")));
+  t.chd = "nope";
+  assert.ok(FC.validate(d).errors.some(e => e.includes("nope")));
+});
+
 /* ---------- библиотека эхограмм ---------- */
 test("эхограммы: каждый файл существует, не пустой и не больше 2 МБ", () => {
   const fs = require("fs"), path = require("path");

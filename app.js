@@ -166,7 +166,7 @@
       <h1>${esc(v.name)}</h1>
       <div>${statusBadge(v.status)}</div>
       <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза; проверена автором 12.11.2026, пропорции условны. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
-      ${ATLAS.filter(t => t.view === id).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}
+      ${ATLAS.filter(t => t.view === id && !t.chd).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -217,17 +217,20 @@
   /* ---------- анатомический атлас ---------- */
   function atlasList() {
     return `<h1>Анатомический атлас</h1>
-      <p class="subtitle">Подробные анатомические схемы стандартных срезов. Это рисунки строения сердца, а не УЗ-изображения. Все схемы — черновики до проверки врачом-экспертом.</p>
-      ${ATLAS.map(t => item(`#/atlas/${t.id}`, esc(t.abbr), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}${foot()}`;
+      <p class="subtitle">Подробные анатомические схемы нормы и пороков. Это рисунки строения сердца, а не УЗ-изображения. Схема со статусом «черновик» ещё не проверена экспертом.</p>
+      ${[["Норма", ATLAS.filter(t => !t.chd)], ["Пороки", ATLAS.filter(t => t.chd)]].map(([h, list]) => list.length ? `<h2>${h}</h2>${list.map(atlasItem).join("")}` : "").join("")}${foot()}`;
+  }
+  function atlasItem(t) {
+    return item(`#/atlas/${t.id}`, esc(t.abbr.slice(0, 5)), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id, t.chd ? "red" : "");
   }
 
   function atlasPage(id) {
     const t = byId(ATLAS, id); if (!t) return notFound();
-    const v = byId(VIEWS, t.view);
+    const v = t.view ? byId(VIEWS, t.view) : null, c = t.chd ? byId(CHD, t.chd) : null;
     const legend = t.structures.map(s => `<li><button type="button" data-hl="${esc(s.key)}" aria-pressed="false">
       <span class="n ${s.n ? "" : "o"}">${s.n || "•"}</span>
       <span><b>${esc(s.name)}</b> (${esc(s.abbr)})${s.note ? `<small>${esc(s.note)}</small>` : ""}</span></button></li>`).join("");
-    return `<div class="crumb"><a href="#/atlas">Атлас</a> / <a href="#/view/${v.id}">${esc(v.abbr)}</a></div>
+    return `<div class="crumb"><a href="#/atlas">Атлас</a> / ${c ? `<a href="#/chd/${c.id}">${esc(c.abbr)}</a>` : `<a href="#/view/${v.id}">${esc(v.abbr)}</a>`}</div>
       <h1>${esc(t.title)}</h1>
       <div class="row">${statusBadge(t.status)} ${t.status !== "approved" ? '<span class="badge review">DRAFT · REQUIRE EXPERT REVIEW</span>' : ""}</div>
       <div class="note info small">${esc(t.orientation)}</div>
@@ -240,11 +243,11 @@
         <figcaption>Оригинальная схема FetalCardio. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: ${t.status === "approved" ? `проверено автором (${esc(t.reviewedBy)}, ${esc(t.reviewedAt)})` : "черновик"}.</figcaption>
       </figure>
       <h2>Структуры на схеме</h2><ol class="legend">${legend}</ol>
-      <h2>Нормальные анатомические признаки ${esc(t.abbr)}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2>${c ? "Ключевые признаки" : `Нормальные анатомические признаки ${esc(t.abbr)}`}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>${t.status === "approved" ? "Принятые упрощения схемы" : "Требует экспертной проверки"}</h2><ul class="err">${t.review.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       ${refsBlock(t.references)}
       <div class="row" style="margin-top:18px">${doneBtn("t_" + id)}</div>
-      <div class="pager"><a class="card" href="#/view/${v.id}"><small>← Срез</small><b>${esc(v.name)}</b></a></div>${foot()}`;
+      <div class="pager">${c ? `<a class="card" href="#/chd/${c.id}"><small>← Порок</small><b>${esc(c.name)}</b></a>` : ""}${v ? `<a class="card${c ? " next" : ""}" href="#/view/${v.id}"><small>${c ? "Срез →" : "← Срез"}</small><b>${esc(v.name)}</b></a>` : ""}</div>${foot()}`;
   }
 
   /* SVG встраивается в страницу (а не через <img>), чтобы работали темы и подсветка структур. */
@@ -304,7 +307,9 @@
     const c = byId(CHD, id); if (!c) return notFound();
     const algos = ALGOS.filter(a => a.ddx.some(d => d.id === id));
     const sec = [["def", "Суть"], ["keys", "Критерии"], ["views", "Срезы"], ["ddx", "Дифдиагноз"], ["assoc", "Сочетания"], ["pit", "Ловушки"], ["prog", "Прогноз"],
+      ...(ATLAS.some(t => t.chd === id) ? [["atlas", "Схемы"]] : []),
       ...(IMAGES.some(im => im.cards.includes("chd:" + id)) ? [["img", "Эхограммы"]] : []), ["refs", "Источники"]];
+    const schemes = ATLAS.filter(t => t.chd === id);
     return `<div class="crumb"><a href="#/chd">Пороки</a> / ${esc(CATS[c.cat])}</div>
       <h1>${esc(c.name)}</h1>
       <p class="subtitle">${esc(c.en)}</p>
@@ -319,6 +324,7 @@
       <h2 id="s-pit">Диагностические ловушки</h2><ul class="err">${c.pitfalls.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
       <h2 id="s-prog">Ведение и прогноз</h2><p>${esc(c.prognosis)}</p>
       <div class="note info"><b>Тактика:</b> ${esc(c.refer)}</div>
+      ${schemes.length ? `<h2 id="s-atlas">Анатомические схемы</h2>${schemes.map(atlasItem).join("")}` : ""}
       ${imgBlock("chd:" + id)}
       ${refsBlock(c.references)}
       ${algos.length ? `<h2>Где встречается в алгоритмах</h2>${algos.map(a => item(`#/algo/${a.id}`, esc(byId(VIEWS, a.view).abbr), a.title, esc(a.finding), "a_" + a.id)).join("")}` : ""}
@@ -405,7 +411,7 @@
       case "algos": html = algosList(); break;
       case "algo": html = algoPage(id); nav = "algos"; break;
       case "chd": html = id ? chdPage(id) : chdList(); break;
-      case "atlas": html = id ? atlasPage(id) : atlasList(); nav = "views"; break;
+      case "atlas": html = id ? atlasPage(id) : atlasList(); nav = id && byId(ATLAS, id)?.chd ? "chd" : "views"; break;
       case "images": html = imagesList(); nav = ""; break;
       case "img": html = imagePage(id); nav = ""; break;
       case "quiz": html = quizPage(); break;
