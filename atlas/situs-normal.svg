@@ -166,18 +166,18 @@
 <g id="layer-inset">
 <rect class="insb" x="612" y="88" width="192" height="156" rx="10"/>
 <text class="inst" x="624" y="106">ГРУДНАЯ КЛЕТКА (4CV)</text>
-<ellipse cx="708" cy="178" rx="74" ry="56" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
-<ellipse cx="708" cy="178" rx="64" ry="46" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
-<circle class="bone" cx="708" cy="216" r="9"/>
-<path class="mid" d="M 708,126 L 708,206"/>
+<ellipse cx="708" cy="180" rx="80" ry="58" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
+<ellipse cx="708" cy="180" rx="70" ry="48" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
+<circle class="bone" cx="708" cy="222" r="8"/>
+<path class="mid" d="M 708,128 L 708,212"/>
 <g id="s-heartpos" data-s="heartpos">
-<ellipse cx="724" cy="154" rx="36" ry="24" transform="rotate(-45 724 154)" fill="url(#g-myo)" stroke="#2b1a1a" stroke-width="1.8"/>
-<ellipse cx="716" cy="153" rx="13" ry="9" transform="rotate(-45 716 153)" fill="#2452b8" stroke="#2b1a1a" stroke-width="1"/>
-<ellipse cx="729" cy="163" rx="13" ry="9" transform="rotate(-45 729 163)" fill="#c41d22" stroke="#2b1a1a" stroke-width="1"/></g>
+<ellipse cx="726" cy="170" rx="30" ry="20" transform="rotate(-45 726 170)" fill="url(#g-myo)" stroke="#2b1a1a" stroke-width="1.8"/>
+<ellipse cx="720" cy="164" rx="11" ry="7" transform="rotate(-45 720 164)" fill="#2452b8" stroke="#2b1a1a" stroke-width="1"/>
+<ellipse cx="735" cy="171" rx="12" ry="7" transform="rotate(-45 735 171)" fill="#c41d22" stroke="#2b1a1a" stroke-width="1"/></g>
 <g id="s-axis" data-s="axis">
-<path class="ax" d="M 686,192 L 758,120"/>
-<path class="ax" stroke-width="1.6" d="M 708,136 A 34 34 0 0 1 732.0,146.0"/>
-<text class="axt" x="696" y="162" text-anchor="end">≈45°</text></g>
+<path class="ax" d="M 692,204 L 752,144"/>
+<path class="ax" stroke-width="1.6" d="M 708,158 A 30 30 0 0 1 729.2,166.8"/>
+<text class="axt" x="698" y="176" text-anchor="end">≈45°</text></g>
 </g>
 <g id="layer-labels">
 <g id="lbl-stomach" class="lbl" data-s="stomach"><title>1. Желудок (stomach)</title><circle class="nb" cx="576" cy="404" r="11.5"/><text class="nt" x="576" y="408.2" text-anchor="middle">1</text></g>
@@ -186,8 +186,8 @@
 <g id="lbl-ps" class="lbl" data-s="ps"><title>4. Портальный синус (portal sinus)</title><circle class="nb" cx="300" cy="370" r="11.5"/><text class="nt" x="300" y="374.2" text-anchor="middle">4</text></g>
 <g id="lbl-ao" class="lbl" data-s="ao"><title>5. Брюшная (нисходящая) аорта (Ao)</title><circle class="nb" cx="480" cy="576" r="11.5"/><text class="nt" x="480" y="580.2" text-anchor="middle">5</text></g>
 <g id="lbl-ivc" class="lbl" data-s="ivc"><title>6. Нижняя полая вена (IVC)</title><circle class="nb" cx="312" cy="548" r="11.5"/><text class="nt" x="312" y="552.2" text-anchor="middle">6</text></g>
-<g id="lbl-heartpos" class="lbl" data-s="heartpos"><title>7. Сердце в левой половине грудной клетки (levocardia)</title><circle class="nb" cx="772" cy="140" r="11.5"/><text class="nt" x="772" y="144.2" text-anchor="middle">7</text></g>
-<g id="lbl-axis" class="lbl" data-s="axis"><title>8. Ось сердца (cardiac axis)</title><circle class="nb" cx="760" cy="200" r="11.5"/><text class="nt" x="760" y="204.2" text-anchor="middle">8</text></g>
+<g id="lbl-heartpos" class="lbl" data-s="heartpos"><title>7. Сердце в левой половине грудной клетки (levocardia)</title><circle class="nb" cx="776" cy="132" r="11.5"/><text class="nt" x="776" y="136.2" text-anchor="middle">7</text></g>
+<g id="lbl-axis" class="lbl" data-s="axis"><title>8. Ось сердца (cardiac axis)</title><circle class="nb" cx="762" cy="204" r="11.5"/><text class="nt" x="762" y="208.2" text-anchor="middle">8</text></g>
 <g id="lbl-spine" class="lbl" data-s="spine"><title>•. Позвоночник (spine)</title><circle class="nb nb0" cx="446" cy="676" r="11.5"/><text class="nt" x="446" y="680.2" text-anchor="middle">•</text></g>
 <g id="lbl-midline" class="lbl" data-s="midline"><title>•. Средняя линия (ось позвоночника) (midline)</title><circle class="nb nb0" cx="400" cy="596" r="11.5"/><text class="nt" x="400" y="600.2" text-anchor="middle">•</text></g>
 </g>

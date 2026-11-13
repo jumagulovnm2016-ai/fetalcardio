@@ -201,23 +201,24 @@ def situs():
 <g id="layer-spine">{spine(sx, sy)}</g>
 <g id="s-midline" data-s="midline"><path class="mid" d="M {sx},204 L {sx},610"/></g>''')
     # врезка: грудная клетка, сердце слева, ось сердца
-    ix, iy = 708, 170
-    hx, hy = ix + 16, iy - 16
+    # центр грудной клетки (cx, cy); ось сердца пересекает среднюю линию в (ix, iy)
+    cx2, cy2, ix, iy = 708, 180, 708, 188
+    hx, hy = 726, 170                     # центр сердца — на оси, в левой половине грудной клетки
     o.append(f'''<g id="layer-inset">
 <rect class="insb" x="612" y="88" width="192" height="156" rx="10"/>
 <text class="inst" x="624" y="106">ГРУДНАЯ КЛЕТКА (4CV)</text>
-<ellipse cx="{ix}" cy="{iy + 8}" rx="74" ry="56" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
-<ellipse cx="{ix}" cy="{iy + 8}" rx="64" ry="46" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
-<circle class="bone" cx="{ix}" cy="{iy + 46}" r="9"/>
-<path class="mid" d="M {ix},{iy - 44} L {ix},{iy + 36}"/>
+<ellipse cx="{cx2}" cy="{cy2}" rx="80" ry="58" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
+<ellipse cx="{cx2}" cy="{cy2}" rx="70" ry="48" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
+<circle class="bone" cx="{cx2}" cy="{cy2 + 42}" r="8"/>
+<path class="mid" d="M {cx2},{cy2 - 52} L {cx2},{cy2 + 32}"/>
 <g id="s-heartpos" data-s="heartpos">
-<ellipse cx="{hx}" cy="{hy}" rx="36" ry="24" transform="rotate(-45 {hx} {hy})" fill="url(#g-myo)" stroke="#2b1a1a" stroke-width="1.8"/>
-<ellipse cx="{hx - 8}" cy="{hy - 1}" rx="13" ry="9" transform="rotate(-45 {hx - 8} {hy - 1})" fill="#2452b8" stroke="#2b1a1a" stroke-width="1"/>
-<ellipse cx="{hx + 5}" cy="{hy + 9}" rx="13" ry="9" transform="rotate(-45 {hx + 5} {hy + 9})" fill="#c41d22" stroke="#2b1a1a" stroke-width="1"/></g>
+<ellipse cx="{hx}" cy="{hy}" rx="30" ry="20" transform="rotate(-45 {hx} {hy})" fill="url(#g-myo)" stroke="#2b1a1a" stroke-width="1.8"/>
+<ellipse cx="{hx - 6}" cy="{hy - 6}" rx="11" ry="7" transform="rotate(-45 {hx - 6} {hy - 6})" fill="#2452b8" stroke="#2b1a1a" stroke-width="1"/>
+<ellipse cx="{hx + 9}" cy="{hy + 1}" rx="12" ry="7" transform="rotate(-45 {hx + 9} {hy + 1})" fill="#c41d22" stroke="#2b1a1a" stroke-width="1"/></g>
 <g id="s-axis" data-s="axis">
-<path class="ax" d="M {ix - 22},{iy + 22} L {ix + 50},{iy - 50}"/>
-<path class="ax" stroke-width="1.6" d="M {ix},{iy - 34} A 34 34 0 0 1 {ix + 24.0},{iy - 24.0}"/>
-<text class="axt" x="{ix - 12}" y="{iy - 8}" text-anchor="end">≈45°</text></g>
+<path class="ax" d="M {ix - 16},{iy + 16} L {ix + 44},{iy - 44}"/>
+<path class="ax" stroke-width="1.6" d="M {ix},{iy - 30} A 30 30 0 0 1 {ix + 21.2},{iy - 21.2}"/>
+<text class="axt" x="{ix - 10}" y="{iy - 12}" text-anchor="end">≈45°</text></g>
 </g>''')
     M = [
         (1, "stomach", "Желудок", "stomach", 576, 404),
@@ -226,8 +227,8 @@ def situs():
         (4, "ps", "Портальный синус", "portal sinus", 300, 370),
         (5, "ao", "Брюшная (нисходящая) аорта", "Ao", 480, 576),
         (6, "ivc", "Нижняя полая вена", "IVC", 312, 548),
-        (7, "heartpos", "Сердце в левой половине грудной клетки", "levocardia", 772, 140),
-        (8, "axis", "Ось сердца", "cardiac axis", 760, 200),
+        (7, "heartpos", "Сердце в левой половине грудной клетки", "levocardia", 776, 132),
+        (8, "axis", "Ось сердца", "cardiac axis", 762, 204),
         (None, "spine", "Позвоночник", "spine", 446, 676),
         (None, "midline", "Средняя линия (ось позвоночника)", "midline", 400, 596),
     ]
