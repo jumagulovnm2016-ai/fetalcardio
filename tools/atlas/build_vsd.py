@@ -334,6 +334,7 @@ def vsd_5cv():
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "../../atlas"
     svg, _ = septum_view()
-    for name, s in [("vsd-types", svg), ("vsd-4cv", vsd_4cv()), ("vsd-5cv", vsd_5cv())]:
+    # vsd-5cv.svg с 14.11.2026 собирает build_views.py (на основе схемы нормы LVOT)
+    for name, s in [("vsd-types", svg), ("vsd-4cv", vsd_4cv())]:
         open(os.path.join(out, name + ".svg"), "w", encoding="utf-8").write(s)
         print("ok", name, len(s))

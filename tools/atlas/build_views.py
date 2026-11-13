@@ -5,6 +5,7 @@
   rvot-normal.svg  — выходной тракт ПЖ (поперечный срез)
   3vv-normal.svg   — срез трёх сосудов (поперечный срез верхнего средостения)
   3vt-normal.svg   — срез трёх сосудов и трахеи
+  vsd-5cv.svg      — ДМЖП на LVOT (перимембранозный) — на основе схемы нормы LVOT
 
 Стиль — как у атласа 4CV (версия 4): синий — венозная кровь и правые отделы,
 красный — левые отделы и аорта; номера на структурах, расшифровка — в легенде приложения.
@@ -459,7 +460,7 @@ def lv_pt(x, y):
             round(LV_HY + LV_SC * (x * math.sin(t) + y * math.cos(t)), 1))
 
 
-def lvot():
+def lvot(vsd=False):
     RV_C2, RV_E2 = A.wavy(L_RV, [0, 8, 9, 5, 0], seed=5, wl=14)
     LV_C2, LV_E2 = A.wavy(L_LV, [0, 0, 4, 4, 3, 0, 0], seed=9, wl=10)
     ch = "".join(A.tline(a, b, "che") + A.tline(a, b, "ch") for a, b in L_MV_CH)
@@ -468,6 +469,17 @@ def lvot():
     # кровоток из ЛЖ в аорту — белые стрелки по оси выходного тракта
     flow = ('<path class="flw" d="M 40,10 C 30,40 10,70 -24,96 C -50,114 -76,124 -100,130"/>'
             '<path class="flwh" d="M -108,132 l 10,-9 l 1,12 Z"/>')
+    ivs, defect, sao = L_IVS, "", f'<g id="s-sao" data-s="sao"><path class="sao" d="M -4,4 C -4,16 -4,24 -6,36 C -10,52 -18,64 -30,74"/></g>'
+    if vsd:
+        # перимембранозный дефект: верхний (базальный) отрезок МЖП под аортальным клапаном отсутствует,
+        # передняя стенка аорты не продолжает перегородку
+        ivs = "M -3,-8 L -2,-150 Q 8,-160 18,-150 L 21,-8 C 14,-4 4,-4 -3,-8 Z"
+        defect = ('<g id="layer-defects"><g id="s-d-pm" data-s="d-pm">'
+                  '<path class="vsd" d="M -3,-8 C 4,-4 14,-4 21,-8 L 24,48 C 16,50 4,44 -4,28 Z"/>'
+                  '<path class="rim" d="M -3,-8 C 4,-4 14,-4 21,-8"/>'
+                  '<path class="flow" d="M -10,14 L 26,14"/><path class="flowh" d="M 31,14 l -7,-4 l 0,8 Z"/>'
+                  '<path class="flow" d="M 28,24 L -8,24"/><path class="flowh" d="M -13,24 l 7,-4 l 0,8 Z"/></g></g>')
+        sao = ""
     heart = f'''<g id="layer-heart" transform="translate({LV_HX} {LV_HY}) rotate({LV_ROT}) scale({LV_SC})">
 <g id="layer-veins"><g id="s-pvn" data-s="pvn">{"".join(f'<path class="vo" stroke-width="15" d="{d}"/><path class="vm" stroke-width="11" d="{d}"/>' for d in L_PV)}</g></g>
 <g id="layer-myocardium" filter="url(#f-soft)"><path class="myo" d="{L_OUT}"/></g>
@@ -479,7 +491,7 @@ def lvot():
 <path class="sheen" d="{RV_C2} {LV_C2} {L_LA}"/>
 <path class="endo2" d="{RV_E2} {LV_E2}"/>
 </g>
-<g id="layer-ventricular-septum"><path id="s-ivs" data-s="ivs" class="sep" d="{L_IVS}"/><path class="fibr" d="{L_IVS}"/></g>
+<g id="layer-ventricular-septum"><path id="s-ivs" data-s="ivs" class="sep" d="{ivs}"/><path class="fibr" d="{ivs}"/></g>{defect}
 <g id="layer-rv-morphology">{trab}<g id="s-mb">{bundle("M -6,-48 C -40,-46 -76,-34 -108,-14", 7)}</g></g>
 <g id="layer-lv-morphology"><path class="pm" d="{L_LVPM}"/></g>
 <g id="layer-aorta">
@@ -490,7 +502,7 @@ def lvot():
 <g id="s-lvot" data-s="lvot"><path class="and" stroke-width="1.6" d="M 0,10 C 14,0 40,4 52,20 C 58,32 52,48 42,56"/></g>
 <g id="s-flow" data-s="flow">{flow}</g>
 <g id="s-aov" data-s="aov">{leaflet("M -2,34 Q -6,52 4,62")}{leaflet("M 38,64 Q 20,70 4,62")}</g>
-<g id="s-sao" data-s="sao"><path class="sao" d="M -4,4 C -4,16 -4,24 -6,36 C -10,52 -18,64 -30,74"/></g>
+{sao}
 <g id="s-mac" data-s="mac"><circle cx="40" cy="64" r="7" fill="#fffaf2" stroke="#2b1a1a" stroke-width="1.6"/></g>
 </g>
 <g id="layer-av-valves"><g id="s-mv" data-s="mv">{ch}{leaflet(L_MV_A)}{leaflet(L_MV_P)}</g></g>
@@ -513,11 +525,40 @@ def lvot():
         (None, "lungs", "Лёгкие", "lungs", 186, 440),
         (None, "spine", "Позвоночник", "spine", 456, 666),
     ]
+    if vsd:
+        M = [
+            (1, "d-pm", "Перимембранозный ДМЖП", "perimembranous VSD", *P(-34, 6)),
+            (2, "ao", "Корень и восходящая аорта", "Ao", *P(-72, 118)),
+            (3, "aov", "Аортальный клапан", "AoV", *P(-6, 78)),
+            (4, "ivs", "Межжелудочковая перегородка", "IVS", *P(8, -96)),
+            (5, "rv", "Правый желудочек", "RV", *P(-60, -60)),
+            (6, "lv", "Левый желудочек", "LV", *P(64, -80)),
+            (7, "mv", "Митральный клапан", "MV", *P(94, 10)),
+            (8, "mac", "Митрально-аортальный фиброзный контакт", "mitral-aortic continuity", *P(58, 82)),
+            (9, "la", "Левое предсердие", "LA", *P(76, 128)),
+            (None, "dao", "Нисходящая аорта", "DAo", 492, 610),
+            (None, "lungs", "Лёгкие", "lungs", 186, 440),
+            (None, "spine", "Позвоночник", "spine", 456, 666),
+        ]
     style = """<defs><radialGradient id="g-rb" cx=".55" cy=".6" r=".7"><stop offset="0" stop-color="#4f7fe0"/><stop offset=".6" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/></radialGradient>
 <radialGradient id="g-rr" cx=".45" cy=".55" r=".7"><stop offset="0" stop-color="#ec5a4c"/><stop offset=".6" stop-color="#c41d22"/><stop offset="1" stop-color="#8f1016"/></radialGradient></defs>
 <style>.cavr2{fill:url(#g-rb);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}.cavl2{fill:url(#g-rr);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}
 .flw{stroke:#ffffff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-dasharray:9 6;opacity:.9}
 .flwh{fill:#ffffff;opacity:.9}</style>"""
+    if vsd:
+        o = [head("vsd-5cv", "ДМЖП на срезе LVOT (5CV): перимембранозный дефект под аортальным клапаном",
+                  "Оригинальная учебная схема FetalCardio на основе схемы нормы LVOT: поперечный срез, ось сердца влево. "
+                  "Базальный отрезок межжелудочковой перегородки под аортальным клапаном отсутствует — перимембранозный дефект; "
+                  "передняя стенка аорты не продолжает перегородку; стрелки — двунаправленный шунт. Анатомический рисунок, не УЗ-изображение.",
+                  "ДМЖП на 5CV: перимембранозный (подаортальный)") + style,
+             orient_tr(TCY - TRY), '<g id="heart">', body_frame(TCX, TCY, TRX, TRY, thorax=True),
+             lungs(LUNG_R2, LUNG_L2), f'<g id="layer-spine">{spine(SPX, SPY)}</g>', dao(), heart,
+             labels(M) + "\n</g>",
+             V.foot(["Схема нормы LVOT с дефектом: поперечный срез, верх — передняя стенка, левая сторона плода — справа.",
+                     "Дефект — между гребнем МЖП и аортальным клапаном; в норме МЖП переходит в переднюю стенку аорты.",
+                     "Стрелки — двунаправленный шунт плода. Ширина дефекта условна.",
+                     "Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок."])]
+        return "\n".join(o), M
     o = [head("lvot-normal", "Выходной тракт левого желудочка (LVOT): анатомическая схема нормы",
               "Оригинальная учебная схема FetalCardio. Поперечный срез грудной клетки, как на эхограмме: ось сердца направлена влево, "
               "верхушка кпереди и влево. Аорта отходит от левого желудочка в центре сердца и идёт к правой стороне плода; "
@@ -534,7 +575,7 @@ def lvot():
     return "\n".join(o), M
 
 
-BUILDERS = {"situs-normal": situs, "lvot-normal": lvot, "rvot-normal": rvot, "3vv-normal": three_vv, "3vt-normal": three_vt}
+BUILDERS = {"vsd-5cv": lambda: lvot(vsd=True), "situs-normal": situs, "lvot-normal": lvot, "rvot-normal": rvot, "3vv-normal": three_vv, "3vt-normal": three_vt}
 
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "../../atlas"
