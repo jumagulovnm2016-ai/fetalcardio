@@ -352,7 +352,7 @@ FC.IMAGES = [
    "authors": "Zaghi M, Janssens K, et al.",
    "title": "Reprodmed-03-00005-g004-550.jpg",
    "url": "https://commons.wikimedia.org/wiki/File:Reprodmed-03-00005-g004-550.jpg",
-   "license": "CC BY 4.0",
+   "license": "CC BY",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
   },
   "reviewedBy": "Жумагулов Н.М.",
@@ -2036,7 +2036,7 @@ FC.IMAGES = [
    "authors": "Nagy RD, Ruican D, Zorilă GL, et al.",
    "title": "Agenesis of ductus venosus human.jpg",
    "url": "https://commons.wikimedia.org/wiki/File:Agenesis_of_ductus_venosus_human.jpg",
-   "license": "CC BY 4.0",
+   "license": "CC BY",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
   },
   "reviewedBy": "Жумагулов Н.М.",
@@ -3018,7 +3018,7 @@ FC.IMAGES = [
    "authors": "Goleisureintl",
    "title": "Fetal Anomaly Ultrasound Scan in Navi Mumbai.jpg",
    "url": "https://commons.wikimedia.org/wiki/File:Fetal_Anomaly_Ultrasound_Scan_in_Navi_Mumbai.jpg",
-   "license": "CC BY 4.0",
+   "license": "CC BY",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
   },
   "reviewedBy": "Жумагулов Н.М.",
@@ -3403,5 +3403,101 @@ FC.IMAGES = [
   },
   "reviewedBy": "Жумагулов Н.М.",
   "reviewedAt": "2026-11-12"
- }
+ },
+  {
+    "id": "pmc8306830-f1a",
+    "file": "img/pmc8306830-f1a.jpg",
+    "label": "Diagnostics 2021, рис. 1a",
+    "caption": "High-resolution ultrasonography of the fetal heart at 20 weeks' gestation: (a) Four-chamber view showing right atrium (RA), left atrium (LA), right ventricle (RV), and left ventricle (LV).",
+    "captionRu": "Четырёхкамерный срез сердца плода 20 недель: правое (RA) и левое (LA) предсердия, правый (RV) и левый (LV) желудочки.",
+    "group": "Норма и методика",
+    "cards": [
+      "view:4cv"
+    ],
+    "status": "draft",
+    "source": {
+      "kind": "article",
+      "authors": "Leung KY.",
+      "title": "Applications of Advanced Ultrasound Technology in Obstetrics.",
+      "journal": "Diagnostics (Basel)",
+      "year": 2021,
+      "figure": "Fig. 1a",
+      "pmcid": "PMC8306830",
+      "url": "https://doi.org/10.3390/diagnostics11071217",
+      "license": "CC BY",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  {
+    "id": "pmc8306830-f1b",
+    "file": "img/pmc8306830-f1b.jpg",
+    "label": "Diagnostics 2021, рис. 1b",
+    "caption": "High-resolution ultrasonography of the fetal heart at 20 weeks' gestation: (b) Five-chamber view showing ascending aorta (AAo) arising from the left ventricle, the right and left superior pulmonary veins (RSPV, LSPV) enter the left atrium (LA), and descending aorta (DAo) behind the LA.",
+    "captionRu": "Пятикамерный срез (LVOT), 20 недель: восходящая аорта (AAo) отходит от левого желудочка; правая и левая верхние лёгочные вены (RSPV, LSPV) впадают в левое предсердие (LA); нисходящая аорта (DAo) — позади ЛП.",
+    "group": "Норма и методика",
+    "cards": [
+      "view:lvot"
+    ],
+    "status": "draft",
+    "source": {
+      "kind": "article",
+      "authors": "Leung KY.",
+      "title": "Applications of Advanced Ultrasound Technology in Obstetrics.",
+      "journal": "Diagnostics (Basel)",
+      "year": 2021,
+      "figure": "Fig. 1b",
+      "pmcid": "PMC8306830",
+      "url": "https://doi.org/10.3390/diagnostics11071217",
+      "license": "CC BY",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  {
+    "id": "pmc8306830-f1c",
+    "file": "img/pmc8306830-f1c.jpg",
+    "label": "Diagnostics 2021, рис. 1c",
+    "caption": "High-resolution ultrasonography of the fetal heart at 20 weeks' gestation: (c) Three-vessel view showing the PA dividing into the left (LPA) and right (RPA) PA, AAo, and the superior vena cava (SVC).",
+    "captionRu": "Срез трёх сосудов, 20 недель: лёгочная артерия (PA) делится на левую (LPA) и правую (RPA) ветви; восходящая аорта (AAo) и верхняя полая вена (SVC).",
+    "group": "Норма и методика",
+    "cards": [
+      "view:3vv"
+    ],
+    "status": "draft",
+    "source": {
+      "kind": "article",
+      "authors": "Leung KY.",
+      "title": "Applications of Advanced Ultrasound Technology in Obstetrics.",
+      "journal": "Diagnostics (Basel)",
+      "year": 2021,
+      "figure": "Fig. 1c",
+      "pmcid": "PMC8306830",
+      "url": "https://doi.org/10.3390/diagnostics11071217",
+      "license": "CC BY",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  {
+    "id": "pmc8306830-f1d",
+    "file": "img/pmc8306830-f1d.jpg",
+    "label": "Diagnostics 2021, рис. 1d",
+    "caption": "High-resolution ultrasonography of the fetal heart at 20 weeks' gestation: (d) Three-vessel and trachea view showing PA with the ductal branch (DA) joining the DAo, AAo, SVC, and trachea (T); Thymus is anterior to the three vessels.",
+    "captionRu": "Срез трёх сосудов и трахеи, 20 недель: лёгочная артерия (PA) с артериальным протоком (DA), впадающим в нисходящую аорту (DAo); восходящая аорта (AAo), ВПВ (SVC), трахея (T); кпереди от сосудов — тимус.",
+    "group": "Норма и методика",
+    "cards": [
+      "view:3vt"
+    ],
+    "status": "draft",
+    "source": {
+      "kind": "article",
+      "authors": "Leung KY.",
+      "title": "Applications of Advanced Ultrasound Technology in Obstetrics.",
+      "journal": "Diagnostics (Basel)",
+      "year": 2021,
+      "figure": "Fig. 1d",
+      "pmcid": "PMC8306830",
+      "url": "https://doi.org/10.3390/diagnostics11071217",
+      "license": "CC BY",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  }
 ];
