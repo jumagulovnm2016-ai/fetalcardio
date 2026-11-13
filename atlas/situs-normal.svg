@@ -171,13 +171,13 @@
 <circle class="bone" cx="708" cy="216" r="9"/>
 <path class="mid" d="M 708,126 L 708,206"/>
 <g id="s-heartpos" data-s="heartpos">
-<ellipse cx="722" cy="166" rx="36" ry="24" transform="rotate(-45 722 166)" fill="url(#g-myo)" stroke="#2b1a1a" stroke-width="1.8"/>
-<ellipse cx="714" cy="165" rx="13" ry="9" transform="rotate(-45 714 165)" fill="#2452b8" stroke="#2b1a1a" stroke-width="1"/>
-<ellipse cx="727" cy="175" rx="13" ry="9" transform="rotate(-45 727 175)" fill="#c41d22" stroke="#2b1a1a" stroke-width="1"/></g>
+<ellipse cx="724" cy="154" rx="36" ry="24" transform="rotate(-45 724 154)" fill="url(#g-myo)" stroke="#2b1a1a" stroke-width="1.8"/>
+<ellipse cx="716" cy="153" rx="13" ry="9" transform="rotate(-45 716 153)" fill="#2452b8" stroke="#2b1a1a" stroke-width="1"/>
+<ellipse cx="729" cy="163" rx="13" ry="9" transform="rotate(-45 729 163)" fill="#c41d22" stroke="#2b1a1a" stroke-width="1"/></g>
 <g id="s-axis" data-s="axis">
-<path class="ax" d="M 696,192 L 752,136"/>
-<path class="ax" stroke-width="1.6" d="M 708,140 A 30 30 0 0 1 729.2,148.8"/>
-<text class="axt" x="704" y="122" text-anchor="end">≈45°</text></g>
+<path class="ax" d="M 686,192 L 758,120"/>
+<path class="ax" stroke-width="1.6" d="M 708,136 A 34 34 0 0 1 732.0,146.0"/>
+<text class="axt" x="696" y="162" text-anchor="end">≈45°</text></g>
 </g>
 <g id="layer-labels">
 <g id="lbl-stomach" class="lbl" data-s="stomach"><title>1. Желудок (stomach)</title><circle class="nb" cx="576" cy="404" r="11.5"/><text class="nt" x="576" y="408.2" text-anchor="middle">1</text></g>

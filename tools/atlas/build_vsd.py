@@ -125,8 +125,8 @@ def septum_view():
     z_tr = "M 452,330 C 520,320 600,360 640,440 C 676,520 680,640 630,760 C 560,740 480,700 420,672 C 450,600 470,520 462,440 C 458,396 452,360 452,330 Z"
     o.append(f'''<g id="layer-zones">
 <g id="s-z-inlet" data-s="z-inlet"><path class="zone" d="{z_in}"/><text class="zt" x="300" y="626" transform="rotate(28 300 626)">ПРИТОЧНАЯ</text></g>
-<g id="s-z-trab" data-s="z-trab"><path class="zone" d="{z_tr}"/><text class="zt" x="566" y="744" transform="rotate(-62 566 744)">ТРАБЕКУЛЯРНАЯ</text></g>
-<g id="s-z-outlet" data-s="z-outlet"><path class="zone" d="{z_out}"/><text class="zt" x="508" y="262">ВЫВОДНАЯ</text></g>
+<g id="s-z-trab" data-s="z-trab"><path class="zone" d="{z_tr}"/><text class="zt" x="520" y="742" transform="rotate(-62 520 742)">ТРАБЕКУЛЯРНАЯ</text></g>
+<g id="s-z-outlet" data-s="z-outlet"><path class="zone" d="{z_out}"/><text class="zt" x="508" y="262">ВЫХОДНАЯ</text></g>
 </g>''')
     # трабекулы на верхушечной части
     trab = "".join(A.bundle(d, w) for d, w in [
@@ -173,7 +173,7 @@ def septum_view():
         (1, "d-pm", "Центральный перимембранозный ДМЖП", "central perimembranous VSD", 384, 446),
         (2, "d-inlet", "Приточный ДМЖП", "inlet VSD", 396, 548),
         (3, "d-musc", "Трабекулярный мышечный ДМЖП", "trabecular muscular VSD", 566, 430),
-        (4, "d-outlet", "Выводной ДМЖП", "outlet VSD", 488, 214),
+        (4, "d-outlet", "Выходной ДМЖП", "outlet VSD", 488, 214),
         (5, "tv", "Трёхстворчатый клапан", "TV", 236, 430),
         (6, "pv", "Клапан лёгочной артерии", "PV", 372, 180),
         (7, "crest", "Наджелудочковый гребень", "supraventricular crest", 270, 250),
@@ -181,8 +181,8 @@ def septum_view():
         (9, "mb", "Модераторный пучок", "moderator band", 650, 568),
         (10, "mpm", "Медиальная сосочковая мышца", "medial papillary muscle", 384, 352),
         (11, "z-inlet", "Приточная часть МЖП", "inlet septum", 372, 620),
-        (12, "z-trab", "Трабекулярная часть МЖП", "trabecular septum", 560, 640),
-        (13, "z-outlet", "Выводная часть МЖП", "outlet septum", 420, 280),
+        (12, "z-trab", "Трабекулярная часть МЖП", "trabecular septum", 500, 610),
+        (13, "z-outlet", "Выходная часть МЖП", "outlet septum", 420, 280),
         (None, "ao", "Восходящая аорта", "Ao", 352, 140),
         (None, "pa", "Ствол лёгочной артерии", "MPA", 446, 128),
         (None, "ivs", "Межжелудочковая перегородка, правожелудочковая поверхность", "IVS", 660, 470),
