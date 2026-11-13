@@ -143,8 +143,8 @@ def body_frame(cx, cy, rx, ry, thorax=True):
         o.append(ribs(cx, cy, rx - 12, ry - 12, [(-76, -40), (-30, 14), (24, 58), (66, 80)]))
         o.append(f'<rect class="bone" x="{cx - 22}" y="{cy - ry + 6}" width="44" height="17" rx="8"/>')
     else:
-        # на уровне желудка — нижние рёбра по боковым стенкам
-        o.append(ribs(cx, cy, rx - 12, ry - 12, [(-40, -6), (4, 38), (48, 66)]))
+        # на уровне желудка ребро идёт непрерывной дугой по боковой стенке — спереди-сбоку до позвоночника
+        o.append(ribs(cx, cy, rx - 12, ry - 12, [(-42, 80)]))
     o.append("</g>")
     return "".join(o)
 
