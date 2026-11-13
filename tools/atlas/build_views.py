@@ -45,6 +45,8 @@ EXTRA = """
 .wall{fill:#f3d6c9;stroke:#2b1a1a;stroke-width:1;opacity:.9}
 .cavity{fill:#fbf5f1;stroke:#2b1a1a;stroke-width:1.4}
 .rib{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.4}
+.ribo{stroke:#2b1a1a;fill:none;stroke-linecap:round}
+.ribi{stroke:#f3ecdb;fill:none;stroke-linecap:round}
 .bone{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.8}
 .bonel{fill:none;stroke:#2b1a1a;stroke-width:13;stroke-linecap:round}
 .bonei{fill:none;stroke:#f3ecdb;stroke-width:9.4;stroke-linecap:round}
@@ -103,16 +105,19 @@ def vcirc(cx, cy, r, kind):
             f'<ellipse cx="{cx - r * .35:.1f}" cy="{cy - r * .4:.1f}" rx="{r * .35:.1f}" ry="{r * .2:.1f}" fill="#fff" opacity=".35"/>')
 
 
-def ring(cx, cy, rx, ry, n_left, n_right, a0, a1, rr=(13, 8)):
-    """Рёбра в поперечном сечении по краю полости."""
+def ribs(cx, cy, rx, ry, segs, w=9):
+    """Рёбра в поперечном срезе — дуги вдоль контура стенки (ребро идёт по окружности грудной клетки).
+    segs — пары углов (градусы, 0 — левая сторона плода/справа на рисунке, 90 — кзади) для левой стороны;
+    правая сторона — зеркально."""
     out = []
-    for side, n in ((0, n_left), (1, n_right)):
-        for k in range(n):
-            a = (a0 + (a1 - a0) * k / max(1, n - 1))
-            a = 180 - a if side == 0 else a
-            t = math.radians(a)
-            x, y = cx + rx * math.cos(t), cy + ry * math.sin(t)
-            out.append(f'<ellipse class="rib" cx="{x:.1f}" cy="{y:.1f}" rx="{rr[0]}" ry="{rr[1]}" transform="rotate({a + 90:.0f} {x:.1f} {y:.1f})"/>')
+    def pt(a):
+        t = math.radians(a)
+        return cx + rx * math.cos(t), cy + ry * math.sin(t)
+    for a0, a1 in segs:
+        for b0, b1 in ((a0, a1), (180 - a1, 180 - a0)):
+            (x0, y0), (x1, y1) = pt(b0), pt(b1)
+            d = f"M {x0:.1f},{y0:.1f} A {rx} {ry} 0 0 1 {x1:.1f},{y1:.1f}"
+            out.append(f'<path class="ribo" stroke-width="{w + 3.4}" d="{d}"/><path class="ribi" stroke-width="{w}" d="{d}"/>')
     return "".join(out)
 
 
@@ -134,10 +139,12 @@ def body_frame(cx, cy, rx, ry, thorax=True):
     o = [f'<g id="layer-body"><ellipse class="skin" cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}"/>',
          f'<ellipse class="cavity" cx="{cx}" cy="{cy}" rx="{rx - 22}" ry="{ry - 22}"/>']
     if thorax:
-        o.append(ring(cx, cy, rx - 14, ry - 14, 5, 5, -62, 62))
+        # спереди — от грудины, сбоку и сзади — к позвоночнику; промежутки — межрёберья
+        o.append(ribs(cx, cy, rx - 12, ry - 12, [(-76, -40), (-30, 14), (24, 58), (66, 80)]))
         o.append(f'<rect class="bone" x="{cx - 22}" y="{cy - ry + 6}" width="44" height="17" rx="8"/>')
     else:
-        o.append(ring(cx, cy, rx - 14, ry - 14, 4, 4, -24, 40))
+        # на уровне желудка — нижние рёбра по боковым стенкам
+        o.append(ribs(cx, cy, rx - 12, ry - 12, [(-40, -6), (4, 38), (48, 66)]))
     o.append("</g>")
     return "".join(o)
 
@@ -209,6 +216,7 @@ def situs():
 <text class="inst" x="624" y="106">ГРУДНАЯ КЛЕТКА (4CV)</text>
 <ellipse cx="{cx2}" cy="{cy2}" rx="80" ry="58" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
 <ellipse cx="{cx2}" cy="{cy2}" rx="70" ry="48" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
+{ribs(cx2, cy2, 75, 53, [(-72, -34), (-24, 22), (32, 74)], w=3.2)}
 <circle class="bone" cx="{cx2}" cy="{cy2 + 42}" r="8"/>
 <path class="mid" d="M {cx2},{cy2 - 52} L {cx2},{cy2 + 32}"/>
 <g id="s-heartpos" data-s="heartpos">
