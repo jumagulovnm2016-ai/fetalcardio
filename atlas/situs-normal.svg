@@ -114,6 +114,7 @@
 .rib{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.4}
 .ribo{stroke:#2b1a1a;fill:none;stroke-linecap:round}
 .ribi{stroke:#f3ecdb;fill:none;stroke-linecap:round}
+.ribc{stroke:#e3ecf2;fill:none;stroke-linecap:round}
 .bone{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.8}
 .bonel{fill:none;stroke:#2b1a1a;stroke-width:13;stroke-linecap:round}
 .bonei{fill:none;stroke:#f3ecdb;stroke-width:9.4;stroke-linecap:round}
@@ -170,7 +171,7 @@
 <text class="inst" x="624" y="106">ГРУДНАЯ КЛЕТКА (4CV)</text>
 <ellipse cx="708" cy="180" rx="80" ry="58" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
 <ellipse cx="708" cy="180" rx="70" ry="48" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
-<path class="ribo" stroke-width="6.6" d="M 731.2,129.6 A 75 53 0 0 1 770.2,150.4"/><path class="ribi" stroke-width="3.2" d="M 731.2,129.6 A 75 53 0 0 1 770.2,150.4"/><path class="ribo" stroke-width="6.6" d="M 645.8,150.4 A 75 53 0 0 1 684.8,129.6"/><path class="ribi" stroke-width="3.2" d="M 645.8,150.4 A 75 53 0 0 1 684.8,129.6"/><path class="ribo" stroke-width="6.6" d="M 776.5,158.4 A 75 53 0 0 1 777.5,199.9"/><path class="ribi" stroke-width="3.2" d="M 776.5,158.4 A 75 53 0 0 1 777.5,199.9"/><path class="ribo" stroke-width="6.6" d="M 638.5,199.9 A 75 53 0 0 1 639.5,158.4"/><path class="ribi" stroke-width="3.2" d="M 638.5,199.9 A 75 53 0 0 1 639.5,158.4"/><path class="ribo" stroke-width="6.6" d="M 771.6,208.1 A 75 53 0 0 1 728.7,230.9"/><path class="ribi" stroke-width="3.2" d="M 771.6,208.1 A 75 53 0 0 1 728.7,230.9"/><path class="ribo" stroke-width="6.6" d="M 687.3,230.9 A 75 53 0 0 1 644.4,208.1"/><path class="ribi" stroke-width="3.2" d="M 687.3,230.9 A 75 53 0 0 1 644.4,208.1"/>
+<path class="ribo" stroke-width="4.800000000000001" d="M 715.8,127.3 A 75 53 0 0 1 752.1,137.1"/><path class="ribc" stroke-width="2.2" d="M 715.8,127.3 A 75 53 0 0 1 752.1,137.1"/><path class="ribo" stroke-width="6.6" d="M 752.1,137.1 A 75 53 0 0 1 747.7,224.9 C 738.2,229.2 726.3,227.6 718.0,224.0"/><path class="ribi" stroke-width="3.2" d="M 752.1,137.1 A 75 53 0 0 1 747.7,224.9 C 738.2,229.2 726.3,227.6 718.0,224.0"/><path class="ribo" stroke-width="4.800000000000001" d="M 700.2,127.3 A 75 53 0 0 0 663.9,137.1"/><path class="ribc" stroke-width="2.2" d="M 700.2,127.3 A 75 53 0 0 0 663.9,137.1"/><path class="ribo" stroke-width="6.6" d="M 663.9,137.1 A 75 53 0 0 0 668.3,224.9 C 677.8,229.2 689.7,227.6 698.0,224.0"/><path class="ribi" stroke-width="3.2" d="M 663.9,137.1 A 75 53 0 0 0 668.3,224.9 C 677.8,229.2 689.7,227.6 698.0,224.0"/>
 <circle class="bone" cx="708" cy="222" r="8"/>
 <path class="mid" d="M 708,128 L 708,212"/>
 <g id="s-heartpos" data-s="heartpos">

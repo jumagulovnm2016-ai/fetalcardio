@@ -47,6 +47,7 @@ EXTRA = """
 .rib{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.4}
 .ribo{stroke:#2b1a1a;fill:none;stroke-linecap:round}
 .ribi{stroke:#f3ecdb;fill:none;stroke-linecap:round}
+.ribc{stroke:#e3ecf2;fill:none;stroke-linecap:round}
 .bone{fill:url(#g-bone);stroke:#2b1a1a;stroke-width:1.8}
 .bonel{fill:none;stroke:#2b1a1a;stroke-width:13;stroke-linecap:round}
 .bonei{fill:none;stroke:#f3ecdb;stroke-width:9.4;stroke-linecap:round}
@@ -121,6 +122,31 @@ def ribs(cx, cy, rx, ry, segs, w=9):
     return "".join(out)
 
 
+def full_rib(cx, cy, rx, ry, vx, vy, a_cart=-84, a_cc=-54, a_post=60, w=9, wc=6):
+    """Одно целое ребро с каждой стороны — как в строго поперечном срезе грудной клетки:
+    хрящевая часть от грудины (светлая) → костная часть по контуру стенки → к поперечному отростку позвонка (vx, vy — точка
+    сочленения справа на рисунке, слева — зеркально)."""
+    def pt(a):
+        t = math.radians(a)
+        return cx + rx * math.cos(t), cy + ry * math.sin(t)
+    out = []
+    for sgn in (1, -1):
+        mx = lambda x: cx + sgn * (x - cx)
+        (c0x, c0y), (c1x, c1y), (p1x, p1y) = pt(a_cart), pt(a_cc), pt(a_post)
+        sw = 1 if sgn == 1 else 0
+        cart = f"M {mx(c0x):.1f},{c0y:.1f} A {rx} {ry} 0 0 {sw} {mx(c1x):.1f},{c1y:.1f}"
+        # костная часть: дуга по стенке, затем изгиб к позвонку
+        t = math.radians(a_post)
+        ux, uy = -rx * math.sin(t), ry * math.cos(t)          # касательная к стенке
+        n = math.hypot(ux, uy); ux, uy = ux / n, uy / n
+        k = 0.35 * math.hypot(p1x - vx, p1y - vy)
+        bone = (f"M {mx(c1x):.1f},{c1y:.1f} A {rx} {ry} 0 0 {sw} {mx(p1x):.1f},{p1y:.1f} "
+                f"C {mx(p1x + ux * k):.1f},{p1y + uy * k:.1f} {mx(vx + k * .8):.1f},{vy + k * .35:.1f} {mx(vx):.1f},{vy:.1f}")
+        out.append(f'<path class="ribo" stroke-width="{wc + 2.6}" d="{cart}"/><path class="ribc" stroke-width="{wc}" d="{cart}"/>'
+                   f'<path class="ribo" stroke-width="{w + 3.4}" d="{bone}"/><path class="ribi" stroke-width="{w}" d="{bone}"/>')
+    return "".join(out)
+
+
 def spine(x, y, key="spine"):
     """Позвонок: тело, дуга с остистым отростком, позвоночный канал; три ядра окостенения."""
     arc = f"M {x - 26},{y + 22} C {x - 34},{y + 52} {x - 16},{y + 70} {x},{y + 72} C {x + 16},{y + 70} {x + 34},{y + 52} {x + 26},{y + 22}"
@@ -139,8 +165,9 @@ def body_frame(cx, cy, rx, ry, thorax=True):
     o = [f'<g id="layer-body"><ellipse class="skin" cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}"/>',
          f'<ellipse class="cavity" cx="{cx}" cy="{cy}" rx="{rx - 22}" ry="{ry - 22}"/>']
     if thorax:
-        # спереди — от грудины, сбоку и сзади — к позвоночнику; промежутки — межрёберья
-        o.append(ribs(cx, cy, rx - 12, ry - 12, [(-76, -40), (-30, 14), (24, 58), (66, 80)]))
+        # строго поперечный срез: по одному целому ребру с каждой стороны (ISUOG) —
+        # хрящ от грудины, кость по контуру стенки, головка — у поперечного отростка позвонка
+        o.append(full_rib(cx, cy, rx - 12, ry - 12, SPX + 36, SPY + 44, a_post=64))
         o.append(f'<rect class="bone" x="{cx - 22}" y="{cy - ry + 6}" width="44" height="17" rx="8"/>')
     else:
         # на уровне желудка ребро идёт непрерывной дугой по боковой стенке — спереди-сбоку до позвоночника
@@ -216,7 +243,7 @@ def situs():
 <text class="inst" x="624" y="106">ГРУДНАЯ КЛЕТКА (4CV)</text>
 <ellipse cx="{cx2}" cy="{cy2}" rx="80" ry="58" fill="url(#g-body)" stroke="#2b1a1a" stroke-width="1.6"/>
 <ellipse cx="{cx2}" cy="{cy2}" rx="70" ry="48" fill="url(#g-lung)" stroke="#2b1a1a" stroke-width="1"/>
-{ribs(cx2, cy2, 75, 53, [(-72, -34), (-24, 22), (32, 74)], w=3.2)}
+{full_rib(cx2, cy2, 75, 53, cx2 + 10, cy2 + 44, a_post=58, w=3.2, wc=2.2)}
 <circle class="bone" cx="{cx2}" cy="{cy2 + 42}" r="8"/>
 <path class="mid" d="M {cx2},{cy2 - 52} L {cx2},{cy2 + 32}"/>
 <g id="s-heartpos" data-s="heartpos">
