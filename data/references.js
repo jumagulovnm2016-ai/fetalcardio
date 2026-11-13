@@ -34,6 +34,39 @@ FC.REFS = {
     doi: "10.1016/j.echo.2023.04.014", pmid: "37227365",
     url: "https://doi.org/10.1016/j.echo.2023.04.014"
   },
+  "spicer-2014-vsd": {
+    title: "Ventricular septal defect",
+    authors: "Spicer DE, Hsu HH, Co-Vu J, Anderson RH, Fricker FJ",
+    journal: "Orphanet J Rare Dis",
+    year: 2014, volume: "9", pages: "144",
+    doi: "10.1186/s13023-014-0144-2", pmid: "25523232",
+    url: "https://doi.org/10.1186/s13023-014-0144-2"
+  },
+  "lopez-2018-vsd-icd11": {
+    organization: "International Society for Nomenclature of Paediatric and Congenital Heart Disease",
+    title: "Classification of Ventricular Septal Defects for the Eleventh Iteration of the International Classification of Diseases — Striving for Consensus",
+    authors: "Lopez L, Houyel L, Colan SD, Anderson RH, et al.",
+    journal: "Ann Thorac Surg",
+    year: 2018, volume: "106", issue: "5", pages: "1578–1589",
+    doi: "10.1016/j.athoracsur.2018.06.020", pmid: "30031844",
+    url: "https://doi.org/10.1016/j.athoracsur.2018.06.020"
+  },
+  "suzuki-2006-iaa-lvoto": {
+    title: "Selective management of the left ventricular outflow tract for repair of interrupted aortic arch with ventricular septal defect: management of left ventricular outflow tract obstruction",
+    authors: "Suzuki T, Ohye RG, Devaney EJ, et al.",
+    journal: "J Thorac Cardiovasc Surg",
+    year: 2006, volume: "131", issue: "4", pages: "779–784",
+    doi: "10.1016/j.jtcvs.2005.11.038", pmid: "16580434",
+    url: "https://doi.org/10.1016/j.jtcvs.2005.11.038"
+  },
+  "volpe-2002-iaa-22q11": {
+    title: "Prenatal diagnosis of interruption of the aortic arch and its association with deletion of chromosome 22q11",
+    authors: "Volpe P, Marasini M, Caruso G, Gentile M",
+    journal: "Ultrasound Obstet Gynecol",
+    year: 2002, volume: "20", issue: "4", pages: "327–331",
+    doi: "10.1046/j.1469-0705.2002.00818.x", pmid: "12383312",
+    url: "https://doi.org/10.1046/j.1469-0705.2002.00818.x"
+  },
   "morlando-2017-avsd-t21": {
     title: "The association between prenatal atrioventricular septal defects and chromosomal abnormalities",
     authors: "Morlando M, Bhide A, Familiari A, et al.",
