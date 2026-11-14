@@ -205,7 +205,8 @@ test("атлас нормы: у каждого стандартного срез
     assert.ok(t, `${v.id}: нет схемы нормы в атласе`);
     const nums = t.structures.map(s => s.n).filter(n => n !== null).sort((a, b) => a - b);
     assert.deepEqual([...nums], Array.from({ length: nums.length }, (_, i) => i + 1), `${t.id}: номера по порядку`);
-    if (t.id !== "4cv-normal") assert.equal(t.status, "draft", `${t.id}: до проверки автором — черновик`);
+    if (t.status === "approved") assert.ok(t.reviewedBy && t.reviewedAt, `${t.id}: у проверенной схемы указаны автор и дата проверки`);
+    if (!["4cv-normal", "lvot-normal"].includes(t.id)) assert.equal(t.status, "draft", `${t.id}: до проверки автором — черновик`);
     for (const x of [...t.normal, ...t.structures.map(s => s.note || "")])
       assert.doesNotMatch(x, /\d+\s*(мм|см|%|°)/, `${t.id}: числовой критерий без источника: ${x}`);
   }

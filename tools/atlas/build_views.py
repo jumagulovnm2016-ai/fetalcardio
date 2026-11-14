@@ -689,7 +689,7 @@ def lvot_v3():
               "(на рисунке — влево и кпереди), кзади от правого желудочка; межжелудочковая перегородка продолжается в переднюю стенку аорты, "
               "передняя створка митрального клапана — в её заднюю стенку; кзади от корня аорты — левое предсердие, справа и кзади — правое. "
               "Анатомический рисунок, не УЗ-изображение; пропорции условны.",
-              "Выходной тракт ЛЖ (LVOT): анатомическая схема нормы").replace('"version":1}', '"version":3}') + style,
+              "Выходной тракт ЛЖ (LVOT): анатомическая схема нормы").replace('"version":1}', '"version":3}').replace('"status":"draft"', '"status":"approved","reviewedBy":"Жумагулов Н.М.","reviewedAt":"2026-11-14"').replace('data-status="draft"', 'data-status="approved"').replace(" Статус: черновик, требует проверки экспертом.", " Проверено автором (Жумагулов Н.М.) 14.11.2026.").replace('<rect class="dr" x="24" y="48" width="262" height="28" rx="6"/>', '<rect class="ok" x="24" y="48" width="330" height="28" rx="6"/>').replace(f'<text class="drt" x="155" y="67" text-anchor="middle">{V.DRAFT}</text>', '<text class="okt" x="189" y="67" text-anchor="middle">✓ Проверено автором · Жумагулов Н.М. · 14.11.2026</text>') + style,
          orient_tr(TCY - TRY), '<g id="heart">', body_frame(TCX, TCY, TRX, TRY, thorax=True),
          lungs(LUNG_R2, LUNG_L2), f'<g id="layer-spine">{spine(SPX, SPY)}</g>', dao(), heart,
          labels(M) + "\n</g>",

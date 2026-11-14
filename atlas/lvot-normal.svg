@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 900" role="img" aria-labelledby="t-lvot-normal d-lvot-normal" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 900" role="img" aria-labelledby="t-lvot-normal d-lvot-normal" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="approved">
 <title id="t-lvot-normal">Выходной тракт левого желудочка (LVOT): анатомическая схема нормы</title>
-<desc id="d-lvot-normal">Оригинальная учебная схема FetalCardio. Поперечный срез грудной клетки, как на эхограмме: ось сердца направлена влево, верхушка кпереди и влево и образована ЛЖ. Аорта отходит от левого желудочка в центре сердца и идёт к правому плечу плода (на рисунке — влево и кпереди), кзади от правого желудочка; межжелудочковая перегородка продолжается в переднюю стенку аорты, передняя створка митрального клапана — в её заднюю стенку; кзади от корня аорты — левое предсердие, справа и кзади — правое. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик, требует проверки экспертом.</desc>
-<metadata>{"app":"FetalCardio","id":"lvot-normal","status":"draft","author":"Жумагулов Н.М.","created":"2026-11-14","version":3}</metadata>
+<desc id="d-lvot-normal">Оригинальная учебная схема FetalCardio. Поперечный срез грудной клетки, как на эхограмме: ось сердца направлена влево, верхушка кпереди и влево и образована ЛЖ. Аорта отходит от левого желудочка в центре сердца и идёт к правому плечу плода (на рисунке — влево и кпереди), кзади от правого желудочка; межжелудочковая перегородка продолжается в переднюю стенку аорты, передняя створка митрального клапана — в её заднюю стенку; кзади от корня аорты — левое предсердие, справа и кзади — правое. Анатомический рисунок, не УЗ-изображение; пропорции условны. Проверено автором (Жумагулов Н.М.) 14.11.2026.</desc>
+<metadata>{"app":"FetalCardio","id":"lvot-normal","status":"approved","reviewedBy":"Жумагулов Н.М.","reviewedAt":"2026-11-14","author":"Жумагулов Н.М.","created":"2026-11-14","version":3}</metadata>
 <defs>
 <radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="430" cy="300" r="380">
   <stop offset="0" stop-color="#fdf2ee"/><stop offset=".6" stop-color="#f6dcd4"/><stop offset="1" stop-color="#e9bfb3"/>
@@ -146,8 +146,8 @@
 <rect class="bg" x="0" y="0" width="820" height="900"/>
 <g id="layer-header">
 <text class="hd" x="24" y="34">Выходной тракт ЛЖ (LVOT): анатомическая схема нормы</text>
-<rect class="dr" x="24" y="48" width="262" height="28" rx="6"/>
-<text class="drt" x="155" y="67" text-anchor="middle">DRAFT · REQUIRES EXPERT REVIEW</text>
+<rect class="ok" x="24" y="48" width="330" height="28" rx="6"/>
+<text class="okt" x="189" y="67" text-anchor="middle">✓ Проверено автором · Жумагулов Н.М. · 14.11.2026</text>
 </g><defs><radialGradient id="g-rb" cx=".55" cy=".6" r=".7"><stop offset="0" stop-color="#4f7fe0"/><stop offset=".6" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/></radialGradient>
 <radialGradient id="g-rr" cx=".45" cy=".55" r=".7"><stop offset="0" stop-color="#ec5a4c"/><stop offset=".6" stop-color="#c41d22"/><stop offset="1" stop-color="#8f1016"/></radialGradient></defs>
 <style>.cavr2{fill:url(#g-rb);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}.cavl2{fill:url(#g-rr);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}
