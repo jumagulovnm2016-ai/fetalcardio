@@ -141,7 +141,6 @@
     <div class="card">
       <div class="row between"><h3 style="margin:0">Мой прогресс</h3><span class="small muted">${done} из ${total}</span></div>
       <p class="small muted" style="margin:.4em 0 .8em">Прогресс хранится только в этом браузере. Сохраните его в файл, чтобы перенести на другое устройство.</p>
-      ${FC.account && FC.account.enabled ? `<p class="small" style="margin:0 0 .8em"><a href="account.html">Личный кабинет${FC.account.profile && FC.account.profile.role === "teacher" ? " · кабинет преподавателя" : ""} →</a></p>` : ""}
       <div class="row"><button class="btn ghost" data-export="1">⤓ Экспорт в JSON</button>
       <button class="btn ghost" data-import="1">⤒ Импорт из файла</button></div>
       <input type="file" id="importFile" accept="application/json,.json" hidden>
