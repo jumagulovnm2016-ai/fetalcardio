@@ -166,7 +166,7 @@
     return `<div class="crumb"><a href="#/views">Срезы</a> / ${esc(v.abbr)}</div>
       <h1>${esc(v.name)}</h1>
       <div>${statusBadge(v.status)}</div>
-      <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза; проверена автором 12.11.2026, пропорции условны. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
+      <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза; ${id === "lvot" ? "новая версия 14.11.2026 — черновик, ожидает проверки автором" : "проверена автором 12.11.2026"}, пропорции условны. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
       ${ATLAS.filter(t => t.view === id && !t.chd).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>

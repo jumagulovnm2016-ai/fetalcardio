@@ -611,7 +611,96 @@ def lvot(vsd=False):
     return "\n".join(o), M
 
 
-BUILDERS = {"vsd-5cv": lambda: lvot(vsd=True), "situs-normal": situs, "lvot-normal": lvot, "rvot-normal": rvot, "3vv-normal": three_vv, "3vt-normal": three_vt}
+# =====================================================================================
+# LVOT — версия 3: геометрия в экранных координатах (lvot_geom.py), без поворота
+# =====================================================================================
+def lvot_v3():
+    import types, lvot_geom as G0
+    mp = lambda d: G0.map_path(d, G0.fx)
+    G = types.SimpleNamespace(**{k: getattr(G0, k) for k in dir(G0) if k.isupper()})
+    for k in ("OUT", "LV", "IVS", "RV", "LA", "RA", "AO_UP", "AO_LO", "AO", "LVPM", "MB", "SAO", "FLOW", "FLOW_HEAD"):
+        setattr(G, k, mp(getattr(G0, k)))
+    G.AOV, G.MV, G.PV = [mp(d) for d in G0.AOV], [mp(d) for d in G0.MV], [mp(d) for d in G0.PV]
+    G.TRAB = [(mp(d), w) for d, w in G0.TRAB]
+    G.MV_CH = [(G0.fx(*a), G0.fx(*b)) for a, b in G0.MV_CH]
+    G.MA = G0.fx(*G0.MA)
+    cx0, cy0, rx0, ry0, ang0 = G0.AO_CUT
+    G.AO_CUT = (*G0.fx(cx0, cy0), round(rx0 * G0.SCALE, 1), round(ry0 * G0.SCALE, 1), ang0)
+    RV_C, RV_E = A.wavy(G.RV, G.RV_AMPS, seed=5, wl=14)
+    LV_C, LV_E = A.wavy(G.LV, G.LV_AMPS, seed=9, wl=10)
+    ch = "".join(A.tline(a, b, "che") + A.tline(a, b, "ch") for a, b in G.MV_CH)
+    trab = "".join(bundle(d, w) for d, w in G.TRAB)
+    cx, cy, rx, ry, ang = G.AO_CUT
+    heart = f'''<g id="layer-heart">
+<g id="layer-veins"><g id="s-pvn" data-s="pvn">{"".join(f'<path class="vo" stroke-width="16" d="{d}"/><path class="vm" stroke-width="12" d="{d}"/>' for d in G.PV)}</g></g>
+<g id="layer-myocardium" filter="url(#f-soft)"><path class="myo" d="{G.OUT}"/></g>
+<g id="layer-myo-texture"><path class="fibr" d="{G.OUT}"/></g>
+<g id="layer-cavities">
+<path id="s-rv" data-s="rv" class="cavr2" d="{RV_C}"/>
+<path id="s-ra" data-s="ra" class="cavr2" d="{G.RA}"/>
+<path id="s-lv" data-s="lv" class="cavl2" d="{LV_C}"/>
+<path id="s-la" data-s="la" class="cavl2" d="{G.LA}"/>
+<path class="sheen" d="{RV_C} {LV_C} {G.LA} {G.RA}"/>
+<path class="endo2" d="{RV_E} {LV_E}"/>
+</g>
+<g id="layer-ventricular-septum"><path id="s-ivs" data-s="ivs" class="sep" d="{G.IVS}"/><path class="fibr" d="{G.IVS}"/></g>
+<g id="layer-rv-morphology">{trab}<g id="s-mb">{bundle(G.MB, 7)}</g></g>
+<g id="layer-lv-morphology"><path class="pm" d="{G.LVPM}"/></g>
+<g id="layer-aorta">
+<g id="s-ao" data-s="ao"><path fill="url(#g-ao)" d="{G.AO}"/>
+<path class="an" stroke-width="2.4" d="{G.AO_UP}"/><path class="an" stroke-width="2.4" d="{G.AO_LO}"/>
+<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="#7f0c12" stroke="#2b1a1a" stroke-width="1.8" transform="rotate({ang} {cx} {cy})"/>
+<path d="{mp("M 432,350 C 404,338 370,322 316,302")}" stroke="#fff" stroke-width="3.5" opacity=".3" fill="none" stroke-linecap="round"/></g>
+<g id="s-lvot" data-s="lvot"><path class="and" stroke-width="1.6" d="{mp("M 452,350 C 476,340 500,346 512,362 C 516,374 506,386 494,390")}"/></g>
+<g id="s-flow" data-s="flow"><path class="flw" d="{G.FLOW}"/><path class="flwh" d="{G.FLOW_HEAD}"/></g>
+<g id="s-aov" data-s="aov">{"".join(leaflet(d) for d in G.AOV)}</g>
+<g id="s-sao" data-s="sao"><path class="sao" d="{G.SAO}"/></g>
+<g id="s-mac" data-s="mac"><circle cx="{G.MA[0]}" cy="{G.MA[1]}" r="7" fill="#fffaf2" stroke="#2b1a1a" stroke-width="1.6"/></g>
+</g>
+<g id="layer-av-valves"><g id="s-mv" data-s="mv">{ch}{"".join(leaflet(d) for d in G.MV)}</g></g>
+</g>'''
+    M0 = [
+        (1, "lv", "Левый желудочек", "LV", 594, 300),
+        (2, "lvot", "Выходной тракт ЛЖ (подаортальный отдел)", "LVOT", 498, 364),
+        (3, "aov", "Аортальный клапан", "AoV", 436, 374),
+        (4, "ao", "Корень и восходящая аорта", "Ao", 352, 330),
+        (5, "sao", "Септо-аортальная непрерывность", "septo-aortic continuity", 418, 322),
+        (6, "mac", "Митрально-аортальный фиброзный контакт", "mitral-aortic continuity", 482, 414),
+        (7, "ivs", "Межжелудочковая перегородка", "IVS", 524, 252),
+        (8, "mv", "Митральный клапан", "MV", 556, 392),
+        (9, "rv", "Правый желудочек", "RV", 418, 248),
+        (10, "la", "Левое предсердие", "LA", 540, 482),
+        (11, "pvn", "Лёгочные вены", "pulmonary veins", 664, 520),
+        (12, "ra", "Правое предсердие", "RA", 374, 460),
+        (None, "flow", "Направление кровотока: из ЛЖ в аорту", "flow", 572, 336),
+        (None, "dao", "Нисходящая аорта", "DAo", 492, 610),
+        (None, "lungs", "Лёгкие", "lungs", 186, 440),
+        (None, "spine", "Позвоночник", "spine", 456, 666),
+    ]
+    M = [(n, k, nm, ab, *G0.fx(x, y)) if k not in ("dao", "lungs", "spine") else (n, k, nm, ab, x, y) for n, k, nm, ab, x, y in M0]
+    style = """<defs><radialGradient id="g-rb" cx=".55" cy=".6" r=".7"><stop offset="0" stop-color="#4f7fe0"/><stop offset=".6" stop-color="#2452b8"/><stop offset="1" stop-color="#143584"/></radialGradient>
+<radialGradient id="g-rr" cx=".45" cy=".55" r=".7"><stop offset="0" stop-color="#ec5a4c"/><stop offset=".6" stop-color="#c41d22"/><stop offset="1" stop-color="#8f1016"/></radialGradient></defs>
+<style>.cavr2{fill:url(#g-rb);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}.cavl2{fill:url(#g-rr);stroke:#2b1a1a;stroke-width:1.4;stroke-linejoin:round}
+.flw{stroke:#ffffff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-dasharray:9 6;opacity:.9}
+.flwh{fill:#ffffff;opacity:.9}</style>"""
+    o = [head("lvot-normal", "Выходной тракт левого желудочка (LVOT): анатомическая схема нормы",
+              "Оригинальная учебная схема FetalCardio. Поперечный срез грудной клетки, как на эхограмме: ось сердца направлена влево, "
+              "верхушка кпереди и влево и образована ЛЖ. Аорта отходит от левого желудочка в центре сердца и идёт к правому плечу плода "
+              "(на рисунке — влево и кпереди), кзади от правого желудочка; межжелудочковая перегородка продолжается в переднюю стенку аорты, "
+              "передняя створка митрального клапана — в её заднюю стенку; кзади от корня аорты — левое предсердие, справа и кзади — правое. "
+              "Анатомический рисунок, не УЗ-изображение; пропорции условны.",
+              "Выходной тракт ЛЖ (LVOT): анатомическая схема нормы").replace('"version":1}', '"version":3}') + style,
+         orient_tr(TCY - TRY), '<g id="heart">', body_frame(TCX, TCY, TRX, TRY, thorax=True),
+         lungs(LUNG_R2, LUNG_L2), f'<g id="layer-spine">{spine(SPX, SPY)}</g>', dao(), heart,
+         labels(M) + "\n</g>",
+         V.foot(["Поперечный срез, как на эхограмме: верх — передняя стенка, низ — позвоночник; левая сторона плода — справа.",
+                 "LVOT — наклон датчика от 4CV к правому плечу плода: аорта из ЛЖ идёт вправо и кпереди (на рисунке — влево).",
+                 "Створки АК открыты (систола), МК сомкнут. Пунктир со стрелкой — кровоток из ЛЖ в аорту.",
+                 "Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок."])]
+    return "\n".join(o), M
+
+
+BUILDERS = {"vsd-5cv": lambda: lvot(vsd=True), "situs-normal": situs, "lvot-normal": lvot_v3, "rvot-normal": rvot, "3vv-normal": three_vv, "3vt-normal": three_vt}
 
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "../../atlas"

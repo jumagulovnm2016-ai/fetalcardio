@@ -2,7 +2,7 @@
    Важно: на домене *.github.io кэши общие для всех приложений автора,
    поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
 const PREFIX = "fetalcardio-";
-const VERSION = "v34";
+const VERSION = "v35";
 const APP_CACHE = `${PREFIX}app-${VERSION}`;
 const FONT_CACHE = `${PREFIX}fonts-v1`;
 /* Эхограммы (img/) не входят в предзагрузку (~17 МБ): кэшируются при первом просмотре
