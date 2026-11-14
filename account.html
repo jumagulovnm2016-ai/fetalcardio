@@ -37,27 +37,16 @@
 
   <!-- не вошёл -->
   <section class="card" id="out" hidden>
-    <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="t-in" aria-selected="true">Вход</button>
-      <button type="button" role="tab" id="t-up" aria-selected="false">Регистрация</button>
-    </div>
+    
     <form id="f-in" class="form" novalidate>
-      <label class="f">Логин или почта<small>логин и код выдаёт преподаватель; если вы регистрировались сами — введите почту</small>
+      <label class="f">Логин или почта<small>логин и код выдаёт преподаватель</small>
         <input type="text" id="in-who" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
       <label class="f">Пароль или код<input type="password" id="in-pass" autocomplete="current-password" required></label>
       <p class="err" id="in-err" role="alert" hidden></p>
       <div class="row"><button class="btn" type="submit" id="in-go">Войти</button></div>
       <p class="muted small">Забыли пароль или код? Напишите преподавателю — он выдаст новый. Один аккаунт работает на одном устройстве.</p>
     </form>
-    <form id="f-up" class="form" novalidate hidden>
-      <label class="f">ФИО полностью<input type="text" id="up-name" autocomplete="name" maxlength="120" placeholder="Иванов Иван Иванович" required></label>
-      <label class="f">Почта<input type="email" id="up-email" autocomplete="email" autocapitalize="none" spellcheck="false" required></label>
-      <label class="f">Пароль<small>не меньше 6 символов</small><input type="password" id="up-pass" autocomplete="new-password" minlength="6" required></label>
-      <label class="chk"><input type="checkbox" id="up-ok"><span>Согласен(на), что ФИО и почта хранятся на сервере FetalCardio и видны преподавателю курса.</span></label>
-      <p class="err" id="up-err" role="alert" hidden></p>
-      <div class="row"><button class="btn" type="submit" id="up-go">Зарегистрироваться</button></div>
-      <p class="muted small">После регистрации преподаватель подтвердит заявку и откроет доступ. До этого приложение закрыто.</p>
-    </form>
+    
   </section>
 
   <!-- вошёл -->
@@ -89,11 +78,6 @@ const dlong = s => new Date(s).toLocaleDateString("ru-RU", { day: "numeric", mon
 if (!A.enabled) { $("loading").hidden = true; $("off").hidden = false; return; }
 if (!A.client) { $("loading").textContent = "Не удалось загрузить модуль входа. Проверьте интернет и обновите страницу."; return; }
 
-function tab(up) {
-  $("t-in").setAttribute("aria-selected", String(!up)); $("t-up").setAttribute("aria-selected", String(up));
-  $("f-in").hidden = up; $("f-up").hidden = !up;
-}
-$("t-in").onclick = () => tab(false); $("t-up").onclick = () => tab(true);
 
 async function busy(btn, fn, errEl) {
   errEl.hidden = true; btn.disabled = true;
@@ -104,10 +88,6 @@ const fail = (el, t) => { el.textContent = t; el.hidden = false; };
 $("f-in").onsubmit = e => { e.preventDefault();
   if (!$("in-who").value.trim() || !$("in-pass").value) return fail($("in-err"), "Введите логин (или почту) и пароль.");
   busy($("in-go"), () => A.signIn($("in-who").value, $("in-pass").value), $("in-err")); };
-$("f-up").onsubmit = e => { e.preventDefault();
-  if (!$("up-ok").checked) return fail($("up-err"), "Нужно согласие на хранение данных.");
-  if ($("up-pass").value.length < 6) return fail($("up-err"), "Пароль — не меньше 6 символов.");
-  busy($("up-go"), () => A.signUp($("up-name").value, $("up-email").value, $("up-pass").value), $("up-err")); };
 $("out-btn").onclick = () => { if (confirm("Выйти из аккаунта на этом устройстве?")) A.signOut(); };
 
 function render(p) {

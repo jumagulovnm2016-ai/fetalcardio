@@ -82,6 +82,11 @@ svg{flex-shrink:0}
 .theme-btn:hover{background:var(--accent-soft)}
 .theme-btn:active{transform:scale(.94)}
 .theme-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.acct-btn{height:40px;display:flex;align-items:center;padding:0 13px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);
+  color:var(--text);font-weight:600;font-size:14px;line-height:1.1;white-space:nowrap;text-decoration:none;transition:transform .15s, background .2s}
+.acct-btn:hover{background:var(--accent-soft)}
+.acct-btn:active{transform:scale(.96)}
+@media (max-width:560px){.acct-btn{white-space:normal;text-align:center;font-size:12px;padding:0 8px;max-width:76px}}
 
 /* ---------- Навигация ---------- */
 .nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:30;display:flex;justify-content:space-around;
