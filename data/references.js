@@ -98,5 +98,14 @@ FC.REFS = {
     year: 2024, volume: "44", issue: "6-7", pages: "899–906",
     doi: "10.1002/pd.6611", pmid: "38797960",
     url: "https://doi.org/10.1002/pd.6611"
+  },
+  "walters-2000-dorv": {
+    organization: "Society of Thoracic Surgeons — Congenital Heart Surgery Nomenclature and Database Project",
+    title: "Congenital Heart Surgery Nomenclature and Database Project: double outlet right ventricle",
+    authors: "Walters HL, Mavroudis C, Tchervenkov CI, Jacobs JP, Lacour-Gayet F, Jacobs ML",
+    journal: "Ann Thorac Surg",
+    year: 2000, volume: "69", issue: "4 Suppl", pages: "S249–S263",
+    doi: "10.1016/s0003-4975(99)01247-3", pmid: "10798433",
+    url: "https://doi.org/10.1016/s0003-4975(99)01247-3"
   }
 };

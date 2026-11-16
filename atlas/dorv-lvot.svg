@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 900" role="img" aria-labelledby="t-dorv-lvot d-dorv-lvot" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" data-status="draft">
 <title id="t-dorv-lvot">DORV на срезе LVOT: обе артерии отходят от ПЖ</title>
-<desc id="d-dorv-lvot">Оригинальная учебная схема FetalCardio на основе схемы нормы LVOT: аорта и лёгочная артерия отходят от правого желудочка и идут параллельно; между аортальным и митральным клапанами — мышечный конус (митрально-аортального контакта нет); единственный выход из ЛЖ — ДМЖП. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик, требует проверки экспертом.</desc>
+<desc id="d-dorv-lvot">Оригинальная учебная схема FetalCardio на основе схемы нормы LVOT: аорта и лёгочная артерия отходят от правого желудочка и идут параллельно; между аортальным и митральным клапанами показан мышечный конус (частый, но не обязательный признак); единственный выход из ЛЖ — ДМЖП. Анатомический рисунок, не УЗ-изображение; пропорции условны. Статус: черновик, требует проверки экспертом.</desc>
 <metadata>{"app":"FetalCardio","id":"dorv-lvot","status":"draft","author":"Жумагулов Н.М.","created":"2026-11-16","version":1}</metadata>
 <defs>
 <radialGradient id="g-myo" gradientUnits="userSpaceOnUse" cx="430" cy="300" r="380">
@@ -206,7 +206,7 @@
 <g id="layer-labels">
 <g id="lbl-ao" class="lbl" data-s="ao"><title>1. Аорта отходит от ПЖ (Ao from RV)</title><circle class="nb" cx="370.8" cy="319.2" r="11.5"/><text class="nt" x="370.8" y="323.4" text-anchor="middle">1</text></g>
 <g id="lbl-pa" class="lbl" data-s="pa"><title>2. Лёгочная артерия отходит от ПЖ (PA from RV)</title><circle class="nb" cx="398.0" cy="268.0" r="11.5"/><text class="nt" x="398.0" y="272.2" text-anchor="middle">2</text></g>
-<g id="lbl-cone" class="lbl" data-s="cone"><title>3. Мышечный конус под аортой (subaortic conus)</title><circle class="nb" cx="439.6" cy="362.4" r="11.5"/><text class="nt" x="439.6" y="366.59999999999997" text-anchor="middle">3</text></g>
+<g id="lbl-cone" class="lbl" data-s="cone"><title>3. Мышечный конус под аортой — частый, но не обязательный признак (subaortic conus)</title><circle class="nb" cx="439.6" cy="362.4" r="11.5"/><text class="nt" x="439.6" y="366.59999999999997" text-anchor="middle">3</text></g>
 <g id="lbl-d-vsd" class="lbl" data-s="d-vsd"><title>4. ДМЖП — единственный выход из ЛЖ (VSD)</title><circle class="nb" cx="474.8" cy="352.8" r="11.5"/><text class="nt" x="474.8" y="357.0" text-anchor="middle">4</text></g>
 <g id="lbl-aov" class="lbl" data-s="aov"><title>5. Аортальный клапан (AoV)</title><circle class="nb" cx="398.0" cy="336.8" r="11.5"/><text class="nt" x="398.0" y="341.0" text-anchor="middle">5</text></g>
 <g id="lbl-rv" class="lbl" data-s="rv"><title>6. Правый желудочек (RV)</title><circle class="nb" cx="470.0" cy="253.6" r="11.5"/><text class="nt" x="470.0" y="257.8" text-anchor="middle">6</text></g>
@@ -214,12 +214,12 @@
 <g id="lbl-la" class="lbl" data-s="la"><title>8. Левое предсердие (LA)</title><circle class="nb" cx="526.0" cy="461.6" r="11.5"/><text class="nt" x="526.0" y="465.8" text-anchor="middle">8</text></g>
 <g id="lbl-ra" class="lbl" data-s="ra"><title>9. Правое предсердие (RA)</title><circle class="nb" cx="393.2" cy="444.0" r="11.5"/><text class="nt" x="393.2" y="448.2" text-anchor="middle">9</text></g>
 <g id="lbl-ivs" class="lbl" data-s="ivs"><title>10. Межжелудочковая перегородка (IVS)</title><circle class="nb" cx="510.0" cy="277.6" r="11.5"/><text class="nt" x="510.0" y="281.8" text-anchor="middle">10</text></g>
-<g id="lbl-mv" class="lbl" data-s="mv"><title>11. Митральный клапан (нет контакта с АК) (MV)</title><circle class="nb" cx="538.8" cy="389.6" r="11.5"/><text class="nt" x="538.8" y="393.8" text-anchor="middle">11</text></g>
+<g id="lbl-mv" class="lbl" data-s="mv"><title>11. Митральный клапан (MV)</title><circle class="nb" cx="538.8" cy="389.6" r="11.5"/><text class="nt" x="538.8" y="393.8" text-anchor="middle">11</text></g>
 <g id="lbl-flow" class="lbl" data-s="flow"><title>•. Кровь из ЛЖ — через ДМЖП в ПЖ и магистральные артерии (flow)</title><circle class="nb nb0" cx="574.0" cy="284.0" r="11.5"/><text class="nt" x="574.0" y="288.2" text-anchor="middle">•</text></g>
 <g id="lbl-dao" class="lbl" data-s="dao"><title>•. Нисходящая аорта (DAo)</title><circle class="nb nb0" cx="492" cy="610" r="11.5"/><text class="nt" x="492" y="614.2" text-anchor="middle">•</text></g>
 <g id="lbl-lungs" class="lbl" data-s="lungs"><title>•. Лёгкие (lungs)</title><circle class="nb nb0" cx="186" cy="440" r="11.5"/><text class="nt" x="186" y="444.2" text-anchor="middle">•</text></g>
 <g id="lbl-spine" class="lbl" data-s="spine"><title>•. Позвоночник (spine)</title><circle class="nb nb0" cx="456" cy="666" r="11.5"/><text class="nt" x="456" y="670.2" text-anchor="middle">•</text></g>
 </g>
 </g>
-<g id="layer-orientation"><text class="om" x="24" y="832">Поперечный срез, как в схеме нормы LVOT: верх — передняя стенка, низ — позвоночник; левая сторона плода — справа.</text><text class="om" x="24" y="852">DORV: обе артерии из ПЖ, параллельно; под аортой — мышечный конус, контакта АК с МК нет.</text><text class="om" x="24" y="872">Вариант с подаортальным ДМЖП. Взаиморасположение сосудов и положение ДМЖП при DORV разные.</text><text class="om" x="24" y="892">Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок.</text></g>
+<g id="layer-orientation"><text class="om" x="24" y="832">Поперечный срез, как в схеме нормы LVOT: верх — передняя стенка, низ — позвоночник; левая сторона плода — справа.</text><text class="om" x="24" y="852">Обе артерии отходят от ПЖ полностью или преимущественно. Подаортальный конус и отсутствие контакта</text><text class="om" x="24" y="872">АК с МК встречаются часто, но для диагноза не обязательны. Вариант с подаортальным ДМЖП.</text><text class="om" x="24" y="892">Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок.</text></g>
 </svg>
