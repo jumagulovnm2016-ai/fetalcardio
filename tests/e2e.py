@@ -8,7 +8,8 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else None
 ROUTES = ["", "views", "view/situs", "view/4cv", "view/lvot", "view/rvot", "view/3vv", "view/3vt",
           "algos", "algo/rv-gt-lv", "algo/overriding", "algo/reverse-flow", "chd",
           "chd/vsd", "chd/avsd", "chd/tof", "chd/tga", "chd/dorv", "chd/cat", "chd/hlhs", "chd/coa", "chd/ebstein", "chd/tapvr",
-          "atlas", "atlas/4cv-normal", "atlas/situs-normal", "atlas/lvot-normal", "atlas/rvot-normal", "atlas/3vv-normal", "atlas/3vt-normal", "atlas/vsd-types", "atlas/vsd-4cv", "atlas/vsd-5cv", "chd/vsd", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
+          "atlas", "atlas/4cv-normal", "atlas/situs-normal", "atlas/lvot-normal", "atlas/rvot-normal", "atlas/3vv-normal", "atlas/3vt-normal", "atlas/vsd-types", "atlas/vsd-4cv", "atlas/vsd-5cv",
+          *("atlas/" + x for x in ["coa-3vt", "coa-arch", "hlhs-4cv", "hlhs-3vt", "avsd-4cv", "ebstein-4cv", "tapvr-4cv", "tof-lvot", "tof-3vv", "cat-lvot", "tga-lvot", "tga-3vv", "dorv-lvot", "ps-rvot", "as-lvot", "rai-situs", "lai-situs", "rab-3vt", "cctga-4cv"]), "chd/vsd", "images", "img/pmc4928259-f8", "img/commons-tgvecho1",
           "quiz", "search?q=" + "%D1%84%D0%B0%D0%BB%D0%BB%D0%BE", "nonexistent"]
 fails = []
 def check(cond, msg):
@@ -165,6 +166,14 @@ with sync_playwright() as p:
                      "w('mpa') > w('ao') && w('ao') > w('svc')", "c('thy').y < c('ao').y", "c('rpa').y > c('ao').y"],
       "3vt-normal": ["c('trachea').x < c('arch').x && c('arch').x < c('da').x", "c('svc').x < c('arch').x", "c('dao').x > c('spine').x",
                      "c('thy').y < c('arch').y"],
+      # схемы пороков: ключевые анатомические соотношения
+      "coa-3vt": ["w('arch') < w('da')", "w('isth') < w('arch')", "c('trachea').x < c('arch').x && c('arch').x < c('da').x"],
+      "hlhs-3vt": ["w('arch') < w('da')", "w('arch') < w('mpa')"],
+      "tof-3vv": ["w('mpa') < w('ao')", "c('svc').x < c('ao').x && c('ao').x < c('mpa').x"],
+      "tga-3vv": ["c('ao').y < c('mpa').y"],
+      "rab-3vt": ["bb('arch').x < bb('trachea').x", "c('da').x > c('trachea').x"],
+      "hlhs-4cv": ["bb('lv').width * bb('lv').height < bb('rv').width * bb('rv').height / 2"],
+      "lai-situs": ["c('azy').y > c('ao').y - 20"],
     }
     for sid, rels in REL.items():
         pg.goto(BASE + "#/atlas/" + sid); pg.wait_for_selector("#atlasSvg svg #heart", timeout=5000)

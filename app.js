@@ -167,7 +167,8 @@
       <h1>${esc(v.name)}</h1>
       <div>${statusBadge(v.status)}</div>
       <figure class="scheme">${SCHEMES[id] ? SCHEMES[id]() : ""}<figcaption>Схема нормы, приближенная к анатомии поперечного среза; проверена автором ${id === "lvot" ? "14.11.2026" : "12.11.2026"}, пропорции условны. Верх — кпереди, низ — позвоночник, левая сторона плода — справа.</figcaption></figure>
-      ${ATLAS.filter(t => t.view === id && !t.chd).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}
+      ${ATLAS.filter(t => t.view === id && !t.chd && !t.lesion).map(t => item(`#/atlas/${t.id}`, esc(t.abbr), "Подробная анатомическая схема среза", `Атлас: ${t.structures.length} структур с подписями и легендой · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id)).join("")}
+      ${ATLAS.some(t => t.view === id && (t.chd || t.lesion)) ? `<h2>Пороки на этом срезе</h2>${ATLAS.filter(t => t.view === id && (t.chd || t.lesion)).map(atlasItem).join("")}` : ""}
       <h2>Как получить</h2><ol class="steps">${v.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
       <h2>Что оценить в норме</h2><ul class="check">${v.check.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>Типичные ошибки</h2><ul class="err">${v.errors.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -219,16 +220,16 @@
   function atlasList() {
     return `<h1>Анатомический атлас</h1>
       <p class="subtitle">Подробные анатомические схемы нормы и пороков. Это рисунки строения сердца, а не УЗ-изображения. Схема со статусом «черновик» ещё не проверена экспертом.</p>
-      ${[["Норма", ATLAS.filter(t => !t.chd).sort((x, y) => VIEWS.findIndex(v => v.id === x.view) - VIEWS.findIndex(v => v.id === y.view))], ["Пороки", ATLAS.filter(t => t.chd)]].map(([h, list]) => list.length ? `<h2>${h}</h2>${list.map(atlasItem).join("")}` : "").join("")}${foot()}`;
+      ${[["Норма", ATLAS.filter(t => !t.chd && !t.lesion).sort((x, y) => VIEWS.findIndex(v => v.id === x.view) - VIEWS.findIndex(v => v.id === y.view))], ["Пороки", ATLAS.filter(t => t.chd || t.lesion)]].map(([h, list]) => list.length ? `<h2>${h}</h2>${list.map(atlasItem).join("")}` : "").join("")}${foot()}`;
   }
   function atlasItem(t) {
-    return item(`#/atlas/${t.id}`, esc(t.abbr.slice(0, 5)), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id, t.chd ? "red" : "");
+    return item(`#/atlas/${t.id}`, esc(t.abbr.slice(0, 5)), t.title, `${t.structures.length} структур · ${t.status === "approved" ? "проверено" : "черновик"}`, "t_" + t.id, t.chd || t.lesion ? "red" : "");
   }
 
   /* Эхограммы под схемой атласа: снимки из data/images.js, выбранные для этой схемы (поле images). */
   function atlasImgs(t) {
     const list = (t.images || []).map(id => byId(IMAGES, id)).filter(Boolean);
-    if (!list.length) return t.chd ? "" : `<h2 id="s-img">Эхограммы этого среза</h2><p class="small muted">Эхограммы нормы для этой схемы пока не добавлены.</p>`;
+    if (!list.length) return t.chd || t.lesion ? "" : `<h2 id="s-img">Эхограммы этого среза</h2><p class="small muted">Эхограммы нормы для этой схемы пока не добавлены.</p>`;
     return `<h2 id="s-img">Эхограммы этого среза</h2>
       <p class="small muted">${statusBadge("draft")} Подбор снимков к схеме не проверен автором. Нажмите на снимок — откроется подпись, источник и лицензия. Ориентация снимка может отличаться от схемы.</p>
       ${thumbs(list)}`;
@@ -254,7 +255,7 @@
       </figure>
       ${atlasImgs(t)}
       <h2>Структуры на схеме</h2><ol class="legend">${legend}</ol>
-      <h2>${c ? "Ключевые признаки" : `Нормальные анатомические признаки ${esc(t.abbr)}`}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2>${c || t.lesion ? "Ключевые признаки" : `Нормальные анатомические признаки ${esc(t.abbr)}`}</h2><ul class="check">${t.normal.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <h2>${t.status === "approved" ? "Принятые упрощения схемы" : "Требует экспертной проверки"}</h2><ul class="err">${t.review.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       ${refsBlock(t.references)}
       <div class="row" style="margin-top:18px">${doneBtn("t_" + id)}</div>
@@ -422,7 +423,7 @@
       case "algos": html = algosList(); break;
       case "algo": html = algoPage(id); nav = "algos"; break;
       case "chd": html = id ? chdPage(id) : chdList(); break;
-      case "atlas": html = id ? atlasPage(id) : atlasList(); nav = id && byId(ATLAS, id)?.chd ? "chd" : "views"; break;
+      case "atlas": html = id ? atlasPage(id) : atlasList(); nav = id && (byId(ATLAS, id)?.chd || byId(ATLAS, id)?.lesion) ? "chd" : "views"; break;
       case "images": html = imagesList(); nav = ""; break;
       case "img": html = imagePage(id); nav = ""; break;
       case "quiz": html = quizPage(); break;
