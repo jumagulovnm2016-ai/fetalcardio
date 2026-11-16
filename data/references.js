@@ -156,6 +156,14 @@ FC.REFS = {
     doi: "10.1002/ajmg.a.36865", pmid: "25711982",
     url: "https://doi.org/10.1002/ajmg.a.36865"
   },
+  "samanek-1994-sex-ratio": {
+    title: "Boy:girl ratio in children born with different forms of cardiac malformation: a population-based study",
+    authors: "Samánek M",
+    journal: "Pediatr Cardiol",
+    year: 1994, volume: "15", issue: "2", pages: "53–57",
+    doi: "10.1007/BF00817606", pmid: "7997413",
+    url: "https://doi.org/10.1007/BF00817606"
+  },
   "kurt-bilirer-2026-situs": {
     title: "Prenatal diagnosis and postnatal outcomes of foetal situs abnormalities: a single tertiary centre experience",
     authors: "Kurt Bilirer K, Özer Çaltek H, Boza B, et al.",
