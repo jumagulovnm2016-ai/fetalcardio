@@ -5,7 +5,7 @@ var FC = globalThis.FC = globalThis.FC || {};
 (function () {
   const STATUS = ["draft", "approved", "outdated"];
   const LEVELS = ["базовый", "продвинутый", "экспертный"];
-  const SECTIONS = ["card", "def", "keys", "views", "ddx", "assoc", "pitfalls", "prognosis", "refer",
+  const SECTIONS = ["card", "def", "freq", "keys", "views", "ddx", "assoc", "pitfalls", "prognosis", "refer",
     "how", "check", "errors", "abnormal", "steps"];
   const SLUG = /^[a-z0-9][a-z0-9-]*$/;
   const DATE = /^\d{4}-\d{2}-\d{2}$/;

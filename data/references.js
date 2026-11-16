@@ -139,5 +139,53 @@ FC.REFS = {
     year: 2023, volume: "61", issue: "4", pages: "488–496",
     doi: "10.1002/uog.26072", pmid: "36099492",
     url: "https://doi.org/10.1002/uog.26072"
+  },
+  "chen-2019-diabetes-chd": {
+    title: "Risk of congenital heart defects in offspring exposed to maternal diabetes mellitus: an updated systematic review and meta-analysis",
+    authors: "Chen L, Yang T, Chen L, et al.",
+    journal: "Arch Gynecol Obstet",
+    year: 2019, volume: "300", issue: "6", pages: "1491–1506",
+    doi: "10.1007/s00404-019-05376-6", pmid: "31713644",
+    url: "https://doi.org/10.1007/s00404-019-05376-6"
+  },
+  "magnani-2000-chd-sex": {
+    title: "Congenital cardiopathy in a data-based population (Cardiopatie congenite in una popolazione basata sui dati)",
+    authors: "Magnani C, Bussolati G, Gambini L, et al.",
+    journal: "Acta Biomed Ateneo Parmense",
+    year: 2000, volume: "71 Suppl 1", pages: "483–486",
+    pmid: "11424793",
+    url: "https://pubmed.ncbi.nlm.nih.gov/11424793/"
+  },
+  "nagata-2026-pdr": {
+    title: "Population-Based Study of Prenatal Detection of Critical Congenital Heart Disease in Kyu-Yama Region of Japan",
+    authors: "Nagata H, Kitadai Y, Hara T, et al.",
+    journal: "Pediatr Int",
+    year: 2026, volume: "68", issue: "1", pages: "e70467",
+    doi: "10.1111/ped.70467", pmid: "42324491",
+    url: "https://doi.org/10.1111/ped.70467"
+  },
+  "wu-2023-heterotaxy": {
+    title: "Characterization of ultrasound and postnatal pathology in fetuses with heterotaxy syndrome",
+    authors: "Wu Q, Guo S, Huang B, et al.",
+    journal: "Front Cardiovasc Med",
+    year: 2023, volume: "10", pages: "1195191",
+    doi: "10.3389/fcvm.2023.1195191", pmid: "37485264",
+    url: "https://doi.org/10.3389/fcvm.2023.1195191"
+  },
+  "adiguzel-2025-ebstein": {
+    title: "Ebstein's anomaly in children and young adults: clinical features, arrhythmia, surgical management, and factors affecting arrhythmia and mortality",
+    authors: "Adıgüzel A, Aypar E, Karagöz T, et al.",
+    journal: "Cardiol Young",
+    year: 2025, volume: "35", issue: "1", pages: "38–45",
+    doi: "10.1017/S1047951124025599", pmid: "39789986",
+    url: "https://doi.org/10.1017/S1047951124025599"
+  },
+  "selamet-2016-ebstein": {
+    title: "Assessment of Progressive Pathophysiology After Early Prenatal Diagnosis of the Ebstein Anomaly or Tricuspid Valve Dysplasia",
+    authors: "Selamet Tierney ES, McElhinney DB, Freud LR, et al.",
+    journal: "Am J Cardiol",
+    year: 2017, volume: "119", issue: "1", pages: "106–111",
+    doi: "10.1016/j.amjcard.2016.09.022", pmid: "27793395",
+    url: "https://doi.org/10.1016/j.amjcard.2016.09.022"
   }
 };

@@ -64,7 +64,7 @@
     ? `<span class="badge ok">✓ проверено автором</span>`
     : `<span class="badge draft">● черновик · на проверке</span>`;
 
-  const SEC_RU = { def: "Суть", keys: "Критерии", views: "По срезам", ddx: "Дифдиагноз", assoc: "Сочетания и генетика",
+  const SEC_RU = { def: "Суть", freq: "Частота", keys: "Критерии", views: "По срезам", ddx: "Дифдиагноз", assoc: "Сочетания и генетика",
     pitfalls: "Ловушки", prognosis: "Прогноз", refer: "Тактика", how: "Как получить", check: "Что оценить в норме",
     errors: "Типичные ошибки", abnormal: "Патологические находки", steps: "Шаги", card: "вся карточка" };
   const refsBlock = refs => {
