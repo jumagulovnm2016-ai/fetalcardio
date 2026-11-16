@@ -5,7 +5,7 @@ var FC = globalThis.FC = globalThis.FC || {};
 (function () {
   const STATUS = ["draft", "approved", "outdated"];
   const LEVELS = ["базовый", "продвинутый", "экспертный"];
-  const SECTIONS = ["card", "def", "keys", "views", "ddx", "assoc", "pitfalls", "prognosis", "refer",
+  const SECTIONS = ["card", "def", "freq", "keys", "views", "ddx", "assoc", "pitfalls", "prognosis", "refer",
     "how", "check", "errors", "abnormal", "steps"];
   const SLUG = /^[a-z0-9][a-z0-9-]*$/;
   const DATE = /^\d{4}-\d{2}-\d{2}$/;
@@ -36,7 +36,7 @@ var FC = globalThis.FC = globalThis.FC || {};
     },
     QUIZ: { q: "str", opts: "strs", a: "int", exp: "str", link: "ref:CHD|null", status: "enum:status?", reviewedBy: "str?", reviewedAt: "date?" },
     ATLAS: {
-      id: "slug", view: "ref:VIEWS?", chd: "ref:CHD?", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
+      id: "slug", view: "ref:VIEWS?", chd: "ref:CHD?", lesion: "str?", abbr: "str", title: "str", aliases: "strs", status: "enum:status",
       svg: "svgpath", orientation: "str", structures: "structs", normal: "strs", review: "strs",
       references: "refs", images: "imgrefs?", reviewedBy: "str?", reviewedAt: "date?"
     },
@@ -187,6 +187,7 @@ var FC = globalThis.FC = globalThis.FC || {};
     (D.QUIZ || []).forEach((q, i) => { if (qs.has(q.q)) err(`QUIZ[${i}]`, "повторяющийся вопрос"); qs.add(q.q); });
 
     (D.ATLAS || []).forEach(t => !t.view && !t.chd && err(`ATLAS[${t.id}]`, "нужна привязка: view или chd"));
+    (D.ATLAS || []).forEach(t => t.lesion && !t.view && err(`ATLAS[${t.id}]`, "схеме порока без карточки (lesion) нужна привязка к срезу (view)"));
     (D.CHD || []).forEach(c => (c.ddx || []).forEach(d => d.id === c.id && err(`CHD[${c.id}].ddx`, "порок ссылается сам на себя")));
     const used = new Set();
     ["VIEWS", "ALGOS", "CHD", "ATLAS"].forEach(n => (D[n] || []).forEach(x => (x.references || []).forEach(r => used.add(r.source))));

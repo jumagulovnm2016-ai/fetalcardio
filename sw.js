@@ -2,7 +2,7 @@
    Важно: на домене *.github.io кэши общие для всех приложений автора,
    поэтому удаляются ТОЛЬКО кэши с префиксом "fetalcardio-". */
 const PREFIX = "fetalcardio-";
-const VERSION = "v36";
+const VERSION = "v39";
 const APP_CACHE = `${PREFIX}app-${VERSION}`;
 const FONT_CACHE = `${PREFIX}fonts-v1`;
 /* Эхограммы (img/) не входят в предзагрузку (~17 МБ): кэшируются при первом просмотре
@@ -15,6 +15,9 @@ const FILES = [
   "atlas/4cv-normal.svg",
   "atlas/situs-normal.svg", "atlas/lvot-normal.svg", "atlas/rvot-normal.svg", "atlas/3vv-normal.svg", "atlas/3vt-normal.svg",
   "atlas/vsd-types.svg", "atlas/vsd-4cv.svg", "atlas/vsd-5cv.svg",
+  "atlas/coa-3vt.svg", "atlas/coa-arch.svg", "atlas/hlhs-4cv.svg", "atlas/hlhs-3vt.svg", "atlas/avsd-4cv.svg", "atlas/ebstein-4cv.svg", "atlas/tapvr-4cv.svg",
+  "atlas/tof-lvot.svg", "atlas/tof-3vv.svg", "atlas/cat-lvot.svg", "atlas/tga-lvot.svg", "atlas/tga-3vv.svg", "atlas/dorv-lvot.svg",
+  "atlas/ps-rvot.svg", "atlas/as-lvot.svg", "atlas/rai-situs.svg", "atlas/lai-situs.svg", "atlas/rab-3vt.svg", "atlas/cctga-4cv.svg",
   "install.js", "account.js", "vendor/supabase-js-2.119.0.umd.js", "account.html", "teacher.html", "pages.css",
   "manifest.json", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png", "icons/favicon-64.png"
 ];

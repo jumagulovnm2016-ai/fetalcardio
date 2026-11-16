@@ -199,6 +199,23 @@ test("банк теста: не меньше 100 вопросов; approved то
   }
 });
 
+test("атлас пороков: схемы ВПС — черновики, без карточки привязаны к срезу", () => {
+  const chd = FC.ATLAS.filter(t => t.chd || t.lesion);
+  assert.ok(chd.length >= 20, "схемы пороков");
+  for (const t of chd) {
+    assert.equal(t.status, "draft", `${t.id}: до проверки автором — черновик`);
+    if (t.lesion) assert.ok(t.view, `${t.id}: lesion без среза`);
+    assert.ok(t.normal.length && t.review.length, `${t.id}: ключевые признаки и пункты проверки`);
+    const nums = t.structures.map(s => s.n).filter(n => n !== null);
+    assert.deepEqual([...nums], Array.from({ length: nums.length }, (_, i) => i + 1), `${t.id}: номера по порядку`);
+  }
+  for (const id of ["coa", "hlhs", "avsd", "ebstein", "tapvr", "tof", "cat", "tga", "dorv"])
+    assert.ok(FC.ATLAS.some(t => t.chd === id), `нет схемы для карточки ${id}`);
+  const d = { ...FC, ATLAS: clone(FC.ATLAS) }, t = d.ATLAS.find(x => x.lesion);
+  delete t.view;
+  assert.ok(FC.validate(d).errors.some(e => e.includes("lesion")));
+});
+
 test("атлас нормы: у каждого стандартного среза есть схема нормы", () => {
   for (const v of FC.VIEWS) {
     const t = FC.ATLAS.find(x => x.view === v.id && !x.chd);
