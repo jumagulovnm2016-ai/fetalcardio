@@ -148,13 +148,21 @@ FC.REFS = {
     doi: "10.1007/s00404-019-05376-6", pmid: "31713644",
     url: "https://doi.org/10.1007/s00404-019-05376-6"
   },
-  "magnani-2000-chd-sex": {
-    title: "Congenital cardiopathy in a data-based population (Cardiopatie congenite in una popolazione basata sui dati)",
-    authors: "Magnani C, Bussolati G, Gambini L, et al.",
-    journal: "Acta Biomed Ateneo Parmense",
-    year: 2000, volume: "71 Suppl 1", pages: "483–486",
-    pmid: "11424793",
-    url: "https://pubmed.ncbi.nlm.nih.gov/11424793/"
+  "michalski-2015-sex-ratio": {
+    title: "Sex ratios among infants with birth defects, National Birth Defects Prevention Study, 1997–2009",
+    authors: "Michalski AM, Richardson SD, Browne ML, et al.",
+    journal: "Am J Med Genet A",
+    year: 2015, volume: "167A", issue: "5", pages: "1071–1081",
+    doi: "10.1002/ajmg.a.36865", pmid: "25711982",
+    url: "https://doi.org/10.1002/ajmg.a.36865"
+  },
+  "kurt-bilirer-2026-situs": {
+    title: "Prenatal diagnosis and postnatal outcomes of foetal situs abnormalities: a single tertiary centre experience",
+    authors: "Kurt Bilirer K, Özer Çaltek H, Boza B, et al.",
+    journal: "J Obstet Gynaecol",
+    year: 2026, volume: "46", issue: "1", pages: "2741573",
+    doi: "10.1080/01443615.2026.2741573", pmid: "42836833",
+    url: "https://doi.org/10.1080/01443615.2026.2741573"
   },
   "nagata-2026-pdr": {
     title: "Population-Based Study of Prenatal Detection of Critical Congenital Heart Disease in Kyu-Yama Region of Japan",
