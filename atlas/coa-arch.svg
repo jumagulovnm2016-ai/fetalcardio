@@ -205,7 +205,7 @@
 <g id="lbl-asc" class="lbl" data-s="asc"><title>1. Восходящая аорта (AAo)</title><circle class="nb" cx="340" cy="380" r="11.5"/><text class="nt" x="340" y="384.2" text-anchor="middle">1</text></g>
 <g id="lbl-arch" class="lbl" data-s="arch"><title>2. Гипоплазированная поперечная дуга (transverse arch)</title><circle class="nb" cx="444" cy="284" r="11.5"/><text class="nt" x="444" y="288.2" text-anchor="middle">2</text></g>
 <g id="lbl-isth" class="lbl" data-s="isth"><title>3. Узкий перешеек аорты (isthmus)</title><circle class="nb" cx="520" cy="290" r="11.5"/><text class="nt" x="520" y="294.2" text-anchor="middle">3</text></g>
-<g id="lbl-shelf" class="lbl" data-s="shelf"><title>4. Задняя «полка» (коарктационный гребень) (posterior shelf)</title><circle class="nb" cx="596" cy="312" r="11.5"/><text class="nt" x="596" y="316.2" text-anchor="middle">4</text></g>
+<g id="lbl-shelf" class="lbl" data-s="shelf"><title>4. Задняя «полка» — вспомогательный признак (posterior shelf)</title><circle class="nb" cx="596" cy="312" r="11.5"/><text class="nt" x="596" y="316.2" text-anchor="middle">4</text></g>
 <g id="lbl-gap" class="lbl" data-s="gap"><title>5. Увеличенное расстояние ЛОСА — ЛПКА (LCCA–LSA distance)</title><circle class="nb" cx="476" cy="156" r="11.5"/><text class="nt" x="476" y="160.2" text-anchor="middle">5</text></g>
 <g id="lbl-da" class="lbl" data-s="da"><title>6. Артериальный проток (DA)</title><circle class="nb" cx="430" cy="366" r="11.5"/><text class="nt" x="430" y="370.2" text-anchor="middle">6</text></g>
 <g id="lbl-dao" class="lbl" data-s="dao"><title>7. Нисходящая аорта (DAo)</title><circle class="nb" cx="598" cy="520" r="11.5"/><text class="nt" x="598" y="524.2" text-anchor="middle">7</text></g>
@@ -218,5 +218,5 @@
 <g id="lbl-spine" class="lbl" data-s="spine"><title>•. Позвоночник (spine)</title><circle class="nb nb0" cx="680" cy="420" r="11.5"/><text class="nt" x="680" y="424.2" text-anchor="middle">•</text></g>
 </g>
 </g>
-<g id="layer-orientation"><text class="om" x="24" y="832">Сагиттальный срез: голова — вверху, передняя стенка — слева, позвоночник — справа.</text><text class="om" x="24" y="852">КоА: дуга тонкая, перешеек сужен, напротив протока — задняя «полка»; ЛОСА и ЛПКА разведены.</text><text class="om" x="24" y="872">Ход сосудов и ширина условны; проток и дуга в одной плоскости видны не всегда.</text><text class="om" x="24" y="892">Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок.</text></g>
+<g id="layer-orientation"><text class="om" x="24" y="832">Сагиттальный срез: голова — вверху, передняя стенка — слева, позвоночник — справа.</text><text class="om" x="24" y="852">КоА: дуга тонкая, перешеек сужен, ЛОСА и ЛПКА разведены (низкий каротидно-подключичный индекс); «полка» — вспомогательно.</text><text class="om" x="24" y="872">Ход сосудов и ширина условны; проток и дуга в одной плоскости видны не всегда.</text><text class="om" x="24" y="892">Анатомическая схема, не УЗ-изображение; пропорции условны. © FetalCardio, оригинальный рисунок.</text></g>
 </svg>

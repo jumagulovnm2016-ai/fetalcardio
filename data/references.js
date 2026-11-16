@@ -107,5 +107,37 @@ FC.REFS = {
     year: 2000, volume: "69", issue: "4 Suppl", pages: "S249–S263",
     doi: "10.1016/s0003-4975(99)01247-3", pmid: "10798433",
     url: "https://doi.org/10.1016/s0003-4975(99)01247-3"
+  },
+  "beattie-2016-coa": {
+    title: "Toward Improving the Fetal Diagnosis of Coarctation of the Aorta",
+    authors: "Beattie M, Peyvandi S, Ganesan S, Moon-Grady A",
+    journal: "Pediatr Cardiol",
+    year: 2017, volume: "38", issue: "2", pages: "344–352",
+    doi: "10.1007/s00246-016-1520-6", pmid: "27888318",
+    url: "https://doi.org/10.1007/s00246-016-1520-6"
+  },
+  "fricke-2020-coa": {
+    title: "Fetal Echocardiographic Dimension Indices: Important Predictors of Postnatal Coarctation",
+    authors: "Fricke K, Liuba P, Weismann CG",
+    journal: "Pediatr Cardiol",
+    year: 2021, volume: "42", issue: "3", pages: "517–525",
+    doi: "10.1007/s00246-020-02509-6", pmid: "33355680",
+    url: "https://doi.org/10.1007/s00246-020-02509-6"
+  },
+  "tavares-2026-csai": {
+    title: "The carotid-subclavian artery index (CSAI) in the fetal aortic arch with classic branching and brachiobicephalic trunk in a midtrimester low-risk population",
+    authors: "Tavares de Sousa M, Hergert B, Gomez O, Crispi F, Hecher K",
+    journal: "Ultraschall Med",
+    year: 2026,
+    doi: "10.1055/a-2922-1435", pmid: "42492571",
+    url: "https://doi.org/10.1055/a-2922-1435"
+  },
+  "anuwutnavin-2023-tapvc": {
+    title: "Fetal left-atrial posterior-space-to-diagonal ratio at 17–37 weeks' gestation for prediction of total anomalous pulmonary venous connection",
+    authors: "Anuwutnavin S, Unalome V, Rekhawasin T, Tongprasert F, Thongkloung P",
+    journal: "Ultrasound Obstet Gynecol",
+    year: 2023, volume: "61", issue: "4", pages: "488–496",
+    doi: "10.1002/uog.26072", pmid: "36099492",
+    url: "https://doi.org/10.1002/uog.26072"
   }
 };
